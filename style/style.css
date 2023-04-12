@@ -1,0 +1,9 @@
+:root {
+	--main-color: #214090;
+	--secondary-color: #f4f4f4;
+	--disabled-color: rgb(102, 102, 104);
+	--main-font: "Tajawal", sans-serif;
+	--checkmark: url("../images/checkmark.svg");
+}
+
+/* *Code Your Css Here  */
