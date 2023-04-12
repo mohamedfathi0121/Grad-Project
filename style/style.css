@@ -1,0 +1,257 @@
+/* default css initialization */
+/* variables */
+:root {
+	--main-color: #214090;
+	--secondary-color: #f4f4f4;
+	--disabled-color: rgb(102, 102, 104);
+	--main-font: "Tajawal", sans-serif;
+}
+
+/* Global Rules */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+html {
+	scroll-behavior: smooth;
+}
+
+a {
+	text-decoration: none;
+	display: inline-block;
+}
+ul {
+	list-style-type: none;
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	font-family: var(--main-font);
+}
+button {
+	border-style: none;
+	font-family: var(--main-font);
+}
+input,
+input::placeholder {
+	font-family: var(--main-font);
+}
+
+/* Header */
+
+header {
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	margin: 3px;
+}
+
+header h1 {
+	font-size: 24px;
+}
+header .logo {
+	width: 110px;
+	height: 100px;
+}
+/* Navigation Links  */
+
+.nav-bar {
+	background-color: var(--secondary-color);
+}
+nav {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px 0;
+}
+nav ul li {
+	margin: 0 15px;
+}
+nav ul li a {
+	color: #000;
+	font-weight: 500;
+	border-radius: 7px;
+	box-shadow: inset 0 0 0 0 var(--main-color);
+	color: var(--main-color);
+	margin: 0 -0.25rem;
+	padding: 0 0.25rem;
+	transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+	box-shadow: inset -150px 0 0 0 var(--main-color);
+	color: var(--secondary-color);
+}
+
+/* Footer */
+footer {
+	margin-top: auto;
+	padding: 10px;
+	background-color: var(--main-color);
+	text-align: center;
+}
+footer p {
+	color: #fff;
+}
+
+/* Reusable Components  */
+
+.components {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 15px;
+}
+
+/* 1. buttons and links styles  */
+.btn-basic {
+	background-color: var(--main-color);
+	color: #fff;
+	margin: 10px;
+	padding: 15px 30px;
+	border-radius: 30px;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer;
+}
+.btn-basic:active {
+	border: 1px solid #000;
+}
+.disabled,
+.disabled:active {
+	background-color: var(--disabled-color);
+	border: none;
+}
+
+/* 2. text input fields */
+input[type="text"] {
+	outline: 0;
+	margin: 10px;
+	padding: 10px;
+	width: 300px;
+	border: 2px solid var(--main-color);
+	border-radius: 10px;
+}
+
+/* 3. Checkbox And Radio Button  */
+
+input[type="checkbox"],
+input[type="radio"] {
+	appearance: none;
+	border: 2px solid #ccc;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	outline: none;
+	margin: 10px;
+}
+input[type="checkbox"] {
+	border-radius: 0;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+	background-color: var(--main-color);
+	border-color: #000;
+	background-image: url("/images/check-svgrepo-com.svg");
+	background-size: 80%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* 4. Search Bar */
+.search {
+	display: flex;
+	justify-content: center;
+}
+.search button,
+.search input {
+	border-radius: 0%;
+	margin: 0;
+	padding: 10px 15px;
+}
+.search input {
+	width: 200px;
+	border-radius: 0 7px 7px 0;
+}
+.search button {
+	border-radius: 7px 0px 0 7px;
+}
+
+/* 5. Select Drop Down Lists */
+
+.select-basic {
+	position: relative;
+	width: 300px;
+}
+
+.select-basic select {
+	display: none;
+}
+
+.select-selected {
+	background-color: var(--main-color);
+}
+
+.select-selected:after {
+	position: absolute;
+	content: "";
+	top: 14px;
+	left: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: #fff transparent transparent transparent;
+}
+
+.select-selected.select-arrow-active:after {
+	border-color: transparent transparent #fff transparent;
+	top: 7px;
+}
+
+.select-items div,
+.select-selected {
+	color: #ffffff;
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	cursor: pointer;
+	user-select: none;
+}
+
+.select-items {
+	position: absolute;
+	background-color: DodgerBlue;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+}
+
+.select-hide {
+	display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.another-content {
+	height: 60vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: aliceblue;
+}
+
+/* *Right Your Css Here */
+/* !DONT TOUCH (VARIABLES / GLOBAL RULES / HEADER / FOOTER / Navigation) FROM ABOVE* */
