@@ -9,10 +9,27 @@ dropDownList();
 // Make The Link Active When Clicked
 
 let currentLocation = location.href;
-let links = document.querySelectorAll("nav a");
+let allLinks = document.querySelectorAll("nav a");
 
-links.forEach((ele) => {
+allLinks.forEach((ele) => {
 	if (ele.href === currentLocation) {
 		ele.classList.add("active");
 	}
 });
+
+// Links Toggler
+
+let toggler = document.querySelector("nav ul .icon");
+let linksDiv = document.querySelector("nav ul .links");
+console.log(linksDiv);
+console.log(linksDiv.classList);
+
+function toggleLinks() {
+	if (linksDiv.className === "links") {
+		linksDiv.classList.add("deactive");
+	} else {
+		linksDiv.classList.remove("deactive");
+	}
+}
+
+toggler.addEventListener("click", toggleLinks);

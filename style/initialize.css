@@ -75,7 +75,7 @@ header .logo {
 nav {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+
 	padding: 10px;
 }
 
@@ -87,6 +87,10 @@ nav ul {
 nav ul li {
 	margin: 0 15px;
 }
+.links {
+	display: flex;
+}
+
 nav ul li a {
 	color: #000;
 	font-weight: 500;
@@ -102,6 +106,34 @@ nav ul li a:hover,
 nav ul li a.active {
 	box-shadow: inset -150px 0 0 0 var(--main-color);
 	color: var(--secondary-color);
+}
+
+nav ul .icon {
+	color: var(--main-color);
+	padding: 0px;
+	background-color: #fff;
+	display: none;
+}
+
+/* medium screen */
+@media (max-width: 900px) {
+	nav ul .icon {
+		display: block;
+	}
+	nav ul,
+	nav ul .links {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.deactive {
+		display: none;
+	}
+	nav ul .links {
+		margin-top: 40px;
+	}
+	nav ul li {
+		margin: 10px 0;
+	}
 }
 
 /* Footer */
