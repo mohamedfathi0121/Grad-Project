@@ -1,4 +1,20 @@
 /*  Css Components and Initialize Styles  */
-@import url(./initialize.css);
+:root {
+	--main-color: #214090;
+	--secondary-color: #f4f4f4;
+	--disabled-color: rgb(102, 102, 104);
+	--main-font: "Tajawal", sans-serif;
+	--checkmark: url("../images/checkmark.svg");
+
+	/* CSS HEX */
+	--san-juan: #294862;
+	--geyser: #d6dce1;
+	--bermuda-gray: #6c8b9d;
+	--eastern-blue: #2198b9;
+	--java: #1ebadc;
+	--jelly-bean: #27718f;
+	--slate-gray: #64748b;
+	--tangaroa: #04183b;
+}
 
 /* *Code Your Css Here  */
