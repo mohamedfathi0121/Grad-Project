@@ -21,8 +21,6 @@ allLinks.forEach((ele) => {
 
 let toggler = document.querySelector("nav ul .icon");
 let linksDiv = document.querySelector("nav ul .links");
-console.log(linksDiv);
-console.log(linksDiv.classList);
 
 function toggleLinks() {
 	if (linksDiv.className === "links") {
