@@ -2,12 +2,13 @@
 :root {
 	--main-color: #214090;
 	--secondary-color: #f4f4f4;
+	--headings-color: #294862;
 	--disabled-color: rgb(102, 102, 104);
 	--main-font: "Tajawal", sans-serif;
 	--checkmark: url("../images/icons/checkmark.svg");
 
 	/* CSS HEX */
-	--san-juan: #294862;
+
 	--geyser: #d6dce1;
 	--bermuda-gray: #6c8b9d;
 	--eastern-blue: #2198b9;
@@ -18,3 +19,59 @@
 }
 
 /* *Code Your Css Here  */
+
+/* Css for Meetings Page */
+
+/* Current Meeting  */
+.meetings-content {
+	margin: 10px;
+	position: relative;
+}
+.add-meeting {
+	position: absolute;
+	bottom: 0;
+}
+.meetings-title {
+	text-align: center;
+}
+.meeting-box,
+.old-meeting-box {
+	padding: 30px;
+	margin: 20px;
+	background-color: var(--secondary-color);
+	border-radius: 15px;
+}
+
+.meeting-box h4,
+.old-meeting-box h4 {
+	margin: 10px;
+}
+.meeting-box .row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 70px;
+}
+.current-meeting-buttons,
+.old-meeting-box .row > .col:nth-child(2) {
+	display: flex;
+	flex-wrap: wrap;
+}
+@media (max-width: 650px) {
+	.current-meeting-buttons,
+	.old-meeting-box .row > .col:nth-child(2) {
+		display: flex;
+		flex-direction: column;
+	}
+}
+/* Old Meetings */
+
+.old-meeting-box h4 {
+	min-width: 116px;
+}
+
+.old-meeting-box .row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

@@ -3,12 +3,13 @@
 :root {
 	--main-color: #214090;
 	--secondary-color: #f4f4f4;
+	--headings-color: #294862;
 	--disabled-color: rgb(102, 102, 104);
 	--main-font: "Tajawal", sans-serif;
 	--checkmark: url("../images/icons/checkmark.svg");
 
 	/* CSS HEX */
-	--san-juan: #294862;
+	--headings-color: #294862;
 	--geyser: #d6dce1;
 	--bermuda-gray: #6c8b9d;
 	--eastern-blue: #2198b9;
@@ -42,6 +43,15 @@ body {
 	flex-direction: column;
 	font-family: var(--main-font);
 }
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	color: var(--headings-color);
+}
+
 button {
 	border-style: none;
 	font-family: var(--main-font);
@@ -49,6 +59,38 @@ button {
 input,
 input::placeholder {
 	font-family: var(--main-font);
+}
+
+.container {
+	padding: 0 15px;
+	margin: auto;
+}
+
+/* Small */
+@media (min-width: 768px) {
+	.container {
+		width: 750px;
+	}
+}
+
+/* Medium */
+@media (min-width: 992px) {
+	.container {
+		width: 970px;
+	}
+}
+
+/* Big */
+@media (min-width: 1200px) {
+	.container {
+		width: 1170px;
+	}
+}
+/* Large */
+@media (min-width: 1600px) {
+	.container {
+		width: 1550px;
+	}
 }
 
 /* Header */
@@ -62,7 +104,7 @@ header {
 
 header h1 {
 	font-size: 24px;
-	color: var(--san-juan);
+	color: var(--headings-color);
 }
 header .logo {
 	width: 110px;
@@ -175,8 +217,8 @@ footer p {
 .btn-basic {
 	background-color: var(--main-color);
 	color: #fff;
-	margin: 10px;
-	padding: 15px 30px;
+	padding: 10px;
+	margin: 5px 10px;
 	border-radius: 30px;
 	text-align: center;
 	font-size: 16px;
@@ -305,6 +347,16 @@ input[type="radio"]:checked {
 .select-items div:hover,
 .same-as-selected {
 	background-color: rgba(0, 0, 0, 0.1);
+}
+/* 6. Upload Buttons */
+
+input[type="file"] {
+	display: none;
+}
+.upload,
+.upload label,
+.upload i {
+	cursor: pointer;
 }
 
 .another-content {
