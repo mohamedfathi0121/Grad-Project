@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Users</title>
+		<title>الاعضاء</title>
 		<!-- Css  -->
 		<!-- Css Components and Initialize Styles  -->
 		<link rel="stylesheet" href="css/initialize.css" />
@@ -52,8 +52,95 @@
 				</form>
 			</nav>
 		</section>
-		<!--  Another Content To Be Added Later (Just As an Example Ignore / Delete it) -->
-		<div class="another-content">باقي محتوى الصفحة هنا</div>
+
+		<!-- *Main Members Page Content  -->
+
+		<!-- !Admin Apperance -->
+		<!-- *Add "deactive" to Class Here ↓↓ To Test-->
+		<main id="admin" class="members-content">
+			<div class="container">
+				<!-- عنوان الصفحة -->
+				<div class="members-title"><h1>الاعضاء</h1></div>
+
+				<div class="members">
+					<!--العضو رقم 1-->
+					<div class="member-box deactive">
+						<div class="row">
+							<div class="col">
+								<h4>رقم المجلس:<span class="meeting-number">{3}</span></h4>
+								<h4>
+									رقم تشكيل المجلس:<span class="meeting-formation-number"
+										>{4}</span
+									>
+								</h4>
+								<h4>
+									بتاريخ:<span class="meeting-month">{5}</span> /
+									<span class="meeting-year">{2023}</span>
+								</h4>
+							</div>
+							<div class="col">
+								<a href="#" class="btn-basic">التقارير</a>
+								<div class="upload btn-basic">
+									<label for="u">
+										رفع ملف المجلس الموثق
+
+										<i class="fa-solid fa-upload"></i>
+										<input id="u" type="file" />
+									</label>
+									<div class="upload-name"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- مجلس سابق رقم 2 -->
+					<div class="member-box deactive">
+						<div class="row">
+							<div class="col">
+								<h4>رقم المجلس:<span class="meeting-number">{3}</span></h4>
+								<h4>
+									رقم تشكيل المجلس:<span class="meeting-formation-number"
+										>{4}</span
+									>
+								</h4>
+								<h4>
+									بتاريخ:<span class="meeting-month">{5}</span> /
+									<span class="meeting-year">{2023}</span>
+								</h4>
+							</div>
+							<div class="col">
+								<a href="#" class="btn-basic">تفاصيل العضو</a>
+								<a href="#" class="btn-basic">تعديل بيانات العضو</a>
+							</div>
+						</div>
+					</div>
+					<!-- مجلس سابق رقم 2 -->
+					<div class="member-box">
+						<div class="row">
+							<div class="col">
+								<h4>رقم العضو:<span class="member-number">{7}</span></h4>
+								<h4>
+									اسم العضو:<span class="member-name">د. محمد عبد السلام</span>
+								</h4>
+								<h4>
+									رقم تشكيل المجلس:<span class="meeting-formation-number"
+										>{4}</span
+									>
+								</h4>
+							</div>
+							<div class="col">
+								<a href="#" class="btn-basic">تفاصيل العضو</a>
+								<a href="#" class="btn-basic">تعديل بيانات العضو</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- اضافة عضو -->
+			<div class="add-member">
+				<a href="#" class="btn-basic">اضافة عضو جديد</a>
+			</div>
+		</main>
 
 		<!-- Footer -->
 		<!-- function footer(){ -->

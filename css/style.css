@@ -24,24 +24,27 @@
 	}
 }
 
-/* *Code Your Css Here  */
-
-/* Css for Meetings Page */
+/* *Css for Meetings Page */
+/* ############################ */
 
 /* Current Meeting  */
-.meetings-content {
+.meetings-content,
+.members-content {
 	margin: 10px;
-	position: relative;
+	min-height: 100vh;
 }
-.add-meeting {
-	position: absolute;
-	bottom: 0;
+.add-meeting,
+.add-member {
+	position: sticky;
+	bottom: 15px;
 }
-.meetings-title {
+.meetings-title,
+.members-title {
 	text-align: center;
 }
 .meeting-box,
-.old-meeting-box {
+.old-meeting-box,
+.member-box {
 	padding: 30px;
 	margin: 20px;
 	background-color: var(--secondary-color);
@@ -49,7 +52,8 @@
 }
 
 .meeting-box h4,
-.old-meeting-box h4 {
+.old-meeting-box h4,
+.member-box h4 {
 	margin: 10px;
 }
 .meeting-box .row {
@@ -80,11 +84,13 @@
 /* Old Meetings */
 
 .old-meeting-box h4,
-.meeting-box h4 {
+.meeting-box h4,
+.member-box h4 {
 	min-width: 116px;
 }
 
-.old-meeting-box .row {
+.old-meeting-box .row,
+.member-box .row {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
