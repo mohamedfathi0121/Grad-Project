@@ -43,6 +43,9 @@ body {
 	flex-direction: column;
 	font-family: var(--main-font);
 }
+.deactive {
+	display: none;
+}
 
 h1,
 h2,

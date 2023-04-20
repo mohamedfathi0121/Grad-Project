@@ -17,6 +17,12 @@
 	--slate-gray: #64748b;
 	--tangaroa: #04183b;
 }
+@media (max-width: 768px) {
+	body,
+	.btn-basic {
+		font-size: 80%;
+	}
+}
 
 /* *Code Your Css Here  */
 
@@ -59,14 +65,22 @@
 }
 @media (max-width: 650px) {
 	.current-meeting-buttons,
+	.old-meeting-box .row,
 	.old-meeting-box .row > .col:nth-child(2) {
 		display: flex;
 		flex-direction: column;
 	}
 }
+@media (max-width: 450px) {
+	.meeting-box .row {
+		flex-direction: column;
+	}
+}
+
 /* Old Meetings */
 
-.old-meeting-box h4 {
+.old-meeting-box h4,
+.meeting-box h4 {
 	min-width: 116px;
 }
 
@@ -74,4 +88,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+/* Empty Meeting */
+
+.empty-meeting {
+	padding: 200px 100px;
+	text-align: center;
 }

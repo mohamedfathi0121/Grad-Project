@@ -86,11 +86,4 @@ for (let i = 0; i < uploadLabel.length; i++) {
 	});
 }
 
-// uploadLabel.addEventListener("mouseenter", () => {
-// 	uploadIcon.classList.add("fa-fade");
-// });
-// uploadLabel.addEventListener("mouseleave", () => {
-// 	uploadIcon.classList.remove("fa-fade");
-// });
-
 console.log(uploadLabel);
