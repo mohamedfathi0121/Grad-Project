@@ -70,6 +70,8 @@
 @media (max-width: 650px) {
 	.current-meeting-buttons,
 	.old-meeting-box .row,
+	.member-box .row,
+	.member-box .row > .col:nth-child(2),
 	.old-meeting-box .row > .col:nth-child(2) {
 		display: flex;
 		flex-direction: column;
@@ -98,7 +100,15 @@
 
 /* Empty Meeting */
 
-.empty-meeting {
+.empty-meeting,
+.empty-member {
 	padding: 200px 100px;
 	text-align: center;
+}
+
+/* Members */
+.member-box .member-image {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
 }

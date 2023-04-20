@@ -43,6 +43,10 @@ body {
 	flex-direction: column;
 	font-family: var(--main-font);
 }
+img {
+	width: 300px;
+	height: 300px;
+}
 .deactive {
 	display: none;
 }
