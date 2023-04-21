@@ -22,15 +22,9 @@ allLinks.forEach((ele) => {
 let toggler = document.querySelector("nav ul .icon");
 let linksDiv = document.querySelector("nav ul .links");
 
-function toggleLinks() {
-	if (linksDiv.className === "links") {
-		linksDiv.classList.add("deactive");
-	} else {
-		linksDiv.classList.remove("deactive");
-	}
-}
-
-toggler.addEventListener("click", toggleLinks);
+toggler.addEventListener("click", () => {
+	linksDiv.classList.toggle("deactive");
+});
 
 // Access Upload File Name To Style it in .upload-name
 

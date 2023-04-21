@@ -112,6 +112,6 @@
 	flex-direction: row-reverse;
 	justify-content: space-around;
 }
-.member-box .member-details h5 {
+.member-box .member-details h4 {
 	margin: 15px 0;
 }
