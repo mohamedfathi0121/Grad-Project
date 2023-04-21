@@ -20,10 +20,14 @@
 @media (max-width: 768px) {
 	body,
 	.btn-basic {
-		font-size: 80%;
+		font-size: 90%;
 	}
 }
-
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 /* *Css for Meetings Page */
 /* ############################ */
 
@@ -57,9 +61,6 @@
 	margin: 10px;
 }
 .meeting-box .row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 	margin-bottom: 70px;
 }
 .current-meeting-buttons,
@@ -69,17 +70,14 @@
 }
 @media (max-width: 650px) {
 	.current-meeting-buttons,
-	.old-meeting-box .row,
-	.member-box .row,
+	.row,
 	.member-box .row > .col:nth-child(2),
 	.old-meeting-box .row > .col:nth-child(2) {
 		display: flex;
-		flex-direction: column;
+		flex-direction: column !important;
 	}
-}
-@media (max-width: 450px) {
-	.meeting-box .row {
-		flex-direction: column;
+	.member-box .row > .col:nth-child(2) {
+		align-items: center;
 	}
 }
 
@@ -89,13 +87,6 @@
 .meeting-box h4,
 .member-box h4 {
 	min-width: 116px;
-}
-
-.old-meeting-box .row,
-.member-box .row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 }
 
 /* Empty Meeting */
@@ -108,7 +99,19 @@
 
 /* Members */
 .member-box .member-image {
-	width: 120px;
-	height: 120px;
+	width: 100px;
+	height: 100px;
 	border-radius: 50%;
+}
+
+.member-box .member-details {
+	margin-top: 70px;
+}
+.member-box .member-details .row {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-around;
+}
+.member-box .member-details h5 {
+	margin: 15px 0;
 }

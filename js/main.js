@@ -73,7 +73,7 @@ uploadInput.forEach((ele) => {
 // 	}
 // }
 
-// Making the icon fade when hovering it
+// Making the upload icon fade when hovering it
 
 let uploadIcon = document.querySelectorAll(".fa-upload");
 
@@ -86,4 +86,15 @@ for (let i = 0; i < uploadLabel.length; i++) {
 	});
 }
 
-console.log(uploadLabel);
+// Details Button Toggle
+let allMemberDetailsButtons = document.querySelectorAll(
+	".member-box .member-details-btn"
+);
+let memberDetailsBtn = document.querySelector(".member-details-btn");
+
+allMemberDetailsButtons.forEach((btn) => {
+	btn.addEventListener("click", () => {
+		let memberDetails = btn.parentElement.parentElement.nextElementSibling;
+		memberDetails.classList.toggle("deactive");
+	});
+});
