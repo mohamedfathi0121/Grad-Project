@@ -43,7 +43,6 @@ for (let i = 0; i < uploadLabel.length; i++) {
 let allMemberDetailsButtons = document.querySelectorAll(
 	".member-box .member-details-btn"
 );
-let memberDetailsBtn = document.querySelector(".member-details-btn");
 
 allMemberDetailsButtons.forEach((btn) => {
 	btn.addEventListener("click", () => {
@@ -77,3 +76,11 @@ function displayFile(files, fileList) {
 		}
 	}
 }
+let allDecisionDetailsButtons = document.querySelectorAll(
+	".decision-buttons button.dec-details-btn"
+);
+allDecisionDetailsButtons.forEach((ele) => {
+	ele.addEventListener("click", () => {
+		ele.nextElementSibling.classList.toggle("deactive");
+	});
+});
