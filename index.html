@@ -121,15 +121,39 @@
 			</form>
 			<p style="margin-bottom: 10px">Upload Buttons:</p>
 
-			<span class="upload btn-basic">
-				<label for="u">
-					رفع ملف المجلس الموثق
+			<!-- !Note That Each Upload Must have Different {id} & {for} attributes for {input} & {label} tags
+			!like : <label for="up1"></label> <input id="up1"/> -->
 
-					<i class="fa-solid fa-upload"></i>
-					<input id="u" type="file" />
-				</label>
-				<div class="upload-name"></div>
-			</span>
+			<div class="upload">
+				<div class="btn-basic">
+					<label for="up1">
+						رفع ملف المجلس الموثق
+						<i class="fa-solid fa-upload"></i>
+						<input id="up1" type="file" class="upload-button" multiple />
+					</label>
+				</div>
+				<div class="file-list"></div>
+			</div>
+			<div class="upload">
+				<div class="btn-basic">
+					<label for="up2">
+						رفع ملف المجلس الموثق
+						<i class="fa-solid fa-upload"></i>
+						<input id="up2" type="file" class="upload-button" multiple />
+					</label>
+				</div>
+				<div class="file-list"></div>
+			</div>
+			<div class="upload">
+				<div class="btn-basic">
+					<label for="up3">
+						رفع ملف المجلس الموثق
+						<i class="fa-solid fa-upload"></i>
+						<input id="up3" type="file" class="upload-button" multiple />
+					</label>
+				</div>
+				<div class="file-list"></div>
+			</div>
 		</div>
 
 		<!--  Another Content To Be Added Later (Just As an Example Ignore / Delete it) -->

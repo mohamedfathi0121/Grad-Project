@@ -26,49 +26,8 @@ toggler.addEventListener("click", () => {
 	linksDiv.classList.toggle("deactive");
 });
 
-// Access Upload File Name To Style it in .upload-name
-
-let uploadLabel = document.querySelectorAll(".upload");
-let uploadInput = document.querySelectorAll("input[type=file]");
-let uploadName = document.querySelectorAll(".upload-name");
-
-//console.log(uploadName);
-
-uploadInput.forEach((ele) => {
-	ele.addEventListener("change", () => {
-		for (let i = 0; i < ele.files.length; i++) {
-			uploadName[i].innerHTML += `<div>${ele.files[i].name}</div>`;
-		}
-	});
-});
-
-// // Making The Image Appeare When Uploaded
-// function showMyImage(fileInput) {
-// 	var files = fileInput.files;
-// 	console.log(files);
-// 	for (var i = 0; i < files.length; i++) {
-// 		var file = files[i];
-// 		console.log(file.name);
-// 		var imageType = /image.*/;
-// 		if (!file.type.match(imageType)) {
-// 			continue;
-// 		}
-// 		var img = document.getElementById("thumbnil");
-// 		img.file = file;
-// 		var reader = new FileReader();
-// 		reader.onload = (function (aImg) {
-// 			return function (e) {
-// 				aImg.src = e.target.result;
-// 			};
-// 		})(img);
-// 		reader.readAsDataURL(file);
-// 		thumbnil.style.display = "block";
-// 		//$("#banner_name").text(file.name);
-// 	}
-// }
-
 // Making the upload icon fade when hovering it
-
+let uploadLabel = document.querySelectorAll(".upload");
 let uploadIcon = document.querySelectorAll(".fa-upload");
 
 for (let i = 0; i < uploadLabel.length; i++) {
@@ -92,3 +51,29 @@ allMemberDetailsButtons.forEach((btn) => {
 		memberDetails.classList.toggle("deactive");
 	});
 });
+
+const buttons = document.querySelectorAll(".upload-button");
+const fileLists = document.querySelectorAll(".file-list");
+
+buttons.forEach((button, i) => {
+	button.addEventListener("change", function () {
+		displayFile(this.files, fileLists[i]);
+	});
+});
+
+function displayFile(files, fileList) {
+	fileList.innerHTML = "";
+
+	// Loop Through The Files And Display Each File Name and Preview
+	for (let i = 0; i < files.length; i++) {
+		const fileName = document.createElement("p");
+		fileName.textContent = `اسم الملف:   ${files[i].name}`;
+		fileList.appendChild(fileName);
+		console.log(files[i].type);
+		if (files[i].type === "image/jpeg" || files[i].type === "image/png") {
+			const filePreview = document.createElement("img");
+			filePreview.src = URL.createObjectURL(files[i]);
+			fileList.appendChild(filePreview);
+		}
+	}
+}

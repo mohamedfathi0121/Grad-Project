@@ -67,6 +67,7 @@
 .old-meeting-box .row > .col:nth-child(2) {
 	display: flex;
 	flex-wrap: wrap;
+	align-items: flex-start;
 }
 @media (max-width: 650px) {
 	.current-meeting-buttons,
@@ -75,6 +76,7 @@
 	.old-meeting-box .row > .col:nth-child(2) {
 		display: flex;
 		flex-direction: column !important;
+		align-items: stretch;
 	}
 	.member-box .row > .col:nth-child(2) {
 		align-items: center;
