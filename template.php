@@ -4,10 +4,11 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>الموضوعات</title>
-		<!-- Css  -->
-		<!-- Css Components and Initialize Styles  -->
+		<title>Page Template</title>
+		<!-- Css Initialization And Components Styles -->
+
 		<link rel="stylesheet" href="css/initialize.css" />
+
 		<!-- Your Css Here  -->
 		<link rel="stylesheet" href="css/style.css" />
 		<!-- Fonts -->
@@ -37,11 +38,11 @@
 				<ul>
 					<a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
 					<div class="links deactive">
-						<li><a href="index.html">الصفحة الرئيسية</a></li>
-						<li><a href="meetings.html">المجالس</a></li>
-						<li><a href="members.html">الاعضاء</a></li>
-						<li><a href="subjects.html">الموضوعات</a></li>
-						<li><a href="executive-decisions.html"> القرارات التنفيذية</a></li>
+						<li><a href="index.php">الصفحة الرئيسية</a></li>
+						<li><a href="meetings.php">المجالس</a></li>
+						<li><a href="members.php">الاعضاء</a></li>
+						<li><a href="subjects.php">الموضوعات</a></li>
+						<li><a href="executive-decisions.php"> القرارات التنفيذية</a></li>
 					</div>
 				</ul>
 				<form class="search" action="#">
@@ -52,15 +53,10 @@
 				</form>
 			</nav>
 		</section>
-		<!--  Another Content To Be Added Later (Just As an Example Ignore / Delete it) -->
 		<div class="another-content">باقي محتوى الصفحة هنا</div>
-
-		<!-- Footer -->
-		<!-- function footer(){ -->
 		<footer>
 			<p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors 2023</p>
 		</footer>
-		<!-- } -->
 
 		<!-- Js Scripts and Plugins -->
 		<script type="module" src="./js/main.js"></script>
