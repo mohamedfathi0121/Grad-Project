@@ -1,63 +1,18 @@
+<?php
+require_once "db.php";
+require_once "functions.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>الاعضاء</title>
-		<!-- Css  -->
-		<!-- Css Components and Initialize Styles  -->
-		<link rel="stylesheet" href="css/initialize.css" />
-		<!-- Your Css Here  -->
-		<link rel="stylesheet" href="css/style.css" />
-		<!-- Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap"
-			rel="stylesheet"
-		/>
-	</head>
+    <?php
+    Head("الأعضاء");
+    ?>
 	<body dir="rtl">
-		<header>
-			<img class="logo" src="./images/faculty logo.png" alt="" />
-			<div class="header-title">
-				<h3 class="univ-name">جامعة حلوان</h3>
-				<h4 class="facu-name">كلية التجارة وإدارة الأعمال</h4>
-				<h4 class="prog-name">برنامج نظم معلومات الأعمال BIS</h4>
-				<h1 class="project-title">
-					النظام الالكتروني لإدارة موضوعات مجلس الكلية
-				</h1>
-			</div>
-			<img class="logo" src="./images/program logo.png" alt="" />
-		</header>
-		<!-- } -->
-		<section class="nav-bar">
-			<nav>
-				<ul>
-					<a class="icon" href="#"
-						><i class="fa-solid fa-bars fa-2xl">
-							<!-- <span style="visibility: hidden; background-color: #f4f4f4"
-								>&nbsp;</span
-							> -->
-						</i></a
-					>
-					<div class="links deactive">
-						<li><a href="index.php">الصفحة الرئيسية</a></li>
-						<li><a href="meetings.php">المجالس</a></li>
-						<li><a href="members.html">الاعضاء</a></li>
-						<li><a href="subjects.php">الموضوعات</a></li>
-						<li><a href="executive-decisions.php"> القرارات التنفيذية</a></li>
-					</div>
-				</ul>
-				<form class="search" action="#">
-					<input type="text" placeholder="بحث..." name="search" />
-					<button type="submit" class="btn-basic">
-						<i class="fa fa-search"></i>
-					</button>
-				</form>
-			</nav>
-		</section>
+        <?php
+        Headers();
+        Nav();
+        ?>
 
 		<!-- *Main Members Page Content  -->
 
