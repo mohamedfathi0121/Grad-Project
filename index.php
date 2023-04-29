@@ -1,3 +1,8 @@
+<?php
+require_once "db.php";
+require_once "functions.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -23,18 +28,21 @@
 	<body dir="rtl">
 		<!-- Header And Links -->
 		<!-- function header(){ -->
-		<header>
-			<img class="logo" src="./images/faculty logo.png" alt="" />
-			<div class="header-title">
-				<h3 class="univ-name">جامعة حلوان</h3>
-				<h4 class="facu-name">كلية التجارة وإدارة الأعمال</h4>
-				<h4 class="prog-name">برنامج نظم معلومات الأعمال BIS</h4>
-				<h1 class="project-title">
-					النظام الالكتروني لإدارة موضوعات مجلس الكلية
-				</h1>
-			</div>
-			<img class="logo" src="./images/program logo.png" alt="" />
-		</header>
+        <?php
+        Headers();
+        ?>
+<!--		<header>-->
+<!--			<img class="logo" src="./images/faculty logo.png" alt="" />-->
+<!--			<div class="header-title">-->
+<!--				<h3 class="univ-name">جامعة حلوان</h3>-->
+<!--				<h4 class="facu-name">كلية التجارة وإدارة الأعمال</h4>-->
+<!--				<h4 class="prog-name">برنامج نظم معلومات الأعمال BIS</h4>-->
+<!--				<h1 class="project-title">-->
+<!--					النظام الالكتروني لإدارة موضوعات مجلس الكلية-->
+<!--				</h1>-->
+<!--			</div>-->
+<!--			<img class="logo" src="./images/program logo.png" alt="" />-->
+<!--		</header>-->
 		<!-- } -->
 		<section class="nav-bar">
 			<nav>
