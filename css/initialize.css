@@ -7,6 +7,7 @@
 	--disabled-color: rgb(102, 102, 104);
 	--main-font: "Tajawal", sans-serif;
 	--checkmark: url("../images/icons/checkmark.svg");
+	--box-radius: 15px;
 
 	/* CSS HEX */
 	--headings-color: #294862;
@@ -390,4 +391,99 @@ input[type="file"] {
 }
 
 /* *Write Your Css Here */
+/* ############################## */
+
+/** login padge CSS Start */
+.first form {
+	display: flex;
+	flex-direction: column;
+
+	height: 300px;
+	background-color: var(--secondary-color);
+	gap: 20px 20px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+}
+.first {
+	margin: auto;
+}
+.secound {
+	width: 500px;
+	height: 300px;
+	background-color: red;
+	margin: auto;
+	align-content: space-evenly;
+	text-align: center;
+}
+
+/** login padge CSS end */
+
+/* ############################## */
+
+/** main padge CSS start */
+.A {
+	text-align: center;
+}
+/* men {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 700px;
+  height: 400px;
+  background-color: var(--secondary-color);
+  gap: 20px;
+  align-items: center;
+  justify-content: center;} */
+/* .men { 
+  display: grid;
+  grid-template-rows: repeat(3, 1fr) ;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:"num1. num2" ". num3 ." "num4 . num5" ;
+  width: 50%;
+  height: 400px;
+  background-color: var(--secondary-color);
+ margin: auto;
+padding: 20px;
+} */
+.men {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 400px;
+	background-color: var(--secondary-color);
+	justify-content: center;
+	margin: auto;
+	display: none;
+}
+.m1 {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	height: calc(90% / 3);
+}
+.m1 .btn-basic {
+	width: calc(80% / 2);
+}
+.men2 {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 400px;
+	background-color: var(--secondary-color);
+	justify-content: center;
+	margin: auto;
+}
+.m1 {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	height: calc(90% / 3);
+}
+.m1 .btn-basic {
+	width: calc(80% / 2);
+}
+
+/** main padge CSS end */
+
 /* !DONT TOUCH (VARIABLES / GLOBAL RULES / HEADER / FOOTER / Navigation) FROM ABOVE* */
