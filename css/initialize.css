@@ -242,6 +242,8 @@ footer p {
 
 /* 2. text input fields */
 input[type="text"],
+input[type="email"],
+input[type="password"],
 textarea {
   outline: 0;
   margin: 10px;

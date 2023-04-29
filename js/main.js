@@ -76,6 +76,8 @@ function displayFile(files, fileList) {
 		}
 	}
 }
+
+// Toggle Decision Details Button
 let allDecisionDetailsButtons = document.querySelectorAll(
 	".decision-buttons button.dec-details-btn"
 );
