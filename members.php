@@ -43,11 +43,11 @@
 						</i></a
 					>
 					<div class="links deactive">
-						<li><a href="index.html">الصفحة الرئيسية</a></li>
-						<li><a href="meetings.html">المجالس</a></li>
+						<li><a href="index.php">الصفحة الرئيسية</a></li>
+						<li><a href="meetings.php">المجالس</a></li>
 						<li><a href="members.html">الاعضاء</a></li>
-						<li><a href="subjects.html">الموضوعات</a></li>
-						<li><a href="executive-decisions.html"> القرارات التنفيذية</a></li>
+						<li><a href="subjects.php">الموضوعات</a></li>
+						<li><a href="executive-decisions.php"> القرارات التنفيذية</a></li>
 					</div>
 				</ul>
 				<form class="search" action="#">
