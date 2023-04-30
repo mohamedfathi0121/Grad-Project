@@ -6,6 +6,7 @@
 	--disabled-color: rgb(102, 102, 104);
 	--main-font: "Tajawal", sans-serif;
 	--checkmark: url("../images/icons/checkmark.svg");
+	--box-radius: 15px;
 
 	/* CSS HEX */
 
@@ -27,7 +28,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	
 }
 .col {
 	display: flex;
@@ -54,6 +54,7 @@
 .decision-title {
 	text-align: center;
 }
+.box,
 .meeting-box,
 .old-meeting-box,
 .member-box,
@@ -61,7 +62,7 @@
 	padding: 30px;
 	margin: 20px;
 	background-color: var(--secondary-color);
-	border-radius: 15px;
+	border-radius: var(--box-radius);
 }
 
 .meeting-box h4,
@@ -157,4 +158,3 @@
 .non-executed-dec {
 	margin-top: 150px;
 }
-

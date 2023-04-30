@@ -1,54 +1,55 @@
 /* default css initialization */
 /* variables */
 :root {
-  --main-color: #214090;
-  --secondary-color: #f4f4f4;
-  --headings-color: #294862;
-  --disabled-color: rgb(102, 102, 104);
-  --main-font: "Tajawal", sans-serif;
-  --checkmark: url("../images/icons/checkmark.svg");
+	--main-color: #214090;
+	--secondary-color: #f4f4f4;
+	--headings-color: #294862;
+	--disabled-color: rgb(102, 102, 104);
+	--main-font: "Tajawal", sans-serif;
+	--checkmark: url("../images/icons/checkmark.svg");
+	--box-radius: 15px;
 
-  /* CSS HEX */
-  --headings-color: #294862;
-  --geyser: #d6dce1;
-  --bermuda-gray: #6c8b9d;
-  --eastern-blue: #2198b9;
-  --java: #1ebadc;
-  --jelly-bean: #27718f;
-  --slate-gray: #64748b;
-  --tangaroa: #04183b;
+	/* CSS HEX */
+	--headings-color: #294862;
+	--geyser: #d6dce1;
+	--bermuda-gray: #6c8b9d;
+	--eastern-blue: #2198b9;
+	--java: #1ebadc;
+	--jelly-bean: #27718f;
+	--slate-gray: #64748b;
+	--tangaroa: #04183b;
 }
 
 /* Global Rules */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 a {
-  text-decoration: none;
-  display: inline-block;
+	text-decoration: none;
+	display: inline-block;
 }
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
 
 body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: var(--main-font);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	font-family: var(--main-font);
 }
 img {
-  width: 300px;
-  height: 300px;
+	width: 300px;
+	height: 300px;
 }
 .deactive {
-  display: none;
+	display: none;
 }
 
 h1,
@@ -56,188 +57,188 @@ h2,
 h3,
 h4,
 h5 {
-  color: var(--headings-color);
+	color: var(--headings-color);
 }
 
 button {
-  border-style: none;
-  font-family: var(--main-font);
+	border-style: none;
+	font-family: var(--main-font);
 }
 input,
 input::placeholder {
-  font-family: var(--main-font);
+	font-family: var(--main-font);
 }
 
 .container {
-  padding: 0 15px;
-  margin: auto;
+	padding: 0 15px;
+	margin: auto;
 }
 
 /* Small */
 @media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
+	.container {
+		width: 750px;
+	}
 }
 
 /* Medium */
 @media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
+	.container {
+		width: 970px;
+	}
 }
 
 /* Big */
 @media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
+	.container {
+		width: 1170px;
+	}
 }
 /* Large */
 @media (min-width: 1600px) {
-  .container {
-    width: 1550px;
-  }
+	.container {
+		width: 1550px;
+	}
 }
 
 /* Header */
 
 header {
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  margin: 3px;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	margin: 3px;
 }
 
 header h1 {
-  font-size: 24px;
-  color: var(--headings-color);
+	font-size: 24px;
+	color: var(--headings-color);
 }
 header .logo {
-  width: 110px;
-  height: 100px;
+	width: 110px;
+	height: 100px;
 }
 
 @media (max-width: 430px) {
-  header h1 {
-    font-size: 22px;
-  }
-  header h3,
-  header h4 {
-    font-size: 14px;
-  }
-  header .logo {
-    width: 80px;
-    height: 70px;
-  }
+	header h1 {
+		font-size: 22px;
+	}
+	header h3,
+	header h4 {
+		font-size: 14px;
+	}
+	header .logo {
+		width: 80px;
+		height: 70px;
+	}
 }
 /* Navigation Links  */
 
 .nav-bar {
-  background-color: var(--secondary-color);
+	background-color: var(--secondary-color);
 }
 nav {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 
-  padding: 10px;
+	padding: 10px;
 }
 
 nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px 0;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px 0;
 }
 nav ul li {
-  margin: 0 15px;
+	margin: 0 15px;
 }
 .links {
-  display: flex;
+	display: flex;
 }
 
 nav ul li a {
-  color: #000;
-  font-weight: 500;
-  border-radius: 7px;
-  box-shadow: inset 0 0 0 0 var(--main-color);
-  color: var(--main-color);
-  margin: 0 -0.25rem;
-  padding: 0 0.25rem;
-  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	color: #000;
+	font-weight: 500;
+	border-radius: 7px;
+	box-shadow: inset 0 0 0 0 var(--main-color);
+	color: var(--main-color);
+	margin: 0 -0.25rem;
+	padding: 0 0.25rem;
+	transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-  box-shadow: inset -150px 0 0 0 var(--main-color);
-  color: var(--secondary-color);
+	box-shadow: inset -150px 0 0 0 var(--main-color);
+	color: var(--secondary-color);
 }
 
 nav ul .icon {
-  color: var(--main-color);
-  padding: 5px;
-  background-color: #fff;
-  display: none;
+	color: var(--main-color);
+	padding: 5px;
+	background-color: #fff;
+	display: none;
 }
 
 /* medium screen */
 @media (max-width: 900px) {
-  nav ul .icon {
-    display: block;
-  }
-  nav ul,
-  nav ul .links {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .deactive {
-    display: none;
-  }
-  nav ul .links {
-    margin-top: 40px;
-  }
-  nav ul li {
-    margin: 10px 0;
-  }
+	nav ul .icon {
+		display: block;
+	}
+	nav ul,
+	nav ul .links {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.deactive {
+		display: none;
+	}
+	nav ul .links {
+		margin-top: 40px;
+	}
+	nav ul li {
+		margin: 10px 0;
+	}
 }
 
 /* Footer */
 footer {
-  margin-top: auto;
-  padding: 10px;
-  background-color: var(--main-color);
-  text-align: center;
+	margin-top: auto;
+	padding: 10px;
+	background-color: var(--main-color);
+	text-align: center;
 }
 footer p {
-  color: #fff;
+	color: #fff;
 }
 
 /* Reusable Components  */
 
 .components {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 15px;
 }
 
 /* 1. buttons and links styles  */
 .btn-basic {
-  background-color: var(--main-color);
-  color: #fff;
-  padding: 10px;
-  margin: 5px 10px;
-  border-radius: 30px;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
+	background-color: var(--main-color);
+	color: #fff;
+	padding: 10px;
+	margin: 5px 10px;
+	border-radius: 30px;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer;
 }
 .btn-basic:active {
-  border: 1px solid #000;
+	border: 1px solid #000;
 }
 .disabled,
 .disabled:active {
-  background-color: var(--disabled-color);
-  border: none;
+	background-color: var(--disabled-color);
+	border: none;
 }
 
 /* 2. text input fields */
@@ -245,185 +246,184 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea {
-  outline: 0;
-  margin: 10px;
-  padding: 10px;
-  width: 300px;
-  border: 2px solid var(--main-color);
-  border-radius: 10px;
+	outline: 0;
+	margin: 10px;
+	padding: 10px;
+	width: 300px;
+	border: 2px solid var(--main-color);
+	border-radius: 10px;
 }
 
 /* 3. Checkbox And Radio Button  */
 
 input[type="checkbox"],
 input[type="radio"] {
-  appearance: none;
-  border: 2px solid #ccc;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  outline: none;
-  margin: 10px;
+	appearance: none;
+	border: 2px solid #ccc;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	outline: none;
+	margin: 10px;
 }
 input[type="checkbox"] {
-  border-radius: 0;
+	border-radius: 0;
 }
 
 input[type="checkbox"]:checked,
 input[type="radio"]:checked {
-  background-color: var(--main-color);
-  border-color: #000;
-  background-image: var(--checkmark);
-  background-size: 80%;
-  background-position: center;
-  background-repeat: no-repeat;
+	background-color: var(--main-color);
+	border-color: #000;
+	background-image: var(--checkmark);
+	background-size: 80%;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 /* 4. Search Bar */
 .search {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .search button,
 .search input {
-  border-radius: 0%;
-  margin: 0;
-  padding: 10px 15px;
-  height: 40px;
+	border-radius: 0%;
+	margin: 0;
+	padding: 10px 15px;
+	height: 40px;
 }
 .search input {
-  width: 200px;
-  border-radius: 0 7px 7px 0;
+	width: 200px;
+	border-radius: 0 7px 7px 0;
 }
 .search button {
-  border-radius: 7px 0px 0 7px;
+	border-radius: 7px 0px 0 7px;
 }
 
 /* 5. Select Drop Down Lists */
 
 .select-basic {
-  position: relative;
-  width: 300px;
+	position: relative;
+	width: 300px;
 }
 
 .select-basic select {
-  display: none;
+	display: none;
 }
 
 .select-selected {
-  background-color: var(--tangaroa);
+	background-color: var(--tangaroa);
 }
 
 .select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  left: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+	position: absolute;
+	content: "";
+	top: 14px;
+	left: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: #fff transparent transparent transparent;
 }
 
 .select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
+	border-color: transparent transparent #fff transparent;
+	top: 7px;
 }
 
 .select-items div,
 .select-selected {
-  color: #ffffff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-  user-select: none;
+	color: #ffffff;
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	cursor: pointer;
+	user-select: none;
 }
 
 .select-items {
-  position: absolute;
-  background-color: var(--main-color);
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
+	position: absolute;
+	background-color: var(--main-color);
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
 }
 
 .select-hide {
-  display: none;
+	display: none;
 }
 
 .select-items div:hover,
 .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0.1);
 }
 /* 6. Upload Buttons */
 
 input[type="file"] {
-  display: none;
+	display: none;
 }
 .upload,
 .upload label,
 .upload i {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .another-content {
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: aliceblue;
+	height: 90vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: aliceblue;
 }
 .upload .file-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .upload .file-list p {
-  text-align: center;
+	text-align: center;
 }
 .upload .file-list img {
-  width: 110px;
-  height: 110px;
+	width: 110px;
+	height: 110px;
 }
 
 /* *Write Your Css Here */
+/* ############################## */
+
 /** login padge CSS Start */
 .first form {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  height: 300px;
-  background-color: var(--secondary-color);
-  gap: 20px 20px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-
-
+	height: 300px;
+	background-color: var(--secondary-color);
+	gap: 20px 20px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
 }
-.first{
-  margin: auto;
- 
-  
-
+.first {
+	margin: auto;
 }
 .secound {
-  width: 500px;
-  height: 300px;
-  background-color: red;
-  margin: auto;
-  align-content: space-evenly;
-  text-align: center;
-
+	width: 500px;
+	height: 300px;
+	background-color: red;
+	margin: auto;
+	align-content: space-evenly;
+	text-align: center;
 }
 
 /** login padge CSS end */
+
+/* ############################## */
+
 /** main padge CSS start */
 .A {
-  text-align: center;
+	text-align: center;
 }
 /* men {
   display: flex;
@@ -446,49 +446,43 @@ input[type="file"] {
  margin: auto;
 padding: 20px;
 } */
-.men{
-  display: flex;
-  flex-direction:column ;
- width:50%;
- height: 400px;
- background-color: var(--secondary-color);
- justify-content: center;
- margin: auto;
- display: none;
-
+.men {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 400px;
+	background-color: var(--secondary-color);
+	justify-content: center;
+	margin: auto;
+	display: none;
 }
-.m1{
-  display: flex;
-justify-content: space-evenly;
-width: 100%;
-height: calc(90% /3);
-}
-.m1 .btn-basic {
-  width: calc(80%/2);
-
-}
-.men2{
-  display: flex;
-  flex-direction:column ;
- width:50%;
- height: 400px;
- background-color: var(--secondary-color);
- justify-content: center;
- margin: auto;
-
-}
-.m1{
-  display: flex;
-justify-content: space-evenly;
-width: 100%;
-height: calc(90% /3);
+.m1 {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	height: calc(90% / 3);
 }
 .m1 .btn-basic {
-  width: calc(80%/2);
-
+	width: calc(80% / 2);
 }
-
-
+.men2 {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 400px;
+	background-color: var(--secondary-color);
+	justify-content: center;
+	margin: auto;
+}
+.m1 {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	height: calc(90% / 3);
+}
+.m1 .btn-basic {
+	width: calc(80% / 2);
+}
 
 /** main padge CSS end */
 
