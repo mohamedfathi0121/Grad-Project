@@ -268,9 +268,10 @@ if (session_status() === PHP_SESSION_NONE)
 				</div>
 			</div>
 		</main>
-		<footer>
-			<p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors 2023</p>
-		</footer>
+
+        <?php
+        Footer();
+        ?>
 
 		<!-- Js Scripts and Plugins -->
 		<script type="module" src="./js/main.js"></script>
