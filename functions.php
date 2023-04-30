@@ -1,6 +1,11 @@
 <?php
 require_once "db.php";
 
+if (session_status() === PHP_SESSION_NONE)
+{
+    session_start();
+}
+
 if (empty(@$_SESSION["app_name"]))
 {
     // Get Website header information
@@ -48,6 +53,16 @@ function Nav()
             <ul>
                 <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
                 <div class="links deactive">
+                    <?php
+                    if (!empty($_SESSION["loggedin"]))
+                    {
+                        ?>
+                        <li>
+                            <button class="button" style="width: auto; height: auto" onclick="location.href='logout.php'">Logout</button>
+                        </li>
+                        <?php
+                    }
+                    ?>
                     <li><a href="index.php">الصفحة الرئيسية</a></li>
                     <li><a href="meetings.php">المجالس</a></li>
                     <li><a href="members.php">الاعضاء</a></li>
@@ -88,4 +103,123 @@ function Head($title)
                 />
 	</head>
     <?php
+}
+
+function Footer()
+{
+    $y = date("Y");
+    ?>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors <?=$y?></p>
+    </footer>
+    <?php
+}
+
+function clean_data($str)
+{
+    $str = trim($str);
+    $str = stripslashes($str);
+    $str = htmlspecialchars($str, ENT_QUOTES, "UTF-8");
+    return $str;
+}
+
+// Function for validating email
+function is_valid_email($email)
+{
+    if (empty($email))
+    {
+        return false;
+    }
+    else
+    {
+        $email = clean_data($email);
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            return false;
+        }
+    }
+    return $email;
+}
+
+function is_admin():bool
+{
+    if(@$_SESSION["admin"])
+    {
+        return true;
+    }
+    else
+    {
+        ?>
+        <p class="error_msg" style="text-align: center">
+            You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
+        </p><br>
+        <?php
+        header("refresh:5; url=meeting.php");
+        footer();
+        die();
+    }
+}
+
+function is_logged_in():bool
+{
+    if(@$_SESSION["loggedin"] === true)
+    {
+        return true;
+    }
+    else
+    {
+        ?>
+        <p class="error_msg" style="text-align: center">
+            You need to log in to view this page. You'll be redirected to the login page in 5 seconds.
+        </p><br>
+        <?php
+        header("refresh:5; url=login.php");
+        footer();
+        die();
+    }
+}
+
+function Upload($source, $destination, $allowed_formats)
+{
+    $result = array();
+//    $destination = self::Path($destination);
+
+    if ((is_dir($destination) === true) && (array_key_exists($source, $_FILES) === true))
+    {
+        if (count($_FILES[$source], COUNT_RECURSIVE) == 5)
+        {
+            foreach ($_FILES[$source] as $key => $value)
+            {
+                $_FILES[$source][$key] = array($value);
+            }
+        }
+
+        foreach (array_map('basename', $_FILES[$source]['name']) as $key => $value)
+        {
+            $new_file_path = $destination . $value;
+            $file_type = pathinfo($new_file_path, PATHINFO_EXTENSION);
+            if (in_array($file_type, $allowed_formats))
+            {
+                $result[$value] = false;
+                if ($_FILES[$source]['error'][$key] == UPLOAD_ERR_OK)
+                {
+//                $file = ph()->Text->Slug($value, '_', '.');
+                    $file = NULL;
+                    $file = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $file)));
+
+                    if (file_exists($destination . $file) === true)
+                    {
+                        $file = substr_replace($file, '_' . md5_file($_FILES[$source]['tmp_name'][$key]) . ".$file_type", strrpos($value, '.'), 0);
+//                        $file = substr_replace($file, '_' . hash_file('sha256', $_FILES[$source]['tmp_name'][$key]) . ".$file_type", strrpos($value,'.'),0);
+                    }
+
+                    if (move_uploaded_file($_FILES[$source]['tmp_name'][$key], $destination . $file) === true)
+                    {
+                        $result[$value] = $destination . $file;
+                    }
+                }
+            }
+        }
+    }
+    return $result;
 }
