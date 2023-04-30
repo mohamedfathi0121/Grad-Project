@@ -51,6 +51,10 @@ require_once "functions.php";
 									توثيق
 									<i class="fa-solid fa-check"></i>
 								</button>
+								<button class="btn-basic">
+									تأكيد
+									<i class="fa-solid fa-check"></i>
+								</button>
 							</div>
 						</div>
 						<div class="current-meeting-buttons">
