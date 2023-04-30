@@ -284,7 +284,8 @@ input[type="radio"]:checked {
 .search {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+
+	align-items: flex-start;
 }
 .search button,
 .search input {
