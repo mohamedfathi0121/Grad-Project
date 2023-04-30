@@ -83,6 +83,9 @@ if(session_status() === PHP_SESSION_NONE)
                                                                 <?=$meetings_row["meeting_year"]?>
                                                             </span>
                                                         </h4>
+                                                        <h4>
+                                                            حالة المجلس: معلق
+                                                        </h4>
                                                     </div>
                                                     <div class="col">
                                                         <button class="btn-basic">
@@ -161,6 +164,9 @@ if(session_status() === PHP_SESSION_NONE)
                                                         <span class="meeting-year">
                                                             <?=$meetings_row["meeting_year"]?>
                                                         </span>
+                                                    </h4>
+                                                    <h4>
+                                                        حالة المجلس: موثق
                                                     </h4>
                                                 </div>
                                                 <?php
