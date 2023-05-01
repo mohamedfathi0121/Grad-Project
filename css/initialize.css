@@ -248,10 +248,15 @@ input[type="password"],
 textarea {
 	outline: 0;
 	margin: 10px;
-	padding: 10px;
-	width: 300px;
+	padding: 7px;
+	width: 50vmin;
 	border: 2px solid var(--main-color);
 	border-radius: 10px;
+}
+
+textarea {
+	width: 50vmin;
+	height: 30vmin;
 }
 
 /* 3. Checkbox And Radio Button  */
@@ -295,7 +300,8 @@ input[type="radio"]:checked {
 	height: 40px;
 }
 .search input {
-	width: 200px;
+	width: 23vmax;
+	max-width: 230px;
 	border-radius: 0 7px 7px 0;
 }
 .search button {
@@ -306,7 +312,7 @@ input[type="radio"]:checked {
 
 .select-basic {
 	position: relative;
-	width: 300px;
+	width: 50vmin;
 }
 
 .select-basic select {
