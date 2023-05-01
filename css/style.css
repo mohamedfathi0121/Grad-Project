@@ -158,3 +158,38 @@
 .non-executed-dec {
 	margin-top: 150px;
 }
+/* ?===============================Mohamed Fathi Style==================================== */
+/* *start vote page */
+/* !======================================================================= */
+.voting-content {
+	margin: 15px;
+}
+
+
+.voting-content .box form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.voting-content .vote-radio {
+  display: flex;
+  align-self: stretch;
+  justify-content: space-evenly;
+
+}
+
+.voting-content .box .row {
+	margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+	.voting-content .vote-radio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+	.voting-content form .row textarea {
+		max-width: 200px;
+	}
+	}
+	/* !======================================================================= */
+/* *End vote page */
