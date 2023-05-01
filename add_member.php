@@ -25,7 +25,7 @@ require_once "functions.php";
         <div class="col">
 
           <div class="row">
-            <h4>اسم بالكامل</h4><input type="text" placeholder="الاسم بالكامل" />
+            <h4>الاسم بالكامل</h4><input type="text" placeholder="الاسم بالكامل" />
           </div>
           <div class="row">
             <h4>البريد الالكتروني</h4><input type="email" placeholder="البريد الالكتروني" />
