@@ -113,8 +113,8 @@
 /* *Css for Meetings Page */
 /* ############################ */
 .member-box .member-image {
-	width: 100px;
-	height: 100px;
+	width: 40vmin;
+	height: 40vmin;
 	border-radius: 50%;
 }
 
