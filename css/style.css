@@ -42,7 +42,6 @@
 .members-content,
 .exec-decision-content {
 	margin: 10px;
-	min-height: 100vh;
 }
 .add-meeting,
 .add-member {
