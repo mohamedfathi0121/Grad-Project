@@ -1,6 +1,11 @@
 <?php
 require_once "db.php";
 require_once "functions.php";
+
+if(session_status() === PHP_SESSION_NONE)
+{
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +21,9 @@ require_once "functions.php";
 		<!--  Another Content To Be Added Later (Just As an Example Ignore / Delete it) -->
 		<div class="another-content">باقي محتوى الصفحة هنا</div>
 
-		<!-- Footer -->
-		<!-- function footer(){ -->
-		<footer>
-			<p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors 2023</p>
-		</footer>
-		<!-- } -->
+        <?php
+        Footer();
+        ?>
 
 		<!-- Js Scripts and Plugins -->
 		<script type="module" src="./js/main.js"></script>
