@@ -170,9 +170,7 @@
 	flex-direction: column;
 	align-items: flex-start;
 }
-.add-member-page .box .col .row .upload {
-	width: 35vmin;
-}
+
 .add-member-page .box .col .row button[type="submit"] {
 	width: 30vmin;
 }
