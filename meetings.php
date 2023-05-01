@@ -296,11 +296,12 @@ if(session_status() === PHP_SESSION_NONE)
                                         ?>
                                     </div>
                                 </div>
-                            </div>
                         <?php
-                    }
-                }
-                ?>
+                        }
+                        }
+                        ?>
+                            </div>
+
             </div>
 			<!-- اضافة مجلس جديد -->
             <?php
