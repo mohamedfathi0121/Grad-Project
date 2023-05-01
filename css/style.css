@@ -42,13 +42,13 @@
 .members-content,
 .exec-decision-content {
 	margin: 10px;
-	min-height: 100vh;
 }
 .add-meeting,
 .add-member {
 	position: sticky;
 	bottom: 15px;
 }
+.title,
 .meetings-title,
 .members-title,
 .decision-title {
@@ -77,7 +77,7 @@
 .old-meeting-box .row > .col:nth-child(2) {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: flex-start;
+	align-items: center;
 }
 @media (max-width: 650px) {
 	.current-meeting-buttons,
@@ -157,4 +157,31 @@
 
 .non-executed-dec {
 	margin-top: 150px;
+}
+
+/* *Css for Add Member Page */
+/* ############################## */
+
+.add-member-page .box .col {
+	align-items: center;
+	gap: 20px;
+}
+.add-member-page .box .col .row:not(.row:nth-child(11), .row > .row) {
+	flex-direction: column;
+	align-items: flex-start;
+}
+.add-member-page .box .col .row .upload {
+	width: 35vmin;
+}
+.add-member-page .box .col .row button[type="submit"] {
+	width: 30vmin;
+}
+.add-member-page .box .col .row:nth-child(11) {
+	flex-direction: column;
+	gap: 15px;
+}
+@media (max-width: 650px) {
+	.add-member-page .box .col .row > .row {
+		align-items: center;
+	}
 }

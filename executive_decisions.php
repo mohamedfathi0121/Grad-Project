@@ -19,7 +19,7 @@ if (session_status() === PHP_SESSION_NONE)
         Nav();
         ?>
 		<main class="exec-decision-content">
-			.
+			
 			<div class="container">
 				<!-- عنوان الصفحة -->
 				<div class="decision-title"><h1>القرارات التنفيذية</h1></div>
