@@ -1,6 +1,11 @@
 <?php
 require_once "db.php";
 require_once "functions.php";
+
+if (session_status() === PHP_SESSION_NONE)
+{
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,86 +14,110 @@ require_once "functions.php";
     ?>
 
 <body dir="rtl">
-  <?php
-        Headers();
-        Nav();
-        ?>
-
-
+    <?php
+    Headers();
+    Nav();
+    if (is_admin()):
+    ?>
   <main class="add-member-page">
     <div class="container">
       <!-- عنوان الصفحة -->
       <div class="title">
         <h1>إضافة عضو جديد</h1>
       </div>
-      <form class="box">
+      <form class="box" method="post" action="add_member_code.php" enctype="multipart/form-data">
         <div class="col">
 
           <div class="row">
-            <h4>الاسم بالكامل</h4><input type="text" placeholder="الاسم بالكامل" />
+            <h4>الاسم بالكامل</h4><input type="text" name="name" placeholder="الاسم بالكامل" required/>
           </div>
           <div class="row">
-            <h4>البريد الالكتروني</h4><input type="email" placeholder="البريد الالكتروني" />
+            <h4>النوع</h4>
+              ذكر<input type="radio" value="M" name="gender" required>
+              أنثى<input type="radio" value="F" name="gender" required>
           </div>
           <div class="row">
-            <h4>كلمة السر</h4><input type="password" placeholder="كلمة السر" />
+            <h4>البريد الالكتروني</h4><input type="email" name="email" placeholder="البريد الالكتروني" required/>
           </div>
           <div class="row">
-            <h4>رقم التليفون</h4><input type="text" placeholder="رقم التليفون" />
+            <h4>كلمة السر</h4><input type="password" name="password" placeholder="كلمة السر" required/>
           </div>
+<!--          <div class="row">-->
+<!--            <h4>رقم التليفون</h4><input type="text" placeholder="رقم التليفون" />-->
+<!--          </div>-->
           <div class="row">
-            <h4>المسمى الوظيفي</h4><input type="text" placeholder="المسمى الوظيفي" />
+            <h4>المسمى الوظيفي</h4><input type="text" name="job_title" placeholder="المسمى الوظيفي" required/>
           </div>
           <div class="row">
             <h4>الفئة الوظيفية</h4>
             <div class="select-basic">
-              <select>
+              <select name="job_type" required>
                 <option value="">اختر</option>
-                <option value="">عميد الكلية</option>
-                <option value="">وكيل الكلية</option>
-                <option value="">رئيس قسم</option>
-                <option value="">عضو هيئة تدريس</option>
-                <option value="">اداري</option>
+                <?php
+                // Get All Job Types
+                $job_types_stmt = $conn->prepare("SELECT * FROM p39_job_type");
+                $job_types_stmt->execute();
+                $job_types_result = $job_types_stmt->get_result();
+                while ($job_types_row = $job_types_result->fetch_assoc())
+                {
+                    ?>
+                    <option value="<?=$job_types_row['job_type_id']?>"><?=$job_types_row["job_type_name"]?></option>
+                    <?php
+                }
+                $job_types_stmt->close();
+                ?>
               </select>
             </div>
           </div>
           <div class="row">
             <h4>الدرجة الوظيفية</h4>
             <div class="select-basic">
-              <select>
-                <option value="">اختر</option>
-                <option value="">استاذ</option>
-                <option value="">استاذ مساعد</option>
-                <option value="">مدرس</option>
-                <option value="">خبير</option>
-                <option value="">اداري</option>
+              <select name="job_rank" required>
+                  <option value="">اختر</option>
+                  <?php
+                  // Get All Job Types
+                  $job_ranks_stmt = $conn->prepare("SELECT * FROM p39_job_rank");
+                  $job_ranks_stmt->execute();
+                  $job_ranks_result = $job_ranks_stmt->get_result();
+                  while ($job_ranks_row = $job_ranks_result->fetch_assoc())
+                  {
+                      ?>
+                      <option value="<?=$job_ranks_row['job_rank_id']?>"><?=$job_ranks_row["job_rank_name"]?></option>
+                      <?php
+                  }
+                  $job_ranks_stmt->close();
+                  ?>
               </select>
             </div>
           </div>
           <div class="row">
             <h4>القسم العلمي</h4>
             <div class="select-basic">
-              <select>
-                <option value="">اختر</option>
-                <option value="">قسم المحاسبة</option>
-                <option value="">قسم ادارة الاعمال</option>
-                <option value="">قسم الاقتصاد والتجارة الخارجية</option>
-                <option value="">قسم الاحصاء</option>
-                <option value="">ثسم العلوم السياسية</option>
-                <option value="">قسم نظم المعلومات</option>
-                <option value="">عضو خارجي</option>
-                <option value="">اداري بالكلية</option>
-
+              <select name="department" required>
+                  <option value="">اختر</option>
+                  <?php
+                  // Get All Job Types
+                  $departments_stmt = $conn->prepare("SELECT * FROM p39_department");
+                  $departments_stmt->execute();
+                  $departments_result = $departments_stmt->get_result();
+                  while ($departments_row = $departments_result->fetch_assoc())
+                  {
+                      ?>
+                      <option value="<?=$departments_row['department_id']?>"><?=$departments_row["department_name"]?></option>
+                      <?php
+                  }
+                  $departments_stmt->close();
+                  ?>
               </select>
             </div>
           </div>
           <div class="row">
             <h4>الصلاحية</h4>
             <div class="select-basic">
-              <select>
+              <select name="is_admin" required>
                 <option value="">اختر</option>
-                <option value="">عضو مجلس</option>
-                <option value="">أمين مجلس (ادمن)</option>
+                <option value="0">عضو مجلس</option>
+                <option value="1">أمين مجلس (ادمن)</option>
               </select>
             </div>
           </div>
@@ -99,7 +128,8 @@ require_once "functions.php";
                 <label for="up1">
                   رفع صورة
                   <i class="fa-solid fa-upload"></i>
-                  <input id="up1" type="file" class="upload-button" multiple />
+                  <input id="up1" type="file" class="upload-button" name="member_picture[]"
+                         accept="image/png, image/gif, image/jpeg" />
                 </label>
               </div>
               <div class="file-list"></div>
@@ -110,18 +140,17 @@ require_once "functions.php";
             <textarea name=""></textarea>
           </div>
           <div class="row">
-            <button type="submit" class="btn-basic">اضافة عضو جديد</button>
+            <button type="submit" class="btn-basic" name="add_member_btn">اضافة عضو جديد</button>
           </div>
         </div>
       </form>
 
   </main>
 
-
-
   <?php
-        footer();
-        ?>
+  endif;
+  footer();
+  ?>
 
   <!-- Js Scripts and Plugins -->
   <script type="module" src="./js/main.js"></script>
