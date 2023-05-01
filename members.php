@@ -112,7 +112,11 @@ if(session_status() === PHP_SESSION_NONE)
                                             </h4>
                                         </div>
                                         <div class="col">
-                                            <a href="update_member.php" class="btn-basic">تعديل بيانات العضو</a>
+<!--                                            <a href="update_member.php" class="btn-basic">تعديل بيانات العضو</a>-->
+                                            <form method="post" action="update_member.php">
+                                                <button class="btn-basic">تعديل بيانات العضو</button>
+                                                <input type="hidden" name="user_id" value="<?=$users_row['user_id']?>">
+                                            </form>
                                             <button class="btn-basic member-details-btn">تفاصيل العضو</button>
                                         </div>
                                     </div>
@@ -133,7 +137,7 @@ if(session_status() === PHP_SESSION_NONE)
                                                 <h4>الفئة الوظيفية: <?=$job_types[$users_row["job_type_id"]]?></h4>
                                                 <h4>الدرجة الوظيفية: <?=$job_ranks[$users_row["job_rank_id"]]?></h4>
                                                 <h4>القسم العلمي: <?=$departments[$users_row["department_id"]]?></h4>
-                                                <h4>حالة العضو: <?= $users_row["is_enabled"] == 1 ? "مفعل" : "غير مفعل"?></h4>
+                                                <h4>حالة العضو: <?=$users_row["is_enabled"] == 1 ? "مفعل" : "غير مفعل"?></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -148,7 +152,7 @@ if(session_status() === PHP_SESSION_NONE)
 
                 <!-- اضافة عضو -->
                 <div class="add-member">
-                    <a href="add_member.php" class="btn-basic">اضافة عضو جديد</a>
+                    <a href="add_member.php" class="btn-basic">إضافة عضو جديد</a>
                 </div>
             </main>
         <?php
