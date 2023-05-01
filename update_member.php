@@ -131,9 +131,9 @@ require_once "functions.php";
 
 
 
-  <footer>
-    <p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors 2023</p>
-  </footer>
+  <?php
+        footer();
+        ?>
 
   <!-- Js Scripts and Plugins -->
   <script type="module" src="./js/main.js"></script>
