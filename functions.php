@@ -67,7 +67,7 @@ function Nav()
         <li><a href="meetings.php">المجالس</a></li>
         <li><a href="members.php">الاعضاء</a></li>
         <li><a href="subjects.php">الموضوعات</a></li>
-        <li><a href="executive-decisions.php"> القرارات التنفيذية</a></li>
+        <li><a href="executive_decisions.php"> القرارات التنفيذية</a></li>
       </div>
     </ul>
     <form class="search" action="#">
