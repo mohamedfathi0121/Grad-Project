@@ -76,9 +76,9 @@ function Nav()
                     <li><a href="executive_decisions.php"> القرارات التنفيذية</a></li>
                 </div>
             </ul>
-            <form class="search" action="#">
+            <form class="search" action="<?=basename($_SERVER['PHP_SELF'])?>" method="post">
                 <input type="text" placeholder="بحث..." name="search" />
-                <button type="submit" class="btn-basic">
+                <button type="submit" class="btn-basic" name="search_btn">
                     <i class="fa fa-search"></i>
                 </button>
             </form>
@@ -229,3 +229,9 @@ function Upload($source, $destination, $allowed_formats)
     }
     return $result;
 }
+
+$user_stmt = $conn->prepare("SELECT name, image FROM p39_users WHERE user_id = ?");
+$user_stmt->bind_param("i", $_SESSION["user_id"]);
+$user_stmt->execute();
+$user_result = $user_stmt->get_result();
+$user_row = $user_result->fetch_assoc();
