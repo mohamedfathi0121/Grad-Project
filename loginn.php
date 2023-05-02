@@ -18,7 +18,7 @@ require_once "functions.php";
   <main class="login-page">
     <div class="container">
       <div class="box">
-        <h1 class="title">تسجيل دخول</h1>
+        <h1 class="title">تسجيل الدخول</h1>
         <form action="" methode="post">
 
           <div class="col">
@@ -30,7 +30,7 @@ require_once "functions.php";
             </div>
 
 
-            <div class="row"><button type="submit" class="btn-basic">تسجيل دخول</button></div>
+            <div class="row"><button type="submit" class="btn-basic">تسجيل الدخول</button></div>
 
           </div>
 
