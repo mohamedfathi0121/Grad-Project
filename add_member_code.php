@@ -17,6 +17,7 @@ if (isset($_POST["add_member_btn"]))
     $job_rank = clean_data($_POST["job_rank"]);
     $department = clean_data($_POST["department"]);
     $is_admin = clean_data($_POST["is_admin"]);
+    $is_enabled = 1;
     if ($email)
     {
         if (!$name || !$job_title || !$gender || !$job_type || !$job_rank || !$department)
@@ -38,10 +39,11 @@ if (isset($_POST["add_member_btn"]))
                                                              `email`, 
                                                              `password`, 
                                                              `is_admin`, 
-                                                             `added_by`)
+                                                             `added_by`,
+                                                             `is_enabled`)
                                                         VALUES
                                                             (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $member_insert_stmt->bind_param("ssiiisssii", $name,
+            $member_insert_stmt->bind_param("ssiiisssiii", $name,
                                                                 $job_title,
                                                                 $job_type,
                                                                 $job_rank,
@@ -50,7 +52,8 @@ if (isset($_POST["add_member_btn"]))
                                                                 $email,
                                                                 $hash,
                                                                 $is_admin,
-                                                                $_SESSION["user_id"]);
+                                                                $_SESSION["user_id"],
+                                                                $is_enabled);
             if ($member_insert_stmt->execute())
             {
                 // Adding picture attachment
