@@ -10,42 +10,41 @@ require_once "functions.php";
 
 <body dir="rtl">
   <?php
-        Headers();
-        
-        ?>
-
+  Headers();
+  if(!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
+  ?>
 
   <main class="login-page">
     <div class="container">
       <div class="box">
         <h1 class="title">تسجيل الدخول</h1>
-        <form action="" methode="post">
+        <form action="authentication.php" method="post">
 
           <div class="col">
             <div class="row">
-              <h4>البريد الالكتروني</h4><input type="text" placeholder="البريد الالكتروني">
+              <h4>البريد الالكتروني</h4><input type="text" placeholder="البريد الالكتروني" name="email">
             </div>
             <div class="row">
-              <h4>كلمة المرور</h4><input type="password" placeholder="كلمة المرور">
+              <h4>كلمة المرور</h4><input type="password" placeholder="كلمة المرور" name="password">
             </div>
-
-
-            <div class="row"><button type="submit" class="btn-basic">تسجيل الدخول</button></div>
-
+            <div class="row"><button type="submit" class="btn-basic" name="sign_in_btn">تسجيل الدخول</button></div>
           </div>
 
         </form>
       </div>
     </div>
-
-
   </main>
-
-
-
   <?php
-        footer();
-        ?>
+  else:
+      ?>
+      <p class="error_msg" style="text-align: center">
+          You're already logged in, you'll be redirected in 5 seconds.
+      </p><br>
+      <?php
+      header("refresh:5; url=meetings.php");
+  endif;
+  footer();
+  ?>
 
   <!-- Js Scripts and Plugins -->
   <script type="module" src="./js/main.js"></script>
