@@ -172,6 +172,7 @@ Nav();
                                             <?php
                                             if($_SESSION["admin"]):
                                                 ?>
+
                                                 <div class="col">
                                                     <button class="btn-basic disabled" disabled>
                                                         تأكيد
@@ -179,6 +180,35 @@ Nav();
                                                     </button>
                                                 </div>
                                             <?php
+
+          <div class="current-meeting-buttons">
+            <a href="current_meeting_subject.php" class="btn-basic">الموضوعات الخاصة بالمجلس</a>
+            <a href="#" class="btn-basic">تسجيل الحضور</a>
+            <a href="" class="btn-basic">التقارير</a>
+            <a href="#" class="btn-basic">تعديل</a>
+
+            <div class="upload">
+              <div class="btn-basic">
+                <label for="up1">
+                  رفع ملف المجلس الموثق
+                  <i class="fa-solid fa-upload"></i>
+                  <input id="up1" type="file" class="upload-button" multiple />
+                </label>
+              </div>
+              <div class="file-list"></div>
+            </div>
+          </div>
+          <?php
+                                            else:
+                                                ?>
+          <div class="current-meeting-buttons">
+            <a href="current_meeting_subject.php" class="btn-basic">عرض الموضوعات والتصويت</a>
+            <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
+            <a href="#" class="btn-basic">عرض ملف جدول الاعمال</a>
+            <a href="#" class="btn-basic">عرض ملف المجلس النهائي</a>
+          </div>
+          <?php
+
                                             endif;
                                             ?>
                                         </div>
