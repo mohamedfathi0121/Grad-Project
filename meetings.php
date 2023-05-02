@@ -180,16 +180,6 @@ Nav();
               </button>
             </div>
             <?php
-                                            else:
-                                                ?>
-            <div class="current-meeting-buttons">
-              <a href="current_meeting_subject.php" class="btn-basic">عرض الموضوعات والتصويت</a>
-              <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
-              <a href="#" class="btn-basic">عرض ملف جدول الاعمال</a>
-              <a href="#" class="btn-basic">عرض ملف المجلس النهائي</a>
-            </div>
-            <?php
-
                                             endif;
                                             ?>
           </div>
