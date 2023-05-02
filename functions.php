@@ -27,15 +27,17 @@ if (empty(@$_SESSION["app_name"]))
     $_SESSION["program_logo"] = $header_row["Program_logo"];
 }
 
-$user_stmt = $conn->prepare("SELECT name, image FROM p39_users WHERE user_id = ?");
-$user_stmt->bind_param("i", $_SESSION["user_id"]);
-$user_stmt->execute();
-$user_result = $user_stmt->get_result();
-$user_row = $user_result->fetch_assoc();
+if (empty(@$_SESSION["image"]))
+{
+    $user_stmt = $conn->prepare("SELECT name, image FROM p39_users WHERE user_id = ?");
+    $user_stmt->bind_param("i", $_SESSION["user_id"]);
+    $user_stmt->execute();
+    $user_result = $user_stmt->get_result();
+    $user_row = $user_result->fetch_assoc();
 
-$_SESSION["image"] =  $user_row['image'];
-$_SESSION["name"] =  $user_row['name'];
-
+    @$_SESSION["image"] =  $user_row['image'];
+    @$_SESSION["name"] =  $user_row['name'];
+}
 
 
 function Headers()
@@ -43,22 +45,17 @@ function Headers()
     ?>
 <header>
   <div class="user-logged">
-
-
-
-    <img src="<?= $_SESSION['image'] ?>" alt="">
-    <h5 class="user-name"><?= $_SESSION['name'] ?></h5>
-
     <?php
-                    if (!empty($_SESSION["loggedin"]))
-                    {
-                        ?>
-
+            if (!empty($_SESSION["loggedin"]))
+            {
+                ?>
+    <img src="<?=@$_SESSION['image']?>" alt="">
+    <h5 class="user-name"><?=@$_SESSION['name']?></h5>
     <button class="button btn-basic" onclick="location.href='logout.php'">خروج</button>
 
     <?php
-                    }
-                    ?>
+            }
+            ?>
   </div>
 
   <div class="header-container">
@@ -98,27 +95,13 @@ function Nav()
                     endif;
                     ?>
 
-                    <li><a href="subjects.php">الموضوعات</a></li>
-                    <li><a href="executive_decisions.php"> القرارات التنفيذية</a></li>
-                </div>
-            </ul>
-            <form class="search" action="<?=basename($_SERVER['PHP_SELF'])?>" method="post">
-                <input type="text" placeholder="بحث..." name="search" />
-                <button type="submit" class="btn-basic" name="search_btn">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
-        </nav>
-    </section>
-    <?php
-
-        <li><a href="current_meeting_subject.php">الموضوعات</a></li>
+        <li><a href="subjects.php">الموضوعات</a></li>
         <li><a href="executive_decisions.php"> القرارات التنفيذية</a></li>
       </div>
     </ul>
-    <form class="search" action="#">
+    <form class="search" action="<?=basename($_SERVER['PHP_SELF'])?>" method="post">
       <input type="text" placeholder="بحث..." name="search" />
-      <button type="submit" class="btn-basic">
+      <button type="submit" class="btn-basic" name="search_btn">
         <i class="fa fa-search"></i>
       </button>
     </form>
