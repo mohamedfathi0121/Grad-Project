@@ -377,11 +377,6 @@ input[type="file"] {
 	cursor: pointer;
 }
 
-.upload label {
-	width: 35vmin;
-	display: inline-block;
-}
-
 .another-content {
 	height: 90vh;
 	display: flex;
