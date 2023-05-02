@@ -183,3 +183,18 @@
 		align-items: center;
 	}
 }
+
+/* *Css for Login Page  */
+/* ############################### */
+
+.login-page .box .col {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	margin-top: 50px;
+}
+.login-page .box .col .row {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+}
