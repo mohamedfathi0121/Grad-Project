@@ -206,15 +206,119 @@
 .voting-content .box .row {
   margin-bottom: 20px;
 }
+.voting-content .box .row:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
 @media (max-width: 768px) {
   .voting-content .vote-radio {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .voting-content form .row textarea {
-    max-width: 200px;
-  }
 }
 /* !======================================================================= */
 /* *End vote page */
+/* *start admin reports page */
+/* !======================================================================= */
+.reports-content {
+  margin: 15px 0;
+}
+
+.reports-content .box {
+  display: flex;
+  flex-direction: column;
+}
+
+.reports-content .box .row {
+  display: flex;
+  justify-content: space-evenly;
+}
+.reports-content .box .row .col {
+  flex-grow: 1;
+  padding: 50px;
+}
+.reports-content .box .row .col a {
+  padding: 30px;
+}
+@media (max-width: 768px) {
+  .reports-content .box .row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .reports-content .box .row .col {
+    padding: 30px;
+    align-items: stretch;
+  }
+}
+/* !======================================================================= */
+/* *End admin reports page */
+
+/* *start current meeting subject page */
+/* !======================================================================= */
+.current-subject-content {
+  margin: 10px;
+}
+
+.add-current-subject {
+  position: sticky;
+  bottom: 15px;
+}
+.box .current-subject-details {
+  margin-top: 70px;
+  padding: 10px;
+
+}
+.box .current-subject-details .row {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+.current-subject-content .empty-current-subject {
+  padding: 200px 100px;
+  text-align: center;
+}
+.current-subject-foradmin .box {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-evenly;
+
+}
+.current-subject-foradmin .box .row {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.current-subject-foradmin .box .row .col h4 {
+  margin-bottom: 10px;
+}
+h4 {
+  margin-bottom: 10px;
+}
+
+.current-subject-foradmin .box .row:not(:first-child) {
+  justify-content: space-evenly;
+}
+@media (max-width: 768px) {
+  .current-subject-foradmin .box .row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .col-subject-vote {
+    min-width: 10px;
+  }
+}
+@media (min-width: 650px) {
+  .col-subject-vote {
+  min-width: 170px;
+}
+}
+
+
+/* !======================================================================= */
+/* *End current meeting subject page */
