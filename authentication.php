@@ -60,28 +60,28 @@ if (isset($_POST["sign_in_btn"])):
                 {
                     // Password doesn't match database, but I won't let the user know user exists for security concerns
                     $_SESSION["error"]["login"]["password"] = "Incorrect credentials, please try again";
-                    header("location:login.php");
+                    header("location:loginn.php");
                 }
             }
             else
             {
                 // User is not allowed to log into the system
                 $_SESSION["error"]["login"]["not_allowed"] = "You're not allowed to log into the system";
-                header("location:login.php");
+                header("location:loginn.php");
             }
         }
         else
         {
             // Email doesn't exist in database
             $_SESSION["error"]["login"]["user_not_found"] = "User not found, please contact system administrator";
-            header("location:login.php");
+            header("location:loginn.php");
         }
     }
     else
     {
         // Email doesn't meet the standards
         $_SESSION["error"]["login"]["email"] = "Incorrect email format";
-        header("location:login.php");
+        header("location:loginn.php");
     }
 else:
     echo"You Need to use POST to view this page";
@@ -91,6 +91,6 @@ else:
     }
     else
     {
-        header("refresh:5; url=login.php");
+        header("refresh:5; url=loginn.php");
     }
 endif;

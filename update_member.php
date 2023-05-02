@@ -39,10 +39,11 @@ if(is_admin()):
                     </div>
                     <div class="row">
                         <h4>النوع</h4>
-                        <?=$user_row["gender"] == "M" ? 'ذكر<input type="radio" value="M" name="gender" required checked>
-                                                         أنثى<input type="radio" value="F" name="gender" required>'
-                                                : 'ذكر<input type="radio" value="M" name="gender" required>
-                                                   أنثى<input type="radio" value="F" name="gender" required checked>'?>
+                        <?=$user_row["gender"] == "M"
+                            ? 'ذكر<input type="radio" value="M" name="gender" required checked>
+                                أنثى<input type="radio" value="F" name="gender" required>'
+                            : 'ذكر<input type="radio" value="M" name="gender" required>
+                                أنثى<input type="radio" value="F" name="gender" required checked>'?>
 
                     </div>
                     <!-- Can't let admin change email & password of users -->
@@ -61,8 +62,8 @@ if(is_admin()):
                     </div>
                     <div class="row">
                         <h4>الفئة الوظيفية</h4>
-                        <div class="">
-                            <select name="job_type" style="display: block" required>
+                        <div class="select-basic">
+                            <select name="job_type" required>
                                 <option value="">اختر</option>
                                 <?php
                                 // Get All Job Types
@@ -71,10 +72,13 @@ if(is_admin()):
                                 $job_types_result = $job_types_stmt->get_result();
                                 while ($job_types_row = $job_types_result->fetch_assoc())
                                 {
-                                    if ($job_types_row["job_type_id"] == $user_row["job_type"])
+                                    if ($job_types_row["job_type_id"] == $user_row["job_type_id"])
                                     {
-                                        echo "<option value='{$job_types_row["job_type_id"]}' selected>
-                                                {$job_types_row['job_type_name']}</option>";
+                                        ?>
+                                        <option value='{$job_types_row["job_type_id"]}' selected>
+                                                <?=$job_types_row['job_type_name']?>
+                                        </option>
+                                        <?php
                                     }
                                     else
                                     {
@@ -102,9 +106,19 @@ if(is_admin()):
                                 $job_ranks_result = $job_ranks_stmt->get_result();
                                 while ($job_ranks_row = $job_ranks_result->fetch_assoc())
                                 {
-                                    ?>
-                                    <option value="<?=$job_ranks_row['job_rank_id']?>"><?=$job_ranks_row["job_rank_name"]?></option>
-                                    <?php
+                                    if ($job_ranks_row["job_rank_id"] == $user_row["job_rank_id"])
+                                    {
+                                        echo "<option value='{$job_ranks_row["job_rank_id"]}' selected>
+                                                {$job_ranks_row['job_rank_name']}</option>";
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                        <option value="<?=$job_ranks_row['job_rank_id']?>">
+                                            <?=$job_ranks_row["job_rank_name"]?>
+                                        </option>
+                                        <?php
+                                    }
                                 }
                                 $job_ranks_stmt->close();
                                 ?>
@@ -123,9 +137,19 @@ if(is_admin()):
                                 $departments_result = $departments_stmt->get_result();
                                 while ($departments_row = $departments_result->fetch_assoc())
                                 {
-                                    ?>
-                                    <option value="<?=$departments_row['department_id']?>"><?=$departments_row["department_name"]?></option>
-                                    <?php
+                                    if ($departments_row["department_id"] == $user_row["department_id"])
+                                    {
+                                        echo "<option value='{$departments_row["department_id"]}' selected>
+                                                {$departments_row['department_name']}</option>";
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                        <option value="<?=$departments_row['department_id']?>">
+                                            <?=$departments_row["department_name"]?>
+                                        </option>
+                                        <?php
+                                    }
                                 }
                                 $departments_stmt->close();
                                 ?>
@@ -136,11 +160,26 @@ if(is_admin()):
                         <h4>الصلاحية</h4>
                         <div class="select-basic">
                             <select name="is_admin" required>
-                                <option value="">اختر</option>
-                                <option value="0">عضو مجلس</option>
-                                <option value="1">أمين مجلس (ادمن)</option>
+                                <?=$user_row["is_admin"] == "0"
+                                    ? '<option value="">اختر</option>
+                                        <option value="0" selected>عضو مجلس</option>
+                                        <option value="1">أمين مجلس (ادمن)</option>'
+                                    : '<option value="">اختر</option>
+                                        <option value="0">عضو مجلس</option>
+                                        <option value="1" selected>أمين مجلس (ادمن)</option>'?>
                             </select>
                         </div>
+                    </div>
+                    <div class="row">
+                        <h4>حالة العضو</h4>
+                        <div class="row">
+                            <?=$user_row["is_enabled"] == "1"
+                                ? '<h4>مفعل</h4><input type="radio" name="is_enabled" value="1" checked />
+                                    <h4>موقوف</h4><input type="radio" name="is_enabled" value="0" />'
+                                : '<h4>مفعل</h4><input type="radio" name="is_enabled" value="1" />
+                                    <h4>موقوف</h4><input type="radio" name="is_enabled" value="0" checked />'?>
+                        </div>
+
                     </div>
                     <div class="row">
                         <h4>صورة العضو</h4>
@@ -157,18 +196,11 @@ if(is_admin()):
                         </div>
                     </div>
                     <div class="row">
-                        <h4>حالة العضو</h4>
-                        <div class="row">
-                            <h4>مفعل</h4><input type="radio" name="is_enabled" value="1" checked />
-                            <h4>موقوف</h4><input type="radio" name="is_enabled" value="0" />
-                        </div>
-
-                    </div>
-                    <div class="row">
                         <h4>ملاحظات</h4>
                         <textarea name=""></textarea>
                     </div>
                     <div class="row">
+                        <input type="hidden" value="<?=$_POST['user_id']?>">
                         <button type="submit" class="btn-basic" name="update_member_btn">تعديل</button>
                     </div>
                 </div>
