@@ -184,9 +184,9 @@ if(session_status() === PHP_SESSION_NONE)
                                             if($_SESSION["admin"]):
                                                 ?>
           <div class="current-meeting-buttons">
-            <a href="#" class="btn-basic">الموضوعات الخاصة بالمجلس</a>
+            <a href="current_meeting_subject.php" class="btn-basic">الموضوعات الخاصة بالمجلس</a>
             <a href="#" class="btn-basic">تسجيل الحضور</a>
-            <a href="#" class="btn-basic">التقارير</a>
+            <a href="" class="btn-basic">التقارير</a>
             <a href="#" class="btn-basic">تعديل</a>
 
             <div class="upload">
@@ -204,7 +204,7 @@ if(session_status() === PHP_SESSION_NONE)
                                             else:
                                                 ?>
           <div class="current-meeting-buttons">
-            <a href="#" class="btn-basic">عرض الموضوعات والتصويت</a>
+            <a href="current_meeting_subject.php" class="btn-basic">عرض الموضوعات والتصويت</a>
             <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
             <a href="#" class="btn-basic">عرض ملف جدول الاعمال</a>
             <a href="#" class="btn-basic">عرض ملف المجلس النهائي</a>
