@@ -75,7 +75,7 @@ if(is_admin()):
                                     if ($job_types_row["job_type_id"] == $user_row["job_type_id"])
                                     {
                                         ?>
-                                        <option value='{$job_types_row["job_type_id"]}' selected>
+                                        <option value='<?=$job_types_row["job_type_id"]?>' selected>
                                                 <?=$job_types_row['job_type_name']?>
                                         </option>
                                         <?php
@@ -200,7 +200,7 @@ if(is_admin()):
                         <textarea name=""></textarea>
                     </div>
                     <div class="row">
-                        <input type="hidden" value="<?=$_POST['user_id']?>">
+                        <input type="hidden" value="<?=$_POST['user_id']?>" name="user_id">
                         <button type="submit" class="btn-basic" name="update_member_btn">تعديل</button>
                     </div>
                 </div>

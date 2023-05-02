@@ -20,7 +20,7 @@ if (isset($_POST["update_member_btn"]))
     $is_enabled = clean_data($_POST["is_enabled"]);
 //    if ($email)
 //    {
-        if (!$name || !$job_title || !$gender || !$job_type || !$job_rank || !$department)
+        if (!$name || !$job_title || !$gender)
         {
             echo "Missing Data, Please try again";
         }
@@ -52,7 +52,7 @@ if (isset($_POST["update_member_btn"]))
                 $is_admin,
                 $_SESSION["user_id"],
                 $is_enabled,
-                $_SESSION["user_id"]);
+                $_POST["user_id"]);
 
             if ($member_update_stmt->execute())
             {
