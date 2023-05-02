@@ -146,7 +146,6 @@ if (session_status() === PHP_SESSION_NONE)
       </form>
 
   </main>
-
   <?php
   endif;
   footer();
