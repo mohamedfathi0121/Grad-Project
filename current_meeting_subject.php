@@ -98,129 +98,131 @@ require_once "functions.php";
             </div>
           </div>
         </div>
-        <!--   بقية محتوي الصفحة و بيتغير علي اساس في مواضيع ولا لا-->
-        <!-- add deactive here to test  -->
-        <div class="current-subject-foradmin">
+      </div>
+      <!-- Admin apperence  -->
+      <!--   بقية محتوي الصفحة و بيتغير علي اساس في مواضيع ولا لا-->
+      <!-- add deactive here to test  -->
 
-          <!--  و لسة مفيش مواضيع في المجلس الحالي- -->
+      <div class="current-subject-foradmin">
 
-          <main id="empty" class="empty-current-subject">
-            <h4>لا يوجد مواضيع الان</h4>
-          </main>
+        <!--  و لسة مفيش مواضيع في المجلس الحالي- -->
 
-          <!--لو في مواضيع -->
-          <!-- موضوع رقم 1 -->
-          <div class="box">
-            <div class="row">
-              <div class="col">
-                <h4>رقم الموضوع:<span>{1}</span></h4>
-                <h4>
-                  تصنيف الموضوع:
-                  <span>
-                    { مهم}
-                  </span>
-                </h4>
-                <h4>
-                  عنوان
-                  الموضوع:<span>{ محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد
-                    محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد }</span>
-                </h4>
-              </div>
-            </div>
+        <main id="empty" class="empty-current-subject">
+          <h4>لا يوجد مواضيع الان</h4>
+        </main>
 
-            <div class="row">
-              <div class="col">
-                <a href="#" class="btn-basic">اضافة قرار</a>
-
-              </div>
-
-              <div class="col">
-                <a href="#" class="btn-basic">تعديل قرار</a>
-
-              </div>
-
-              <div class="col">
-                <button class="btn-basic subject-details-btn">
-                  تفاصيل الموضوع
-                </button>
-              </div>
-              <div class="col">
-                <a href="#" class="btn-basic">تعديل الموضوع</a>
-
-              </div>
-              <div class="col">
-                <button class="btn-basic">حذف</button>
-              </div>
-            </div>
-            <div class="current-subject-details deactive">
-              <div class="row">
-                <div class="col">
-                  <p>{ محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد
-                    محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد }</p>
-                </div>
-              </div>
-
+        <!--لو في مواضيع -->
+        <!-- موضوع رقم 1 -->
+        <div class="box">
+          <div class="row">
+            <div class="col">
+              <h4>رقم الموضوع:<span>{1}</span></h4>
+              <h4>
+                تصنيف الموضوع:
+                <span>
+                  { مهم}
+                </span>
+              </h4>
+              <h4>
+                عنوان
+                الموضوع:<span>{ محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد
+                  محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد }</span>
+              </h4>
             </div>
           </div>
-          <!-- موضوع رقم 2 -->
-          <div class="box">
+
+          <div class="row">
+            <div class="col">
+              <a href="#" class="btn-basic">اضافة قرار</a>
+
+            </div>
+
+            <div class="col">
+              <a href="#" class="btn-basic">تعديل قرار</a>
+
+            </div>
+
+            <div class="col">
+              <button class="btn-basic subject-details-btn">
+                تفاصيل الموضوع
+              </button>
+            </div>
+            <div class="col">
+              <a href="#" class="btn-basic">تعديل الموضوع</a>
+
+            </div>
+            <div class="col">
+              <button class="btn-basic">حذف</button>
+            </div>
+          </div>
+          <div class="current-subject-details deactive">
             <div class="row">
               <div class="col">
-                <h4>رقم الموضوع:<span>{1}</span></h4>
-                <h4>
-                  تصنيف الموضوع:
-                  <span>
-                    { مهم}
-                  </span>
-                </h4>
-                <h4>
-                  عنوان
-                  الموضوع:<span>{ محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد
-                    محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد }</span>
-                </h4>
+                <p>{ محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد
+                  محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد }</p>
               </div>
             </div>
 
+          </div>
+        </div>
+        <!-- موضوع رقم 2 -->
+        <div class="box">
+          <div class="row">
+            <div class="col">
+              <h4>رقم الموضوع:<span>{1}</span></h4>
+              <h4>
+                تصنيف الموضوع:
+                <span>
+                  { مهم}
+                </span>
+              </h4>
+              <h4>
+                عنوان
+                الموضوع:<span>{ محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد
+                  محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد }</span>
+              </h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <a href="#" class="btn-basic">اضافة قرار</a>
+
+            </div>
+
+            <div class="col">
+              <a href="#" class="btn-basic">تعديل قرار</a>
+
+            </div>
+
+            <div class="col">
+              <button class="btn-basic subject-details-btn">
+                تفاصيل الموضوع
+              </button>
+            </div>
+            <div class="col">
+              <a href="#" class="btn-basic">تعديل الموضوع</a>
+
+            </div>
+            <div class="col">
+              <button class="btn-basic">حذف</button>
+            </div>
+          </div>
+          <div class="current-subject-details deactive">
             <div class="row">
               <div class="col">
-                <a href="#" class="btn-basic">اضافة قرار</a>
-
-              </div>
-
-              <div class="col">
-                <a href="#" class="btn-basic">تعديل قرار</a>
-
-              </div>
-
-              <div class="col">
-                <button class="btn-basic subject-details-btn">
-                  تفاصيل الموضوع
-                </button>
-              </div>
-              <div class="col">
-                <a href="#" class="btn-basic">تعديل الموضوع</a>
-
-              </div>
-              <div class="col">
-                <button class="btn-basic">حذف</button>
+                <p>{ محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد
+                  محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد }</p>
               </div>
             </div>
-            <div class="current-subject-details deactive">
-              <div class="row">
-                <div class="col">
-                  <p>{ محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد
-                    محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد محمد }</p>
-                </div>
-              </div>
 
-            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- اضافة موضوع جديد-->
-    <!-- For Admins Only -->
+    <!-- this button For Admins Only -->
     <div class="add-current-subject">
       <a href="#" class="btn-basic">اضافة موضوع</a>
     </div>
