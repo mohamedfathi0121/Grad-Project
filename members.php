@@ -16,13 +16,10 @@ if(session_status() === PHP_SESSION_NONE)
     <body dir="rtl">
         <?php
         Headers();
-        Nav();
-        ?>
-
-        <!-- *Main Members Page Content  -->
-        <?php
         if(is_admin()):
+            Nav();
             ?>
+            <!-- *Main Members Page Content  -->
             <!-- !Admin Apperance -->
             <!-- *Add "deactive" to Class Here ↓↓ To Test-->
             <main class="members-content">
@@ -157,9 +154,6 @@ if(session_status() === PHP_SESSION_NONE)
             </main>
         <?php
         endif;
-        ?>
-
-        <?php
         Footer();
         ?>
 

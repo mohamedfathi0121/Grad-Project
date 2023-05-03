@@ -17,6 +17,7 @@ Head("المجالس");
 <body dir="rtl">
   <?php
 Headers();
+if (is_logged_in()):
 Nav();
 ?>
   <!-- *Main Meetings Page Content  -->
@@ -100,7 +101,10 @@ Nav();
             </div>
           </div>
           <div class="current-meeting-buttons">
-            <a href="#" class="btn-basic">الموضوعات الخاصة بالمجلس</a>
+              <form method="post" action="current_meeting_subject.php">
+                  <input type="hidden" value="<?=$meetings_row['meeting_id']?>" name="meeting_id">
+                  <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+              </form>
             <a href="#" class="btn-basic">تسجيل الحضور</a>
             <a href="#" class="btn-basic">التقارير</a>
             <a href="#" class="btn-basic">تعديل</a>
@@ -187,7 +191,10 @@ Nav();
                                         if($_SESSION["admin"]):
                                             ?>
           <div class="current-meeting-buttons">
-            <a href="#" class="btn-basic">الموضوعات الخاصة بالمجلس</a>
+              <form method="post" action="current_meeting_subject.php">
+                  <input type="hidden" value="<?=$meetings_row['meeting_id']?>" name="meeting_id">
+                  <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+              </form>
             <a href="#" class="btn-basic">تسجيل الحضور</a>
             <a href="#" class="btn-basic">التقارير</a>
             <a href="#" class="btn-basic">تعديل</a>
@@ -207,7 +214,10 @@ Nav();
                                         else:
                                             ?>
           <div class="current-meeting-buttons">
-            <a href="#" class="btn-basic">عرض الموضوعات والتصويت</a>
+              <form method="post" action="current_meeting_subject.php">
+                  <input type="hidden" value="<?=$meetings_row['meeting_id']?>" name="meeting_id">
+                  <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+              </form>
             <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
             <a href="#" class="btn-basic">عرض ملف جدول الاعمال</a>
             <a href="#" class="btn-basic">عرض ملف المجلس النهائي</a>
@@ -466,6 +476,7 @@ Nav();
   <!-- ########################################################################################################### -->
 
   <?php
+  endif;
 Footer();
 ?>
 

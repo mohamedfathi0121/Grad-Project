@@ -16,8 +16,8 @@ Head("الأعضاء");
 <body dir="rtl">
 <?php
 Headers();
-Nav();
 if(is_admin()):
+    Nav();
     $user_stmt = $conn->prepare("SELECT * FROM p39_users WHERE user_id = ?");
     $user_stmt->bind_param("i", $_POST["user_id"]);
     $user_stmt->execute();

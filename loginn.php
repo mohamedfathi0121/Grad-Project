@@ -37,7 +37,7 @@ require_once "functions.php";
   <?php
   else:
       ?>
-      <p class="error_msg" style="text-align: center">
+      <p style="color: red; font-weight: bold; text-align: center">
           You're already logged in, you'll be redirected in 5 seconds.
       </p><br>
       <?php

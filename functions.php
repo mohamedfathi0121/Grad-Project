@@ -36,7 +36,7 @@ if (empty(@$_SESSION["image"]))
     $user_row = $user_result->fetch_assoc();
 
     @$_SESSION["image"] =  $user_row['image'];
-    @$_SESSION["name"] =  $user_row['name'];
+    @$_SESSION["name"]  =  $user_row['name'];
 }
 
 
@@ -49,11 +49,11 @@ function Headers()
             if (!empty($_SESSION["loggedin"]))
             {
                 ?>
-    <img src="<?=@$_SESSION['image']?>" alt="">
-    <h5 class="user-name"><?=@$_SESSION['name']?></h5>
-    <button class="button btn-basic" onclick="location.href='logout.php'">خروج</button>
+                <img src="<?=@$_SESSION['image']?>" alt="">
+                <h5 class="user-name"><?=@$_SESSION['name']?></h5>
+                <button class="button btn-basic" onclick="location.href='logout.php'">خروج</button>
 
-    <?php
+                <?php
             }
             ?>
   </div>
@@ -90,12 +90,12 @@ function Nav()
         <?php
                     if ($_SESSION["admin"]):
                         ?>
-        <li><a href="members.php">الاعضاء</a></li>
-        <?php
+                        <li><a href="members.php">الاعضاء</a></li>
+                        <?php
                     endif;
                     ?>
 
-        <li><a href="subjects.php">الموضوعات</a></li>
+        <li><a href="current_meeting_subject.php">الموضوعات</a></li>
         <li><a href="executive_decisions.php"> القرارات التنفيذية</a></li>
       </div>
     </ul>
@@ -139,10 +139,10 @@ function Footer()
 {
     $y = date("Y");
     ?>
-<footer>
-  <p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors <?=$y?></p>
-</footer>
-<?php
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors <?=$y?></p>
+    </footer>
+    <?php
 }
 
 function clean_data($str)
@@ -180,10 +180,10 @@ function is_admin():bool
     else
     {
         ?>
-<p class="error_msg" style="text-align: center">
-  You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
-</p><br>
-<?php
+        <p style="color: red; font-weight: bold; text-align: center">
+          You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
+        </p><br>
+        <?php
         header("refresh:5; url=meetings.php");
         footer();
         die();
@@ -199,11 +199,11 @@ function is_logged_in():bool
     else
     {
         ?>
-<p class="error_msg" style="text-align: center">
-  You need to log in to view this page. You'll be redirected to the login page in 5 seconds.
-</p><br>
-<?php
-        header("refresh:5; url=login.php");
+        <p style="color: red; font-weight: bold; text-align: center">
+          You need to log in to view this page. You'll be redirected to the login page in 5 seconds
+        </p><br>
+        <?php
+        header("refresh:5; url=loginn.php");
         footer();
         die();
     }
@@ -253,9 +253,3 @@ function Upload($source, $destination, $allowed_formats)
     }
     return $result;
 }
-
-$user_stmt = $conn->prepare("SELECT name, image FROM p39_users WHERE user_id = ?");
-$user_stmt->bind_param("i", $_SESSION["user_id"]);
-$user_stmt->execute();
-$user_result = $user_stmt->get_result();
-$user_row = $user_result->fetch_assoc();
