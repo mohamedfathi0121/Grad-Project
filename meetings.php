@@ -18,8 +18,8 @@ Head("المجالس");
 <?php
     Headers();
     if (is_logged_in()):
-    Nav();
-    ?>
+        Nav();
+        ?>
         <!-- *Main Meetings Page Content  -->
         <main id="admin" class="meetings-content">
             <div class="container">
@@ -27,7 +27,7 @@ Head("المجالس");
                     <h1>المجالس</h1>
                 </div>
                 <?php
-                if (!isset($_POST["search_btn"])):
+                if (!isset($_GET["search"])):
                   // $meetings_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id = ? ORDER BY is_current desc");
                     $current_meeting_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE is_current = 1");
                     $current_meeting_stmt->execute();
@@ -80,10 +80,14 @@ Head("المجالس");
                                                     </h4>
                                                 </div>
                                                 <div class="col">
-                                                    <button class="btn-basic">
-                                                        تأكيد
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </button>
+                                                    <form method="post" action="confirm_meeting.php">
+                                                        <input type="hidden" name="meeting_id"
+                                                               value="<?=$current_meeting_row['meeting_id']?>">
+                                                        <button class="btn-basic" name="confirm_btn">
+                                                            تأكيد
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <div class="current-meeting-buttons">
@@ -407,94 +411,107 @@ Head("المجالس");
                             <?php
                         }?>
                     </div>
-            </div>
-            <?php
-            if (@$_SESSION["admin"]):
-                # Add New Members
-                ?>
-                <div class="add-meeting">
-                  <a href="#" class="btn-basic">اضافة مجلس جديد</a>
-                </div>
-            <?php
-            endif;
-        else:
-            $search = $_POST["search"];
-    //      $search_query = "SELECT * FROM p39_meeting WHERE formation_id LIKE %";
-    //      $search_query .= $_POST["search"] . "%";
-            $search_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id LIKE '%$search%' and status not in ('pending')");
-            $search_stmt->execute();
-            $search_result = $search_stmt->get_result();
-            while ($search_row = $search_result->fetch_assoc())
-            {
-                ?>
-                <div class="old-meeting-box">
-                    <div class="row">
-                        <div class="col">
-                            <h4>
-                                رقم المجلس:
-                                <span class="meeting-number">
-                                    <?=$search_row["meeting_number"]?>
-                                </span>
-                            </h4>
-                            <h4>
-                                رقم تشكيل المجلس:
-                                <span class="meeting-formation-number">
-                                    <?=$search_row["formation_id"]?>
-                                </span>
-                            </h4>
-                            <h4>
-                                بتاريخ:
-                                <span class="meeting-month">
-                                    <?=$search_row["meeting_month"]?>
-                                </span>
-                                /
-                                <span class="meeting-year">
-                                    <?=$search_row["meeting_year"]?>
-                                </span>
-                            </h4>
-                            <h4>
-                                حالة المجلس:
-                                <span>
-                                    <?=$search_row["status"] == "confirmed"
-                                        ? "مؤكد"
-                                        : "منتهي"?>
-                                </span>
-                            </h4>
+                    </div>
+                    <?php
+                    if (@$_SESSION["admin"]):
+                        # Add New Members
+                        ?>
+                        <div class="add-meeting">
+                          <a href="#" class="btn-basic">اضافة مجلس جديد</a>
                         </div>
-                        <?php
-                        if($_SESSION["admin"]):
+                    <?php
+                    endif;
+                else:
+                    $search = $_GET["search"];
+            //      $search_query = "SELECT * FROM p39_meeting WHERE formation_id LIKE %";
+            //      $search_query .= $_POST["search"] . "%";
+                    $search_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id LIKE '%$search%' and status not in ('pending')");
+                    $search_stmt->execute();
+                    $search_result = $search_stmt->get_result();
+                    if ($search_result->num_rows > 0)
+                    {
+                        while ($search_row = $search_result->fetch_assoc())
+                        {
                             ?>
-                            <div class="col">
-                                <a href="#" class="btn-basic">التقارير</a>
-                                <div class="upload">
-                                    <div class="btn-basic">
-                                        <label for="up2">
-                                            رفع ملف المجلس المؤكد
-                                            <i class="fa-solid fa-upload"></i>
-                                            <input id="up2" type="file" class="upload-button" multiple />
-                                        </label>
+                            <div class="old-meeting-box">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>
+                                            رقم المجلس:
+                                            <span class="meeting-number">
+                                                <?=$search_row["meeting_number"]?>
+                                            </span>
+                                        </h4>
+                                        <h4>
+                                            رقم تشكيل المجلس:
+                                            <span class="meeting-formation-number">
+                                                <?=$search_row["formation_id"]?>
+                                            </span>
+                                        </h4>
+                                        <h4>
+                                            بتاريخ:
+                                            <span class="meeting-month">
+                                                <?=$search_row["meeting_month"]?>
+                                            </span>
+                                            /
+                                            <span class="meeting-year">
+                                                <?=$search_row["meeting_year"]?>
+                                            </span>
+                                        </h4>
+                                        <h4>
+                                            حالة المجلس:
+                                            <span>
+                                                <?=$search_row["status"] == "confirmed"
+                                                    ? "مؤكد"
+                                                    : "منتهي"?>
+                                            </span>
+                                        </h4>
                                     </div>
-                                    <div class="file-list"></div>
+                                    <?php
+                                    if($_SESSION["admin"]):
+                                        ?>
+                                        <div class="col">
+                                            <a href="#" class="btn-basic">التقارير</a>
+                                            <div class="upload">
+                                                <div class="btn-basic">
+                                                    <label for="up2">
+                                                        رفع ملف المجلس المؤكد
+                                                        <i class="fa-solid fa-upload"></i>
+                                                        <input id="up2" type="file" class="upload-button" multiple />
+                                                    </label>
+                                                </div>
+                                                <div class="file-list"></div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    else:
+                                        ?>
+                                        <div class="col">
+                                            <a href="#" class="btn-basic">عرض ملف المجلس النهائي</a>
+                                            <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
+                                        </div>
+                                    <?php
+                                    endif;
+                                    ?>
                                 </div>
                             </div>
-                        <?php
-                        else:
-                            ?>
-                            <div class="col">
-                                <a href="#" class="btn-basic">عرض ملف المجلس النهائي</a>
-                                <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
-                            </div>
-                        <?php
-                        endif;
+                            <?php
+                        }
+                    }
+                    else
+                    {
                         ?>
-                    </div>
-                </div>
+	                    <div class='current-meeting'>
+                            <main id='empty' class='empty-meeting'>
+                                <h4>عذرًا، لا يوجد مجالس بهذا الرقم</h4>
+                            </main>
+                        </div>
+                        <?php
+                    }
+                endif;
+                ?>
+                </main>
                 <?php
-            }
-            endif;
-            ?>
-        </main>
-    <?php
     endif;
     Footer();
     ?>
