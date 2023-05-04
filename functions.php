@@ -36,7 +36,7 @@ if (empty(@$_SESSION["image"]))
     $user_row = $user_result->fetch_assoc();
 
     @$_SESSION["image"] =  $user_row['image'];
-    @$_SESSION["name"] =  $user_row['name'];
+    @$_SESSION["name"]  =  $user_row['name'];
 }
 
 
@@ -84,24 +84,35 @@ function Nav()
     <ul>
       <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
       <div class="links deactive">
-
         <li><a href="index.php">الصفحة الرئيسية</a></li>
         <li><a href="meetings.php">المجالس</a></li>
+        <li><a href="current_meeting_subject.php">الموضوعات</a></li>
         <?php
-                    if ($_SESSION["admin"]):
-                        ?>
+          if ($_SESSION["admin"]):
+              ?>
         <li><a href="members.php">الاعضاء</a></li>
+        <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
         <?php
-                    endif;
-                    ?>
-
-        <li><a href="subjects.php">الموضوعات</a></li>
-        <li><a href="executive_decisions.php"> القرارات التنفيذية</a></li>
+          endif;
+        ?>
       </div>
     </ul>
-    <form class="search" action="<?=basename($_SERVER['PHP_SELF'])?>" method="post">
-      <input type="text" placeholder="بحث..." name="search" />
-      <button type="submit" class="btn-basic" name="search_btn">
+    <form class="search" action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
+      <?php
+        switch (basename($_SERVER["PHP_SELF"]))
+        {
+            case "meetings.php":
+                ?>
+      <input type="text" placeholder="بحث برقم التشكيل" name="search" />
+      <?php
+                break;
+            case "current_meeting_subject.php":
+                ?>
+      <input type="text" placeholder="بحث برقم الموضوع" name="search" />
+      <?php
+        }
+        ?>
+      <button type="submit" class="btn-basic">
         <i class="fa fa-search"></i>
       </button>
     </form>
@@ -180,7 +191,7 @@ function is_admin():bool
     else
     {
         ?>
-<p class="error_msg" style="text-align: center">
+<p style="color: red; font-weight: bold; text-align: center">
   You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
 </p><br>
 <?php
@@ -199,11 +210,11 @@ function is_logged_in():bool
     else
     {
         ?>
-<p class="error_msg" style="text-align: center">
-  You need to log in to view this page. You'll be redirected to the login page in 5 seconds.
+<p style="color: red; font-weight: bold; text-align: center">
+  You need to log in to view this page. You'll be redirected to the login page in 5 seconds
 </p><br>
 <?php
-        header("refresh:5; url=login.php");
+        header("refresh:5; url=loginn.php");
         footer();
         die();
     }
@@ -253,9 +264,3 @@ function Upload($source, $destination, $allowed_formats)
     }
     return $result;
 }
-
-$user_stmt = $conn->prepare("SELECT name, image FROM p39_users WHERE user_id = ?");
-$user_stmt->bind_param("i", $_SESSION["user_id"]);
-$user_stmt->execute();
-$user_result = $user_stmt->get_result();
-$user_row = $user_result->fetch_assoc();
