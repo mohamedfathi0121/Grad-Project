@@ -277,6 +277,7 @@ footer p {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="date"],
 textarea {
 	outline: 0;
 	margin: 10px;
@@ -289,6 +290,10 @@ textarea {
 textarea {
 	width: 50vmin;
 	height: 30vmin;
+}
+
+input[type="date"] {
+	text-align: center;
 }
 
 /* 3. Checkbox And Radio Button  */
@@ -382,7 +387,7 @@ input[type="radio"]:checked {
 }
 
 .select-items {
-	position: absolute;
+	/* position: absolute; */
 	background-color: var(--main-color);
 	top: 100%;
 	left: 0;
