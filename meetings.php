@@ -27,6 +27,16 @@ Head("المجالس");
                     <h1>المجالس</h1>
                 </div>
                 <?php
+                # Retrieve Formation IDs of the user currently signed in
+                $user_formation_ids_stmt = $conn->prepare("SELECT formation_id FROM p39_formation_user WHERE user_id = ?");
+                $user_formation_ids_stmt->bind_param("i", $_SESSION["user_id"]);
+                $user_formation_ids_stmt->execute();
+                $user_formation_ids_result = $user_formation_ids_stmt->get_result();
+                $user_formation_ids = array();
+                while ($user_formation_ids_row = $user_formation_ids_result->fetch_assoc())
+                {
+	                $user_formation_ids[] = $user_formation_ids_row["formation_id"];
+                }
                 if (!isset($_GET["search"])):
                   // $meetings_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id = ? ORDER BY is_current desc");
                     $current_meeting_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE is_current = 1");
@@ -80,7 +90,7 @@ Head("المجالس");
                                                     </h4>
                                                 </div>
                                                 <div class="col">
-                                                    <form method="post" action="confirm_meeting.php">
+                                                    <form method="post" action="meeting_status.php">
                                                         <input type="hidden" name="meeting_id"
                                                                value="<?=$current_meeting_row['meeting_id']?>">
                                                         <button class="btn-basic" name="confirm_btn">
@@ -91,24 +101,16 @@ Head("المجالس");
                                                 </div>
                                             </div>
                                             <div class="current-meeting-buttons">
-                                                <form method="post" action="current_meeting_subject.php">
+                                                <form method="post" action="current_meeting_subject.php" class="current-meeting-buttons">
                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                    <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                    <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
                                                 </form>
+                                                <a href="#" class="btn-basic">تعديل</a>
                                                 <button class="btn-basic disabled" disabled>تسجيل الحضور</button>
                                                 <button class="btn-basic disabled" disabled>التقارير</button>
-                                                <a href="#" class="btn-basic">تعديل</a>
-
-                                                <div class="upload">
-                                                    <div class="btn-basic">
-                                                        <label for="up1">
-                                                            رفع ملف المجلس الموثق
-                                                            <i class="fa-solid fa-upload"></i>
-                                                            <input id="up1" type="file" class="upload-button" multiple />
-                                                        </label>
-                                                    </div>
-                                                    <div class="file-list"></div>
-                                                </div>
+                                                <button class="btn-basic disabled" disabled>
+                                                    رفع ملف المجلس الموثق
+                                                </button>
                                             </div>
                                         </div>
                                         <?php
@@ -163,12 +165,20 @@ Head("المجالس");
                                                 <?php
                                                 if($_SESSION["admin"]):
                                                     ?>
-                                                    <div class="col">
-                                                        <button class="btn-basic disabled" disabled>
-                                                            تأكيد
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </button>
-                                                    </div>
+                                                    <form method="post" action="meeting_status.php">
+                                                        <div class="col">
+                                                            <input type="hidden" name="meeting_id"
+                                                                   value="<?=$current_meeting_row['meeting_id']?>">
+                                                            <button class="btn-basic" name="pending_btn">
+                                                                إلغاء تأكيد
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </button>
+                                                            <button class="btn-basic" name="past_btn">
+                                                                تحويل لمجلس سابق
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
                                                 <?php
                                                 endif;
                                                 ?>
@@ -178,24 +188,16 @@ Head("المجالس");
                                                 # Current Meeting Buttons for ADMIN
                                                 ?>
                                                 <div class="current-meeting-buttons">
-                                                    <form method="post" action="current_meeting_subject.php">
+                                                    <form method="post" action="current_meeting_subject.php" class="current-meeting-buttons">
                                                         <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                        <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                        <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
                                                     </form>
+                                                    <a href="#" class="btn-basic">تعديل</a>
                                                     <a href="#" class="btn-basic">تسجيل الحضور</a>
                                                     <a href="#" class="btn-basic">التقارير</a>
-                                                    <a href="#" class="btn-basic">تعديل</a>
-
-                                                    <div class="upload">
-                                                        <div class="btn-basic">
-                                                            <label for="up1">
-                                                                رفع ملف المجلس المؤكد
-                                                                <i class="fa-solid fa-upload"></i>
-                                                                <input id="up1" type="file" class="upload-button" multiple />
-                                                            </label>
-                                                        </div>
-                                                        <div class="file-list"></div>
-                                                    </div>
+                                                    <button class="btn-basic">
+                                                        رفع ملف المجلس الموثق
+                                                    </button>
                                                 </div>
                                             <?php
                                             else:
@@ -204,7 +206,7 @@ Head("المجالس");
                                                 <div class="current-meeting-buttons">
                                                     <form method="post" action="current_meeting_subject.php">
                                                         <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                        <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                        <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
                                                     </form>
                                                     <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
                                                     <a href="#" class="btn-basic">عرض ملف جدول الاعمال</a>
@@ -248,15 +250,15 @@ Head("المجالس");
                                                         </span>
                                                     </h4>
                                                     <h4>
-                                                        حالة المجلس: موثق
+                                                        حالة المجلس: منتهي
                                                     </h4>
                                                 </div>
 					                            <?php
 					                            if($_SESSION["admin"]):
 						                            ?>
                                                     <div class="col">
-                                                        <button class="btn-basic disabled" disabled>
-                                                            تأكيد
+                                                        <button class="btn-basic" name="past_btn">
+                                                            تحويل لمجلس سابق
                                                             <i class="fa-solid fa-check"></i>
                                                         </button>
                                                     </div>
@@ -271,22 +273,14 @@ Head("المجالس");
                                                 <div class="current-meeting-buttons">
                                                     <form method="post" action="current_meeting_subject.php">
                                                         <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                        <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                        <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
                                                     </form>
                                                     <a href="#" class="btn-basic">تسجيل الحضور</a>
                                                     <a href="#" class="btn-basic">التقارير</a>
                                                     <a href="#" class="btn-basic">تعديل</a>
-
-                                                    <div class="upload">
-                                                        <div class="btn-basic">
-                                                            <label for="up1">
-                                                                رفع ملف المجلس المؤكد
-                                                                <i class="fa-solid fa-upload"></i>
-                                                                <input id="up1" type="file" class="upload-button" multiple />
-                                                            </label>
-                                                        </div>
-                                                        <div class="file-list"></div>
-                                                    </div>
+                                                    <button class="btn-basic">
+                                                        رفع ملف المجلس الموثق
+                                                    </button>
                                                 </div>
 				                            <?php
 				                            else:
@@ -295,7 +289,7 @@ Head("المجالس");
                                                 <div class="current-meeting-buttons">
                                                     <form method="post" action="current_meeting_subject.php">
                                                         <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                        <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                        <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
                                                     </form>
                                                     <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
                                                     <a href="#" class="btn-basic">عرض ملف جدول الاعمال</a>
@@ -324,28 +318,19 @@ Head("المجالس");
                         <?php
                     }
 
-                    # Retrieve Formation IDs of the user currently signed in
-                    $user_formation_ids_stmt = $conn->prepare("SELECT formation_id FROM p39_formation_user WHERE user_id = ?");
-                    $user_formation_ids_stmt->bind_param("i", $_SESSION["user_id"]);
-                    $user_formation_ids_stmt->execute();
-                    $user_formation_ids_result = $user_formation_ids_stmt->get_result();
-                    $user_formation_ids = array();
-                    while ($user_formation_ids_row = $user_formation_ids_result->fetch_assoc())
-                    {
-                      $user_formation_ids[] = $user_formation_ids_row["formation_id"];
-                    }
-
                     $past_meetings_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE is_current = 0");
                     $past_meetings_stmt->execute();
                     $past_meetings_result = $past_meetings_stmt->get_result();
                     ?>
                 <!-- المجالس السابقة -->
                     <div class="old-meetings">
-                        <h3>المجالس السابقة</h3>
                         <?php
                         # Check if there are past meetings
                         if ($past_meetings_result->num_rows > 0)
                         {
+                            ?>
+                            <h3>المجالس السابقة</h3>
+                            <?php
                             while ($past_meetings_row = $past_meetings_result->fetch_assoc())
                             {
                                 /* Check if the user exists in the formation of this meeting and is allowed to view it,
@@ -388,16 +373,9 @@ Head("المجالس");
                                             ?>
                                             <div class="col">
                                                 <a href="#" class="btn-basic">التقارير</a>
-                                                <div class="upload">
-                                                    <div class="btn-basic">
-                                                        <label for="u2">
-                                                            رفع ملف المجلس المؤكد
-                                                            <i class="fa-solid fa-upload"></i>
-                                                            <input id="up2" type="file" class="upload-button" multiple />
-                                                        </label>
-                                                    </div>
-                                                    <div class="file-list"></div>
-                                                </div>
+                                                <button class="btn-basic">
+                                                    رفع ملف المجلس الموثق
+                                                </button>
                                             </div>
                                         <?php
                                         else:
@@ -414,16 +392,16 @@ Head("المجالس");
                                 <?php
                             }
                         }
-                        else
-                        {
-	                        ?>
-                            <div class='old-meeting-box'>
-                                <main id='empty' class='empty-meeting'>
-                                    <h4>لا يوجد مجالس سابقة</h4>
-                                </main>
-                            </div>
-	                        <?php
-                        }
+//                        else
+//                        {
+//	                        ?>
+<!--                            <div class='old-meeting-box'>-->
+<!--                                <main id='empty' class='empty-meeting'>-->
+<!--                                    <h4>لا يوجد مجالس سابقة</h4>-->
+<!--                                </main>-->
+<!--                            </div>-->
+<!--	                        --><?php
+//                        }
                         ?>
                     </div>
                     </div>
@@ -447,6 +425,20 @@ Head("المجالس");
                     {
                         while ($search_row = $search_result->fetch_assoc())
                         {
+	                        /* Check if the user exists in the formation of this meeting and is allowed to view it,
+								* and if not skip that meeting
+								* */
+	                        if (!in_array($search_row["formation_id"], $user_formation_ids))
+	                        {
+		                        ?>
+                                <div class='current-meeting'>
+                                    <main id='empty' class='empty-meeting'>
+                                        <h4>عذرًا، لا يوجد مجالس بهذا الرقم</h4>
+                                    </main>
+                                </div>
+		                        <?php
+                                break;
+	                        }
                             ?>
                             <div class="old-meeting-box">
                                 <div class="row">
@@ -487,16 +479,9 @@ Head("المجالس");
                                         ?>
                                         <div class="col">
                                             <a href="#" class="btn-basic">التقارير</a>
-                                            <div class="upload">
-                                                <div class="btn-basic">
-                                                    <label for="up2">
-                                                        رفع ملف المجلس المؤكد
-                                                        <i class="fa-solid fa-upload"></i>
-                                                        <input id="up2" type="file" class="upload-button" multiple />
-                                                    </label>
-                                                </div>
-                                                <div class="file-list"></div>
-                                            </div>
+                                            <button class="btn-basic">
+                                                رفع ملف المجلس الموثق
+                                            </button>
                                         </div>
                                     <?php
                                     else:
