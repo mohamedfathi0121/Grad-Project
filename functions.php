@@ -98,7 +98,7 @@ function Nav()
       </div>
     </ul>
     <form class="search" action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
-      <input type="text" placeholder="بحث..." name="search" />
+      <input type="text" placeholder="بحث برقم التشكيل" name="search" />
       <button type="submit" class="btn-basic">
         <i class="fa fa-search"></i>
       </button>

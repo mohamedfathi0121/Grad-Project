@@ -316,7 +316,7 @@ Head("المجالس");
                     else
                     {
                         ?>
-                        <div class='current-meeting'>
+                        <div class='meeting-box'>
                             <main id='empty' class='empty-meeting'>
                                 <h4>لا يوجد مجلس حالي الان</h4>
                             </main>
@@ -343,73 +343,88 @@ Head("المجالس");
                     <div class="old-meetings">
                         <h3>المجالس السابقة</h3>
                         <?php
-                        while ($past_meetings_row = $past_meetings_result->fetch_assoc())
+                        # Check if there are past meetings
+                        if ($past_meetings_result->num_rows > 0)
                         {
-                            /* Check if the user exists in the formation of this meeting and is allowed to view it,
-                             * and if not skip that meeting
-                             * */
-                            if (!in_array($past_meetings_row["formation_id"], $user_formation_ids))
+                            while ($past_meetings_row = $past_meetings_result->fetch_assoc())
                             {
-                                continue;
-                            }
-                            # CASE (Meeting is NOT Current)
-                            ?>
-                            <div class="old-meeting-box">
-                                <div class="row">
-                                    <div class="col">
-                                        <h4>
-                                            رقم المجلس:
-                                            <span class="meeting-number">
-                                                <?=$past_meetings_row["meeting_number"]?>
-                                            </span>
-                                        </h4>
-                                        <h4>
-                                            رقم تشكيل المجلس:
-                                            <span class="meeting-formation-number">
-                                                <?=$past_meetings_row["formation_id"]?>
-                                            </span>
-                                        </h4>
-                                        <h4>
-                                            بتاريخ:
-                                            <span class="meeting-month">
-                                                <?=$past_meetings_row["meeting_month"]?>
-                                            </span>
-                                            /
-                                            <span class="meeting-year">
-                                                <?=$past_meetings_row["meeting_year"]?>
-                                            </span>
-                                        </h4>
-                                    </div>
-                                    <?php
-                                    if($_SESSION["admin"]):
-                                        ?>
+                                /* Check if the user exists in the formation of this meeting and is allowed to view it,
+                                 * and if not skip that meeting
+                                 * */
+                                if (!in_array($past_meetings_row["formation_id"], $user_formation_ids))
+                                {
+                                    continue;
+                                }
+                                # CASE (Meeting is NOT Current)
+                                ?>
+                                <div class="old-meeting-box">
+                                    <div class="row">
                                         <div class="col">
-                                            <a href="#" class="btn-basic">التقارير</a>
-                                            <div class="upload">
-                                                <div class="btn-basic">
-                                                    <label for="u2">
-                                                        رفع ملف المجلس المؤكد
-                                                        <i class="fa-solid fa-upload"></i>
-                                                        <input id="up2" type="file" class="upload-button" multiple />
-                                                    </label>
+                                            <h4>
+                                                رقم المجلس:
+                                                <span class="meeting-number">
+                                                    <?=$past_meetings_row["meeting_number"]?>
+                                                </span>
+                                            </h4>
+                                            <h4>
+                                                رقم تشكيل المجلس:
+                                                <span class="meeting-formation-number">
+                                                    <?=$past_meetings_row["formation_id"]?>
+                                                </span>
+                                            </h4>
+                                            <h4>
+                                                بتاريخ:
+                                                <span class="meeting-month">
+                                                    <?=$past_meetings_row["meeting_month"]?>
+                                                </span>
+                                                /
+                                                <span class="meeting-year">
+                                                    <?=$past_meetings_row["meeting_year"]?>
+                                                </span>
+                                            </h4>
+                                        </div>
+                                        <?php
+                                        if($_SESSION["admin"]):
+                                            ?>
+                                            <div class="col">
+                                                <a href="#" class="btn-basic">التقارير</a>
+                                                <div class="upload">
+                                                    <div class="btn-basic">
+                                                        <label for="u2">
+                                                            رفع ملف المجلس المؤكد
+                                                            <i class="fa-solid fa-upload"></i>
+                                                            <input id="up2" type="file" class="upload-button" multiple />
+                                                        </label>
+                                                    </div>
+                                                    <div class="file-list"></div>
                                                 </div>
-                                                <div class="file-list"></div>
                                             </div>
-                                        </div>
-                                    <?php
-                                    else:
+                                        <?php
+                                        else:
+                                            ?>
+                                            <div class="col">
+                                                <a href="#" class="btn-basic">عرض ملف المجلس النهائي</a>
+                                                <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
+                                            </div>
+                                        <?php
+                                        endif;
                                         ?>
-                                        <div class="col">
-                                            <a href="#" class="btn-basic">عرض ملف المجلس النهائي</a>
-                                            <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
-                                        </div>
-                                    <?php
-                                    endif;
-                                    ?>
+                                    </div>
                                 </div>
+                                <?php
+                            }
+                        }
+                        else
+                        {
+	                        ?>
+                            <div class='old-meeting-box'>
+                                <main id='empty' class='empty-meeting'>
+                                    <h4>لا يوجد مجالس سابقة</h4>
+                                </main>
                             </div>
-                            <?php
-                        }?>
+	                        <?php
+                        }
+                        ?>
                     </div>
                     </div>
                     <?php
