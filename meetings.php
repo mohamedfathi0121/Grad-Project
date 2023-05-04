@@ -38,7 +38,7 @@ Head("المجالس");
 	                $user_formation_ids[] = $user_formation_ids_row["formation_id"];
                 }
                 if (!isset($_GET["search"])):
-                  // $meetings_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id = ? ORDER BY is_current desc");
+                    // $meetings_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id = ? ORDER BY is_current desc");
                     $current_meeting_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE is_current = 1");
                     $current_meeting_stmt->execute();
                     $current_meeting_result = $current_meeting_stmt->get_result();
@@ -414,11 +414,12 @@ Head("المجالس");
                         </div>
                     <?php
                     endif;
-                else:
-                    $search = $_GET["search"];
+                elseif (!empty($_GET["search"])):
+                    $search = "%" . $_GET["search"] . "%";
             //      $search_query = "SELECT * FROM p39_meeting WHERE formation_id LIKE %";
             //      $search_query .= $_POST["search"] . "%";
-                    $search_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id LIKE '%$search%' and status not in ('pending')");
+                    $search_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id LIKE ? and status not in ('pending')");
+                    $search_stmt->bind_param("s", $search);
                     $search_stmt->execute();
                     $search_result = $search_stmt->get_result();
                     if ($search_result->num_rows > 0)
@@ -508,6 +509,14 @@ Head("المجالس");
                         </div>
                         <?php
                     }
+                else:
+	                ?>
+                    <div class='current-meeting'>
+                        <main id='empty' class='empty-meeting'>
+                            <h4>عذرًا، لا يوجد مجالس بهذا الرقم</h4>
+                        </main>
+                    </div>
+                <?php
                 endif;
                 ?>
                 </main>

@@ -104,17 +104,13 @@ function Nav()
             case "meetings.php":
                 ?>
                 <input type="text" placeholder="بحث برقم التشكيل" name="search" />
+                <button type="submit" class="btn-basic">
+                    <i class="fa fa-search"></i>
+                </button>
                 <?php
                 break;
-            case "current_meeting_subject.php":
-                ?>
-                <input type="text" placeholder="بحث برقم الموضوع" name="search" />
-                <?php
         }
         ?>
-      <button type="submit" class="btn-basic">
-        <i class="fa fa-search"></i>
-      </button>
     </form>
   </nav>
 </section>
