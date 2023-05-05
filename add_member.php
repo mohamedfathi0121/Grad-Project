@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE)
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    Head("الأعضاء");
+    Head("اضافة عضو");
     ?>
 
 <body dir="rtl">
@@ -31,9 +31,9 @@ if (session_status() === PHP_SESSION_NONE)
           <div class="row">
             <h4>الاسم بالكامل</h4><input type="text" name="name" placeholder="الاسم بالكامل" required />
           </div>
-          <div class="row">
+          <div class="row sp-row">
             <h4>النوع</h4>
-            <div class="row">
+            <div class="row ">
               <h4>ذكر</h4><input type="radio" value="M" name="gender" required>
               <h4>أنثى</h4><input type="radio" value="F" name="gender" required>
             </div>
@@ -146,7 +146,7 @@ if (session_status() === PHP_SESSION_NONE)
           </div>
         </div>
       </form>
-
+    </div>
   </main>
 
   <?php

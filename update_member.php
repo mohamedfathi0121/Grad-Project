@@ -30,14 +30,14 @@ if(is_admin()):
       <div class="title">
         <h1>تعديل بيانات العضو</h1>
       </div>
-      <form class="box" method="post" action="update_member_code.php" enctype="multipart/form-data">
+      < class="box" method="post" action="update_member_code.php" enctype="multipart/form-data">
         <div class="col">
 
           <div class="row">
             <h4>الاسم بالكامل</h4><input type="text" name="name" placeholder="الاسم بالكامل"
               value="<?=$user_row['name']?>" />
           </div>
-          <div class="row">
+          <div class="row sp-row">
             <h4>النوع</h4>
             <div class="row">
               <?=$user_row["gender"] == "M"
@@ -171,7 +171,7 @@ if(is_admin()):
               </select>
             </div>
           </div>
-          <div class="row">
+          <div class="row sp-row">
             <h4>حالة العضو</h4>
             <div class="row">
               <?=$user_row["is_enabled"] == "1"
@@ -205,8 +205,9 @@ if(is_admin()):
             <button type="submit" class="btn-basic" name="update_member_btn">تعديل</button>
           </div>
         </div>
-      </form>
 
+        </form>
+    </div>
   </main>
 
   <?php
