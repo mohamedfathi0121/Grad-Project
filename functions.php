@@ -50,7 +50,7 @@ function Headers()
             {
                 ?>
                 <img src="<?=@$_SESSION['image']?>" alt="">
-                <h5 class="user-name"><?=@$_SESSION['name']?></h5>
+                <h5 class="user-name">د. <?=@$_SESSION['name']?></h5>
                 <button class="button btn-basic" onclick="location.href='logout.php'">خروج</button>
 
                 <?php
