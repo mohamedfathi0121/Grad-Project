@@ -87,7 +87,12 @@
 	background-color: var(--secondary-color);
 	border-radius: var(--box-radius);
 }
+.meeting-box .row .col form {
+	display: flex;
+	flex-direction: column;
+}
 
+.box h4,
 .meeting-box h4,
 .old-meeting-box h4,
 .member-box h4 {
@@ -209,7 +214,8 @@
 	.add-member-page .box .col .row > .row {
 		align-items: center;
 	}
-	.add-member-page .box .col .sp-row {
+	.add-member-page .box .col .row:nth-child(8),
+	.add-member-page .box .col .row:nth-child(2) {
 		align-items: center !important;
 	}
 }
@@ -228,7 +234,7 @@
 	align-items: flex-start;
 	flex-direction: column;
 }
-/* ?===============================Mohamed Fathi Style==================================== */
+/* ?===============================start Mohamed Fathi Style==================================== */
 /* *start vote page */
 /* !======================================================================= */
 .voting-content {
@@ -360,10 +366,55 @@
 /* !======================================================================= */
 /* *End current meeting subject page */
 
+/* *start formation page style */
+/* !======================================================================= */
+.formation-content {
+	margin: 10px;
+}
+
+.add-formation {
+	position: sticky;
+	bottom: 15px;
+}
+.current-formation .box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 20px;
+}
+.current-formation .box .row {
+	margin-bottom: 70px;
+}
+.current-formation .box .row .col {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.current-formation-buttons {
+	display: flex;
+	justify-content: space-evenly;
+}
+.empty-formation {
+	padding: 200px 100px;
+	text-align: center;
+}
+@media (max-width: 650px) {
+	.current-formation-buttons {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+}
+/* !======================================================================= */
+/* *End formation page style */
+/* ?==========================End Mohamed Fathi Style==================================== */
+
 /* *CSS for Meeting Attendance Page  */
 /* ####################################### */
 
-.meeting-attendance-page form {
+.meeting-attendance-page form,
+.add-formation-member-page form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -372,30 +423,38 @@
 	gap: 45px;
 }
 
-.meeting-attendance-page table {
+.meeting-attendance-page table,
+.add-formation-member-page table {
 	border-collapse: collapse;
 	width: 100%;
 	border: 1px solid var(--secondary-color);
 }
-.meeting-attendance-page table th:first-child {
+.meeting-attendance-page table th:first-child,
+.add-formation-member-page table th:first-child {
 	width: 80%;
 }
-.meeting-attendance-page table th:last-child {
+.meeting-attendance-page table th:last-child,
+.add-formation-member-page table th:last-child {
 	width: 20%;
 }
 
 .meeting-attendance-page table th,
-.meeting-attendance-page table td {
+.meeting-attendance-page table td,
+.add-formation-member-page table th,
+.add-formation-member-page table td {
 	text-align: center;
 	padding: 8px;
 }
 
 .meeting-attendance-page table th,
-.meeting-attendance-page table tfoot tr {
+.meeting-attendance-page table tfoot tr,
+.add-formation-member-page table th,
+.add-formation-member-page table tfoot tr {
 	background-color: var(--tangaroa);
 	color: #fff;
 }
 
-.meeting-attendance-page table tr:nth-child(even) {
+.meeting-attendance-page table tr:nth-child(even),
+.add-formation-member-page table tr:nth-child(even) {
 	background-color: var(--secondary-color);
 }
