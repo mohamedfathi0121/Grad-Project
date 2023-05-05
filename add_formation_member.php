@@ -5,7 +5,7 @@ require_once "functions.php";
 <!DOCTYPE html>
 <html lang="en">
 <?php
-      Head("تسجيل الاعضاء");
+      Head("اضافة و تعديل اعضاء للتشكيل الحالي");
 ?>
 
 <body dir="rtl">
@@ -15,23 +15,23 @@ require_once "functions.php";
       ?>
 
 
-  <main class="meeting-attendance-page">
+  <main class="add-formation-member-page ">
     <div class="container">
       <div class="title">
-        <h1>تسجيل الحضور</h1>
+        <h1>اضافة و تعديل الاعضاء للتشكيل السنوي الحالي رقم: {6}</h1>
       </div>
       <form action="">
-        <table class="attend-table">
+        <h4>اختر من اعضاء السيستم الحالين للاضافة للتشكيل</h4>
+        <table>
           <thead>
             <th>اسم العضو</th>
-            <th>الحضور</th>
+            <th>اختيار</th>
 
           </thead>
           <tbody>
             <tr>
               <td>د.محمد عبدالسلام</td>
               <td><input type="checkbox" class="check" /></td>
-
 
             </tr>
             <tr>
@@ -65,7 +65,7 @@ require_once "functions.php";
           </tfoot>
 
         </table>
-        <button type="submit" class="btn-basic">تسجيل الحضور</button>
+        <button type="submit" class="btn-basic">اختيار </button>
       </form>
     </div>
   </main>
