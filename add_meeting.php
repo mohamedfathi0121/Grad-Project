@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE)
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    Head("الأعضاء");
+    Head("اضافة مجلس");
     ?>
 
 <body dir="rtl">

@@ -37,6 +37,11 @@
 	display: flex;
 	flex-direction: column;
 }
+@media (max-width: 650px) {
+	.sp-row .row {
+		margin-top: 40px;
+	}
+}
 
 /* *Css for Meetings Page */
 /* ############################ */
@@ -183,16 +188,15 @@
 .add-member-page .box .col .row button[type="submit"] {
 	width: 30vmin;
 }
-.add-member-page .box .col .row:nth-child(8),
-.add-member-page .box .col .row:nth-child(2) {
+
+.add-member-page .box .col .sp-row {
 	flex-direction: row;
 }
 @media (max-width: 650px) {
 	.add-member-page .box .col .row > .row {
 		align-items: center;
 	}
-	.add-member-page .box .col .row:nth-child(8),
-	.add-member-page .box .col .row:nth-child(2) {
+	.add-member-page .box .col .sp-row {
 		align-items: center !important;
 	}
 }
