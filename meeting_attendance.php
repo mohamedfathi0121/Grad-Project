@@ -5,7 +5,7 @@ require_once "functions.php";
 <!DOCTYPE html>
 <html lang="en">
 <?php
-      Head("تسجيل الاعضاء");
+      Head("تسجيل الأعضاء");
 ?>
 
 <body dir="rtl">

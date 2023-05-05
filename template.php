@@ -20,8 +20,8 @@ require_once "functions.php";
 
 
   <?php
-      footer();
-      ?>
+        footer();
+        ?>
 
   <!-- Js Scripts and Plugins -->
   <script type="module" src="./js/main.js"></script>
