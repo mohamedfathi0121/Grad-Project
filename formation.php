@@ -60,6 +60,10 @@ require_once "functions.php";
 
           </div>
         </div>
+        <!-- لو مفيش تشكيل حالي -->
+        <main id="empty" class="empty-formation">
+          <h4>لا يوجد تشكيلات حالية الان</h4>
+        </main>
       </div>
 
       <div class="old-formation">
@@ -70,20 +74,20 @@ require_once "functions.php";
             <div class="col">
               <h4>
                 رقم التشكيل:
-                <span class="meeting-number">
+                <span>
                   2 </span>
               </h4>
               <h4>
                 تاريخ بدايتة:
-                <span class="meeting-formation-number">
+                <span>
                   1 </span>
               </h4>
               <h4>
                 تاريخ نهايتة:
-                <span class="meeting-month">
+                <span>
                   10 </span>
                 /
-                <span class="meeting-year">
+                <span>
                   2023 </span>
               </h4>
             </div>
@@ -93,11 +97,10 @@ require_once "functions.php";
             </div>
           </div>
         </div>
-        <!-- المجالس السابقة -->
-        <!--                            <div class="old-meetings">-->
-        <!--                                <h3>المجالس السابقة</h3>-->
-        <!-- مجلس سابق -->
-
+        <!-- لو مفيش تشكيل سابق -->
+        <main id="empty" class="empty-formation">
+          <h4>لا يوجد تشكيلات سابقة الان</h4>
+        </main>
       </div>
     </div>
     <!-- اضافة تشكيل جديد -->
@@ -105,7 +108,6 @@ require_once "functions.php";
       <button title=" يجب تحويل  التشكيل الحالي لتشكيل سابق اولا " href="#" class="btn-basic">اضافة تشكيل
         جديد</button>
     </div>
-          
   </main>
 
 

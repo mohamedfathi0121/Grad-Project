@@ -105,9 +105,9 @@ Head("المجالس");
             <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
           </form>
           <a href="#" class="btn-basic">تعديل</a>
-          <button class="btn-basic disabled" disabled>تسجيل الحضور</button>
-          <button class="btn-basic disabled" disabled>التقارير</button>
-          <button class="btn-basic disabled" disabled>
+          <button title=" يجب ان يكون المجلس مؤكد اولا" class="btn-basic disabled" disabled>تسجيل الحضور</button>
+          <button title=" يجب ان يكون المجلس مؤكد اولا" class="btn-basic disabled" disabled>التقارير</button>
+          <button title=" يجب ان يكون المجلس مؤكد اولا" class="btn-basic disabled" disabled>
             رفع ملف المجلس الموثق
           </button>
         </div>

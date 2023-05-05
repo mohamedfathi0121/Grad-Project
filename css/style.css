@@ -390,6 +390,10 @@
   display: flex;
   justify-content: space-evenly;
 }
+.empty-formation {
+  padding: 200px 100px;
+  text-align: center;
+}
 @media (max-width: 650px) {
   .current-formation-buttons {
     display: flex;
