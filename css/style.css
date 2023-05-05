@@ -43,6 +43,19 @@
 	}
 }
 
+/* *Css for Main Page */
+/* ############################ */
+
+.main-page .container .box .row .col {
+	flex-grow: 0;
+	padding: 30px;
+	flex-basis: 50%;
+}
+.main-page .container .box .row .col .btn-basic {
+	font-size: 18px;
+	font-weight: bold;
+}
+
 /* *Css for Meetings Page */
 /* ############################ */
 
