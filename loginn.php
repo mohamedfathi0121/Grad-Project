@@ -37,10 +37,10 @@ require_once "functions.php";
   <?php
   else:
       ?>
-      <p class="error_msg" style="text-align: center">
-          You're already logged in, you'll be redirected in 5 seconds.
-      </p><br>
-      <?php
+  <p class="error_msg" style="text-align: center">
+    You're already logged in, you'll be redirected in 5 seconds.
+  </p><br>
+  <?php
       header("refresh:5; url=meetings.php");
   endif;
   footer();

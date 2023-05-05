@@ -1,41 +1,41 @@
 /*  Css Components and Initialize Styles  */
 :root {
-	--main-color: #214090;
-	--secondary-color: #f4f4f4;
-	--headings-color: #294862;
-	--disabled-color: rgb(102, 102, 104);
-	--main-font: "Tajawal", sans-serif;
-	--checkmark: url("../images/icons/checkmark.svg");
-	--box-radius: 15px;
+  --main-color: #214090;
+  --secondary-color: #f4f4f4;
+  --headings-color: #294862;
+  --disabled-color: rgb(102, 102, 104);
+  --main-font: "Tajawal", sans-serif;
+  --checkmark: url("../images/icons/checkmark.svg");
+  --box-radius: 15px;
 
-	/* CSS HEX */
+  /* CSS HEX */
 
-	--geyser: #d6dce1;
-	--bermuda-gray: #6c8b9d;
-	--eastern-blue: #2198b9;
-	--java: #1ebadc;
-	--jelly-bean: #27718f;
-	--slate-gray: #64748b;
-	--tangaroa: #04183b;
+  --geyser: #d6dce1;
+  --bermuda-gray: #6c8b9d;
+  --eastern-blue: #2198b9;
+  --java: #1ebadc;
+  --jelly-bean: #27718f;
+  --slate-gray: #64748b;
+  --tangaroa: #04183b;
 }
 @media (max-width: 768px) {
-	body,
-	.btn-basic {
-		font-size: 90%;
-	}
+  body,
+  .btn-basic {
+    font-size: 90%;
+  }
 
-	header h1 {
-		font-size: 18px;
-	}
+  header h1 {
+    font-size: 18px;
+  }
 }
 .row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .col {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /* *Css for Meetings Page */
@@ -45,58 +45,58 @@
 .meetings-content,
 .members-content,
 .exec-decision-content {
-	margin: 10px;
+  margin: 10px;
 }
 .add-meeting,
 .add-member {
-	position: sticky;
-	bottom: 15px;
+  position: sticky;
+  bottom: 15px;
 }
 .title,
 .meetings-title,
 .members-title,
 .decision-title {
-	text-align: center;
-	margin: 15px 0;
+  text-align: center;
+  margin: 15px 0;
 }
 .box,
 .meeting-box,
 .old-meeting-box,
 .member-box,
 .decision-box {
-	padding: 30px;
-	margin: 20px;
-	background-color: var(--secondary-color);
-	border-radius: var(--box-radius);
+  padding: 30px;
+  margin: 20px;
+  background-color: var(--secondary-color);
+  border-radius: var(--box-radius);
 }
-
+.box h4,
 .meeting-box h4,
 .old-meeting-box h4,
 .member-box h4 {
-	margin: 10px;
+  margin: 10px;
 }
 .meeting-box .row {
-	margin-bottom: 70px;
+  margin-bottom: 70px;
 }
 .current-meeting-buttons,
 .old-meeting-box .row > .col:nth-child(2) {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 @media (max-width: 650px) {
-	.current-meeting-buttons,
-	.row,
-	.member-box .row > .col:nth-child(2),
-	.old-meeting-box .row > .col:nth-child(2) {
-		display: flex;
-		flex-direction: column !important;
-		align-items: stretch;
-	}
-	.member-box .row,
-	.member-box .row > .col:nth-child(2) {
-		align-items: center;
-	}
+  .current-meeting-buttons,
+  .row,
+  .member-box .row > .col:nth-child(2),
+  .old-meeting-box .row > .col:nth-child(2) {
+    display: flex;
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+  .member-box .row,
+  .member-box .row > .col:nth-child(2) {
+    align-items: center;
+  }
 }
 
 /* Old Meetings */
@@ -104,181 +104,181 @@
 .old-meeting-box h4,
 .meeting-box h4,
 .member-box h4 {
-	min-width: 116px;
+  min-width: 116px;
 }
 
 /* Empty Meeting */
 
 .empty-meeting,
 .empty-member {
-	padding: 200px 100px;
-	text-align: center;
+  padding: 200px 100px;
+  text-align: center;
 }
 
 /* *Css for Meetings Page */
 /* ############################ */
 .member-box .member-image {
-	width: 40vmin;
-	height: 40vmin;
-	border-radius: 50%;
+  width: 40vmin;
+  height: 40vmin;
+  border-radius: 50%;
 }
 
 .member-box .member-details {
-	margin-top: 70px;
+  margin-top: 70px;
 }
 .member-box .member-details .row {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-around;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
 }
 .member-box .member-details h4 {
-	margin: 15px 0;
+  margin: 15px 0;
 }
 
 /* *Css for Executive Decisions Page */
 /* ############################ */
 
 .decision-filter {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 75px;
 }
 
 .decision-box .row {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .decision-box .decision-buttons > .row:nth-child(1),
 .decision-box .decision-buttons form > .row:nth-child(2) {
-	flex-direction: column;
+  flex-direction: column;
 }
 .decision-box .decision-buttons form > .row:nth-child(1) {
-	justify-content: space-evenly;
+  justify-content: space-evenly;
 }
 .decision-box .decision-buttons .row > .col {
-	align-items: center;
+  align-items: center;
 }
 
 .non-executed-dec {
-	margin-top: 150px;
+  margin-top: 150px;
 }
 
 /* *Css for Add Member Page */
 /* ############################## */
 
 .add-member-page .box .col {
-	align-items: center;
-	gap: 20px;
+  align-items: center;
+  gap: 20px;
 }
 
 .add-member-page .box .col .row:not(.row > .row) {
-	flex-direction: column;
-	align-items: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .add-member-page .box .col .row > .row {
-	display: flex;
-	column-gap: 50px;
+  display: flex;
+  column-gap: 50px;
 }
 .add-member-page .box .col .row button[type="submit"] {
-	width: 30vmin;
+  width: 30vmin;
 }
 .add-member-page .box .col .row:nth-child(8),
 .add-member-page .box .col .row:nth-child(2) {
-	flex-direction: row;
+  flex-direction: row;
 }
 @media (max-width: 650px) {
-	.add-member-page .box .col .row > .row {
-		align-items: center;
-	}
-	.add-member-page .box .col .row:nth-child(8),
-	.add-member-page .box .col .row:nth-child(2) {
-		align-items: center !important;
-	}
+  .add-member-page .box .col .row > .row {
+    align-items: center;
+  }
+  .add-member-page .box .col .row:nth-child(8),
+  .add-member-page .box .col .row:nth-child(2) {
+    align-items: center !important;
+  }
 }
 
 /* *Css for Login Page  */
 /* ############################### */
 
 .login-page .box .col {
-	display: flex;
-	align-items: center;
-	gap: 30px;
-	margin-top: 50px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 50px;
 }
 .login-page .box .col .row {
-	display: flex;
-	align-items: flex-start;
-	flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 }
-/* ?===============================Mohamed Fathi Style==================================== */
+/* ?===============================start Mohamed Fathi Style==================================== */
 /* *start vote page */
 /* !======================================================================= */
 .voting-content {
-	margin: 15px;
+  margin: 15px;
 }
 
 .voting-content .box form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .voting-content .vote-radio {
-	display: flex;
-	align-self: stretch;
-	justify-content: space-evenly;
+  display: flex;
+  align-self: stretch;
+  justify-content: space-evenly;
 }
 
 .voting-content .box .row {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .voting-content .box .row:nth-child(2) {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
 }
 @media (max-width: 768px) {
-	.voting-content .vote-radio {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
+  .voting-content .vote-radio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 /* !======================================================================= */
 /* *End vote page */
 /* *start admin reports page */
 /* !======================================================================= */
 .reports-content {
-	margin: 15px 0;
+  margin: 15px 0;
 }
 
 .reports-content .box {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .reports-content .box .row {
-	display: flex;
-	justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 .reports-content .box .row .col {
-	flex-grow: 1;
-	padding: 50px;
+  flex-grow: 1;
+  padding: 50px;
 }
 .reports-content .box .row .col a {
-	padding: 30px;
+  padding: 30px;
 }
 @media (max-width: 768px) {
-	.reports-content .box .row {
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-	}
-	.reports-content .box .row .col {
-		padding: 30px;
-		align-items: stretch;
-	}
+  .reports-content .box .row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .reports-content .box .row .col {
+    padding: 30px;
+    align-items: stretch;
+  }
 }
 /* !======================================================================= */
 /* *End admin reports page */
@@ -286,99 +286,148 @@
 /* *start current meeting subject page */
 /* !======================================================================= */
 .current-subject-content {
-	margin: 10px;
+  margin: 10px;
 }
 
 .add-current-subject {
-	position: sticky;
-	bottom: 15px;
+  position: sticky;
+  bottom: 15px;
 }
 .box .current-subject-details {
-	margin-top: 70px;
-	padding: 10px;
+  margin-top: 70px;
+  padding: 10px;
 }
 .box .current-subject-details .row {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-around;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
 }
 .current-subject-content .empty-current-subject {
-	padding: 200px 100px;
-	text-align: center;
+  padding: 200px 100px;
+  text-align: center;
 }
 .current-subject-foradmin .box {
-	display: flex;
-	flex-direction: column;
-	padding: 10px;
-	justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-evenly;
 }
 .current-subject-foradmin .box .row {
-	padding: 20px;
-	display: flex;
-	flex-wrap: wrap;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 .current-subject-foradmin .box .row .col h4 {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .current-subject-foradmin .box .row:not(:first-child) {
-	justify-content: space-evenly;
+  justify-content: space-evenly;
 }
 @media (max-width: 768px) {
-	.current-subject-foradmin .box .row {
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-	}
-	.col-subject-vote {
-		min-width: 10px;
-	}
+  .current-subject-foradmin .box .row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .col-subject-vote {
+    min-width: 10px;
+  }
 }
 @media (min-width: 650px) {
-	.col-subject-vote {
-		min-width: 170px;
-	}
+  .col-subject-vote {
+    min-width: 170px;
+  }
 }
 
 /* !======================================================================= */
 /* *End current meeting subject page */
 
+/* *start formation page style */
+/* !======================================================================= */
+.formation-content {
+  margin: 10px;
+}
+
+.add-formation {
+  position: sticky;
+  bottom: 15px;
+}
+.current-formation .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+.current-formation .box .row {
+  margin-bottom: 70px;
+}
+.current-formation .box .row .col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.current-formation-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+@media (max-width: 650px) {
+  .current-formation-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* !======================================================================= */
+/* *End formation page style */
+/* ?==========================End Mohamed Fathi Style==================================== */
+
 /* *CSS for Meeting Attendance Page  */
 /* ####################################### */
 
-.meeting-attendance-page form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin: 100px 0;
-	gap: 45px;
+.meeting-attendance-page form,
+.add-formation-member-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 100px 0;
+  gap: 45px;
 }
 
-.meeting-attendance-page table {
-	border-collapse: collapse;
-	width: 100%;
-	border: 1px solid var(--secondary-color);
+.meeting-attendance-page table,
+.add-formation-member-page table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid var(--secondary-color);
 }
-.meeting-attendance-page table th:first-child {
-	width: 80%;
+.meeting-attendance-page table th:first-child,
+.add-formation-member-page table th:first-child {
+  width: 80%;
 }
-.meeting-attendance-page table th:last-child {
-	width: 20%;
-}
-
-.meeting-attendance-page table th,
-.meeting-attendance-page table td {
-	text-align: center;
-	padding: 8px;
+.meeting-attendance-page table th:last-child,
+.add-formation-member-page table th:last-child {
+  width: 20%;
 }
 
 .meeting-attendance-page table th,
-.meeting-attendance-page table tfoot tr {
-	background-color: var(--tangaroa);
-	color: #fff;
+.meeting-attendance-page table td,
+.add-formation-member-page table th,
+.add-formation-member-page table td {
+  text-align: center;
+  padding: 8px;
 }
 
-.meeting-attendance-page table tr:nth-child(even) {
-	background-color: var(--secondary-color);
+.meeting-attendance-page table th,
+.meeting-attendance-page table tfoot tr,
+.add-formation-member-page table th,
+.add-formation-member-page table tfoot tr {
+  background-color: var(--tangaroa);
+  color: #fff;
+}
+
+.meeting-attendance-page table tr:nth-child(even),
+.add-formation-member-page table tr:nth-child(even) {
+  background-color: var(--secondary-color);
 }
