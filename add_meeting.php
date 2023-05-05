@@ -4,7 +4,7 @@ require_once "functions.php";
 
 if (session_status() === PHP_SESSION_NONE)
 {
-	session_start();
+    session_start();
 }
 ?>
 <!DOCTYPE html>
@@ -113,16 +113,16 @@ if (is_admin()):
         </div>
 	</main>
 
-<?php
-endif;
-footer();
-?>
+  <?php
+  endif;
+  footer();
+  ?>
 
-<!-- Js Scripts and Plugins -->
-<script type="module" src="./js/main.js"></script>
+  <!-- Js Scripts and Plugins -->
+  <script type="module" src="./js/main.js"></script>
 
-<!-- font Awesome -->
-<script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
+  <!-- font Awesome -->
+  <script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

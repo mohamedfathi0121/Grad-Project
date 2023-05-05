@@ -37,22 +37,23 @@ if(is_admin()):
                         <h4>الاسم بالكامل</h4><input type="text" name="name" placeholder="الاسم بالكامل"
                                                      value="<?=$user_row['name']?>"/>
                     </div>
+                    <div class="row sp-row">
+                                    <h4>النوع</h4>
                     <div class="row">
-                        <h4>النوع</h4>
-                        <?=$user_row["gender"] == "M"
-                            ? 'ذكر<input type="radio" value="M" name="gender" required checked>
-                                أنثى<input type="radio" value="F" name="gender" required>'
-                            : 'ذكر<input type="radio" value="M" name="gender" required>
-                                أنثى<input type="radio" value="F" name="gender" required checked>'?>
-
+                      <?=$user_row["gender"] == "M"
+                                    ? '<h4>ذكر</h4><input type="radio" value="M" name="gender" required checked>
+                                    <h4>أنثى</h4><input type="radio" value="F" name="gender" required>'
+                                    : '<h4>ذكر</h4><input type="radio" value="M" name="gender" required>
+                                    <h4>أنثى</h4><input type="radio" value="F" name="gender" required checked>'?>
                     </div>
+                </div>
                     <!-- Can't let admin change email & password of users -->
-<!--                    <div class="row">-->
-<!--                        <h4>البريد الالكتروني</h4><input type="email" name="email" placeholder="البريد الالكتروني" />-->
-<!--                    </div>-->
-<!--                    <div class="row">-->
-<!--                        <h4>كلمة السر</h4><input type="password" name="password" placeholder="كلمة السر" />-->
-<!--                    </div>-->
+                    <!--                    <div class="row">-->
+                    <!--                        <h4>البريد الالكتروني</h4><input type="email" name="email" placeholder="البريد الالكتروني" />-->
+                    <!--                    </div>-->
+                    <!--                    <div class="row">-->
+                    <!--                        <h4>كلمة السر</h4><input type="password" name="password" placeholder="كلمة السر" />-->
+                    <!--                    </div>-->
                     <!--          <div class="row">-->
                     <!--            <h4>رقم التليفون</h4><input type="text" placeholder="رقم التليفون" />-->
                     <!--          </div>-->
@@ -170,7 +171,7 @@ if(is_admin()):
                             </select>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row sp-row">
                         <h4>حالة العضو</h4>
                         <div class="row">
                             <?=$user_row["is_enabled"] == "1"
@@ -205,7 +206,7 @@ if(is_admin()):
                     </div>
                 </div>
             </form>
-
+        </div>
     </main>
 
 <?php
