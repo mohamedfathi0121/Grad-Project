@@ -53,8 +53,8 @@ if (isset($_POST["sign_in_btn"])):
                     {
                         unset($_SESSION["error"]["login"]);
                     }
-                    // Redirect user to the next page (Meetings page)
-                    header("location:meetings.php");
+                    // Redirect user to the next page (Index page)
+                    header("location:index.php");
                 }
                 else
                 {
@@ -87,7 +87,7 @@ else:
     echo"You Need to use POST to view this page";
     if(@$_SESSION["loggedin"])
     {
-        header("refresh:5; url=meeting.php");
+        header("refresh:5; url=index.php");
     }
     else
     {

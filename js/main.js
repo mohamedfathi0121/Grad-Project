@@ -17,15 +17,6 @@ allLinks.forEach((ele) => {
 	}
 });
 
-// Links Toggler
-
-let toggler = document.querySelector("nav ul .icon");
-let linksDiv = document.querySelector("nav ul .links");
-
-toggler.addEventListener("click", () => {
-	linksDiv.classList.toggle("deactive");
-});
-
 // Making the upload icon fade when hovering it
 let uploadLabel = document.querySelectorAll(".upload");
 let uploadIcon = document.querySelectorAll(".fa-upload");
@@ -131,3 +122,12 @@ showPasswordIcon.addEventListener("click", () => {
 	}
 });
 console.log("AYMAN");
+
+// Links Toggler
+
+let toggler = document.querySelector("nav ul .icon");
+let linksDiv = document.querySelector("nav ul .links");
+
+toggler.addEventListener("click", () => {
+	linksDiv.classList.toggle("deactive");
+});
