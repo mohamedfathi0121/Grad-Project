@@ -22,10 +22,10 @@ require_once "functions.php";
 
           <div class="col">
             <div class="row">
-              <h4>البريد الالكتروني</h4><input type="text" placeholder="البريد الالكتروني" name="email">
+              <h4>البريد الالكتروني</h4><input type="email" placeholder="البريد الالكتروني" name="email" required>
             </div>
             <div class="row">
-              <h4>كلمة المرور</h4><input type="password" placeholder="كلمة المرور" name="password">
+              <h4>كلمة المرور</h4><input type="password" placeholder="كلمة المرور" name="password" required>
             </div>
             <div class="row"><button type="submit" class="btn-basic" name="sign_in_btn">تسجيل الدخول</button></div>
           </div>
