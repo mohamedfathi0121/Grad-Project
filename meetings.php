@@ -37,6 +37,8 @@ Head("المجالس");
                 {
 	                $user_formation_ids[] = $user_formation_ids_row["formation_id"];
                 }
+                $user_formation_ids_stmt->close();
+
                 if (!isset($_GET["search"])):
                     // $meetings_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id = ? ORDER BY is_current desc");
                     $current_meeting_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE is_current = 1");
@@ -256,12 +258,16 @@ Head("المجالس");
 					                            <?php
 					                            if($_SESSION["admin"]):
 						                            ?>
-                                                    <div class="col">
-                                                        <button class="btn-basic" name="past_btn">
-                                                            تحويل لمجلس سابق
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </button>
-                                                    </div>
+                                                    <form method="post" action="meeting_status.php">
+                                                        <div class="col">
+                                                            <input type="hidden" name="meeting_id"
+                                                                   value="<?=$current_meeting_row['meeting_id']?>">
+                                                            <button class="btn-basic" name="past_btn">
+                                                                تحويل لمجلس سابق
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
 					                            <?php
 					                            endif;
 					                            ?>
@@ -410,7 +416,7 @@ Head("المجالس");
                         # Add New Members
                         ?>
                         <div class="add-meeting">
-                          <a href="#" class="btn-basic">اضافة مجلس جديد</a>
+                          <a href="add_meeting.php" class="btn-basic">اضافة مجلس جديد</a>
                         </div>
                     <?php
                     endif;

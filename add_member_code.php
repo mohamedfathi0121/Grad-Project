@@ -76,5 +76,5 @@ if (isset($_POST["add_member_btn"]))
             }
         }
     }
-    header("location: members.php");
+    header("location: members.php", true, 303);
 }
