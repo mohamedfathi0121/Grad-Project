@@ -61,8 +61,9 @@ if (session_status() === PHP_SESSION_NONE)
           <div class="row">
             <button type="submit" class="btn-basic" name="add_member_btn">اضافة قرار للموضوع</button>
           </div>
+        </div>
       </form>
-
+    </div>
   </main>
 
   <?php

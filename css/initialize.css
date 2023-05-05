@@ -278,6 +278,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="date"],
+input[type="number"],
 textarea {
 	outline: 0;
 	margin: 10px;
@@ -285,6 +286,10 @@ textarea {
 	width: 50vmin;
 	border: 2px solid var(--main-color);
 	border-radius: 10px;
+}
+
+input[type="number"] {
+	width: 10vmin;
 }
 
 textarea {

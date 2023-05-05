@@ -29,6 +29,9 @@ if (session_status() === PHP_SESSION_NONE)
         <div class="col">
 
           <div class="row">
+            <h4>رقم التشكيل</h4><input type="number" name="name" required />
+          </div>
+          <div class="row">
             <h4>رقم التشكيل</h4><input type="text" name="name" placeholder="رقم التشكيل" required />
           </div>
 
@@ -52,8 +55,9 @@ if (session_status() === PHP_SESSION_NONE)
           <div class="row">
             <button type="submit" class="btn-basic" name="add_member_btn">اضافة تشكيل جديد</button>
           </div>
+        </div>
       </form>
-
+    </div>
   </main>
 
   <?php
