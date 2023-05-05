@@ -34,8 +34,8 @@ if (session_status() === PHP_SESSION_NONE)
             <h4>نوع القرار</h4>
             <div class="row ">
               <h5>موافقة</h5><input type="radio" name="dec-type">
-              <h4>رفض</h5><input type="radio" name="dec-type">
-                <h5>مؤجل</h5><input type="radio" name="dec-type">
+              <h5>رفض</h5><input type="radio" name="dec-type">
+              <h5>مؤجل</h5><input type="radio" name="dec-type">
             </div>
           </div>
           <div class="row sp-row">
