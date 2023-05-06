@@ -28,36 +28,41 @@ require_once "functions.php";
 
       <div class="attatchement-box">
         <div class="col">
-          <a href="#">م 1 </a>
-          <button class="btn-basic">حذف</button>
-
-        </div>
-        <div class="col">
-          <a href="#">
-            gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</a>
-          <button class="btn-basic">حذف</button>
-
-        </div>
-        <div class="col">
-          <a href="#">مرفق مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 3 1</a>
-          <button class="btn-basic">حذف</button>
-
-        </div>
-        <div class="col">
-          <a href="#">مرفق مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 4 1</a>
-          <button class="btn-basic">حذف</button>
-
+          <a href="#">مرفق مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1 1</a>
+          <button data-open-modal class="btn-basic">حذف</button>
+          <dialog data-modal>
+            <h4>هل حقا تريد مسح الملف 1</h4>
+            <form>
+              <button class="btn-basic">نعم</button>
+              <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
+            </form>
+          </dialog>
         </div>
         <div class="col">
           <a href="#">مرفق مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1 1</a>
-          <button class="btn-basic">حذف</button>
-
+          <button data-open-modal class="btn-basic">حذف</button>
+          <dialog data-modal>
+            <h4>هل حقا تريد مسح الملف 2</h4>
+            <form>
+              <button class="btn-basic">نعم</button>
+              <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
+            </form>
+          </dialog>
         </div>
         <div class="col">
           <a href="#">مرفق مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1 1</a>
-          <button class="btn-basic">حذف</button>
-
+          <button data-open-modal class="btn-basic">حذف</button>
+          <dialog data-modal>
+            <h4>هل حقا تريد مسح الملف 3</h4>
+            <form>
+              <button class="btn-basic">نعم</button>
+              <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
+            </form>
+          </dialog>
         </div>
+
+
+
       </div>
 
 
