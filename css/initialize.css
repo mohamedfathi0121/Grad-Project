@@ -72,6 +72,7 @@ input::placeholder {
 .container {
 	padding: 0 15px;
 	margin: auto;
+	min-height: calc(100vh - 233px);
 }
 
 /* Small */
