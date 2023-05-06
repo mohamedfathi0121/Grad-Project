@@ -49,8 +49,9 @@ if (session_status() === PHP_SESSION_NONE)
             </div>
           </div>
 
-          <div class="row">
+          <div class="row sp2-row">
             <button type="submit" class="btn-basic" name="add_member_btn">تعديل التشكيل</button>
+            <button type="submit" class="btn-basic" name="add_member_btn">حذف التشكيل</button>
           </div>
         </div>
       </form>

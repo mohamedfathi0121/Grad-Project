@@ -33,16 +33,30 @@ if (session_status() === PHP_SESSION_NONE)
           <div class="row sp-row">
             <h4>نوع القرار</h4>
             <div class="row ">
-              <h5>موافقة</h5><input type="radio" name="dec-type">
-              <h5>رفض</h5><input type="radio" name="dec-type">
-              <h5>مؤجل</h5><input type="radio" name="dec-type">
+              <div class="col">
+                <h5>موافقة</h5><input type="radio" name="dec-type">
+              </div>
+              <div class="col">
+                <h5>رفض</h5><input type="radio" name="dec-type">
+              </div>
+              <div class="col">
+                <h5>مؤجل</h5><input type="radio" name="dec-type">
+              </div>
+
+
             </div>
           </div>
           <div class="row sp-row">
             <h4>هل له جواب تنفيذي؟</h4>
             <div class="row ">
-              <h5>نعم</h5><input type="radio" name="is-exec">
-              <h5>لا</h5><input type="radio" name="is-exec">
+              <div class="col">
+                <h5>نعم</h5><input type="radio" name="is-exec">
+              </div>
+              <div class="col">
+                <h5>لا</h5><input type="radio" name="is-exec">
+              </div>
+
+
             </div>
           </div>
           <div class="row">
@@ -53,13 +67,19 @@ if (session_status() === PHP_SESSION_NONE)
           <div class="row sp-row">
             <h4>هل تم تنفيذ القرار؟</h4>
             <div class="row ">
-              <h5>نعم</h5><input type="radio" name="is-done">
-              <h5>لا</h5><input type="radio" name="is-done">
+              <div class="col">
+                <h5>نعم</h5><input type="radio" name="is-done">
+              </div>
+              <div class="col">
+                <h5>لا</h5><input type="radio" name="is-done">
+              </div>
+
             </div>
           </div>
 
-          <div class="row">
+          <div class="row sp2-row">
             <button type="submit" class="btn-basic" name="add_member_btn">تعديل قرار للموضوع</button>
+            <button type="submit" class="btn-basic" name="add_member_btn">حذف قرار للموضوع</button>
           </div>
         </div>
       </form>

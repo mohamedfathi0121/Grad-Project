@@ -101,8 +101,9 @@ if (session_status() === PHP_SESSION_NONE)
             <h4>ملاحظات</h4>
             <textarea name=""></textarea>
           </div>
-          <div class="row">
-            <button type="submit" class="btn-basic" name="add_member_btn">اضافة موضوع جديد</button>
+          <div class="row sp2-row">
+            <button type="submit" class="btn-basic" name="add_member_btn">تعديل موضوع</button>
+            <button type="submit" class="btn-basic" name="add_member_btn">حذف موضوع</button>
           </div>
         </div>
       </form>

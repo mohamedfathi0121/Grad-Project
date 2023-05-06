@@ -292,6 +292,18 @@ input[type="number"] {
 	width: 10vmin;
 }
 
+.password-box {
+	position: relative;
+}
+
+.password-box .fa-eye-slash,
+.password-box .fa-eye {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	color: var(--tangaroa);
+}
+
 textarea {
 	width: 50vmin;
 	height: 30vmin;

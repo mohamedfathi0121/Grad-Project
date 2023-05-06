@@ -71,9 +71,13 @@ if (session_status() === PHP_SESSION_NONE)
               </select>
             </div>
           </div>
-          <div class="row">
-            <button type="submit" class="btn-basic" name="add_member_btn">تعديل بيانات المجلس</button>
+          <div class="row sp2-row">
+            <div class="col"> <button type="submit" class="btn-basic" name="add_member_btn">تعديل بيانات المجلس</button>
+            </div>
+            <div class="col"><button type="submit" class="btn-basic" name="add_member_btn">حذف المجلس</button>
+            </div>
           </div>
+
         </div>
       </form>
     </div>

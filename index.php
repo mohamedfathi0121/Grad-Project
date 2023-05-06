@@ -28,17 +28,18 @@ require_once "functions.php";
       <div class="box">
         <div class="row">
           <div class="col">
+            <a href="" class="btn-basic">المجالس</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
             <a href="#" class="btn-basic">التشكيلات السنوية</a>
           </div>
           <div class="col">
             <a href="#" class="btn-basic">الأعضاء</a>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <a href="" class="btn-basic">المجالس</a>
-          </div>
-        </div>
+
         <div class="row">
           <div class="col"><a href="#" class="btn-basic">الموضوعات</a></div>
           <div class="col"><a href="#" class="btn-basic">القرارات التنفيذية</a></div>

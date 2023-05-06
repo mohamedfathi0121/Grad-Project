@@ -43,13 +43,16 @@
 	}
 }
 
+.box .col .sp2-row {
+	flex-direction: row !important;
+}
 /* *Css for Main Page */
 /* ############################ */
 
 .main-page .container .box .row .col {
 	flex-grow: 0;
-	padding: 30px;
-	flex-basis: 50%;
+	padding: 20px;
+	flex-basis: 40%;
 }
 .main-page .container .box .row .col .btn-basic {
 	font-size: 18px;
@@ -114,7 +117,6 @@
 	.old-meeting-box .row > .col:nth-child(2) {
 		display: flex;
 		flex-direction: column !important;
-		align-items: stretch;
 	}
 	.member-box .row,
 	.member-box .row > .col:nth-child(2) {
@@ -192,12 +194,13 @@
 
 .add-member-page .box .col {
 	align-items: center;
-	gap: 20px;
+}
+.add-member-page .box .col .row {
+	margin: 15px 0;
 }
 
 .add-member-page .box .col .row:not(.row > .row) {
 	flex-direction: column;
-	align-items: flex-start;
 }
 .add-member-page .box .col .row > .row {
 	display: flex;
@@ -210,6 +213,7 @@
 .add-member-page .box .col .sp-row {
 	flex-direction: row;
 }
+
 @media (max-width: 650px) {
 	.add-member-page .box .col .row > .row {
 		align-items: center;
