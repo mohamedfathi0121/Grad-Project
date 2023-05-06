@@ -22,7 +22,7 @@ require_once "functions.php";
         <h1>الملفات الموثقة لمجلس رقم {2}</h1>
       </div>
 
-      <main id="empty" class="empty">
+      <main id="empty" class="empty deactive">
         <h4>لا يوجد ملفات الان</h4>
       </main>
 
@@ -33,7 +33,8 @@ require_once "functions.php";
 
         </div>
         <div class="col">
-          <a href="#">مرفق مرفق 1مرفق 1مرففق 2 1</a>
+          <a href="#">
+            gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</a>
           <button class="btn-basic">حذف</button>
 
         </div>
