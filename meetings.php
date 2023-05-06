@@ -28,20 +28,30 @@ Head("المجالس");
                 </div>
                 <?php
                 # Retrieve Formation IDs of the user currently signed in
-                $user_formation_ids_stmt = $conn->prepare("SELECT formation_id FROM p39_formation_user WHERE user_id = ?");
-                $user_formation_ids_stmt->bind_param("i", $_SESSION["user_id"]);
-                $user_formation_ids_stmt->execute();
-                $user_formation_ids_result = $user_formation_ids_stmt->get_result();
-                $user_formation_ids = array();
-                while ($user_formation_ids_row = $user_formation_ids_result->fetch_assoc())
-                {
-	                $user_formation_ids[] = $user_formation_ids_row["formation_id"];
-                }
-                $user_formation_ids_stmt->close();
+//                $user_formation_ids_stmt = $conn->prepare("SELECT
+//                                                                    formation_id
+//                                                                FROM
+//                                                                    p39_formation_user
+//                                                                WHERE
+//                                                                    user_id = ?");
+//                $user_formation_ids_stmt->bind_param("i", $_SESSION["user_id"]);
+//                $user_formation_ids_stmt->execute();
+//                $user_formation_ids_result = $user_formation_ids_stmt->get_result();
+//                $user_formation_ids = array();
+//                while ($user_formation_ids_row = $user_formation_ids_result->fetch_assoc())
+//                {
+//	                $user_formation_ids[] = $user_formation_ids_row["formation_id"];
+//                }
+//                $user_formation_ids_stmt->close();
 
                 if (!isset($_GET["search"])):
                     // $meetings_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id = ? ORDER BY is_current desc");
-                    $current_meeting_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE is_current = 1");
+                    $current_meeting_stmt = $conn->prepare("SELECT 
+                                                                        * 
+                                                                    FROM 
+                                                                        p39_meeting 
+                                                                    WHERE 
+                                                                        is_current = 1");
                     $current_meeting_stmt->execute();
                     $current_meeting_result = $current_meeting_stmt->get_result();
                     ?>
@@ -324,7 +334,20 @@ Head("المجالس");
                         <?php
                     }
 
-                    $past_meetings_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE is_current = 0");
+                    $past_meetings_stmt = $conn->prepare("SELECT 
+                                                                    * 
+                                                                FROM 
+                                                                    p39_meeting 
+                                                                WHERE 
+                                                                    is_current = 0 
+                                                                  AND 
+                                                                    formation_id IN (SELECT 
+                                                                                        formation_id 
+                                                                                    FROM 
+                                                                                        p39_formation_user 
+                                                                                    WHERE 
+                                                                                        user_id = ?)");
+                    $past_meetings_stmt->bind_param("i", $_SESSION["user_id"]);
                     $past_meetings_stmt->execute();
                     $past_meetings_result = $past_meetings_stmt->get_result();
                     ?>
@@ -342,10 +365,10 @@ Head("المجالس");
                                 /* Check if the user exists in the formation of this meeting and is allowed to view it,
                                  * and if not skip that meeting
                                  * */
-                                if (!in_array($past_meetings_row["formation_id"], $user_formation_ids))
-                                {
-                                    continue;
-                                }
+//                                if (!in_array($past_meetings_row["formation_id"], $user_formation_ids))
+//                                {
+//                                    continue;
+//                                }
                                 # CASE (Meeting is NOT Current)
                                 ?>
                                 <div class="old-meeting-box">
@@ -424,8 +447,22 @@ Head("المجالس");
                     $search = "%" . $_GET["search"] . "%";
             //      $search_query = "SELECT * FROM p39_meeting WHERE formation_id LIKE %";
             //      $search_query .= $_POST["search"] . "%";
-                    $search_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id LIKE ? and status not in ('pending')");
-                    $search_stmt->bind_param("s", $search);
+                    $search_stmt = $conn->prepare("SELECT 
+                                                                * 
+                                                            FROM 
+                                                                p39_meeting 
+                                                            WHERE 
+                                                                formation_id LIKE ? 
+                                                              AND 
+                                                                status NOT IN ('pending') 
+                                                              AND
+                                                                formation_id IN (SELECT 
+                                                                                        formation_id 
+                                                                                    FROM 
+                                                                                        p39_formation_user 
+                                                                                    WHERE 
+                                                                                        user_id = ?)");
+                    $search_stmt->bind_param("si", $search, $_SESSION["user_id"]);
                     $search_stmt->execute();
                     $search_result = $search_stmt->get_result();
                     if ($search_result->num_rows > 0)
@@ -435,17 +472,17 @@ Head("المجالس");
 	                        /* Check if the user exists in the formation of this meeting and is allowed to view it,
 								* and if not skip that meeting
 								* */
-	                        if (!in_array($search_row["formation_id"], $user_formation_ids))
-	                        {
-		                        ?>
-                                <div class='current-meeting'>
-                                    <main id='empty' class='empty-meeting'>
-                                        <h4>عذرًا، لا يوجد مجالس بهذا الرقم</h4>
-                                    </main>
-                                </div>
-		                        <?php
-                                break;
-	                        }
+//	                        if (!in_array($search_row["formation_id"], $user_formation_ids))
+//	                        {
+//		                        ?>
+<!--                                <div class='current-meeting'>-->
+<!--                                    <main id='empty' class='empty-meeting'>-->
+<!--                                        <h4>عذرًا، لا يوجد مجالس بهذا الرقم</h4>-->
+<!--                                    </main>-->
+<!--                                </div>-->
+<!--		                        --><?php
+//                                break;
+//	                        }
                             ?>
                             <div class="old-meeting-box">
                                 <div class="row">

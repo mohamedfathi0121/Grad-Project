@@ -33,7 +33,7 @@ if (is_admin()):
 			<div class="title">
 				<h1>إضافة مجلس جديد</h1>
 			</div>
-			<form class="box" method="post" action="add_meeting_code.php">
+			<form class="box" method="post" action="addition_code.php">
 				<div class="col">
 
 					<div class="row">
@@ -89,7 +89,7 @@ if (is_admin()):
                         <div class="select-basic">
                             <select name="is_current" required>
                                 <option value="">اختر</option>
-                                <option value="1">منعقد</option>
+                                <option value="1">حالي</option>
                                 <option value="0">سابق</option>
                             </select>
                         </div>

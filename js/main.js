@@ -139,8 +139,8 @@ console.log("AYMAN");
 
 // Links Toggler
 
-let toggler = document.querySelector("nav ul .icon");
-let linksDiv = document.querySelector("nav ul .links");
+const toggler = document.querySelector("nav ul .icon");
+const linksDiv = document.querySelector("nav ul .links");
 
 toggler.addEventListener("click", () => {
   linksDiv.classList.toggle("deactive");
