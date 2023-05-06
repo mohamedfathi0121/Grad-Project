@@ -16,7 +16,7 @@ if (isset($_POST["confirm_btn"]))
 	header("location: meetings.php", true, 303);
 }
 
-if (isset($_POST["pending_btn"]))
+elseif (isset($_POST["pending_btn"]))
 {
 	$pending_stmt = $conn->prepare("UPDATE p39_meeting SET status = ? WHERE meeting_id = ?");
 	$status = "pending";
@@ -25,7 +25,7 @@ if (isset($_POST["pending_btn"]))
 	header("location: meetings.php", true, 303);
 }
 
-if (isset($_POST["finished_btn"]))
+elseif (isset($_POST["finished_btn"]))
 {
 	$finished_stmt = $conn->prepare("UPDATE p39_meeting SET status = ? WHERE meeting_id = ?");
 	$status = "finished";
@@ -34,11 +34,20 @@ if (isset($_POST["finished_btn"]))
 	header("location: meetings.php", true, 303);
 }
 
-if (isset($_POST["past_btn"]))
+elseif (isset($_POST["past_btn"]))
 {
 	$finished_stmt = $conn->prepare("UPDATE p39_meeting SET is_current = ? WHERE meeting_id = ?");
 	$is_current = 0;
 	$finished_stmt->bind_param("si", $is_current, $_POST["meeting_id"]);
 	$finished_stmt->execute();
 	header("location: meetings.php", true, 303);
+}
+
+elseif (isset($_POST["past_formation_btn"]))
+{
+	$is_current = 0;
+	$past_formation_stmt = $conn->prepare("UPDATE p39_formation SET is_current = ? WHERE formation_id = ?");
+	$past_formation_stmt->bind_param("ii", $is_current, $_POST["formation_id"]);
+	$past_formation_stmt->execute();
+	header("location: formation.php", true, 303);
 }
