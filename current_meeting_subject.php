@@ -134,7 +134,6 @@ require_once "functions.php";
                 else
                 {
                     ?>
-
     <main id="empty" class="empty-current-subject">
       <h4>لا يوجد مواضيع الان</h4>
     </main>
