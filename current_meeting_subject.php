@@ -134,6 +134,7 @@ require_once "functions.php";
                 else
                 {
                     ?>
+
     <main id="empty" class="empty-current-subject">
       <h4>لا يوجد مواضيع الان</h4>
     </main>
@@ -143,6 +144,7 @@ require_once "functions.php";
                 if ($_SESSION["admin"])
                 {
                     ?>
+    </div>
     <div class="add-current-subject">
       <a href="#" class="btn-basic">اضافة موضوع</a>
     </div>
