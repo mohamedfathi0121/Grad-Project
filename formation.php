@@ -80,6 +80,7 @@ require_once "functions.php";
                         </div>
                         <?php } ?>
                     <?php else: ?>
+                        </div>
                         <!-- لو مفيش تشكيل حالي -->
                         <div class="current-formation">
                             <main id="empty" class="empty-formation">
