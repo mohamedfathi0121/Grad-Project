@@ -9,82 +9,82 @@ Head("الصفحة الرئيسية");
 ?>
 
 <body dir="rtl">
-<?php
+  <?php
 Headers();
 Nav();
 ?>
 
-<!-- main content of the page -->
-<main class="main-page reports-content">
+  <!-- main content of the page -->
+  <main class="main-page reports-content">
     <div class="container">
-        <!-- عنوان الصفحة -->
-        <div class="title">
-            <h1> الصفحة الرئيسية<h1>
-        </div>
-        <?php
+      <!-- عنوان الصفحة -->
+      <div class="title">
+        <h1> الصفحة الرئيسية<h1>
+      </div>
+      <?php
         if ($_SESSION["admin"])
         {
             ?>
-            <div class="box">
-                <div class="row">
-                    <div class="col">
-                        <a href="meetings.php" class="btn-basic">المجالس</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <a href="formation.php" class="btn-basic">التشكيلات السنوية</a>
-                    </div>
-                    <div class="col">
-                        <a href="members.php" class="btn-basic">الأعضاء</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"><a href="#" class="btn-basic">الموضوعات</a></div>
-                    <div class="col"><a href="executive_decisions.php" class="btn-basic">القرارات التنفيذية</a></div>
-                </div>
-            </div>
-            <?php
+      <div class="box">
+        <div class="row">
+          <div class="col">
+            <a href="formation.php" class="btn-basic">التشكيلات السنوية</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <a href="meetings.php" class="btn-basic">المجالس</a>
+          </div>
+          <div class="col">
+            <a href="members.php" class="btn-basic">الأعضاء</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"><a href="#" class="btn-basic">الموضوعات</a></div>
+          <div class="col"><a href="executive_decisions.php" class="btn-basic">القرارات التنفيذية</a></div>
+        </div>
+      </div>
+      <?php
         }
         else
         {
             ?>
-            <div class="box">
-                <div class="row">
-                    <div class="col">
-                        <a href="meetings.php" class="btn-basic">المجالس</a>
-                    </div>
-                    <div class="col">
-                        <a href="#" class="btn-basic">الموضوعات</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <a href="" class="btn-basic">جدول الأعمال</a>
+      <div class="box">
+        <div class="row">
+          <div class="col">
+            <a href="meetings.php" class="btn-basic">المجالس</a>
+          </div>
+          <div class="col">
+            <a href="#" class="btn-basic">الموضوعات</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <a href="" class="btn-basic">جدول الأعمال</a>
 
-                    </div>
-                    <div class="col">
-                        <a href="" class="btn-basic">التقارير</a>
+          </div>
+          <div class="col">
+            <a href="" class="btn-basic">التقارير</a>
 
-                    </div>
-                </div>
+          </div>
+        </div>
 
-            </div>
-            <?php
+      </div>
+      <?php
         }
         ?>
 
     </div>
-</main>
-<?php
+  </main>
+  <?php
 footer();
 ?>
 
-<!-- Js Scripts and Plugins -->
-<script type="module" src="./js/main.js"></script>
+  <!-- Js Scripts and Plugins -->
+  <script type="module" src="./js/main.js"></script>
 
-<!-- font Awesome -->
-<script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
+  <!-- font Awesome -->
+  <script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

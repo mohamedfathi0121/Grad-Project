@@ -108,7 +108,6 @@
 .old-meeting-box .row > .col:nth-child(2) {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
 }
 @media (max-width: 650px) {
 	.current-meeting-buttons,
@@ -428,7 +427,8 @@
 }
 
 .meeting-attendance-page table,
-.add-formation-member-page table {
+.add-formation-member-page table,
+.subjects-table {
 	border-collapse: collapse;
 	width: 100%;
 	border: 1px solid var(--secondary-color);
@@ -459,6 +459,69 @@
 }
 
 .meeting-attendance-page table tr:nth-child(even),
-.add-formation-member-page table tr:nth-child(even) {
+.add-formation-member-page table tr:nth-child(even),
+.subjects-table tr:nth-child(even) {
 	background-color: var(--secondary-color);
+}
+
+/* *Css for Subject Table Page */
+/* ################################# */
+
+.subjects-table-page .print-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.table-container {
+	overflow-x: auto;
+	margin: 50px 20px;
+}
+
+.subjects-table td {
+	border: 1px solid var(--tangaroa);
+	padding: 20px;
+}
+.subjects-table tr td:first-child {
+	width: 10%;
+	text-align: center;
+}
+.subjects-table .decision-row {
+	border-bottom: 2px solid #000;
+}
+.subjects-table .subject-row {
+	border-top: 2px solid #000;
+}
+.subjects-table .subject-row,
+.subjects-table .decision-row {
+	border-left: 2px solid #000;
+	border-right: 2px solid #000;
+}
+.subjects-table tr td:last-child {
+	width: 90%;
+	text-align: center;
+}
+.subjects-table tr td:last-child img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	min-width: 400px;
+}
+
+@media print {
+	* {
+		color: #000 !important;
+	}
+	body {
+		font-family: "Times New Roman", Times, serif;
+		line-height: 1.5;
+	}
+
+	header .user-logged,
+	header .header-title .project-title,
+	.nav-bar,
+	footer,
+	button {
+		display: none;
+	}
 }
