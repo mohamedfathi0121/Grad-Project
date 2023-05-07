@@ -145,7 +145,9 @@ require_once "functions.php";
                     ?>
                     </div>
     <div class="add-current-subject">
-      <a href="#" class="btn-basic">اضافة موضوع</a>
+        <form method="post" action="add_subject.php">
+            <button name="add_subject_btn" class="btn-basic">اضافة موضوع</button>
+        </form>
     </div>
     <?php
                 }
