@@ -486,6 +486,8 @@
 .subjects-table tr td:first-child {
 	width: 10%;
 	text-align: center;
+	color: var(--tangaroa);
+	font-weight: bold;
 }
 .subjects-table .decision-row {
 	border-bottom: 2px solid #000;
