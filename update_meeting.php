@@ -2,97 +2,113 @@
 require_once "db.php";
 require_once "functions.php";
 
-if (session_status() === PHP_SESSION_NONE)
-{
-    session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    Head("الأعضاء");
-    ?>
+Head("تعديل المجلس");
+?>
 
 <body dir="rtl">
-  <?php
-    Headers();
-    Nav();
-    if (is_admin()):
-    ?>
-  <main class="add-member-page">
-    <div class="container">
-      <!-- عنوان الصفحة -->
-      <div class="title">
-        <h1>تعديل بيانات المجلس</h1>
-      </div>
-      <form class="box" method="post" action="add_member_code.php" enctype="multipart/form-data">
-        <div class="col">
+<?php
+Headers();
+Nav();
+if (is_admin()):
+    $meeting_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE meeting_id = ?");
+    $meeting_stmt->bind_param("i", $_POST["meeting_id"]);
+    $meeting_stmt->execute();
+    $meeting_result = $meeting_stmt->get_result();
+    $meeting_row = $meeting_result->fetch_assoc();
+	?>
+    <main class="add-member-page">
+        <div class="container">
+            <!-- عنوان الصفحة -->
+            <div class="title">
+                <h1>تعديل بيانات المجلس</h1>
+            </div>
+            <form class="box" method="post" action="update_code.php" enctype="multipart/form-data">
+                <div class="col">
+                    <div class="row">
+                        <h4>رقم المجلس</h4><input type="text" name="meeting_number" placeholder="رقم المجلس" required
+                                                  value="<?= $meeting_row['meeting_number'] ?>"/>
+                    </div>
+                    <div class="row">
+                        <h4>تاريخ انعقاد المجلس</h4><input type="date" name="meeting_date" placeholder="" required/>
+                    </div>
 
-          <div class="row">
-            <h4>رقم المجلس</h4><input type="text" name="name" placeholder="رقم المجلس" required />
-          </div>
-          <div class="row">
-            <h4>تاريخ انعقاد المجلس</h4><input type="date" name="name" placeholder="" required />
-          </div>
+                    <div class="row">
+                        <h4>الشهر</h4>
+                        <div class="select-basic">
+                            <select name="meeting_month" required>
+                                <option>اختر</option>
+	                            <?php
+	                            for ($i = 1; $i <= 12; $i++)
+	                            {
+                                    if ($i == $meeting_row["meeting_month"])
+                                    {
+	                                    echo "<option value='$i' selected>$i</option>";
+                                    }
+                                    else
+                                    {
+	                                    echo "<option value='$i'>$i</option>";
+                                    }
+	                            }
+	                            ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4>السنة</h4>
+                        <div class="select-basic">
+                            <select name="meeting_year" required>
+                                <option value="">اختر</option>
+	                            <?php
+	                            $year = date("Y");
+	                            for ($i = $year - 4; $i <= $year + 4; $i++)
+	                            {
+                                    if ($i == $meeting_row["meeting_year"])
+                                    {
+	                                    echo "<option value='$i' selected>$i</option>";
+                                    }
+		                            else
+		                            {
+			                            echo "<option value='$i'>$i</option>";
+                                    }
+	                            }
+	                            ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row sp2-row">
+                        <div class="col">
+                            <form method="post" action="update_code.php">
+                                <input type="hidden" value="<?= $_POST['meeting_id'] ?>" name="meeting_id">
+                                <button type="submit" class="btn-basic" name="update_meeting_btn">تعديل بيانات المجلس</button>
+                            </form>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn-basic" name="delete_meeting_btn">حذف المجلس</button>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <h4>الشهر</h4>
-            <div class="select-basic">
-              <select name="is_admin" required>
-                <option>اختر</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <h4>السنة</h4>
-            <div class="select-basic">
-              <select name="is_admin" required>
-                <option value="">اختر</option>
-                <option>2020</option>
-                <option>2021</option>
-                <option>2022</option>
-                <option>2023</option>
-                <option>2024</option>
-                <option>2025</option>
-                <option>2026</option>
-                <option>2027</option>
-              </select>
-            </div>
-          </div>
-          <div class="row sp2-row">
-            <div class="col"> <button type="submit" class="btn-basic" name="add_member_btn">تعديل بيانات المجلس</button>
-            </div>
-            <div class="col"><button type="submit" class="btn-basic" name="add_member_btn">حذف المجلس</button>
-            </div>
-          </div>
-
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
-  </main>
+    </main>
 
-  <?php
-  endif;
-  footer();
-  ?>
+<?php
+endif;
+footer();
+?>
 
-  <!-- Js Scripts and Plugins -->
-  <script type="module" src="./js/main.js"></script>
+<!-- Js Scripts and Plugins -->
+<script type="module" src="./js/main.js"></script>
 
-  <!-- font Awesome -->
-  <script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
+<!-- font Awesome -->
+<script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

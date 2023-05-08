@@ -38,9 +38,8 @@ if (is_admin()):
 
 					<div class="row">
 						<h4>رقم المجلس</h4>
-						<input type="number" name="number" placeholder="رقم المجلس" required />
+						<input type="number" name="number" placeholder="رقم المجلس" required min="1"/>
 					</div>
-
 					<div class="row">
 						<h4>الشهر</h4>
 						<div class="select-basic">
