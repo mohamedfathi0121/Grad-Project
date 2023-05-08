@@ -310,5 +310,52 @@ foreach ($_POST as $btn => $value)
 			}
 			header("location: meetings.php", true, 303);
 			break;
+
+		case "add_decision_btn":
+			$decision_type = clean_data($_POST["decision_type"]);
+			$decision_details = (empty($_POST["decision_details"])
+				? null
+				: clean_data($_POST["decision_details"]));
+			$decision_comments = (empty($_POST["decision_comments"])
+				? null
+				: clean_data($_POST["decision_comments"]));
+			switch ($_POST["needs_action"])
+			{
+				case "0":
+					$needs_action = 0;
+					$action_to = NULL;
+					$is_action_done = NULL;
+					break;
+
+				case "1":
+					$needs_action = 1;
+					$action_to = $_POST["action_to"];
+					$is_action_done = 0;
+					break;
+			}
+			$add_decision_stmt = $conn->prepare("INSERT INTO 
+    														p39_decision (
+    														              `decision_details`, 
+    														              `decision_type_id`, 
+    														              `subject_id`, 
+    														              `needs_action`, 
+    														              `action_to`, 
+    														              `is_action_done`, 
+    														              `comments`, 
+    														              `added_by`
+    														              ) 
+															VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+			$add_decision_stmt->bind_param("siiisisi",
+											$decision_details,
+											$decision_type,
+												$_POST["subject_id"],
+												$needs_action,
+												$action_to,
+												$is_action_done,
+												$subject_comments,
+												$_SESSION["user_id"]);
+			$add_decision_stmt->execute();
+			header("location: meetings.php", true, 303);
+			break;
 	}
 }

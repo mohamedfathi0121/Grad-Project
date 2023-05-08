@@ -208,10 +208,14 @@ Head("المجالس");
                                                         <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
                                                         <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
                                                     </form>
+<!--                                                    <button class="btn-basic disabled" disabled>الموضوعات الخاصة بالمجلس</button>-->
                                                     <form method="post" action="update_meeting.php" class="current-meeting-buttons">
                                                         <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
                                                         <button name="update_meeting_btn" class="btn-basic">تعديل</button>
                                                     </form>
+                                                    <!--<button class="btn-basic disabled" disabled title="لا يمكن تعديل مجلس مؤكد">
+                                                        تعديل
+                                                    </button>-->
                                                     <a href="#" class="btn-basic">تسجيل الحضور</a>
                                                     <a href="#" class="btn-basic">التقارير</a>
                                                     <button class="btn-basic">
@@ -229,7 +233,7 @@ Head("المجالس");
                                                     </form>
                                                     <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
                                                     <a href="#" class="btn-basic">عرض ملف جدول الاعمال</a>
-                                                    <button class="btn-basic disabled" disabled>عرض ملف المجلس النهائي</button>
+                                                    <button class="btn-basic disabled" title="لا يوجد ملف مجلس نهائي" disabled>عرض ملف المجلس النهائي</button>
                                                 </div>
                                             <?php
                                             endif;
@@ -451,7 +455,7 @@ Head("المجالس");
                             <div class="add-meeting">
                                 <button disabled title=" يجب تحويل المجلس الحالي لمجلس سابق أولًا "
                                         class="btn-basic disabled">
-                                    إضافة تشكيل جديد
+                                    إضافة مجلس جديد
                                 </button>
                             </div>
                         <?php } else { ?>
