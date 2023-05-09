@@ -18,6 +18,21 @@ Head("اضافة تشكيل");
     <?php Nav();?>
     <main class="add-member-page">
         <div class="container">
+            <?php
+            $last_formation_stmt = $conn->prepare("SELECT 
+                                                                formation_number 
+                                                            FROM 
+                                                                p39_formation 
+                                                            WHERE 
+                                                                formation_id = (SELECT 
+                                                                                      max(formation_id) 
+                                                                                  FROM 
+                                                                                      p39_formation)");
+            $last_formation_stmt->execute();
+            $last_formation_result = $last_formation_stmt->get_result();
+            $last_formation_row = $last_formation_result->fetch_assoc();
+            $last_formation_number = $last_formation_row["formation_number"];
+            ?>
             <!-- عنوان الصفحة -->
             <div class="title">
                 <h1>إضافة تشكيل جديد</h1>
@@ -27,6 +42,7 @@ Head("اضافة تشكيل");
 
                     <div class="row">
                         <h4>رقم التشكيل</h4><input type="number" name="formation_number" min="1" required/>
+                        <h6>رقم التشكيل السابق: <?= $last_formation_number ?></h6>
                     </div>
 
                     <div class="row">
@@ -35,6 +51,7 @@ Head("اضافة تشكيل");
                             <select name="start_year" required>
                                 <option>اختر</option>
 	                            <?php
+                                
 	                            $formation_years_stmt = $conn->prepare("SELECT start_year FROM p39_formation");
 	                            $formation_years_stmt->execute();
 	                            $formation_years_result = $formation_years_stmt->get_result();

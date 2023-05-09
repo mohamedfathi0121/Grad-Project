@@ -278,15 +278,17 @@ foreach ($_POST as $btn => $value)
 															    decision_type_id = ?, 
 															    needs_action = ?, 
 															    action_to = ?, 
-															    is_action_done = ? 
+															    is_action_done = ?,
+															    comments = ?
 															WHERE 
 															    decision_id = ?");
-			$decision_update_stmt->bind_param("siisii",
+			$decision_update_stmt->bind_param("siisisi",
 												$decision_details,
 												$decision_type,
 													$needs_action,
 													$action_to,
 													$is_action_done,
+													$decision_comments,
 													$_POST["decision_id"]);
 			$decision_update_stmt->execute();
 			header("location: meetings.php", true, 303);

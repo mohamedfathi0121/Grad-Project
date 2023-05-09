@@ -17,6 +17,11 @@ Head("تعديل المجلس");
 Headers();
 Nav();
 if (is_admin()):
+    $meeting_subjects_stmt = $conn->prepare("SELECT * FROM p39_subject WHERE meeting_id = ?");
+	$meeting_subjects_stmt->bind_param("i", $_POST["meeting_id"]);
+    $meeting_subjects_stmt->execute();
+    $meeting_subjects_result = $meeting_subjects_stmt->get_result();
+    $meeting_subjects_exist = $meeting_subjects_result->num_rows > 0;
     $meeting_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE meeting_id = ?");
     $meeting_stmt->bind_param("i", $_POST["meeting_id"]);
     $meeting_stmt->execute();
@@ -90,9 +95,21 @@ if (is_admin()):
                                 <button type="submit" class="btn-basic" name="update_meeting_btn">تعديل بيانات المجلس</button>
                             </form>
                         </div>
-                        <div class="col">
-                            <button type="submit" class="btn-basic" name="delete_meeting_btn">حذف المجلس</button>
-                        </div>
+                        <form method="post" action="deletion_code.php">
+                            <input type="hidden" value="<?= $_POST['meeting_id'] ?>" name="meeting_id">
+                                <div class="col">
+	                                <?php if (!$meeting_subjects_exist) { ?>
+                                        <button type="submit" class="btn-basic" name="delete_meeting_btn">
+                                            حذف المجلس
+                                        </button>
+	                                <?php } else { ?>
+                                        <button type="button" class="btn-basic disabled" disabled
+                                                title="لا يمكن حذف المجلس عند وجود موضوعات بداخله">
+                                            حذف المجلس
+                                        </button>
+	                                <?php } ?>
+                                </div>
+                        </form>
                     </div>
 
                 </div>
