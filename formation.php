@@ -101,7 +101,7 @@ if(session_status() === PHP_SESSION_NONE)
                             </form>
 						<?php } ?>
                         <a href="meetings.php?search=<?= $current_formation_row['formation_id'] ?>" class="btn-basic">عرض مجالس التشكيل</a>
-                        <button class="btn-basic">عرض اعضاء التشكيل</button>
+<!--                        <button class="btn-basic">عرض اعضاء التشكيل</button>-->
                     </div>
                 </div>
             </div>
@@ -159,7 +159,7 @@ if(session_status() === PHP_SESSION_NONE)
                         </div>
                         <div class="col">
                             <a href="meetings.php?search=<?= $past_formation_row['formation_id'] ?>" class="btn-basic">عرض مجالس التشكيل</a>
-                            <button class="btn-basic">عرض اعضاء التشكيل</button>
+<!--                            <button class="btn-basic">عرض اعضاء التشكيل</button>-->
                         </div>
                     </div>
                 </div>

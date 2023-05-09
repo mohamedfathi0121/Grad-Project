@@ -79,42 +79,40 @@ function Headers()
 function Nav()
 {
     ?>
-<section class="nav-bar">
-  <nav>
-    <ul>
-      <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
-      <div class="links deactive">
-          <li><a href="index.php">الصفحة الرئيسية</a></li>
-          <li><a href="formation.php">التشكيلات</a></li>
-          <li><a href="meetings.php">المجالس</a></li>
-          <li><a href="current_meeting_subject.php">الموضوعات</a></li>
-          <?php
-          if (@$_SESSION["admin"]):
-              ?>
-              <li><a href="members.php">الاعضاء</a></li>
-              <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
-          <?php
-          endif;
-        ?>
-      </div>
-    </ul>
-    <form class="search" action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
-        <?php
-        switch (basename($_SERVER["PHP_SELF"]))
-        {
-            case "meetings.php":
-                ?>
-                <input type="text" placeholder="بحث برقم التشكيل" name="search" />
-                <button type="submit" class="btn-basic">
-                    <i class="fa fa-search"></i>
-                </button>
-                <?php
-                break;
-        }
-        ?>
-    </form>
-  </nav>
-</section>
+    <section class="nav-bar">
+        <nav>
+            <ul>
+                <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
+                <div class="links deactive">
+                    <li><a href="index.php">الصفحة الرئيسية</a></li>
+                    <li><a href="formation.php">التشكيلات</a></li>
+                    <li><a href="meetings.php">المجالس</a></li>
+                    <li><a href="#">الموضوعات</a></li>
+					<?php if (@$_SESSION["admin"]): ?>
+                        <li><a href="members.php">الاعضاء</a></li>
+                        <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
+					<?php
+					endif;
+					?>
+                </div>
+            </ul>
+            <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get">
+				<?php
+				switch (basename($_SERVER["PHP_SELF"]))
+                {
+					case "meetings.php":
+						?>
+                        <input type="text" placeholder="بحث برقم التشكيل" name="search"/>
+                        <button type="submit" class="btn-basic">
+                            <i class="fa fa-search"></i>
+                        </button>
+						<?php
+						break;
+				}
+				?>
+            </form>
+        </nav>
+    </section>
 <?php
 
 }

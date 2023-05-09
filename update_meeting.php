@@ -36,7 +36,8 @@ if (is_admin()):
                                                   value="<?= $meeting_row['meeting_number'] ?>"/>
                     </div>
                     <div class="row">
-                        <h4>تاريخ انعقاد المجلس</h4><input type="date" name="meeting_date" placeholder="" required/>
+                        <h4>تاريخ انعقاد المجلس</h4><input type="date" name="meeting_date" required
+                                                           value="<?= $meeting_row['meeting_date'] ?>"/>
                     </div>
 
                     <div class="row">
