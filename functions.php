@@ -49,11 +49,11 @@ function Headers()
             if (!empty($_SESSION["loggedin"]))
             {
                 ?>
-                <img src="<?=@$_SESSION['image']?>" alt="">
-                <h5 class="user-name">د. <?=@$_SESSION['name']?></h5>
-                <button class="button btn-basic" onclick="location.href='logout.php'">خروج</button>
+    <img src="<?=@$_SESSION['image']?>" alt="">
+    <h5 class="user-name">د. <?=@$_SESSION['name']?></h5>
+    <button class="button btn-basic" onclick="location.href='logout.php'">خروج</button>
 
-                <?php
+    <?php
             }
             ?>
   </div>
@@ -79,40 +79,40 @@ function Headers()
 function Nav()
 {
     ?>
-    <section class="nav-bar">
-        <nav>
-            <ul>
-                <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
-                <div class="links deactive">
-                    <li><a href="index.php">الصفحة الرئيسية</a></li>
-                    <li><a href="formation.php">التشكيلات</a></li>
-                    <li><a href="meetings.php">المجالس</a></li>
-                    <li><a href="#">الموضوعات</a></li>
-					<?php if (@$_SESSION["admin"]): ?>
-                        <li><a href="members.php">الاعضاء</a></li>
-                        <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
-					<?php
+<section class="nav-bar">
+  <nav>
+    <ul>
+      <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
+      <div class="links deactive">
+        <li><a href="index.php">الصفحة الرئيسية</a></li>
+        <li><a href="formation.php">التشكيلات</a></li>
+        <li><a href="meetings.php">المجالس</a></li>
+        <li><a href="#">الموضوعات</a></li>
+        <?php if (@$_SESSION["admin"]): ?>
+        <li><a href="members.php">الاعضاء</a></li>
+        <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
+        <?php
 					endif;
 					?>
-                </div>
-            </ul>
-            <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get">
-				<?php
+      </div>
+    </ul>
+    <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get">
+      <?php
 				switch (basename($_SERVER["PHP_SELF"]))
                 {
 					case "meetings.php":
 						?>
-                        <input type="text" placeholder="بحث برقم التشكيل" name="search"/>
-                        <button type="submit" class="btn-basic">
-                            <i class="fa fa-search"></i>
-                        </button>
-						<?php
+      <input type="text" placeholder="بحث برقم التشكيل" name="search" />
+      <button type="submit" class="btn-basic">
+        <i class="fa fa-search"></i>
+      </button>
+      <?php
 						break;
 				}
 				?>
-            </form>
-        </nav>
-    </section>
+    </form>
+  </nav>
+</section>
 <?php
 
 }
@@ -145,10 +145,10 @@ function Footer()
 {
     $y = date("Y");
     ?>
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors <?=$y?></p>
-    </footer>
-    <?php
+<footer>
+  <p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors <?=$y?></p>
+</footer>
+<?php
 }
 
 function clean_data($str)
@@ -186,10 +186,10 @@ function is_admin():bool
     else
     {
         ?>
-        <p style="color: red; font-weight: bold; text-align: center">
-          You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
-        </p><br>
-        <?php
+<p style="color: red; font-weight: bold; text-align: center">
+  You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
+</p><br>
+<?php
         header("refresh:5; url=meetings.php");
         footer();
         die();
@@ -205,10 +205,10 @@ function is_logged_in():bool
     else
     {
         ?>
-        <p style="color: red; font-weight: bold; text-align: center">
-          You need to log in to view this page. You'll be redirected to the login page in 5 seconds
-        </p><br>
-        <?php
+<p style="color: red; font-weight: bold; text-align: center">
+  You need to log in to view this page. You'll be redirected to the login page in 5 seconds
+</p><br>
+<?php
         header("refresh:5; url=loginn.php");
         footer();
         die();
