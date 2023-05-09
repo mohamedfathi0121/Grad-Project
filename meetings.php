@@ -28,21 +28,21 @@ Head("المجالس");
                 </div>
                 <?php
                 # Retrieve Formation IDs of the user currently signed in
-//                $user_formation_ids_stmt = $conn->prepare("SELECT
-//                                                                    formation_id
-//                                                                FROM
-//                                                                    p39_formation_user
-//                                                                WHERE
-//                                                                    user_id = ?");
-//                $user_formation_ids_stmt->bind_param("i", $_SESSION["user_id"]);
-//                $user_formation_ids_stmt->execute();
-//                $user_formation_ids_result = $user_formation_ids_stmt->get_result();
-//                $user_formation_ids = array();
-//                while ($user_formation_ids_row = $user_formation_ids_result->fetch_assoc())
-//                {
-//	                $user_formation_ids[] = $user_formation_ids_row["formation_id"];
-//                }
-//                $user_formation_ids_stmt->close();
+                $user_formation_ids_stmt = $conn->prepare("SELECT
+                                                                    formation_id
+                                                                FROM
+                                                                    p39_formation_user
+                                                                WHERE
+                                                                    user_id = ?");
+                $user_formation_ids_stmt->bind_param("i", $_SESSION["user_id"]);
+                $user_formation_ids_stmt->execute();
+                $user_formation_ids_result = $user_formation_ids_stmt->get_result();
+                $user_formation_ids = array();
+                while ($user_formation_ids_row = $user_formation_ids_result->fetch_assoc())
+                {
+	                $user_formation_ids[] = $user_formation_ids_row["formation_id"];
+                }
+                $user_formation_ids_stmt->close();
 
                 if (!isset($_GET["search"])):
                     // $meetings_stmt = $conn->prepare("SELECT * FROM p39_meeting WHERE formation_id = ? ORDER BY is_current desc");
@@ -65,6 +65,17 @@ Head("المجالس");
                     {
                         while ($current_meeting_row = $current_meeting_result->fetch_assoc())
                         {
+                            # If user doesn't exist in this formation & not an admin, he shouldn't see the meeting
+	                        if (!in_array($current_meeting_row["formation_id"], $user_formation_ids) AND !$_SESSION["admin"])
+	                        {
+                                ?>
+		                        <div class="current-meeting">
+                                    <main id="empty" class="empty-meeting">
+                                        <h4>لا يوجد مجلس حالي الان</h4>
+                                    </main>
+                                </div>
+                            <?php break;
+                            }
                             switch ($current_meeting_row["status"])
                             {
                                 # CASE (Meeting is Current & Pending)
@@ -204,19 +215,34 @@ Head("المجالس");
                                                 # Current Meeting Buttons for ADMIN
                                                 ?>
                                                 <div class="current-meeting-buttons">
-                                                    <form method="post" action="current_meeting_subject.php" class="current-meeting-buttons">
-                                                        <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                        <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
+                                                    <form method="post" action="current_meeting_subject.php"
+                                                          class="current-meeting-buttons">
+                                                        <input type="hidden" name="meeting_id"
+                                                               value="<?=$current_meeting_row['meeting_id']?>">
+                                                        <button class="btn-basic" name="current_meeting_subjects">
+                                                            الموضوعات الخاصة بالمجلس
+                                                        </button>
                                                     </form>
 <!--                                                    <button class="btn-basic disabled" disabled>الموضوعات الخاصة بالمجلس</button>-->
-                                                    <form method="post" action="update_meeting.php" class="current-meeting-buttons">
-                                                        <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                        <button name="update_meeting_btn" class="btn-basic">تعديل</button>
+                                                    <form method="post" action="update_meeting.php"
+                                                          class="current-meeting-buttons">
+                                                        <input type="hidden" name="meeting_id"
+                                                               value="<?=$current_meeting_row['meeting_id']?>">
+                                                        <button name="update_meeting_btn" class="btn-basic">
+                                                            تعديل
+                                                        </button>
                                                     </form>
                                                     <!--<button class="btn-basic disabled" disabled title="لا يمكن تعديل مجلس مؤكد">
                                                         تعديل
                                                     </button>-->
-                                                    <a href="#" class="btn-basic">تسجيل الحضور</a>
+                                                    <form method="post" action="meeting_attendance.php"
+                                                          class="current-meeting-buttons">
+                                                        <input type="hidden" name="meeting_id"
+                                                               value="<?= $current_meeting_row['meeting_id'] ?>">
+                                                        <button class="btn-basic" name="attendance_btn">
+                                                            تسجيل الحضور
+                                                        </button>
+                                                    </form>
                                                     <a href="#" class="btn-basic">التقارير</a>
                                                     <button class="btn-basic">
                                                         رفع ملف المجلس الموثق
@@ -231,8 +257,8 @@ Head("المجالس");
                                                         <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
                                                         <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
                                                     </form>
-                                                    <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
-                                                    <a href="#" class="btn-basic">عرض ملف جدول الاعمال</a>
+                                                    <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
+                                                    <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
                                                     <button class="btn-basic disabled" title="لا يوجد ملف مجلس نهائي" disabled>عرض ملف المجلس النهائي</button>
                                                 </div>
                                             <?php
@@ -299,14 +325,28 @@ Head("المجالس");
 					                            ?>
                                                 <div class="current-meeting-buttons">
                                                     <form method="post" action="current_meeting_subject.php">
-                                                        <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                        <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
+                                                        <input type="hidden" name="meeting_id"
+                                                               value="<?=$current_meeting_row['meeting_id']?>">
+                                                        <button class="btn-basic" name="current_meeting_subjects">
+                                                            الموضوعات الخاصة بالمجلس
+                                                        </button>
                                                     </form>
-                                                    <a href="#" class="btn-basic">تسجيل الحضور</a>
+                                                    <form method="post" action="meeting_attendance.php"
+                                                          class="current-meeting-buttons">
+                                                        <input type="hidden" name="meeting_id"
+                                                               value="<?= $current_meeting_row['meeting_id'] ?>">
+                                                        <button class="btn-basic" name="attendance_btn">
+                                                            تسجيل الحضور
+                                                        </button>
+                                                    </form>
                                                     <a href="#" class="btn-basic">التقارير</a>
-                                                    <form method="post" action="update_meeting.php" class="current-meeting-buttons">
-                                                        <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                        <button name="update_meeting_btn" class="btn-basic">تعديل</button>
+                                                    <form method="post" action="update_meeting.php"
+                                                          class="current-meeting-buttons">
+                                                        <input type="hidden" name="meeting_id"
+                                                               value="<?=$current_meeting_row['meeting_id']?>">
+                                                        <button name="update_meeting_btn" class="btn-basic">
+                                                            تعديل
+                                                        </button>
                                                     </form>
                                                     <button class="btn-basic">
                                                         رفع ملف المجلس الموثق
@@ -321,8 +361,8 @@ Head("المجالس");
                                                         <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
                                                         <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
                                                     </form>
-                                                    <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
-                                                    <a href="#" class="btn-basic">عرض ملف جدول الاعمال</a>
+                                                    <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
+                                                    <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
                                                     <button class="btn-basic">عرض ملف المجلس النهائي</button>
                                                 </div>
 				                            <?php
@@ -348,20 +388,26 @@ Head("المجالس");
                         <?php
                     }
 
+//                    $past_meetings_stmt = $conn->prepare("SELECT
+//                                                                    *
+//                                                                FROM
+//                                                                    p39_meeting
+//                                                                WHERE
+//                                                                    is_current = 0
+//                                                                  AND
+//                                                                    formation_id IN (SELECT
+//                                                                                        formation_id
+//                                                                                    FROM
+//                                                                                        p39_formation_user
+//                                                                                    WHERE
+//                                                                                        user_id = ?)");
+//                    $past_meetings_stmt->bind_param("i", $_SESSION["user_id"]);
                     $past_meetings_stmt = $conn->prepare("SELECT 
                                                                     * 
                                                                 FROM 
                                                                     p39_meeting 
                                                                 WHERE 
-                                                                    is_current = 0 
-                                                                  AND 
-                                                                    formation_id IN (SELECT 
-                                                                                        formation_id 
-                                                                                    FROM 
-                                                                                        p39_formation_user 
-                                                                                    WHERE 
-                                                                                        user_id = ?)");
-                    $past_meetings_stmt->bind_param("i", $_SESSION["user_id"]);
+                                                                    is_current = 0");
                     $past_meetings_stmt->execute();
                     $past_meetings_result = $past_meetings_stmt->get_result();
                     ?>
@@ -379,10 +425,10 @@ Head("المجالس");
                                 /* Check if the user exists in the formation of this meeting and is allowed to view it,
                                  * and if not skip that meeting
                                  * */
-//                                if (!in_array($past_meetings_row["formation_id"], $user_formation_ids))
-//                                {
-//                                    continue;
-//                                }
+                                if (!in_array($past_meetings_row["formation_id"], $user_formation_ids) AND !$_SESSION["admin"])
+                                {
+                                    continue;
+                                }
                                 # CASE (Meeting is NOT Current)
                                 ?>
                                 <div class="old-meeting-box">
@@ -473,17 +519,8 @@ Head("المجالس");
                                                             FROM 
                                                                 p39_meeting 
                                                             WHERE 
-                                                                formation_id LIKE ? 
-                                                              AND 
-                                                                status NOT IN ('pending') 
-                                                              AND
-                                                                formation_id IN (SELECT 
-                                                                                        formation_id 
-                                                                                    FROM 
-                                                                                        p39_formation_user 
-                                                                                    WHERE 
-                                                                                        user_id = ?)");
-                    $search_stmt->bind_param("si", $search, $_SESSION["user_id"]);
+                                                                formation_id LIKE ?");
+                    $search_stmt->bind_param("s", $search);
                     $search_stmt->execute();
                     $search_result = $search_stmt->get_result();
                     if ($search_result->num_rows > 0)
@@ -493,17 +530,29 @@ Head("المجالس");
 	                        /* Check if the user exists in the formation of this meeting and is allowed to view it,
 								* and if not skip that meeting
 								* */
-//	                        if (!in_array($search_row["formation_id"], $user_formation_ids))
-//	                        {
-//		                        ?>
-<!--                                <div class='current-meeting'>-->
-<!--                                    <main id='empty' class='empty-meeting'>-->
-<!--                                        <h4>عذرًا، لا يوجد مجالس بهذا الرقم</h4>-->
-<!--                                    </main>-->
-<!--                                </div>-->
-<!--		                        --><?php
-//                                break;
-//	                        }
+	                        if (!in_array($search_row["formation_id"], $user_formation_ids) AND !$_SESSION["admin"])
+	                        {
+		                        ?>
+                                <div class='current-meeting'>
+                                    <main id='empty' class='empty-meeting'>
+                                        <h4>عذرًا، لا يوجد مجالس تطابق رقم التشكيل</h4>
+                                    </main>
+                                </div>
+		                        <?php
+                                break;
+	                        }
+                            if ($search_row["status"] == "pending" AND $search_row["is_current"] == "1"
+                                AND !$_SESSION["admin"])
+                            {
+	                            ?>
+                                <div class='current-meeting'>
+                                    <main id='empty' class='empty-meeting'>
+                                        <h4>عذرًا، لا يوجد مجالس تطابق رقم التشكيل</h4>
+                                    </main>
+                                </div>
+	                            <?php
+	                            break;
+                            }
                             ?>
                             <div class="old-meeting-box">
                                 <div class="row">
@@ -566,9 +615,9 @@ Head("المجالس");
                     else
                     {
                         ?>
-	                    <div class='current-meeting'>
+                        <div class='current-meeting'>
                             <main id='empty' class='empty-meeting'>
-                                <h4>عذرًا، لا يوجد مجالس بهذا الرقم</h4>
+                                <h4>عذرًا، لا يوجد مجالس تطابق رقم التشكيل</h4>
                             </main>
                         </div>
                         <?php

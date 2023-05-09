@@ -234,16 +234,11 @@ foreach ($_POST as $btn => $value)
 			$subject_type = clean_data($_POST["subject_type"]);
 			$subject_comments = (empty($_POST["subject_comment"]) ? null : clean_data($_POST["subject_comment"]));
 			$meeting_stmt = $conn->prepare("SELECT 
-    													meeting_id 
-													FROM 
-													    p39_subject 
-													WHERE 
-													    meeting_id = (SELECT 
-													                      meeting_id 
-													                  FROM 
-													                      p39_meeting 
-													                  WHERE 
-													                      is_current = 1)");
+								                      meeting_id 
+								                  FROM 
+								                      p39_meeting 
+								                  WHERE 
+								                      is_current = 1");
 			$meeting_stmt->execute();
 			$meeting_result = $meeting_stmt->get_result();
 			$meeting_row = $meeting_result->fetch_assoc();
@@ -357,5 +352,68 @@ foreach ($_POST as $btn => $value)
 			$add_decision_stmt->execute();
 			header("location: meetings.php", true, 303);
 			break;
+
+		case "attendance_btn":
+			$attendance_users_stmt = $conn->prepare("SELECT 
+    															user_id 
+															FROM 
+															    p39_attendance 
+															WHERE 
+															    meeting_id = ?");
+			$attendance_users_stmt->bind_param("i", $_POST["meeting_id"]);
+			$attendance_users_stmt->execute();
+			$attendance_users_result = $attendance_users_stmt->get_result();
+			$attendance_users = array();
+			while ($attendance_users_row = $attendance_users_result->fetch_assoc())
+			{
+				$attendance_users[] = $attendance_users_row["user_id"];
+			}
+			$attendance_users_stmt->close();
+			$attendance_insert_stmt = $conn->prepare("INSERT INTO p39_attendance (
+                            													meeting_id, 
+                            													user_id
+                            													) 
+																			VALUES 
+																			    (?, ?)");
+			$attendance_delete_stmt = $conn->prepare("DELETE 
+															FROM 
+															    p39_attendance 
+															WHERE 
+															    meeting_id = ? 
+															  AND 
+															    user_id = ?");
+			foreach ($_POST as $key => $value)
+			{
+				# Check if the user exists in Database
+				if (in_array($key, $attendance_users))
+				{
+					switch ($value)
+					{
+						### User exists in Database
+						# If user HAS NOT attended, he should be deleted
+						case "0":
+							$attendance_delete_stmt->bind_param("ii", $_POST["meeting_id"], $key);
+							$attendance_delete_stmt->execute();
+							break;
+
+						# User is in Database and has attended, so no action has to be done
+						case "1":
+							break;
+					}
+				}
+				else
+				{
+					### User doesn't exist in Database
+					# If user has attended, he should be inserted into database
+					if ($value == "1")
+					{
+						$attendance_insert_stmt->bind_param("ii", $_POST["meeting_id"], $key);
+						$attendance_insert_stmt->execute();
+					}
+				}
+			}
+			header("location: meetings.php", true, 303);
+			break;
+
 	}
 }

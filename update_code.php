@@ -28,7 +28,7 @@ foreach ($_POST as $btn => $value)
 				$old_row = "(" . $old_row . ")";
 
 				$meeting_number = clean_data($_POST["meeting_number"]);
-				$meeting_date = empty($_POST["meeting_date"]) ? clean_data($meeting_date) : null;
+				$meeting_date = empty($_POST["meeting_date"]) ? NULL : clean_data($_POST["meeting_date"]);
 				$meeting_month = clean_data($_POST["meeting_month"]);
 				$meeting_year = clean_data($_POST["meeting_year"]);
 //			$meeting_status = $_POST["meeting_status"];
@@ -251,6 +251,44 @@ foreach ($_POST as $btn => $value)
 				$_SESSION["user_id"],
 				$transaction_type);
 			$insert_transaction->execute();
+			header("location: meetings.php", true, 303);
+			break;
+
+		case "update_decision_btn":
+			$decision_type = clean_data($_POST["decision_type"]);
+			$needs_action = clean_data($_POST["needs_action"]);
+			$action_to = clean_data($_POST["action_to"]);
+			$is_action_done = clean_data($_POST["is_action_done"]);
+			$decision_details = (empty($_POST["decision_details"])
+				? null
+				: clean_data($_POST["decision_details"]));
+			$decision_comments = (empty($_POST["decision_comments"])
+				? null
+				: clean_data($_POST["decision_comments"]));
+			if ($_POST["needs_action"] == "0")
+			{
+				$needs_action = 0;
+				$action_to = NULL;
+				$is_action_done = NULL;
+			}
+			$decision_update_stmt = $conn->prepare("UPDATE 
+    															p39_decision 
+															SET 
+															    decision_details = ?,
+															    decision_type_id = ?, 
+															    needs_action = ?, 
+															    action_to = ?, 
+															    is_action_done = ? 
+															WHERE 
+															    decision_id = ?");
+			$decision_update_stmt->bind_param("siisii",
+												$decision_details,
+												$decision_type,
+													$needs_action,
+													$action_to,
+													$is_action_done,
+													$_POST["decision_id"]);
+			$decision_update_stmt->execute();
 			header("location: meetings.php", true, 303);
 			break;
 	}
