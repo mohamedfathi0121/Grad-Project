@@ -103,7 +103,7 @@ if (session_status() === PHP_SESSION_NONE)
             <input type="text" name="action_to" value="<?= $decision_row['action_to'] ?>" />
           </div>
 
-          <div class="row sp-row">
+          <div class="row sp-row is-excu deactive">
             <h4>هل تم تنفيذ القرار؟</h4>
             <div class="row ">
               <?php switch ($decision_row["is_action_done"]) {
