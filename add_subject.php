@@ -24,7 +24,7 @@ if (is_admin()):
             <div class="title">
                 <h1>إضافة موضوع جديد</h1>
             </div>
-            <form class="box" method="post" action="x.php" enctype="multipart/form-data">
+            <form class="box" method="post" action="addition_code.php" enctype="multipart/form-data">
                 <div class="col">
                     <div class="row">
                         <h4>رقم الموضوع</h4>
