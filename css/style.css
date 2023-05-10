@@ -47,6 +47,9 @@
 .box .col .sp2-row {
 	flex-direction: row !important;
 }
+.sp2-row form {
+	display: flex;
+}
 /* *Css for Main Page */
 /* ############################ */
 
@@ -206,7 +209,8 @@
 	display: flex;
 	column-gap: 50px;
 }
-.add-member-page .box .col .row button[type="submit"] {
+.add-member-page .box .col .row button[type="submit"],
+.add-member-page .box .col .row button[type="button"] {
 	width: 30vmin;
 }
 
@@ -315,6 +319,16 @@
 .current-subject-content {
 	margin: 10px;
 }
+.current-subject-content .box form,
+.current-formation-buttons form,
+.current-meeting-buttons form {
+	display: flex;
+}
+.current-subject-content .box form button,
+.current-formation-buttons form button,
+.current-meeting-buttons form button {
+	flex: 100%;
+}
 
 .add-current-subject {
 	position: sticky;
@@ -324,6 +338,7 @@
 	margin-top: 70px;
 	padding: 10px;
 }
+
 .box .current-subject-details .row {
 	display: flex;
 	flex-direction: row-reverse;
@@ -342,7 +357,6 @@
 .current-subject-foradmin .box .row {
 	padding: 20px;
 	display: flex;
-	flex-wrap: wrap;
 }
 .current-subject-foradmin .box .row .col h4 {
 	margin-bottom: 10px;
@@ -356,14 +370,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
-	}
-	.col-subject-vote {
-		min-width: 10px;
-	}
-}
-@media (min-width: 650px) {
-	.col-subject-vote {
-		min-width: 170px;
 	}
 }
 

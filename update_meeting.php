@@ -13,7 +13,7 @@ Head("تعديل المجلس");
 ?>
 
 <body dir="rtl">
-<?php
+  <?php
 Headers();
 Nav();
 if (is_admin()):
@@ -28,29 +28,29 @@ if (is_admin()):
     $meeting_result = $meeting_stmt->get_result();
     $meeting_row = $meeting_result->fetch_assoc();
 	?>
-    <main class="add-member-page">
-        <div class="container">
-            <!-- عنوان الصفحة -->
-            <div class="title">
-                <h1>تعديل بيانات المجلس</h1>
-            </div>
-            <form class="box" method="post" action="update_code.php" enctype="multipart/form-data">
-                <div class="col">
-                    <div class="row">
-                        <h4>رقم المجلس</h4><input type="text" name="meeting_number" placeholder="رقم المجلس" required
-                                                  value="<?= $meeting_row['meeting_number'] ?>"/>
-                    </div>
-                    <div class="row">
-                        <h4>تاريخ انعقاد المجلس</h4><input type="date" name="meeting_date" required
-                                                           value="<?= $meeting_row['meeting_date'] ?>"/>
-                    </div>
+  <main class="add-member-page">
+    <div class="container">
+      <!-- عنوان الصفحة -->
+      <div class="title">
+        <h1>تعديل بيانات المجلس</h1>
+      </div>
+      <form class="box" method="post" action="update_code.php" enctype="multipart/form-data">
+        <div class="col">
+          <div class="row">
+            <h4>رقم المجلس</h4><input type="number" name="meeting_number" placeholder="رقم المجلس" required
+              value="<?= $meeting_row['meeting_number'] ?>" />
+          </div>
+          <div class="row">
+            <h4>تاريخ انعقاد المجلس</h4><input type="date" name="meeting_date" required
+              value="<?= $meeting_row['meeting_date'] ?>" />
+          </div>
 
-                    <div class="row">
-                        <h4>الشهر</h4>
-                        <div class="select-basic">
-                            <select name="meeting_month" required>
-                                <option>اختر</option>
-	                            <?php
+          <div class="row">
+            <h4>الشهر</h4>
+            <div class="select-basic">
+              <select name="meeting_month" required>
+                <option>اختر</option>
+                <?php
 	                            for ($i = 1; $i <= 12; $i++)
 	                            {
                                     if ($i == $meeting_row["meeting_month"])
@@ -63,15 +63,15 @@ if (is_admin()):
                                     }
 	                            }
 	                            ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <h4>السنة</h4>
-                        <div class="select-basic">
-                            <select name="meeting_year" required>
-                                <option value="">اختر</option>
-	                            <?php
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <h4>السنة</h4>
+            <div class="select-basic">
+              <select name="meeting_year" required>
+                <option value="">اختر</option>
+                <?php
 	                            $year = date("Y");
 	                            for ($i = $year - 4; $i <= $year + 4; $i++)
 	                            {
@@ -85,48 +85,50 @@ if (is_admin()):
                                     }
 	                            }
 	                            ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row sp2-row">
-                        <div class="col">
-                            <form method="post" action="update_code.php">
-                                <input type="hidden" value="<?= $_POST['meeting_id'] ?>" name="meeting_id">
-                                <button type="submit" class="btn-basic" name="update_meeting_btn">تعديل بيانات المجلس</button>
-                            </form>
-                        </div>
-                        <form method="post" action="deletion_code.php">
-                            <input type="hidden" value="<?= $_POST['meeting_id'] ?>" name="meeting_id">
-                                <div class="col">
-	                                <?php if (!$meeting_subjects_exist) { ?>
-                                        <button type="submit" class="btn-basic" name="delete_meeting_btn">
-                                            حذف المجلس
-                                        </button>
-	                                <?php } else { ?>
-                                        <button type="button" class="btn-basic disabled" disabled
-                                                title="لا يمكن حذف المجلس عند وجود موضوعات بداخله">
-                                            حذف المجلس
-                                        </button>
-	                                <?php } ?>
-                                </div>
-                        </form>
-                    </div>
+              </select>
+            </div>
+          </div>
+          <div class="row sp2-row">
+            <div class="col">
+              <form method="post" action="update_code.php">
+                <input type="hidden" value="<?= $_POST['meeting_id'] ?>" name="meeting_id">
+                <button type="submit" class="btn-basic" name="update_meeting_btn">تعديل بيانات المجلس</button>
+              </form>
+            </div>
+            <div class="col">
+              <form method="post" action="deletion_code.php">
+                <input type="hidden" value="<?= $_POST['meeting_id'] ?>" name="meeting_id">
 
-                </div>
-            </form>
+                <?php if (!$meeting_subjects_exist) { ?>
+                <button type="submit" class="btn-basic" name="delete_meeting_btn">
+                  حذف المجلس
+                </button>
+                <?php } else { ?>
+                <button type="button" class="btn-basic disabled" disabled
+                  title="لا يمكن حذف المجلس عند وجود موضوعات بداخله">
+                  حذف المجلس
+                </button>
+                <?php } ?>
+
+              </form>
+            </div>
+          </div>
+
         </div>
-    </main>
+      </form>
+    </div>
+  </main>
 
-<?php
+  <?php
 endif;
 footer();
 ?>
 
-<!-- Js Scripts and Plugins -->
-<script type="module" src="./js/main.js"></script>
+  <!-- Js Scripts and Plugins -->
+  <script type="module" src="./js/main.js"></script>
 
-<!-- font Awesome -->
-<script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
+  <!-- font Awesome -->
+  <script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
