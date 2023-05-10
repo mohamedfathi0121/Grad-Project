@@ -66,13 +66,20 @@ if (session_status() === PHP_SESSION_NONE)
                     <div class="table-container">
                         <table class="subjects-table">
                             <tbody>
-                            <?php while ($subject_table_row = $subject_table_result->fetch_assoc()) { ?>
+                            <?php while ($subject_table_row = $subject_table_result->fetch_assoc()) {
+                                $subject_attachment_stmt = $conn->prepare("SELECT * FROM p39_subject_picture WHERE subject_id = ?");
+                                $subject_attachment_stmt->bind_param("i", $subject_table_row["subject_id"]);
+                                $subject_attachment_stmt->execute();
+                                $subject_attachment_result = $subject_attachment_stmt->get_result();
+                                $subject_attachment_row = $subject_attachment_result->fetch_assoc();
+                                ?>
                                 <tr class="subject-row">
                                     <td>الموضوع <?= $n ?></td>
                                     <td>
                                         <strong><?= $subject_table_row["subject_name"] ?></strong>
                                         <p><?= $subject_table_row["subject_details"] ?></p>
-                                        <img src="" alt="">
+<!--                                        --><?php //if (!emp)?>
+                                        <img src="<?= $subject_attachment_row['picture_name'] ?>" alt="">
                                     </td>
                                 </tr>
                                 <tr class="decision-row">

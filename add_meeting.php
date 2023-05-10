@@ -39,7 +39,7 @@ if (is_admin()):
     $last_meeting_stmt->execute();
     $last_meeting_result = $last_meeting_stmt->get_result();
     $last_meeting_row = $last_meeting_result->fetch_assoc();
-    $last_meeting_number = $last_meeting_row["meeting_number"];
+    @$last_meeting_number = $last_meeting_row["meeting_number"];
 	?>
 	<main class="add-member-page">
 		<div class="container">
@@ -52,7 +52,9 @@ if (is_admin()):
 					<div class="row">
 						<h4>رقم المجلس</h4>
 						<input type="number" name="number" required min="1"/>
-                        <h6>رقم المجلس السابق: <?= $last_meeting_number ?></h6>
+						<?php if (!empty(@$last_meeting_number)) { ?>
+                            <h6>رقم المجلس السابق: <?= $last_meeting_number ?></h6>
+						<?php } ?>
 					</div>
 					<div class="row">
 						<h4>الشهر</h4>

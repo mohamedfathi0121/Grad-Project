@@ -19,7 +19,7 @@ Head("المجالس");
     Headers();
     if (is_logged_in()):
         Nav();
-        ?>
+        SearchBar();?>
         <!-- *Main Meetings Page Content  -->
         <main id="admin" class="meetings-content">
             <div class="container">
@@ -136,7 +136,7 @@ Head("المجالس");
                                                     <button name="update_meeting_btn" class="btn-basic">تعديل</button>
                                                 </form>
                                                 <button title=" يجب ان يكون المجلس مؤكد اولا" class="btn-basic disabled" disabled>تسجيل الحضور</button>
-                                                <button title=" يجب ان يكون المجلس مؤكد اولا" class="btn-basic disabled" disabled>التقارير</button>
+                                                <button title=" يجب ان يكون المجلس مؤكد اولا" class="btn-basic disabled" disabled>عرض الموضوعات بالقرارات</button>
                                                 <button title=" يجب ان يكون المجلس مؤكد اولا" class="btn-basic disabled" disabled>
                                                     رفع ملف المجلس الموثق
                                                 </button>
@@ -245,10 +245,10 @@ Head("المجالس");
                                                             تسجيل الحضور
                                                         </button>
                                                     </form>
-                                                    <a href="#" class="btn-basic">التقارير</a>
-                                                    <button class="btn-basic">
+                                                    <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
+                                                    <a class="btn-basic" href="meeting_attachment.php">
                                                         رفع ملف المجلس الموثق
-                                                    </button>
+                                                    </a>
                                                 </div>
                                             <?php
                                             else:
@@ -261,7 +261,8 @@ Head("المجالس");
                                                     </form>
                                                     <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
                                                     <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
-                                                    <button class="btn-basic disabled" title="لا يوجد ملف مجلس نهائي" disabled>عرض ملف المجلس النهائي</button>
+                                                    <button class="btn-basic disabled" title="لا يوجد ملف مجلس نهائي"
+                                                            disabled>عرض ملف المجلس النهائي</button>
                                                 </div>
                                             <?php
                                             endif;
@@ -341,7 +342,7 @@ Head("المجالس");
                                                             تسجيل الحضور
                                                         </button>
                                                     </form>
-                                                    <a href="#" class="btn-basic">التقارير</a>
+                                                    <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
                                                     <form method="post" action="update_meeting.php"
                                                           class="current-meeting-buttons">
                                                         <input type="hidden" name="meeting_id"
@@ -350,9 +351,9 @@ Head("المجالس");
                                                             تعديل
                                                         </button>
                                                     </form>
-                                                    <button class="btn-basic">
+                                                    <a class="btn-basic" href="meeting_attachment.php">
                                                         رفع ملف المجلس الموثق
-                                                    </button>
+                                                    </a>
                                                 </div>
 				                            <?php
 				                            else:
@@ -363,9 +364,12 @@ Head("المجالس");
                                                         <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
                                                         <button class="btn-basic" name="current_meeting_subjects">الموضوعات الخاصة بالمجلس</button>
                                                     </form>
-                                                    <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
-                                                    <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
-                                                    <button class="btn-basic">عرض ملف المجلس النهائي</button>
+                                                    <a href="subjects_table.php" class="btn-basic">
+                                                        عرض ملف جدول الاعمال</a>
+                                                    <a href="subjects_decisions.php" class="btn-basic">
+                                                        عرض الموضوعات بالقرار</a>
+                                                    <a class="btn-basic" href="meeting_attachment.php">
+                                                        عرض ملف المجلس النهائي</a>
                                                 </div>
 				                            <?php
 				                            endif;
@@ -465,17 +469,18 @@ Head("المجالس");
                                         if($_SESSION["admin"]):
                                             ?>
                                             <div class="col">
-                                                <a href="#" class="btn-basic">التقارير</a>
-                                                <button class="btn-basic">
+                                                <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
+                                                <a class="btn-basic" href="meeting_attachment.php">
                                                     رفع ملف المجلس الموثق
-                                                </button>
+                                                </a>
                                             </div>
                                         <?php
                                         else:
                                             ?>
                                             <div class="col">
-                                                <a href="#" class="btn-basic">عرض ملف المجلس النهائي</a>
-                                                <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
+                                                <a href="meeting_attachment.php" class="btn-basic">
+                                                    عرض ملف المجلس النهائي</a>
+                                                <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
                                             </div>
                                         <?php
                                         endif;
@@ -523,7 +528,7 @@ Head("المجالس");
                     {
                         case "fn":
 	                        $search_stmt = "SELECT 
-                                                *,  
+                                                p39_meeting.*,  
                                                 formation_number 
                                             FROM 
                                                 p39_meeting 
@@ -533,7 +538,7 @@ Head("المجالس");
                             break;
                         case "mn":
                             $search_stmt = "SELECT 
-                                                *,  
+                                                p39_meeting.*,  
                                                 formation_number 
                                             FROM 
                                                 p39_meeting 
@@ -552,8 +557,10 @@ Head("المجالس");
                                                                AND p39_meeting.meeting_year LIKE ?";
                             break;
                     }
+                    $restricted_search_count = 0;
                     $search_result = Search($conn, NULL, @$search_stmt);
-                    if (@$search_result->num_rows > 0)
+                    @$search_result_count = $search_result->num_rows;
+                    if (@$search_result_count > 0)
                     {
                         while ($search_row = $search_result->fetch_assoc())
                         {
@@ -562,26 +569,34 @@ Head("المجالس");
 								* */
 	                        if (!in_array($search_row["formation_id"], $user_formation_ids) AND !$_SESSION["admin"])
 	                        {
-		                        ?>
-                                <div class='current-meeting'>
-                                    <main id='empty' class='empty-meeting'>
-                                        <h4>عذرًا، لا يوجد مجالس تطابق رقم التشكيل</h4>
-                                    </main>
-                                </div>
-		                        <?php
-                                break;
+                                $restricted_search_count += 1;
+                                if ($restricted_search_count == $search_result_count)
+                                {
+	                                ?>
+                                    <div class='current-meeting'>
+                                        <main id='empty' class='empty-meeting'>
+                                            <h4>عذرًا، لا يوجد مجالس تطابق رقم التشكيل</h4>
+                                        </main>
+                                    </div>
+	                                <?php
+                                }
+                                continue;
 	                        }
                             if ($search_row["status"] == "pending" AND $search_row["is_current"] == "1"
                                 AND !$_SESSION["admin"])
                             {
-	                            ?>
-                                <div class='current-meeting'>
-                                    <main id='empty' class='empty-meeting'>
-                                        <h4>عذرًا، لا يوجد مجالس تطابق رقم التشكيل</h4>
-                                    </main>
-                                </div>
-	                            <?php
-	                            break;
+	                            $restricted_search_count += 1;
+	                            if ($restricted_search_count == $search_result_count)
+	                            {
+		                            ?>
+                                    <div class='current-meeting'>
+                                        <main id='empty' class='empty-meeting'>
+                                            <h4>عذرًا، لا يوجد مجالس تطابق رقم التشكيل</h4>
+                                        </main>
+                                    </div>
+		                            <?php
+	                            }
+	                            continue;
                             }
                             ?>
                             <div class="old-meeting-box">
@@ -622,16 +637,18 @@ Head("المجالس");
                                     if($_SESSION["admin"]):
                                         ?>
                                         <div class="col">
-                                            <a href="#" class="btn-basic">التقارير</a>
-                                            <button class="btn-basic">
+                                            <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
+                                            <a class="btn-basic" href="meeting_attachment.php">
                                                 رفع ملف المجلس الموثق
-                                            </button>
+                                            </a>
                                         </div>
                                     <?php
                                     else:
                                         ?>
                                         <div class="col">
-                                            <a href="" class="btn-basic">عرض ملف المجلس النهائي</a>
+                                            <a href="meeting_attachment.php" class="btn-basic">
+                                                عرض ملف المجلس النهائي
+                                            </a>
                                             <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
                                         </div>
                                     <?php

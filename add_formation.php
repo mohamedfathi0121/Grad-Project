@@ -31,7 +31,7 @@ Head("اضافة تشكيل");
             $last_formation_stmt->execute();
             $last_formation_result = $last_formation_stmt->get_result();
             $last_formation_row = $last_formation_result->fetch_assoc();
-            $last_formation_number = $last_formation_row["formation_number"];
+            @$last_formation_number = $last_formation_row["formation_number"];
             ?>
             <!-- عنوان الصفحة -->
             <div class="title">
@@ -42,7 +42,9 @@ Head("اضافة تشكيل");
 
                     <div class="row">
                         <h4>رقم التشكيل</h4><input type="number" name="formation_number" min="1" required/>
-                        <h6>رقم التشكيل السابق: <?= $last_formation_number ?></h6>
+                        <?php if (!empty(@$last_formation_number)) { ?>
+                            <h6>رقم التشكيل السابق: <?= $last_formation_number ?></h6>
+                        <?php } ?>
                     </div>
 
                     <div class="row">
