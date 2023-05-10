@@ -232,7 +232,7 @@ foreach ($_POST as $btn => $value)
 			$subject_name = clean_data($_POST["subject_name"]);
 			$subject_details = clean_data($_POST["subject_details"]);
 			$subject_type = clean_data($_POST["subject_type"]);
-			$subject_comments = (empty($_POST["subject_comment"]) ? null : clean_data($_POST["subject_comment"]));
+			$subject_comments = (empty($_POST["subject_comments"]) ? null : clean_data($_POST["subject_comments"]));
 			$meeting_stmt = $conn->prepare("SELECT 
 								                      meeting_id 
 								                  FROM 
@@ -347,7 +347,7 @@ foreach ($_POST as $btn => $value)
 												$needs_action,
 												$action_to,
 												$is_action_done,
-												$subject_comments,
+												$decision_comments_comments,
 												$_SESSION["user_id"]);
 			$add_decision_stmt->execute();
 			header("location: meetings.php", true, 303);

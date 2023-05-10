@@ -16,8 +16,8 @@ Head("اضافة مجلس");
 <body dir="rtl">
 <?php
 Headers();
-Nav();
 if (is_admin()):
+	Nav();
 	$formation_ids_stmt = $conn->prepare("SELECT formation_id FROM p39_formation ORDER BY formation_id");
 	$formation_ids_stmt->execute();
 	$formation_ids_result = $formation_ids_stmt->get_result();
@@ -26,6 +26,20 @@ if (is_admin()):
 	{
 		$formation_ids[] = $formation_ids_row["formation_id"];
 	}
+
+    $last_meeting_stmt = $conn->prepare("SELECT 
+                                                    meeting_number 
+                                                FROM 
+                                                    p39_meeting 
+                                                WHERE 
+                                                    meeting_id = (SELECT 
+                                                                      max(meeting_id) 
+                                                                  FROM 
+                                                                      p39_meeting)");
+    $last_meeting_stmt->execute();
+    $last_meeting_result = $last_meeting_stmt->get_result();
+    $last_meeting_row = $last_meeting_result->fetch_assoc();
+    $last_meeting_number = $last_meeting_row["meeting_number"];
 	?>
 	<main class="add-member-page">
 		<div class="container">
@@ -35,10 +49,10 @@ if (is_admin()):
 			</div>
 			<form class="box" method="post" action="addition_code.php">
 				<div class="col">
-
 					<div class="row">
 						<h4>رقم المجلس</h4>
-						<input type="number" name="number" placeholder="رقم المجلس" required min="1"/>
+						<input type="number" name="number" required min="1"/>
+                        <h6>رقم المجلس السابق: <?= $last_meeting_number ?></h6>
 					</div>
 					<div class="row">
 						<h4>الشهر</h4>

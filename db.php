@@ -4,6 +4,7 @@ $user = "root";
 $password = "";
 $db = "faculty_meeting_system";
 
+global $conn;
 $conn = new mysqli($server, $user, $password, $db);
 
 if ($conn->connect_error) {
