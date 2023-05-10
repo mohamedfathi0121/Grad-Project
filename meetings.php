@@ -116,14 +116,28 @@ Head("المجالس");
                                                     </h4>
                                                 </div>
                                                 <div class="col">
-                                                    <form method="post" action="meeting_status.php">
-                                                        <input type="hidden" name="meeting_id"
-                                                               value="<?=$current_meeting_row['meeting_id']?>">
-                                                        <button class="btn-basic" name="confirm_btn">
-                                                            تأكيد
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </button>
-                                                    </form>
+                                                    <button class="btn-basic" data-open-modal>
+                                                        تأكيد
+                                                        <i class="fa-solid fa-check"></i>
+                                                    </button>
+
+                                                    <dialog data-modal>
+                                                        <h4>
+                                                            انت علي وشك تاكيد المجلس
+                                                        </h4>
+                                                        <form method="post" action="meeting_status.php">
+                                                            <input type="hidden" name="meeting_id" value="<?=$current_meeting_row['meeting_id']?>">
+                                                            <button class="btn-basic" name="confirm_btn">
+                                                                تأكيد
+
+                                                            </button>
+                                                            <button class="btn-basic" type="submit" formmethod="dialog">
+                                                                الغاء
+
+                                                            </button>
+
+                                                        </form>
+                                                    </dialog>
                                                 </div>
                                             </div>
                                             <div class="current-meeting-buttons">
@@ -194,20 +208,36 @@ Head("المجالس");
                                                 <?php
                                                 if($_SESSION["admin"]):
                                                     ?>
-                                                    <form method="post" action="meeting_status.php">
-                                                        <div class="col">
-                                                            <input type="hidden" name="meeting_id"
-                                                                   value="<?=$current_meeting_row['meeting_id']?>">
-                                                            <button class="btn-basic" name="pending_btn">
-                                                                إلغاء تأكيد
-                                                                <i class="fa-solid fa-check"></i>
-                                                            </button>
-                                                            <button class="btn-basic" name="past_btn">
-                                                                تحويل لمجلس سابق
-                                                                <i class="fa-solid fa-check"></i>
-                                                            </button>
-                                                        </div>
-                                                    </form>
+<!--                                                    <form method="post" action="meeting_status.php">-->
+                                                    <div class="col">
+                                                        <button data-open-modal class="btn-basic">إلغاء التأكيد <i class="fa-solid fa-check"></i></button>
+
+                                                        <dialog data-modal>
+                                                            <form method="post" action="meeting_status.php">
+                                                                <h4>هل تريد الغاء تأكيد المجلس؟</h4>
+                                                                <input type="hidden" name="meeting_id" value="<?=$current_meeting_row['meeting_id']?>">
+                                                                <button class="btn-basic" name="pending_btn">
+                                                                    إلغاء تأكيد
+
+                                                                </button>
+
+                                                                <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
+                                                            </form>
+                                                        </dialog>
+                                                        <button data-open-modal class="btn-basic">تحويل لمجلس سابق <i class="fa-solid fa-check"></i></button>
+                                                        <dialog data-modal>
+                                                            <form method="post" action="meeting_status.php">
+                                                                <h4>هل تريد تحويل المجلس لمجلس سابق؟</h4>
+                                                                <input type="hidden" name="meeting_id" value="<?=$current_meeting_row['meeting_id']?>">
+                                                                <button class="btn-basic" name="past_btn">
+                                                                    تحويل لمجلس سابق
+                                                                    <i class="fa-solid fa-check"></i>
+                                                                </button>
+                                                                <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
+                                                            </form>
+                                                        </dialog>
+
+                                                    </div>
                                                 <?php
                                                 endif;
                                                 ?>
@@ -548,7 +578,7 @@ Head("المجالس");
                             break;
                         case "my":
                             $search_stmt = "SELECT 
-                                                *,  
+                                                p39_meeting.*,  
                                                 formation_number 
                                             FROM 
                                                 p39_meeting 
