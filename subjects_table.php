@@ -23,9 +23,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                 FROM
                                                     p39_meeting
                                                 WHERE
-                                                    is_current = 1 
-                                                  AND 
-                                                    status = 'confirmed'");
+                                                    is_current = 1");
         $meeting_stmt->execute();
         $meeting_result = $meeting_stmt->get_result();
         $meeting_row = $meeting_result->fetch_assoc();
@@ -45,6 +43,7 @@ if (session_status() === PHP_SESSION_NONE)
 //                                                                p39_subject
 //                                                            WHERE meeting_id = ? AND ");
                 $subject_table_stmt = $conn->prepare("SELECT
+                                                                subject_id,
                                                                 subject_name,
                                                                 subject_details
                                                             FROM
