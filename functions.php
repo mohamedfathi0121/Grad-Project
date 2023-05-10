@@ -42,79 +42,93 @@ if (empty(@$_SESSION["image"]))
 
 function Headers()
 {
-    ?>
-<header>
-  <div class="user-logged">
-    <?php
-            if (!empty($_SESSION["loggedin"]))
-            {
-                ?>
-    <img src="<?=@$_SESSION['image']?>" alt="">
-    <h5 class="user-name">د. <?=@$_SESSION['name']?></h5>
-    <button class="button btn-basic" onclick="location.href='logout.php'">خروج</button>
+	?>
+    <header>
+        <div class="user-logged">
+			<?php
+			if (!empty($_SESSION["loggedin"])) {
+				?>
+                <img src="<?= @$_SESSION['image'] ?>" alt="">
+                <h5 class="user-name">د. <?= @$_SESSION['name'] ?></h5>
+                <button class="button btn-basic" onclick="location.href='logout.php'">خروج</button>
 
-    <?php
-            }
-            ?>
-  </div>
+				<?php
+			}
+			?>
+        </div>
 
-  <div class="header-container">
-    <img class="logo" src="images/<?=$_SESSION["faculty_logo"]?>" alt="" />
-    <div class="header-title">
-      <h3 class="univ-name"><?=$_SESSION["uni_name"]?> - <?=$_SESSION["faculty_name"]?></h3>
+        <div class="header-container">
+            <img class="logo" src="images/<?= $_SESSION["faculty_logo"] ?>" alt=""/>
+            <div class="header-title">
+                <h3 class="univ-name"><?= $_SESSION["uni_name"] ?> - <?= $_SESSION["faculty_name"] ?></h3>
 
-      <h4 class="prog-name" dir=ltr><?=$_SESSION["program_name"]?></h4>
-      <h1 class="project-title">
-        <?=$_SESSION["app_name"]?>
-      </h1>
-    </div>
-    <img class="logo" src="images/<?=$_SESSION["program_logo"]?>" alt="" />
-  </div>
+                <h4 class="prog-name" dir=ltr><?= $_SESSION["program_name"] ?></h4>
+                <h1 class="project-title">
+					<?= $_SESSION["app_name"] ?>
+                </h1>
+            </div>
+            <img class="logo" src="images/<?= $_SESSION["program_logo"] ?>" alt=""/>
+        </div>
 
 
-</header>
-<?php
+    </header>
+	<?php
 }
 
 function Nav()
 {
     ?>
-<section class="nav-bar">
-  <nav>
-    <ul>
-      <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
-      <div class="links deactive">
-        <li><a href="index.php">الصفحة الرئيسية</a></li>
-        <li><a href="formation.php">التشكيلات</a></li>
-        <li><a href="meetings.php">المجالس</a></li>
-        <li><a href="current_meeting_subject.php">الموضوعات</a></li>
-        <?php
-          if (@$_SESSION["admin"]):
-              ?>
-        <li><a href="members.php">الاعضاء</a></li>
-        <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
-        <?php
-          endif;
-        ?>
-      </div>
-    </ul>
-    <form class="search" action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
-      <?php
-        switch (basename($_SERVER["PHP_SELF"]))
-        {
-            case "meetings.php":
-                ?>
-      <input type="text" placeholder="بحث برقم التشكيل" name="search" />
-      <button type="submit" class="btn-basic">
-        <i class="fa fa-search"></i>
-      </button>
-      <?php
-                break;
-        }
-        ?>
-    </form>
-  </nav>
-</section>
+    <section class="nav-bar">
+        <nav>
+            <ul>
+                <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
+                <div class="links deactive">
+                    <li><a href="index.php">الصفحة الرئيسية</a></li>
+                    <li><a href="formation.php">التشكيلات</a></li>
+                    <li><a href="meetings.php">المجالس</a></li>
+                    <li><a href="#">الموضوعات</a></li>
+					<?php if (@$_SESSION["admin"]): ?>
+                        <li><a href="members.php">الاعضاء</a></li>
+                        <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
+					<?php
+					endif;
+					?>
+                </div>
+            </ul>
+            <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get">
+				<?php switch (basename($_SERVER["PHP_SELF"])) {
+                    case "formation.php": ?>
+                        <div class="select-basic" style="width: 150px">
+                            <select name="f">
+                                <option value="">اختر</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="y">سنة التشكيل</option>
+                            </select>
+                        </div>
+                        <input type="text" placeholder="بحث.." name="search"/>
+                        <button type="submit" class="btn-basic">
+                            <i class="fa fa-search"></i>
+                        </button>
+						<?php break;
+                    case "meetings.php": ?>
+                        <div class="select-basic" style="width: 150px">
+                            <select name="f">
+                                <option value="">اختر</option>
+                                <option value="mn">رقم المجلس</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="my">سنة المجلس</option>
+                            </select>
+                        </div>
+                        <input type="text" placeholder="بحث.." name="search"/>
+                        <button type="submit" class="btn-basic">
+                            <i class="fa fa-search"></i>
+                        </button>
+
+                        <?php break; ?>
+                <?php } ?>
+            </form>
+        </nav>
+    </section>
 <?php
 
 }
@@ -147,10 +161,10 @@ function Footer()
 {
     $y = date("Y");
     ?>
-<footer>
-  <p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors <?=$y?></p>
-</footer>
-<?php
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors <?=$y?></p>
+    </footer>
+    <?php
 }
 
 function clean_data($str)
@@ -188,10 +202,10 @@ function is_admin():bool
     else
     {
         ?>
-<p style="color: red; font-weight: bold; text-align: center">
-  You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
-</p><br>
-<?php
+        <p style="color: red; font-weight: bold; text-align: center">
+          You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
+        </p><br>
+        <?php
         header("refresh:5; url=meetings.php");
         footer();
         die();
@@ -207,10 +221,10 @@ function is_logged_in():bool
     else
     {
         ?>
-<p style="color: red; font-weight: bold; text-align: center">
-  You need to log in to view this page. You'll be redirected to the login page in 5 seconds
-</p><br>
-<?php
+        <p style="color: red; font-weight: bold; text-align: center">
+          You need to log in to view this page. You'll be redirected to the login page in 5 seconds
+        </p><br>
+        <?php
         header("refresh:5; url=loginn.php");
         footer();
         die();
@@ -260,4 +274,36 @@ function Upload($source, $destination, $allowed_formats)
         }
     }
     return $result;
+}
+
+function Search($conn, $table = NULL, $query = NULL)
+{
+    if (!empty(clean_data($_GET["f"])))
+    {
+	    switch (clean_data($_GET["f"]))
+	    {
+		    case "y":
+			    $column = "start_year";
+			    break;
+		    case "fn":
+			    $column = "formation_number";
+			    break;
+            case "mn":
+                $column = "meeting_number";
+                break;
+	    }
+	    $search = "%" . clean_data($_GET["search"]) . "%";
+        if ($query === NULL)
+        {
+	        $search_stmt = $conn->prepare("SELECT * FROM $table WHERE " . $column . " LIKE ?");
+        }
+        else
+        {
+            $search_stmt = $conn->prepare($query);
+        }
+	    $search_stmt->bind_param("s", $search);
+	    $search_stmt->execute();
+	    $search_result = $search_stmt->get_result();
+	    return $search_result;
+    }
 }

@@ -18,7 +18,7 @@ require_once "functions.php";
   <main class="subjects-table-page">
     <div class="container">
       <div class="title">
-        <h1> ملف المجلس النهائي </h1>
+        <h1> الموضوعات بالقرارات </h1>
         <h3>محضر اجتماع لجنة ادارة البرامج الجديدة بالكلية مرحلتي البكالريوس والدراسات العليا</h3>
         <h3>جلسة رقم <span>1</span> بتاريخ <span>2/3/2024</span></h3>
       </div>

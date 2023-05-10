@@ -24,25 +24,37 @@ if (is_admin()):
             <div class="title">
                 <h1>إضافة موضوع جديد</h1>
             </div>
-            <form class="box" method="post" action="add_member_code.php" enctype="multipart/form-data">
+            <form class="box" method="post" action="addition_code.php" enctype="multipart/form-data">
                 <div class="col">
+                    <div class="row">
+                        <h4>رقم الموضوع</h4>
+                        <input type="number" name="subject_number" placeholder="رقم الموضوع" required min="1" />
+                    </div>
 
                     <div class="row">
-                        <h4>عنوان الموضوع</h4><input type="text" name="name" placeholder="عنوان الموضوع" required/>
+                        <h4>عنوان الموضوع</h4>
+                        <input type="text" name="subject_name" placeholder="عنوان الموضوع" required/>
                     </div>
 
                     <div class="row">
                         <h4>تصنيف الموضوع</h4>
                         <div class="select-basic">
-                            <select name="is_admin" required>
+                            <select name="subject_type" required>
                                 <option>اختر</option>
-
-                                <option>شئون التعليم والطلاب</option>
-                                <option>شئون الدراسات العليا والبحوث</option>
-                                <option>شئون خدمة المجتمع وتنمية البيئة</option>
-                                <option>الأقسام</option>
-                                <option>لجنة البرامج</option>
-                                <option>موضوع عام</option>
+	                            <?php
+	                            // Get All Subject Types
+	                            $subject_types_stmt = $conn->prepare("SELECT * FROM p39_subject_type");
+	                            $subject_types_stmt->execute();
+	                            $subject_types_result = $subject_types_stmt->get_result();
+	                            while ($subject_types_row = $subject_types_result->fetch_assoc())
+                                {
+		                            ?>
+                                    <option value="<?= $subject_types_row['subject_type_id'] ?>">
+                                        <?= $subject_types_row["subject_type_name"] ?>
+                                    </option>
+		                            <?php
+	                            }
+	                            $subject_types_stmt->close(); ?>
                             </select>
                         </div>
                     </div>
@@ -53,7 +65,8 @@ if (is_admin()):
                                 <label for="up1">
                                     رفع مرفق
                                     <i class="fa-solid fa-upload"></i>
-                                    <input id="up1" type="file" class="upload-button"/>
+                                    <input id="up1" type="file" name="subject_attachment[]" class="upload-button"
+                                           accept="application/pdf, image/png, image/gif, image/jpeg"/>
                                 </label>
                             </div>
                             <div class="file-list"></div>
@@ -62,7 +75,7 @@ if (is_admin()):
 
                     <div class="row">
                         <h4>تفاصيل الموضوع</h4>
-                        <textarea name=""></textarea>
+                        <textarea name="subject_details"></textarea>
                     </div>
                     <div class="row">
                         <h4>رفع صورة داخل التفاصيل</h4>
@@ -71,7 +84,8 @@ if (is_admin()):
                                 <label for="up2">
                                     رفع صورة
                                     <i class="fa-solid fa-upload"></i>
-                                    <input id="up2" type="file" class="upload-button"/>
+                                    <input id="up2" type="file" class="upload-button" name="subject_picture[]"
+                                           accept="image/png, image/gif, image/jpeg"/>
                                 </label>
                             </div>
                             <div class="file-list"></div>
@@ -79,10 +93,10 @@ if (is_admin()):
                     </div>
                     <div class="row">
                         <h4>ملاحظات</h4>
-                        <textarea name=""></textarea>
+                        <textarea name="subject_comments"></textarea>
                     </div>
                     <div class="row">
-                        <button type="submit" class="btn-basic" name="add_member_btn">اضافة موضوع جديد</button>
+                        <button type="submit" class="btn-basic" name="add_subject_btn">اضافة موضوع جديد</button>
                     </div>
                 </div>
             </form>

@@ -30,7 +30,7 @@ if(is_admin()):
             <div class="title">
                 <h1>تعديل بيانات العضو</h1>
             </div>
-            <form class="box"method="post" action="update_member_code.php" enctype="multipart/form-data">
+            <form class="box"method="post" action="update_code.php" enctype="multipart/form-data">
                 <div class="col">
 
                     <div class="row">
