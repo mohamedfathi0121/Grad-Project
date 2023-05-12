@@ -74,6 +74,7 @@
 }
 .add-meeting,
 .add-member {
+	display: inline-block;
 	position: sticky;
 	bottom: 15px;
 }
@@ -331,6 +332,7 @@
 }
 
 .add-current-subject {
+	display: inline-block;
 	position: sticky;
 	bottom: 15px;
 }
@@ -390,6 +392,7 @@
 .add-formation {
 	position: sticky;
 	bottom: 15px;
+	display: inline-block;
 }
 .current-formation .box {
 	display: flex;
@@ -434,6 +437,7 @@
 .add-attachment-subject {
 	position: sticky;
 	bottom: 15px;
+	display: inline-block;
 }
 .add-attachment {
 	max-width: 240px;
@@ -525,6 +529,10 @@ dialog form {
 	width: 100%;
 	border: 1px solid var(--secondary-color);
 }
+.add-formation-member-page table,
+.attend-table {
+	width: 80%;
+}
 .meeting-attendance-page table th:first-child,
 .add-formation-member-page table th:first-child {
 	width: 80%;
@@ -559,7 +567,7 @@ dialog form {
 /* *Css for Subject Table Page */
 /* ################################# */
 
-.subjects-table-page .print-container {
+.print-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -602,25 +610,6 @@ dialog form {
 	height: auto;
 	max-width: 100%;
 	min-width: 400px;
-}
-
-@media print {
-	* {
-		color: #000 !important;
-	}
-	body {
-		font-family: "Times New Roman", Times, serif;
-		line-height: 1.5;
-	}
-
-	header .user-logged,
-	header .header-title .project-title,
-	.nav-bar,
-	footer,
-	button,
-	.subjects-table-page .title h1 {
-		display: none;
-	}
 }
 
 /* *Css for Finished Meetings Files */

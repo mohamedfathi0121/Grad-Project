@@ -58,7 +58,7 @@ function Headers()
         </div>
 
         <div class="header-container">
-            <img class="logo" src="images/<?= $_SESSION["faculty_logo"] ?>" alt=""/>
+            <img class="logo univ-logo" src="images/<?= $_SESSION["faculty_logo"] ?>" alt=""/>
             <div class="header-title">
                 <h3 class="univ-name"><?= $_SESSION["uni_name"] ?> - <?= $_SESSION["faculty_name"] ?></h3>
 
@@ -67,7 +67,7 @@ function Headers()
 					<?= $_SESSION["app_name"] ?>
                 </h1>
             </div>
-            <img class="logo" src="images/<?= $_SESSION["program_logo"] ?>" alt=""/>
+            <img class="logo prog-logo" src="images/<?= $_SESSION["program_logo"] ?>" alt=""/>
         </div>
 
 
