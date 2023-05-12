@@ -123,26 +123,24 @@ foreach ($_POST as $btn => $value)
 			$number = clean_data($_POST["number"]);
 			$month = clean_data($_POST["month"]);
 			$year = clean_data($_POST["year"]);
-			$is_current = clean_data($_POST["is_current"]);
-			$status = clean_data($_POST["status"]);
-			$formation_id = clean_data($_POST["formation_id"]);
+			$formation_stmt = $conn->prepare("SELECT formation_id FROM p39_formation WHERE is_current = 1");
+			$formation_stmt->execute();
+			$formation_result = $formation_stmt->get_result();
+			$formation_row = $formation_result->fetch_assoc();
+			$formation_id = $formation_row["formation_id"];
 			$memeting_insert_stmt = $conn->prepare("INSERT INTO 
                                                     `p39_meeting`
                                                         (`meeting_number`, 
                                                          `meeting_month`, 
                                                          `meeting_year`,  
-                                                         `is_current`, 
-                                                         `status`, 
                                                          `formation_id`, 
                                                          `added_by`)
                                                 VALUES
-                                                    (?, ?, ?, ?, ?, ?, ?)");
-			$memeting_insert_stmt->bind_param("iiiisii",
+                                                    (?, ?, ?, ?, ?)");
+			$memeting_insert_stmt->bind_param("iiiii",
 				$number,
 				$month,
 				$year,
-				$is_current,
-				$status,
 				$formation_id,
 				$_SESSION["user_id"]);
 			$memeting_insert_stmt->execute();

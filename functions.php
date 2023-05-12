@@ -133,8 +133,23 @@ function SearchBar()
                     <i class="fa fa-search"></i>
                 </button>
 
-				<?php break; ?>
-			<?php } ?>
+				<?php break;
+            case "meetings1.php": ?>
+                <div class="select-basic" style="width: 150px">
+                    <select name="f">
+                        <option value="">اختر</option>
+                        <option value="mn">رقم المجلس</option>
+                        <option value="fn">رقم التشكيل</option>
+                        <option value="my">سنة المجلس</option>
+                    </select>
+                </div>
+                <input type="text" placeholder="بحث.." name="search"/>
+                <button type="submit" class="btn-basic">
+                    <i class="fa fa-search"></i>
+                </button>
+
+	            <?php break;
+        } ?>
     </form>
     <?php
 }

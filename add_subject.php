@@ -100,7 +100,6 @@ if (is_admin()):
                         <button type="button" class="btn-basic" data-open-modal>اضافة موضوع جديد</button>
                         <dialog data-modal>
                             <form method="dialog">
-                                <input type="text" />
                                 <button formmethod="dialog" type="submit" class="btn-basic">Cancel</button>
                                 <button type="submit" class="btn-basic">Submit</button>
                             </form>
