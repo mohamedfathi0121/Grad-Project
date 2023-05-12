@@ -66,7 +66,7 @@ if (is_admin()):
                                     رفع مرفق
                                     <i class="fa-solid fa-upload"></i>
                                     <input id="up1" type="file" name="subject_attachment[]" class="upload-button"
-                                           accept="application/pdf, image/png, image/gif, image/jpeg"/>
+                                           accept="application/pdf, image/png, image/gif, image/jpeg" multiple/>
                                 </label>
                             </div>
                             <div class="file-list"></div>
@@ -85,7 +85,7 @@ if (is_admin()):
                                     رفع صورة
                                     <i class="fa-solid fa-upload"></i>
                                     <input id="up2" type="file" class="upload-button" name="subject_picture[]"
-                                           accept="image/png, image/gif, image/jpeg"/>
+                                           accept="image/png, image/gif, image/jpeg" multiple/>
                                 </label>
                             </div>
                             <div class="file-list"></div>
@@ -95,8 +95,16 @@ if (is_admin()):
                         <h4>ملاحظات</h4>
                         <textarea name="subject_comments"></textarea>
                     </div>
+                    <!-- محاولة الدايالوج الفاشلة -->
                     <div class="row">
-                        <button type="submit" class="btn-basic" name="add_subject_btn">اضافة موضوع جديد</button>
+                        <button type="button" class="btn-basic" data-open-modal>اضافة موضوع جديد</button>
+                        <dialog data-modal>
+                            <form method="dialog">
+                                <input type="text" />
+                                <button formmethod="dialog" type="submit" class="btn-basic">Cancel</button>
+                                <button type="submit" class="btn-basic">Submit</button>
+                            </form>
+                        </dialog>
                     </div>
                 </div>
             </form>

@@ -36,7 +36,7 @@ Head("تعديل تشكيل");
                     $formation_result = $formation_stmt->get_result();
                     $formation_row = $formation_result->fetch_assoc(); ?>
                     <div class="row">
-                        <h4>رقم التشكيل</h4><input type="text" name="formation_number" placeholder="رقم التشكيل" required
+                        <h4>رقم التشكيل</h4><input type="number" name="formation_number" required
                                                    value="<?= $formation_row['formation_number'] ?>"/>
                     </div>
 

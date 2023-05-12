@@ -59,14 +59,8 @@ foreach ($_POST as $btn => $value)
 														FROM 
 														    p39_formation_user 
 														WHERE 
-														    formation_id = (
-														        SELECT 
-														            formation_id 
-														        FROM 
-														            p39_formation 
-														        WHERE
-														            is_current = 1
-														    ) ");
+														    formation_id = ?");
+			$formation_users_stmt->bind_param("i", $_POST["formation_id"]);
 			$formation_users_stmt->execute();
 			$formation_users_result = $formation_users_stmt->get_result();
 			$formation_users = array();
@@ -114,7 +108,7 @@ foreach ($_POST as $btn => $value)
 							break;
 					}
 				}
-				elseif ($value == 1)
+				elseif ($value == 1 AND gettype($key) === "integer")
 				{
 					$key = (int)$key;
 					$add_formation_user_stmt->bind_param("iis",
@@ -405,7 +399,7 @@ foreach ($_POST as $btn => $value)
 				{
 					### User doesn't exist in Database
 					# If user has attended, he should be inserted into database
-					if ($value == "1")
+					if ($value == "1" AND gettype($key) == "integer")
 					{
 						$attendance_insert_stmt->bind_param("ii", $_POST["meeting_id"], $key);
 						$attendance_insert_stmt->execute();

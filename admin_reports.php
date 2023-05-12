@@ -27,9 +27,6 @@ require_once "functions.php";
       <div class="box">
         <div class="row">
           <div class="col">
-            <a href="#" class="btn-basic">عرض الموضوعات بدون قرار</a>
-          </div>
-          <div class="col">
             <a href="#" class="btn-basic">عرض الموضوعات بالقرار</a>
           </div>
         </div>
