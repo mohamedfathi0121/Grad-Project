@@ -413,5 +413,44 @@ foreach ($_POST as $btn => $value)
 			header("location: meetings.php", true, 303);
 			break;
 
+		case "add_subject_attachment_btn":
+			$attachment_allowed_types = array("pdf", "png", "gif", "jpeg", "jpg");
+			$uploaded_attachments = Upload("subject_attachment", "images/", $attachment_allowed_types);
+			if (!empty($uploaded_attachments))
+			{
+				foreach ($uploaded_attachments as $key => $value)
+				{
+					$attachment_stmt = $conn->prepare("INSERT INTO `p39_subject_attachment`
+	                                                        (`attachment_name`, `attachment_title`, `subject_id`, `added_by`)
+	                                                    VALUES
+	                                                        (?, ?, ?, ?)");
+					$attachment_stmt->bind_param("ssii", $value, $key, $_POST["subject_id"],
+						$_SESSION["user_id"]);
+					$attachment_stmt->execute();
+				}
+			}
+			header("location: subject_attachment.php?sid={$_POST['subject_id']}",
+				true, 303);
+			break;
+
+		case "add_subject_picture_btn":
+			$pic_allowed_formats = array("png", "gif", "jpeg", "jpg");
+			$uploaded_pictures = Upload("subject_picture", "images/", $pic_allowed_formats);
+			if (!empty($uploaded_pictures))
+			{
+				foreach ($uploaded_pictures as $key => $value)
+				{
+					$picture_stmt = $conn->prepare("INSERT INTO `p39_subject_picture`
+	                                                        (`picture_name`, `picture_title`, `subject_id`, `added_by`)
+	                                                    VALUES
+	                                                        (?, ?, ?, ?)");
+					$picture_stmt->bind_param("ssii", $value, $key, $_POST["subject_id"],
+						$_SESSION["user_id"]);
+					$picture_stmt->execute();
+				}
+			}
+			header("location: subject_attachment.php?sid={$_POST['subject_id']}",
+				true, 303);
+			break;
 	}
 }

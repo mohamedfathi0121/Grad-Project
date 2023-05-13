@@ -1,4 +1,5 @@
 <?php
+require_once "functions.php";
 if (session_status() === PHP_SESSION_NONE)
 {
 	session_start();
@@ -49,6 +50,8 @@ foreach ($_POST as $key => $value)
 
 	}
 }
+$attachment_allowed_types = array("pdf", "png", "gif", "jpeg", "jpg");
+$uploaded_attachments = Upload("subject_attachment", "images/", $attachment_allowed_types);
 
 echo "<pre>";
 print_r($if1);
@@ -60,4 +63,12 @@ echo "</pre>";
 
 echo "<pre>";
 print_r($_SESSION);
+echo "</pre>";
+
+echo "<pre>";
+print_r($_FILES);
+echo "</pre>";
+
+echo "<pre>";
+print_r($uploaded_attachments);
 echo "</pre>";
