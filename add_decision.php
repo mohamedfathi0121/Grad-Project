@@ -76,6 +76,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
                             <div class="row">
                                 <input type="hidden" name="subject_id" value="<?= $_POST['subject_id'] ?>">
+                                <input type="hidden" name="meeting_id" value="<?= $_POST['meeting_id'] ?>">
                                 <button type="submit" class="btn-basic" name="add_decision_btn">اضافة قرار للموضوع</button>
                             </div>
                         </div>

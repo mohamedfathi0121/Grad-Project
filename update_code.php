@@ -291,7 +291,7 @@ foreach ($_POST as $btn => $value)
 													$decision_comments,
 													$_POST["decision_id"]);
 			$decision_update_stmt->execute();
-			header("location: meetings.php", true, 303);
+			header("location: current_meeting_subject.php?mid={$_POST['meeting_id']}", true, 303);
 			break;
 	}
 }

@@ -220,21 +220,27 @@ foreach ($_POST as $btn => $value)
 			break;
 
 		case "add_subject_btn":
-			$subject_number = clean_data($_POST["subject_number"]);
 			$subject_name = clean_data($_POST["subject_name"]);
 			$subject_details = clean_data($_POST["subject_details"]);
 			$subject_type = clean_data($_POST["subject_type"]);
 			$subject_comments = (empty($_POST["subject_comments"]) ? null : clean_data($_POST["subject_comments"]));
-			$meeting_stmt = $conn->prepare("SELECT 
-								                      meeting_id 
-								                  FROM 
-								                      p39_meeting 
-								                  WHERE 
-								                      is_current = 1");
+			$meeting_stmt = $conn->prepare("SELECT
+													    m.meeting_id
+													FROM
+													    p39_subject AS s
+													JOIN 
+												        p39_meeting AS m
+												            ON
+												                s.meeting_id = m.meeting_id 
+												                    AND 
+												                m.is_current = 1");
 			$meeting_stmt->execute();
 			$meeting_result = $meeting_stmt->get_result();
+			$subject_count = $meeting_result->num_rows;
+			$subject_count += 1;
 			$meeting_row = $meeting_result->fetch_assoc();
 			$meeting_id = $meeting_row["meeting_id"];
+			$meeting_stmt->close();
 			$insert_stmt = $conn->prepare("INSERT INTO 
     														`p39_subject`
     													(`subject_number`,
@@ -244,10 +250,10 @@ foreach ($_POST as $btn => $value)
     													 `meeting_id`, 
     													 `comments`, 
     													 `added_by`)
-                                          VALUES
-                                            (?, ?, ?, ?, ?, ?, ?)");
+		                                          VALUES
+		                                            (?, ?, ?, ?, ?, ?, ?)");
 			$insert_stmt->bind_param("issiisi",
-									$subject_number,
+									$subject_count,
 									$subject_name,
 										$subject_details,
 										$subject_type,
@@ -295,7 +301,7 @@ foreach ($_POST as $btn => $value)
 					}
 				}
 			}
-			header("location: meetings.php", true, 303);
+			header("location: current_meeting_subject.php?mid={$meeting_id}", true, 303);
 			break;
 
 		case "add_decision_btn":
@@ -342,7 +348,7 @@ foreach ($_POST as $btn => $value)
 												$decision_comments_comments,
 												$_SESSION["user_id"]);
 			$add_decision_stmt->execute();
-			header("location: meetings.php", true, 303);
+			header("location: current_meeting_subject.php?mid={$_POST['meeting_id']}", true, 303);
 			break;
 
 		case "attendance_btn":

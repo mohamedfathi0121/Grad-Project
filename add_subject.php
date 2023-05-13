@@ -15,9 +15,8 @@ Head("اضافة موضوع");
 <body dir="rtl">
 <?php
 Headers();
-Nav();
 if (is_admin()):
-	?>
+	Nav(); ?>
     <main class="add-member-page">
         <div class="container">
             <!-- عنوان الصفحة -->
@@ -26,11 +25,6 @@ if (is_admin()):
             </div>
             <form class="box" method="post" action="addition_code.php" enctype="multipart/form-data">
                 <div class="col">
-                    <div class="row">
-                        <h4>رقم الموضوع</h4>
-                        <input type="number" name="subject_number" placeholder="رقم الموضوع" required min="1" />
-                    </div>
-
                     <div class="row">
                         <h4>عنوان الموضوع</h4>
                         <input type="text" name="subject_name" placeholder="عنوان الموضوع" required/>
