@@ -106,7 +106,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
                                 <div class="current-formation-buttons">
                                     <?php if ($_SESSION["admin"]) { ?>
-                                        <a class="btn-basic" href="add_formation_member.php">اضافة و تعديل اعضاء التشكيل</a>
+                                        <a class="btn-basic" href="add_formation_member.php">اضافة و تعديل أعضاء التشكيل</a>
                                         <form method="post" action="update_formation.php">
                                             <input class="current-formation-buttons" type="hidden" name="formation_id"
                                                    value="<?= $current_formation_row['formation_id'] ?>">
@@ -115,7 +115,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                     <?php } ?>
                                     <a href="meetings.php?f=fn&search=<?= $current_formation_row['formation_number'] ?>" class="btn-basic">عرض
                                         مجالس التشكيل</a>
-                                    <!-- <button class="btn-basic">عرض اعضاء التشكيل</button>-->
+                                     <button class="btn-basic">عرض أعضاء التشكيل</button>
                                 </div>
                             </div>
                         <?php } ?>
@@ -130,11 +130,11 @@ if (session_status() === PHP_SESSION_NONE) {
                         </div>
                     <?php endif; ?>
                 <?php $past_formation_stmt = $conn->prepare("SELECT 
-                                                                                * 
-                                                                            FROM 
-                                                                                p39_formation 
-                                                                            WHERE 
-                                                                                is_current = 0 ");
+                                                                        * 
+                                                                    FROM 
+                                                                        p39_formation 
+                                                                    WHERE 
+                                                                        is_current = 0 ");
                 $past_formation_stmt->execute();
                 $past_formation_result = $past_formation_stmt->get_result();
                 $past_formations_count = 0;
@@ -174,7 +174,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                     <div class="col">
                                         <a href="meetings.php?f=fn&search=<?= $past_formation_row['formation_number'] ?>" class="btn-basic">عرض
                                             مجالس التشكيل</a>
-                                        <!--                            <button class="btn-basic">عرض اعضاء التشكيل</button>-->
+                                        <button class="btn-basic">عرض أعضاء التشكيل</button>
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +256,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                     <div class="col">
                                         <a href="meetings.php?f=fn&search=<?= $search_row['formation_number'] ?>"
                                            class="btn-basic">عرض مجالس التشكيل</a>
-                                        <!--                            <button class="btn-basic">عرض اعضاء التشكيل</button>-->
+                                        <button class="btn-basic">عرض أعضاء التشكيل</button>
                                     </div>
                                 </div>
                             </div>
