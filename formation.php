@@ -11,15 +11,15 @@ if (session_status() === PHP_SESSION_NONE) {
 <?php Head("التشكيلات"); ?>
 
 <body dir="rtl">
-  <?php Headers(); ?>
-  <?php if (is_logged_in()) { ?>
-  <?php Nav(); ?>
-  <main id="admin" class="formation-content">
-    <div class="container">
-      <div class="title">
-        <h1>التشكيلات</h1>
-      </div>
-      <?php
+    <?php Headers(); ?>
+    <?php if (is_logged_in()) { ?>
+    <?php Nav(); ?>
+    <main id="admin" class="formation-content">
+        <div class="container">
+            <div class="title">
+                <h1>التشكيلات</h1>
+            </div>
+            <?php
                 ### Get formation_ids the user exists in
                 $user_formation_ids_stmt = $conn->prepare("SELECT 
                                                                     formation_id 
@@ -49,73 +49,84 @@ if (session_status() === PHP_SESSION_NONE) {
                     $current_formation_stmt->execute();
                     $current_formation_result = $current_formation_stmt->get_result();
                     $current_formation_exists = $current_formation_result->num_rows > 0; ?>
-      <!-- التشكيل الحالي -->
-      <div class="current-formation">
-        <h3>التشكيل الحالي</h3>
-        <?php if ($current_formation_exists): ?>
-        <?php while ($current_formation_row = $current_formation_result->fetch_assoc()) { ?>
-        <!--                            --><?php //if () ?>
-        <!-- لو في تشكيل حالي -->
-        <div class="box">
-          <div class="row">
-            <div class="col">
-              <h4> رقم التشكيل السنوي:
-                <span>
-                  <?= $current_formation_row["formation_number"] ?>
-                </span>
-              </h4>
-              <h4>
-                تاريخ بدايته:
-                <span>
-                  9 / <?= $current_formation_row["start_year"] ?>
-                </span>
-              </h4>
-              <h4>
-                تاريخ نهايته:
-                <span>
-                  8 / <?= $current_formation_row["start_year"] + 1 ?>
-                </span>
-              </h4>
-            </div>
+            <!-- التشكيل الحالي -->
+            <div class="current-formation">
+                <h3>التشكيل الحالي</h3>
+                <?php if ($current_formation_exists): ?>
+                <?php while ($current_formation_row = $current_formation_result->fetch_assoc()) { ?>
+                <!--                            --><?php //if () ?>
+                <!-- لو في تشكيل حالي -->
+                <div class="box">
+                    <div class="row">
+                        <div class="col">
+                            <h4> رقم التشكيل السنوي:
+                                <span>
+                                    <?= $current_formation_row["formation_number"] ?>
+                                </span>
+                            </h4>
+                            <h4>
+                                تاريخ بدايته:
+                                <span>
+                                    9 / <?= $current_formation_row["start_year"] ?>
+                                </span>
+                            </h4>
+                            <h4>
+                                تاريخ نهايته:
+                                <span>
+                                    8 / <?= $current_formation_row["start_year"] + 1 ?>
+                                </span>
+                            </h4>
+                        </div>
 
-            <div class="col">
-              <?php if ($_SESSION["admin"]) { ?>
-              <form method="post" action="meeting_status.php">
-                <input type="hidden" name="formation_id" value="<?= $current_formation_row['formation_id'] ?>">
-                <button class="btn-basic" name="past_formation_btn">
-                  تحويل لتشكيل سابق
-                </button>
-              </form>
-              <?php } ?>
-            </div>
-          </div>
+                        <div class="col">
+                            <?php if ($_SESSION["admin"]) { ?>
+                            <button data-open-modal class="btn-basic">تحويل لتشكيل سابق
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                            <dialog data-modal>
+                                <form method="post" action="meeting_status.php">
+                                    <h4>هل تريد تحويل التشكيل لتشكيل سابق؟
+                                    </h4>
+                                    <input type="hidden" name="formation_id"
+                                        value="<?= $current_formation_row['formation_id'] ?>">
+                                    <button class="btn-basic" name="past_formation_btn">
+                                        تحويل لتشكيل سابق
+                                    </button>
+                                    <button type="submit" formmethod="dialog" class="btn-basic">الغاء</button>
 
-          <div class="current-formation-buttons">
-            <?php if ($_SESSION["admin"]) { ?>
-            <a class="btn-basic" href="add_formation_member.php">اضافة و تعديل اعضاء التشكيل</a>
-            <form method="post" action="update_formation.php">
-              <input class="current-formation-buttons" type="hidden" name="formation_id"
-                value="<?= $current_formation_row['formation_id'] ?>">
-              <button class="btn-basic">تعديل بيانات التشكيل</button>
-            </form>
-            <?php } ?>
-            <a href="meetings.php?f=fn&search=<?= $current_formation_row['formation_number'] ?>" class="btn-basic">عرض
-              مجالس التشكيل</a>
-            <!-- <button class="btn-basic">عرض اعضاء التشكيل</button>-->
-          </div>
+                                </form>
+                            </dialog>
+                            <?php } ?>
+                        </div>
+                    </div>
+
+                    <div class="current-formation-buttons">
+                        <?php if ($_SESSION["admin"]) { ?>
+                        <a class="btn-basic" href="add_formation_member.php">اضافة و تعديل اعضاء التشكيل</a>
+                        <form method="post" action="update_formation.php">
+                            <input class="current-formation-buttons" type="hidden" name="formation_id"
+                                value="<?= $current_formation_row['formation_id'] ?>">
+                            <button class="btn-basic">تعديل بيانات التشكيل</button>
+                        </form>
+                        <?php } ?>
+                        <a href="meetings.php?f=fn&search=<?= $current_formation_row['formation_number'] ?>"
+                            class="btn-basic">عرض
+                            مجالس التشكيل</a>
+                        <!-- <button class="btn-basic">عرض اعضاء التشكيل</button>-->
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
+            <?php else: ?>
         </div>
-        <?php } ?>
-      </div>
-      <?php else: ?>
-    </div>
-    <!-- لو مفيش تشكيل حالي -->
-    <div class="current-formation">
-      <main id="empty" class="empty-formation">
-        <h4>لا يوجد تشكيلات حالية الان</h4>
-      </main>
-    </div>
-    <?php endif; ?>
-    <?php $past_formation_stmt = $conn->prepare("SELECT 
+        <!-- لو مفيش تشكيل حالي -->
+        <div class="current-formation">
+            <main id="empty" class="empty-formation">
+                <h4>لا يوجد تشكيلات حالية الان</h4>
+            </main>
+        </div>
+        <?php endif; ?>
+        <?php $past_formation_stmt = $conn->prepare("SELECT 
                                                                         * 
                                                                     FROM 
                                                                         p39_formation 
@@ -125,8 +136,8 @@ if (session_status() === PHP_SESSION_NONE) {
                 $past_formation_result = $past_formation_stmt->get_result();
                 $past_formations_count = 0;
                 if ($past_formation_result->num_rows > 0) { ?>
-    <div class="old-formation">
-      <?php while ($past_formation_row = $past_formation_result->fetch_assoc()) {
+        <div class="old-formation">
+            <?php while ($past_formation_row = $past_formation_result->fetch_assoc()) {
                             if (!in_array($past_formation_row["formation_id"], $user_formation_ids)
                                 AND !$_SESSION["admin"])
                             {
@@ -136,54 +147,55 @@ if (session_status() === PHP_SESSION_NONE) {
                                 ?> <h3>التشكيلات السابقة</h3> <?php
                             }
                             ?>
-      <div class="box">
-        <div class="row">
-          <div class="col">
-            <h4> رقم التشكيل السنوي:
-              <span>
-                <?= $past_formation_row["formation_number"] ?>
-              </span>
-            </h4>
-            <h4>
-              تاريخ بدايته:
-              <span>
-                9 / <?= $past_formation_row["start_year"] ?>
-              </span>
-            </h4>
-            <h4>
-              تاريخ نهايته:
-              <span>
-                8 / <?= $past_formation_row["start_year"] + 1 ?>
-              </span>
-            </h4>
-          </div>
-          <div class="col">
-            <a href="meetings.php?f=fn&search=<?= $past_formation_row['formation_number'] ?>" class="btn-basic">عرض
-              مجالس التشكيل</a>
-            <!--                            <button class="btn-basic">عرض اعضاء التشكيل</button>-->
-          </div>
+            <div class="box">
+                <div class="row">
+                    <div class="col">
+                        <h4> رقم التشكيل السنوي:
+                            <span>
+                                <?= $past_formation_row["formation_number"] ?>
+                            </span>
+                        </h4>
+                        <h4>
+                            تاريخ بدايته:
+                            <span>
+                                9 / <?= $past_formation_row["start_year"] ?>
+                            </span>
+                        </h4>
+                        <h4>
+                            تاريخ نهايته:
+                            <span>
+                                8 / <?= $past_formation_row["start_year"] + 1 ?>
+                            </span>
+                        </h4>
+                    </div>
+                    <div class="col">
+                        <a href="meetings.php?f=fn&search=<?= $past_formation_row['formation_number'] ?>"
+                            class="btn-basic">عرض
+                            مجالس التشكيل</a>
+                        <!--                            <button class="btn-basic">عرض اعضاء التشكيل</button>-->
+                    </div>
+                </div>
+            </div>
+            <?php $past_formations_count++; ?>
+            <?php } ?>
         </div>
-      </div>
-      <?php $past_formations_count++; ?>
-      <?php } ?>
-    </div>
-    <?php } ?>
-    </div>
-    <?php if ($_SESSION["admin"]) { ?>
-    <?php if ($current_formation_exists): ?>
-    <!-- اضافة تشكيل جديد -->
-    <div class="add-formation">
-      <button disabled title=" يجب تحويل التشكيل الحالي لتشكيل سابق أولًا " class="btn-basic disabled">
-        إضافة تشكيل جديد
-      </button>
-    </div>
-    <?php else: ?>
-    <div class="add-formation">
-      <a class="btn-basic" href="add_formation.php">إضافة تشكيل جديد</a>
-    </div>
-    <?php endif; ?>
-    <?php } ?>
-    <?php elseif (!empty($_GET["search"])) :
+        <?php } ?>
+        </div>
+        <?php if ($_SESSION["admin"]) { ?>
+        <?php if ($current_formation_exists): ?>
+        <!-- اضافة تشكيل جديد -->
+        <div class="add-formation">
+            <button disabled title=" يجب تحويل التشكيل الحالي لتشكيل سابق أولًا " class="btn-basic disabled">
+                إضافة تشكيل جديد
+            </button>
+        </div>
+        <?php else: ?>
+        <div class="add-formation">
+            <a class="btn-basic" href="add_formation.php">إضافة تشكيل جديد</a>
+        </div>
+        <?php endif; ?>
+        <?php } ?>
+        <?php elseif (!empty($_GET["search"])) :
 //	            $search = "%" . $_GET["search"] . "%";
 //	            //      $search_query = "SELECT * FROM p39_meeting WHERE formation_id LIKE %";
 //	            //      $search_query .= $_POST["search"] . "%";
@@ -204,73 +216,74 @@ if (session_status() === PHP_SESSION_NONE) {
 		                    AND !$_SESSION["admin"])
 	                    {
 		                    ?>
-    <div class='current-formation'>
-      <main id='empty' class='empty-formation'>
-        <h4>عذرًا، لا يوجد تشكيلات تطابق رقم التشكيل</h4>
-      </main>
-    </div>
-    <?php
+        <div class='current-formation'>
+            <main id='empty' class='empty-formation'>
+                <h4>عذرًا، لا يوجد تشكيلات تطابق رقم التشكيل</h4>
+            </main>
+        </div>
+        <?php
 		                    break;
 	                    } ?>
-    <div class="box">
-      <div class="row">
-        <div class="col">
-          <h4> رقم التشكيل السنوي:
-            <span>
-              <?= $search_row["formation_number"] ?>
-            </span>
-          </h4>
-          <h4>
-            تاريخ بدايته:
-            <span>
-              9 / <?= $search_row["start_year"] ?>
-            </span>
-          </h4>
-          <h4>
-            تاريخ نهايته:
-            <span>
-              8 / <?= $search_row["start_year"] + 1 ?>
-            </span>
-          </h4>
+        <div class="box">
+            <div class="row">
+                <div class="col">
+                    <h4> رقم التشكيل السنوي:
+                        <span>
+                            <?= $search_row["formation_number"] ?>
+                        </span>
+                    </h4>
+                    <h4>
+                        تاريخ بدايته:
+                        <span>
+                            9 / <?= $search_row["start_year"] ?>
+                        </span>
+                    </h4>
+                    <h4>
+                        تاريخ نهايته:
+                        <span>
+                            8 / <?= $search_row["start_year"] + 1 ?>
+                        </span>
+                    </h4>
+                </div>
+                <div class="col">
+                    <a href="meetings.php?f=fn&search=<?= $search_row['formation_number'] ?>" class="btn-basic">عرض
+                        مجالس
+                        التشكيل</a>
+                    <!--                            <button class="btn-basic">عرض اعضاء التشكيل</button>-->
+                </div>
+            </div>
         </div>
-        <div class="col">
-          <a href="meetings.php?f=fn&search=<?= $search_row['formation_number'] ?>" class="btn-basic">عرض مجالس
-            التشكيل</a>
-          <!--                            <button class="btn-basic">عرض اعضاء التشكيل</button>-->
-        </div>
-      </div>
-    </div>
-    <?php
+        <?php
                     }
                 }
                 else
                 {
 	                ?>
-    <div class='current-formation'>
-      <main id='empty' class='empty-formation'>
-        <h4>عذرًا، لا يوجد تشكيلات تطابق رقم التشكيل</h4>
-      </main>
-    </div>
-    <?php
+        <div class='current-formation'>
+            <main id='empty' class='empty-formation'>
+                <h4>عذرًا، لا يوجد تشكيلات تطابق رقم التشكيل</h4>
+            </main>
+        </div>
+        <?php
                 }
             else :
 	            ?>
-    <div class='current-meeting'>
-      <main id='empty' class='empty-meeting'>
-        <h4>عذرًا، لا يوجد تشكيلات بهذا الرقم</h4>
-      </main>
-    </div>
-    <?php endif; ?>
+        <div class='current-meeting'>
+            <main id='empty' class='empty-meeting'>
+                <h4>عذرًا، لا يوجد تشكيلات بهذا الرقم</h4>
+            </main>
+        </div>
+        <?php endif; ?>
 
 
-  </main>
-  <?php } footer(); ?>
+    </main>
+    <?php } footer(); ?>
 
-  <!-- Js Scripts and Plugins -->
-  <script type="module" src="./js/main.js"></script>
+    <!-- Js Scripts and Plugins -->
+    <script type="module" src="./js/main.js"></script>
 
-  <!-- font Awesome -->
-  <script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
+    <!-- font Awesome -->
+    <script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -76,16 +76,27 @@ require_once "functions.php";
 
 
         <!-- اضافة ملف -->
-        <div class="upload add-attachment">
-            <div class="btn-basic">
-                <label for="up1">
-                    رفع ملف المجلس الموثق
-                    <i class="fa-solid fa-upload"></i>
-                    <input id="up1" type="file" class="upload-button" multiple />
-                </label>
-            </div>
-            <div class="file-list"></div>
-        </div>
+        <!-- الزرار دا شغال لوحده ملكش دعوة بية -->
+        <button data-open-modal class="btn-basic add-attachment">رفع ملف جديد</button>
+        <dialog data-modal>
+            <form method="" action="">
+                <!-- upload button -->
+                <div>
+                    <div class="btn-basic">
+                        <label for="up1">
+                            تحميل ملف المجلس الموثق
+                            <i class="fa-solid fa-upload"></i>
+                            <input id="up1" type="file" class="upload-button" multiple />
+                        </label>
+                    </div>
+                    <div class="file-list"></div>
+                </div>
+                <!-- submit button -->
+                <button class="btn-basic" type="submit">رفع</button>
+                <!-- الزرار دا شغال لوحده ملكش دعوة بية -->
+                <button type="submit" formmethod="dialog" class="btn-basic">الغاء</button>
+            </form>
+        </dialog>
     </main>
 
 
