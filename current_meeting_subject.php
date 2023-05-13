@@ -13,22 +13,21 @@ if (session_status() === PHP_SESSION_NONE) {
 <body dir="rtl">
 <?php Headers();
 if (is_logged_in()):
-	if (isset($_GET["mid"])) {
-        $formation_id_stmt = $conn->prepare("SELECT formation_id FROM p39_meeting WHERE meeting_id = ?");
-        $formation_id_stmt->bind_param("i", $_GET["mid"]);
-        $formation_id_stmt->execute();
-        $formation_id_result = $formation_id_stmt->get_result();
-        $formation_id_row = $formation_id_result->fetch_assoc();
-        if (in_array($formation_id_row["formation_id"], $_SESSION["formation_ids"]) OR $_SESSION["admin"]) {
-            Nav();
-            ?>
-            <main class="current-subject-content">
-                <div class="container">
-                <!-- عنوان الصفحة -->
-                <div class="title">
-                    <h1>موضوعات المجلس الحالي</h1>
-                </div>
-                <?php
+	Nav(); ?>
+    <main class="current-subject-content">
+        <div class="container">
+            <!-- عنوان الصفحة -->
+            <div class="title">
+                <h1>موضوعات المجلس الحالي</h1>
+            </div>
+			<?php
+            $formation_id_stmt = $conn->prepare("SELECT formation_id FROM p39_meeting WHERE meeting_id = ?");
+            $formation_id_stmt->bind_param("i", $_GET["mid"]);
+            $formation_id_stmt->execute();
+            $formation_id_result = $formation_id_stmt->get_result();
+            $formation_id_row = $formation_id_result->fetch_assoc();
+            if (@in_array($formation_id_row["formation_id"], $_SESSION["formation_ids"]) OR $_SESSION["admin"]) {
+
                 $subject_types_stmt = $conn->prepare("SELECT * FROM p39_subject_type");
                 $subject_types_stmt->execute();
                 $subject_types_result = $subject_types_stmt->get_result();
@@ -45,13 +44,7 @@ if (is_logged_in()):
                     $current_subjects_stmt->execute();
                     $current_subjects_result = $current_subjects_stmt->get_result();
                     if ($current_subjects_result->num_rows > 0) {
-                        while ($current_subjects_row = $current_subjects_result->fetch_assoc()) {
-                            ?>
-                            <?php $subject_decision_stmt = $conn->prepare("SELECT * FROM p39_decision WHERE subject_id = ?"); ?>
-                            <?php $subject_decision_stmt->bind_param("i", $current_subjects_row["subject_id"]); ?>
-                            <?php $subject_decision_stmt->execute(); ?>
-                            <?php $subject_decision_result = $subject_decision_stmt->get_result(); ?>
-                            <?php $subject_decision_exists = $subject_decision_result->num_rows > 0; ?>
+                        while ($current_subjects_row = $current_subjects_result->fetch_assoc()) { ?>
                             <div class="current-subject-foradmin">
                                 <div class="box">
                                     <div class="row">
@@ -83,65 +76,109 @@ if (is_logged_in()):
                                         </div>
 
                                         <?php
-                                        if (!$_SESSION["admin"])
+                                        $is_current_stmt = $conn->prepare("SELECT 
+                                                                                        is_current, 
+                                                                                        status 
+                                                                                    FROM 
+                                                                                        p39_meeting 
+                                                                                    WHERE 
+                                                                                        meeting_id = ?");
+                                        $is_current_stmt->bind_param("i", $search);
+                                        $is_current_stmt->execute();
+                                        $is_current_result = $is_current_stmt->get_result();
+                                        $is_current_row = $is_current_result->fetch_assoc();
+                                        $is_current = $is_current_row["is_current"] == 1;
+                                        $status = $is_current_row["status"];
+                                        if ($is_current)
                                         {
-                                        ?>
-                                        <div class="col col-subject-vote">
-                                            <a href="voting.php" class="btn-basic">
-                                                تصويت
-                                            </a>
-                                            <button class="btn-basic subject-details-btn">
-                                                تفاصيل الموضوع
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <?php
-                                    }
-                                    else
-                                    {
-                                    ?>
-                                </div>
-                                <div class="row">
-                                    <?php if ($subject_decision_exists) { ?>
-                                        <div class="col">
-                                            <button class="btn-basic disabled" disabled>إضافة قرار</button>
-                                        </div>
-                                        <div class="col">
-                                            <form method="post" action="update_decision.php">
-                                                <input type="hidden" name="subject_id"
-                                                       value="<?= $current_subjects_row['subject_id'] ?>">
-                                                <button class="btn-basic" name="add_decision">تعديل قرار</button>
-                                            </form>
-                                        </div>
-                                    <?php } else { ?>
-                                        <div class="col">
-                                            <form method="post" action="add_decision.php">
-                                                <input type="hidden" name="subject_id"
-                                                       value="<?= $current_subjects_row['subject_id'] ?>">
-                                                <button class="btn-basic" name="add_decision">اضافة قرار</button>
-                                            </form>
-                                        </div>
-                                        <div class="col">
-                                            <button class="btn-basic disabled" disabled>تعديل قرار</button>
-                                        </div>
-                                    <?php } ?>
-                                    <div class="col">
-                                        <button class="btn-basic subject-details-btn">
-                                            تفاصيل الموضوع
-                                        </button>
-                                    </div>
-                                    <div class="col">
-                                        <form method="post" action="update_subject.php">
-                                            <input type="hidden" name="subject_id"
-                                                   value="<?= $current_subjects_row['subject_id'] ?>">
-                                            <button class="btn-basic" name="update_subject_btn">تعديل الموضوع</button>
-                                        </form>
-                                    </div>
+                                            if (!$_SESSION["admin"]) { ?>
+                                                <div class="col col-subject-vote">
+                                                    <a href="voting.php" class="btn-basic">
+                                                        تصويت
+                                                    </a>
+                                                    <button class="btn-basic subject-details-btn">
+                                                        تفاصيل الموضوع
+                                                    </button>
+                                                </div>
+                                                <!-- Closing tag of row -->
+                                                </div>
+                                            <?php } else {
+                                                $subject_decision_stmt = $conn->prepare("SELECT 
+                                                                                                    decision_id 
+                                                                                                FROM 
+                                                                                                    p39_decision 
+                                                                                                WHERE 
+                                                                                                    subject_id = ?");
+                                                $subject_decision_stmt->bind_param("i", $current_subjects_row["subject_id"]);
+                                                $subject_decision_stmt->execute();
+                                                $subject_decision_result = $subject_decision_stmt->get_result();
+                                                $subject_decision_exists = $subject_decision_result->num_rows > 0;
+                                                $subject_decision_stmt->close(); ?>
+                                                </div>
+                                                <div class="row">
+                                                    <?php if ($status == "confirmed") {
+                                                        if ($subject_decision_exists) { ?>
+                                                            <div class="col">
+                                                                <button class="btn-basic disabled" disabled>إضافة قرار</button>
+                                                            </div>
+                                                            <div class="col">
+                                                                <form method="post" action="update_decision.php">
+                                                                    <input type="hidden" name="meeting_id" value="<?= $_GET['mid'] ?>">
+                                                                    <input type="hidden" name="subject_id"
+                                                                           value="<?= $current_subjects_row['subject_id'] ?>">
+                                                                    <button class="btn-basic" name="add_decision">تعديل قرار</button>
+                                                                </form>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="col">
+                                                                <form method="post" action="add_decision.php">
+                                                                    <input type="hidden" name="subject_id"
+                                                                           value="<?= $current_subjects_row['subject_id'] ?>">
+                                                                    <input type="hidden" name="meeting_id" value="<?= $_GET['mid'] ?>">
 
-                                </div>
-                                <?php
-                                }
-                                ?>
+                                                                    <button class="btn-basic" name="add_decision">اضافة قرار</button>
+                                                                </form>
+                                                            </div>
+                                                            <div class="col">
+                                                                <button class="btn-basic disabled" disabled>تعديل قرار</button>
+                                                            </div>
+                                                        <?php }
+                                                    } else { ?>
+                                                        <div class="col">
+                                                            <button class="btn-basic disabled" disabled>اضافة قرار</button>
+                                                        </div>
+                                                        <div class="col">
+                                                            <button class="btn-basic disabled" disabled>تعديل قرار</button>
+                                                        </div>
+                                                    <?php } ?>
+                                                    <div class="col">
+                                                        <button class="btn-basic subject-details-btn">
+                                                            تفاصيل الموضوع
+                                                        </button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <form method="post" action="update_subject.php">
+                                                            <input type="hidden" name="subject_id"
+                                                                   value="<?= $current_subjects_row['subject_id'] ?>">
+                                                            <button class="btn-basic" name="update_subject_btn">تعديل الموضوع</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a class="btn-basic" href="subject_attachment.php?sid=<?=$current_subjects_row['subject_id']?>">عرض المرفقات</a>
+                                                    </div>
+
+                                                </div>
+                                            <?php }
+                                        } else { ?>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col col-subject-vote">
+                                                    <button class="btn-basic subject-details-btn">
+                                                        تفاصيل الموضوع
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                 <div class="current-subject-details deactive">
                                     <div class="row">
                                         <div class="col">
@@ -161,10 +198,9 @@ if (is_logged_in()):
                         <main id="empty" class="empty-current-subject">
                             <h4>لا يوجد موضوعات الان</h4>
                         </main>
-
-                        <?php
+                                <?php
                     }
-                    if ($_SESSION["admin"])
+                    if ($_SESSION["admin"] AND @$is_current)
                     {
                         ?>
                         </div>
@@ -185,9 +221,9 @@ if (is_logged_in()):
                 </div>
                 <?php
             }
-            ?>
-            </main>
-    <?php }
+        ?>
+        </main>
+    <?php
 endif;
 footer();
 ?>

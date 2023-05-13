@@ -328,3 +328,9 @@ function Search($conn, $table = NULL, $query = NULL)
 	    return $search_result;
     }
 }
+
+function Delete($conn, $table, $where)
+{
+    $delete_stmt = $conn->prepare("DELETE FROM {$table} WHERE {$where}");
+    return $delete_stmt;
+}

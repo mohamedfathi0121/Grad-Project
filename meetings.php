@@ -218,14 +218,15 @@ if (session_status() === PHP_SESSION_NONE)
                                                         <!-- Meeting buttons for admin -->
                                                         <?php if ($_SESSION["admin"]) { ?>
                                                             <div class="current-meeting-buttons">
+                                                                <form method="post" action="update_meeting.php" class="current-meeting-buttons">
+                                                                    <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
+                                                                    <button name="update_meeting_btn" class="btn-basic">تعديل المجلس</button>
+                                                                </form>
                                                                 <form method="get" action="current_meeting_subject.php" class="current-meeting-buttons">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
                                                                     <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
                                                                 </form>
-                                                                <form method="post" action="update_meeting.php" class="current-meeting-buttons">
-                                                                    <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                                    <button name="update_meeting_btn" class="btn-basic">تعديل</button>
-                                                                </form>
+                                                                <a href="subjects_table.php" class="btn-basic">جدول الأعمال</a>
                                                                 <button title=" يجب ان يكون المجلس مؤكد اولا"
                                                                         class="btn-basic disabled" disabled
                                                                         type="button">تسجيل الحضور</button>
@@ -337,6 +338,9 @@ if (session_status() === PHP_SESSION_NONE)
                                                         </div>
                                                         <?php if ($_SESSION["admin"]) { ?>
                                                             <div class="current-meeting-buttons">
+                                                                <button type="button" disabled class="btn-basic disabled" title="لا يمكن تعديل مجلس مؤكد">
+                                                                    تعديل المجلس
+                                                                </button>
                                                                 <form method="get" action="current_meeting_subject.php"
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
@@ -344,13 +348,6 @@ if (session_status() === PHP_SESSION_NONE)
                                                                         الموضوعات الخاصة بالمجلس
                                                                     </button>
                                                                 </form>
-                                                                <!-- <button class="btn-basic disabled" disabled>الموضوعات الخاصة بالمجلس</button>-->
-                                                                <button type="button" disabled class="btn-basic disabled" title="لا يمكن تعديل مجلس مؤكد">
-                                                                    تعديل
-                                                                </button>
-                                                                <!--<button class="btn-basic disabled" disabled title="لا يمكن تعديل مجلس مؤكد">
-                                                                    تعديل
-                                                                </button>-->
                                                                 <form method="post" action="meeting_attendance.php"
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" name="meeting_id"
@@ -442,6 +439,9 @@ if (session_status() === PHP_SESSION_NONE)
                                                         </div>
                                                         <?php if ($_SESSION["admin"]) { ?>
                                                             <div class="current-meeting-buttons">
+                                                                <button type="button" disabled class="btn-basic disabled" title="لا يمكن تعديل مجلس نهائي">
+                                                                    تعديل المجلس
+                                                                </button>
                                                                 <form method="get" action="current_meeting_subject.php"
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
@@ -449,13 +449,6 @@ if (session_status() === PHP_SESSION_NONE)
                                                                         الموضوعات الخاصة بالمجلس
                                                                     </button>
                                                                 </form>
-                                                                <!-- <button class="btn-basic disabled" disabled>الموضوعات الخاصة بالمجلس</button>-->
-                                                                <button type="button" disabled class="btn-basic disabled" title="لا يمكن تعديل مجلس نهائي">
-                                                                    تعديل
-                                                                </button>
-                                                                <!--<button class="btn-basic disabled" disabled title="لا يمكن تعديل مجلس مؤكد">
-                                                                    تعديل
-                                                                </button>-->
                                                                 <form method="post" action="meeting_attendance.php"
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" name="meeting_id"

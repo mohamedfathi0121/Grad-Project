@@ -102,35 +102,35 @@ if (session_status() === PHP_SESSION_NONE) {
                         <input type="text" name="action_to" value="<?= $decision_row['action_to'] ?>"/>
                     </div>
 
-                    <div class="row sp-row is-excu deactive">
-                        <h4>هل تم تنفيذ القرار؟</h4>
-                        <div class="row ">
-							<?php switch ($decision_row["is_action_done"]) {
-								case "0":
-								case NULL: ?>
-                                    <div class="col">
-                                        <h5>نعم</h5>
-                                        <input type="radio" name="is_action_done" value="1">
-                                    </div>
-                                    <div class="col">
-                                        <h5>لا</h5>
-                                        <input type="radio" name="is_action_done" value="0" checked>
-                                    </div>
-									<?php break; ?>
-
-								<?php case "1": ?>
-                                    <div class="col">
-                                        <h5>نعم</h5>
-                                        <input type="radio" name="is_action_done" value="1" checked>
-                                    </div>
-                                    <div class="col">
-                                        <h5>لا</h5>
-                                        <input type="radio" name="is_action_done" value="0">
-                                    </div>
-									<?php break; ?>
-								<?php } ?>
-                        </div>
-                    </div>
+<!--                    <div class="row sp-row is-excu deactive">-->
+<!--                        <h4>هل تم تنفيذ القرار؟</h4>-->
+<!--                        <div class="row ">-->
+<!--							--><?php //switch ($decision_row["is_action_done"]) {
+//								case "0":
+//								case NULL: ?>
+<!--                                    <div class="col">-->
+<!--                                        <h5>نعم</h5>-->
+<!--                                        <input type="radio" name="is_action_done" value="1">-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <h5>لا</h5>-->
+<!--                                        <input type="radio" name="is_action_done" value="0" checked>-->
+<!--                                    </div>-->
+<!--									--><?php //break; ?>
+<!---->
+<!--								--><?php //case "1": ?>
+<!--                                    <div class="col">-->
+<!--                                        <h5>نعم</h5>-->
+<!--                                        <input type="radio" name="is_action_done" value="1" checked>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <h5>لا</h5>-->
+<!--                                        <input type="radio" name="is_action_done" value="0">-->
+<!--                                    </div>-->
+<!--									--><?php //break; ?>
+<!--								--><?php //} ?>
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="row">
                         <h4>ملاحظات</h4>
                         <textarea name="decision_comments"><?= $decision_row["comments"] ?></textarea>
@@ -139,13 +139,15 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="row sp2-row">
                         <form method="post" action="update_code.php">
                             <input type="hidden" name="decision_id" value="<?= $decision_row['decision_id'] ?>">
+                            <input type="hidden" name="meeting_id" value="<?= $_POST['meeting_id'] ?>">
                             <button type="submit" class="btn-basic" name="update_decision_btn">
                                 تعديل قرار للموضوع
                             </button>
                         </form>
                         <form method="post" action="deletion_code.php">
                             <input type="hidden" name="decision_id" value="<?= $decision_row['decision_id'] ?>">
-                            <button type="submit" class="btn-basic" name="update_decision_btn">
+                            <input type="hidden" name="meeting_id" value="<?= $_POST['meeting_id'] ?>">
+                            <button type="submit" class="btn-basic" name="delete_decision_btn">
                                 حذف قرار للموضوع
                             </button>
                         </form>
