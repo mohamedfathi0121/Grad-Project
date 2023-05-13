@@ -125,6 +125,56 @@ if (session_status() === PHP_SESSION_NONE)
                                                         </span>
                                                     </h4>
                                                 </div>
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="card">
+                                                            <div class="card-box">
+                                                                30
+                                                            </div>
+                                                            <div class="card-text">عدد الموضوعات</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                16
+                                                            </div>
+                                                            <div class="card-text">الاعضاء الحاضرين</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                16
+                                                            </div>
+                                                            <div class="card-text">الموضوعات الموافق عليها</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                12
+                                                            </div>
+                                                            <div class="card-text">الموضوعات المرفوضة</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                18
+                                                            </div>
+                                                            <div class="card-text">قرارات منفذة</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                5
+                                                            </div>
+                                                            <div class="card-text">قرارات غير منفذة</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                </div>
                                                 <?php
                                                 switch ($current_meeting_row["status"])
                                                 {

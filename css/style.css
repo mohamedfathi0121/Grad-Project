@@ -127,6 +127,33 @@
 		align-items: center;
 	}
 }
+.meeting-box .row > .col:nth-child(2) {
+	gap: 10px;
+}
+.meeting-box .card .card-box {
+	background-color: var(--tangaroa);
+	color: #fff;
+	width: 4vmin;
+	text-align: center;
+	border-radius: 50%;
+	margin: auto;
+}
+.meeting-box .card {
+	padding: 2vmin;
+	border: 2px solid var(--tangaroa);
+	border-radius: 5px;
+	flex: 1;
+}
+.meeting-box .card .card-text {
+	text-align: center;
+	font-size: 0.9em;
+	color: var(--headings-color);
+}
+.meeting-box .row .col > .row {
+	column-gap: 25px;
+	margin: 0;
+	align-items: stretch;
+}
 
 /* Old Meetings */
 
@@ -144,7 +171,7 @@
 	text-align: center;
 }
 
-/* *Css for Meetings Page */
+/* *Css for Members Page */
 /* ############################ */
 .member-box .member-image {
 	width: 40vmin;
