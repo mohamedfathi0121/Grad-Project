@@ -90,14 +90,18 @@ if (is_admin()):
                         <textarea name="subject_comments"></textarea>
                     </div>
                     <!-- محاولة الدايالوج الفاشلة -->
-                    <div class="row">
+                    <!-- أو لأ طلعت ناجحة، بعتذر لصاحب الكود -->
+                    <!--<div class="row">
                         <button type="button" class="btn-basic" data-open-modal>اضافة موضوع جديد</button>
                         <dialog data-modal>
                             <form method="dialog">
                                 <button formmethod="dialog" type="submit" class="btn-basic">Cancel</button>
-                                <button type="submit" class="btn-basic">Submit</button>
+                                <button type="submit" class="btn-basic" name="add_subject_btn">Submit</button>
                             </form>
                         </dialog>
+                    </div>-->
+                    <div class="row">
+                        <button name="add_subject_btn" class="btn-basic" type="submit">إضافة موضوع جديد</button>
                     </div>
                 </div>
             </form>
