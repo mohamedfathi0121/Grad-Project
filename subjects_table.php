@@ -64,10 +64,10 @@ if (session_status() === PHP_SESSION_NONE)
                         <span><?= $meeting_row["meeting_number"] ?></span>
                         شهر
                         <span><?= $meeting_row["meeting_month"] ?></span>
-                        سنة
+                        لسنة
                         <span><?= $meeting_row["meeting_year"]?></span>
                     </h3>
-                    <h3> ينعقد بتاريخ <span><?= $meeting_row["meeting_date"] ?></span></h3>
+                    <h3> المنعقدة بتاريخ <span><?= $meeting_row["meeting_date"] ?></span></h3>
                     </div>
                     <div class="table-container">
                         <table class="subjects-table">
@@ -77,7 +77,6 @@ if (session_status() === PHP_SESSION_NONE)
                                 $subject_attachment_stmt->bind_param("i", $subject_table_row["subject_id"]);
                                 $subject_attachment_stmt->execute();
                                 $subject_attachment_result = $subject_attachment_stmt->get_result();
-                                $subject_attachment_row = $subject_attachment_result->fetch_assoc();
                                 ?>
                                 <tr class="subject-row">
                                     <td>الموضوع <?= $n ?></td>
@@ -85,7 +84,9 @@ if (session_status() === PHP_SESSION_NONE)
                                         <strong><?= $subject_table_row["subject_name"] ?></strong>
                                         <p><?= $subject_table_row["subject_details"] ?></p>
 <!--                                        --><?php //if (!emp)?>
-                                        <img src="<?= $subject_attachment_row['picture_name'] ?>" alt="">
+                                        <?php while ($subject_attachment_row = $subject_attachment_result->fetch_assoc()) { ?>
+                                            <img src="<?= $subject_attachment_row['picture_name'] ?>" alt="صورة">
+                                        <?php } ?>
                                     </td>
                                 </tr>
                                 <tr class="decision-row">

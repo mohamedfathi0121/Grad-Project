@@ -407,7 +407,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                     </button>
                                                                 </form>
                                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
-                                                                <a class="btn-basic" href="meeting_attachment.php">
+                                                                <a class="btn-basic" href="meeting_attachment.php?mid=<?= $current_meeting_row['meeting_id'] ?>">
                                                                     رفع ملف المجلس الموثق
                                                                 </a>
                                                             </div>
@@ -508,8 +508,8 @@ if (session_status() === PHP_SESSION_NONE)
                                                                     </button>
                                                                 </form>
                                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
-                                                                <a class="btn-basic" href="meeting_attachment.php">
-                                                                    عرض ملف المجلس الموثق
+                                                                <a class="btn-basic" href="meeting_attachment.php?mid=<?= $current_meeting_row['meeting_id'] ?>">
+                                                                    رفع ملف المجلس الموثق
                                                                 </a>
                                                             </div>
                                                         <?php } else { ?>
@@ -520,8 +520,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                 </form>
                                                                 <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
                                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
-                                                                <button class="btn-basic disabled" title="لا يوجد ملف مجلس نهائي"
-                                                                        disabled>عرض ملف المجلس النهائي</button>
+                                                                <a class="btn-basic" href="meeting_attachment.php?mid=<?= $current_meeting_row['meeting_id'] ?>">عرض ملف المجلس النهائي</a>
                                                             </div>
                                                         <?php } ?>
                                                     </div>
@@ -602,7 +601,7 @@ if (session_status() === PHP_SESSION_NONE)
 				                            ?>
                                             <div class="col">
                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
-                                                <a class="btn-basic" href="meeting_attachment.php">
+                                                <a class="btn-basic" href="meeting_attachment.php?mid=<?= $past_meetings_row['meeting_id'] ?>">
                                                     رفع ملف المجلس الموثق
                                                 </a>
                                             </div>
@@ -610,7 +609,7 @@ if (session_status() === PHP_SESSION_NONE)
 			                            else:
 				                            ?>
                                             <div class="col">
-                                                <a href="meeting_attachment.php" class="btn-basic">
+                                                <a href="meeting_attachment.php?mid=<?= $past_meetings_row['meeting_id'] ?>" class="btn-basic">
                                                     عرض ملف المجلس النهائي</a>
                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
                                             </div>
@@ -646,34 +645,34 @@ if (session_status() === PHP_SESSION_NONE)
 	                    {
 		                    case "fn":
 			                    $search_stmt = "SELECT 
-                                                m.*,  
-                                                f.formation_number 
-                                            FROM 
-                                                p39_meeting as m
-                                                    JOIN 
-                                                    p39_formation as f
-                                                        ON m.formation_id = f.formation_id 
-                                                               AND f.formation_number LIKE ?";
+                                                    m.*,  
+                                                    f.formation_number 
+                                                FROM 
+                                                    p39_meeting as m
+                                                        JOIN 
+                                                        p39_formation as f
+                                                            ON m.formation_id = f.formation_id 
+                                                                   AND f.formation_number LIKE ?";
 			                    break;
 		                    case "mn":
 			                    $search_stmt = "SELECT 
-                                                m.*,  
-                                                f.formation_number 
-                                            FROM 
-                                                p39_meeting as m
-                                                    JOIN p39_formation as f
-                                                        ON m.formation_id = f.formation_id 
-                                                               AND m.meeting_number LIKE ?";
+                                                    m.*,  
+                                                    f.formation_number 
+                                                FROM 
+                                                    p39_meeting as m
+                                                        JOIN p39_formation as f
+                                                            ON m.formation_id = f.formation_id 
+                                                                   AND m.meeting_number LIKE ?";
 			                    break;
 		                    case "my":
 			                    $search_stmt = "SELECT 
-                                                m.*,  
-                                                f.formation_number 
-                                            FROM 
-                                                p39_meeting as m
-                                                    JOIN p39_formation as f
-                                                        ON m.formation_id = f.formation_id 
-                                                               AND m.meeting_year LIKE ?";
+                                                    m.*,  
+                                                    f.formation_number 
+                                                FROM 
+                                                    p39_meeting as m
+                                                        JOIN p39_formation as f
+                                                            ON m.formation_id = f.formation_id 
+                                                                   AND m.meeting_year LIKE ?";
 			                    break;
 	                    }
 	                    $restricted_search_count = 0;
