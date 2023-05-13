@@ -72,9 +72,24 @@ function displayFile(files, fileList) {
 let allDecisionDetailsButtons = document.querySelectorAll(
 	".decision-buttons button.dec-details-btn"
 );
+let allDecisionStatusButtons = document.querySelectorAll(
+	".decision-buttons button.dec-status-btn"
+);
 allDecisionDetailsButtons.forEach((ele) => {
 	ele.addEventListener("click", () => {
-		ele.nextElementSibling.classList.toggle("deactive");
+		ele.parentElement.parentElement.nextElementSibling.classList.toggle(
+			"deactive"
+		);
+	});
+});
+allDecisionStatusButtons.forEach((ele) => {
+	console.log(
+		ele.parentElement.parentElement.nextElementSibling.nextElementSibling
+	);
+	ele.addEventListener("click", () => {
+		ele.parentElement.parentElement.nextElementSibling.nextElementSibling.classList.toggle(
+			"deactive"
+		);
 	});
 });
 

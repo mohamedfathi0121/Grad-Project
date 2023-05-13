@@ -177,14 +177,15 @@
 .decision-box .row {
 	margin-bottom: 20px;
 }
-
-.decision-box .decision-buttons > .row:nth-child(1),
-.decision-box .decision-buttons form > .row:nth-child(2) {
-	flex-direction: column;
+.decision-box .row .col {
+	gap: 20px;
 }
-.decision-box .decision-buttons form > .row:nth-child(1) {
+
+.decision-box .decision-buttons > .row,
+.decision-box .decision-buttons form > .row {
 	justify-content: space-evenly;
 }
+
 .decision-box .decision-buttons .row > .col {
 	align-items: center;
 }
