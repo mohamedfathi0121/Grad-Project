@@ -40,5 +40,13 @@ foreach ($_POST as $key=>$value)
 			header("location: subject_attachment.php?sid={$_POST['subject_id']}",
 				true, 303);
 			break;
+
+		case "delete_meeting_attachment_btn":
+			$delete_att_stmt = Delete($conn, "p39_meeting_attachment",
+				"attachment_id = {$_POST['attachment_id']}");
+			$delete_att_stmt->execute();
+			header("location: meeting_attachment.php?mid={$_POST['meeting_id']}",
+				true, 303);
+			break;
 	}
 }

@@ -4,9 +4,7 @@ require_once "functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php
-Head("مرفقات الموضوعات");
-?>
+<?php Head("مرفقات الموضوعات"); ?>
 
 <body dir="rtl">
     <?php
@@ -91,7 +89,6 @@ Head("مرفقات الموضوعات");
                             </div>
                         <?php } ?>
                     </div>
-
                 <?php }
                 if (!$subject_pic_exist) { ?>
                     <div>
@@ -140,49 +137,50 @@ Head("مرفقات الموضوعات");
                             </div>
 		                <?php } ?>
                     </div>
-                    <!-- اضافة ملف -->
-                    <div class="upload add-attachment-subject">
-                        <form method="post" action="addition_code.php" enctype="multipart/form-data">
-                            <input type="hidden" name="subject_id" value="<?= $search ?>">
-                            <div class="btn-basic">
-                                <label for="up1">
-                                    رفع مرفق
-                                    <i class="fa-solid fa-upload"></i>
-                                    <input id="up1" type="file" name="subject_attachment[]" class="upload-button"
-                                           accept="application/pdf, image/png, image/gif, image/jpeg" multiple/>
-                                </label>
-                            </div>
-                            <button type="submit" name="add_subject_attachment_btn" class="btn-basic">رفععععع</button>
-                        </form>
-                        <div class="file-list"></div>
-                    </div>
-                    <div class="upload add-attachment-subject">
-                        <form method="post" action="addition_code.php" enctype="multipart/form-data">
-                            <input type="hidden" name="subject_id" value="<?= $search ?>">
-                            <div class="btn-basic">
-                                <label for="up2">
-                                    رفع صورة
-                                    <i class="fa-solid fa-upload"></i>
-                                    <input id="up2" type="file" class="upload-button" name="subject_picture[]"
-                                           accept="image/png, image/gif, image/jpeg" multiple/>
-                                </label>
-                            </div>
-                            <button type="submit" name="add_subject_picture_btn" class="btn-basic">رفععععع</button>
-                        </form>
-                        <div class="file-list"></div>
-                    </div>
                 <?php } ?>
+
+            </div>
+            <!-- اضافة ملف -->
+            <div class="upload add-attachment-subject">
+                <form method="post" action="addition_code.php" enctype="multipart/form-data">
+                    <input type="hidden" name="subject_id" value="<?= $search ?>">
+                    <div class="btn-basic">
+                        <label for="up1">
+                            رفع مرفق
+                            <i class="fa-solid fa-upload"></i>
+                            <input id="up1" type="file" name="subject_attachment[]" class="upload-button"
+                                   accept="application/pdf, image/png, image/gif, image/jpeg" multiple/>
+                        </label>
+                    </div>
+                    <button type="submit" name="add_subject_attachment_btn" class="btn-basic">رفععععع</button>
+                </form>
+                <div class="file-list"></div>
+            </div>
+            <div class="upload add-attachment-subject">
+                <form method="post" action="addition_code.php" enctype="multipart/form-data">
+                    <input type="hidden" name="subject_id" value="<?= $search ?>">
+                    <div class="btn-basic">
+                        <label for="up2">
+                            رفع صورة
+                            <i class="fa-solid fa-upload"></i>
+                            <input id="up2" type="file" class="upload-button" name="subject_picture[]"
+                                   accept="image/png, image/gif, image/jpeg" multiple/>
+                        </label>
+                    </div>
+                    <button type="submit" name="add_subject_picture_btn" class="btn-basic">رفععععع</button>
+                </form>
+                <div class="file-list"></div>
             </div>
         </main>
-        <?php endif;
-        footer();
-        ?>
+    <?php endif;
+    footer();
+    ?>
 
-        <!-- Js Scripts and Plugins -->
-        <script type="module" src="./js/main.js"></script>
+    <!-- Js Scripts and Plugins -->
+    <script type="module" src="./js/main.js"></script>
 
-        <!-- font Awesome -->
-        <script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
+    <!-- font Awesome -->
+    <script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

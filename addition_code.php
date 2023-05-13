@@ -452,5 +452,25 @@ foreach ($_POST as $btn => $value)
 			header("location: subject_attachment.php?sid={$_POST['subject_id']}",
 				true, 303);
 			break;
+
+		case "add_meeting_attachment_btn":
+			$attachment_allowed_types = array("pdf", "png", "gif", "jpeg", "jpg");
+			$uploaded_attachments = Upload("meeting_attachment", "images/", $attachment_allowed_types);
+			if (!empty($uploaded_attachments))
+			{
+				foreach ($uploaded_attachments as $key => $value)
+				{
+					$attachment_stmt = $conn->prepare("INSERT INTO `p39_meeting_attachment`
+	                                                        (`attachment_name`, `attachment_title`, `meeting_id`, `added_by`)
+	                                                    VALUES
+	                                                        (?, ?, ?, ?)");
+					$attachment_stmt->bind_param("ssii", $value, $key, $_POST["meeting_id"],
+						$_SESSION["user_id"]);
+					$attachment_stmt->execute();
+				}
+			}
+			header("location: meeting_attachment.php?mid={$_POST['meeting_id']}",
+				true, 303);
+			break;
 	}
 }
