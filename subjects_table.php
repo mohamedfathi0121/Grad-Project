@@ -19,7 +19,9 @@ if (session_status() === PHP_SESSION_NONE)
         $meeting_stmt = $conn->prepare("SELECT
                                                     meeting_id,
                                                     meeting_number,
-                                                    meeting_date
+                                                    meeting_date,
+                                                    meeting_month,
+                                                    meeting_year
                                                 FROM
                                                     p39_meeting
                                                 WHERE
@@ -57,10 +59,15 @@ if (session_status() === PHP_SESSION_NONE)
                 $subject_table_stmt->execute();
                 $subject_table_result = $subject_table_stmt->get_result();
                 if ($subject_table_result->num_rows > 0) { ?>
-                    <h3>جدول أعمال لجنة إدارة البرامج الجديدة بالكلية مرحلتي البكالريوس والدراسات العليا</h3>
+                    <h3>جدول أعمال لجنة مجلس الكلية مرحلتي البكالريوس والدراسات العليا</h3>
                     <h3>جلسة رقم
                         <span><?= $meeting_row["meeting_number"] ?></span>
-                        بتاريخ <span><?= $meeting_row["meeting_date"] ?></span></h3>
+                        شهر
+                        <span><?= $meeting_row["meeting_month"] ?></span>
+                        سنة
+                        <span><?= $meeting_row["meeting_year"]?></span>
+                    </h3>
+                    <h3> ينعقد بتاريخ <span><?= $meeting_row["meeting_date"] ?></span></h3>
                     </div>
                     <div class="table-container">
                         <table class="subjects-table">
