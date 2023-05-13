@@ -189,7 +189,7 @@ foreach ($_POST as $btn => $value)
 			break;
 
 		case "update_subject_btn":
-			$order_id = clean_data($_POST["subject_order"]);
+			$order_id = (empty($_POST["subject_order"]) ? NULL : clean_data($_POST["subject_order"]));
 			$subject_number = clean_data($_POST["subject_number"]);
 			$subject_name = clean_data($_POST["subject_name"]);
 			$subject_details = (empty($_POST["subject_details"]) ? null : clean_data($_POST["subject_details"]));
@@ -251,7 +251,7 @@ foreach ($_POST as $btn => $value)
 				$_SESSION["user_id"],
 				$transaction_type);
 			$insert_transaction->execute();
-			header("location: meetings.php", true, 303);
+			header("location: current_meeting_subject.php?mid={$_POST['meeting_id']}", true, 303);
 			break;
 
 		case "update_decision_btn":

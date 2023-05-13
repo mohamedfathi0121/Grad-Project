@@ -123,6 +123,7 @@ Head("تعديل موضوع");
                     <div class="row sp2-row">
                         <form method="post" action="update_code.php">
                             <input type="hidden" name="subject_id" value="<?= $subject_row['subject_id'] ?>">
+                            <input type="hidden" name="meeting_id" value="<?= $subject_row['meeting_id'] ?>">
                             <button type="submit" class="btn-basic" name="update_subject_btn">تعديل موضوع</button>
                         </form>
                         <form method="post" action="deletion_code.php">

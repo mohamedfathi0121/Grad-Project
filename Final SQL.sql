@@ -130,11 +130,12 @@ CREATE TABLE IF NOT EXISTS p39_meeting
     meeting_number MEDIUMINT UNSIGNED UNIQUE,
     meeting_month  SMALLINT UNSIGNED,
     meeting_year   YEAR,
-    meeting_date   DATE             DEFAULT NULL,
-    is_current     TINYINT UNSIGNED DEFAULT 1,
-    status         ENUM ("pending", "confirmed", "finished"),
+    meeting_date   DATE                                      DEFAULT NULL,
+    is_current     TINYINT UNSIGNED                          DEFAULT 1,
+    status         ENUM ("pending", "confirmed", "finished") DEFAULT "pending",
+    is_showed      TINYINT UNSIGNED                          DEFAULT 0,
     formation_id   SMALLINT UNSIGNED,
-    added_on       TIMESTAMP        DEFAULT CURRENT_TIMESTAMP,
+    added_on       TIMESTAMP                                 DEFAULT CURRENT_TIMESTAMP,
     added_by       SMALLINT UNSIGNED,
     FOREIGN KEY (added_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY (formation_id) REFERENCES p39_formation (formation_id) ON UPDATE CASCADE ON DELETE RESTRICT
@@ -181,12 +182,13 @@ VALUES ("شئون التعليم والطلاب"),
        ("قسم العلوم السياسية"),
        ("قسم نظم المعلومات"),
        ("لجنة البرامج"),
-       ("موضوعات عامة");
+       ("موضوعات عامة"),
+       ("لجنة البرامج الجديدة");
 
 CREATE TABLE IF NOT EXISTS p39_subject
 (
     order_id        TINYINT UNSIGNED DEFAULT NULL,
-    subject_id      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    subject_id      MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     subject_number  MEDIUMINT UNSIGNED,
     subject_name    VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     subject_details TEXT character set utf8 collate utf8_unicode_520_ci,
@@ -204,7 +206,7 @@ CREATE TABLE IF NOT EXISTS p39_subject_transaction
 (
     transaction_id   SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     transaction_type ENUM ("Edit", "Delete"),
-    subject_id       INT UNSIGNED,
+    subject_id       MEDIUMINT UNSIGNED,
     old_row          VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     new_row          VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     made_on          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -217,7 +219,7 @@ CREATE TABLE IF NOT EXISTS p39_subject_transaction
 # (
 #     delete_id   SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 #     subject_row VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
-#     deleted_by  SMALLINT,
+#     deleted_by  SMALLINT UNSIGNED,
 #     deleted_on  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 #     reason      VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
 #     FOREIGN KEY (deleted_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT
@@ -228,7 +230,7 @@ CREATE TABLE IF NOT EXISTS p39_subject_attachment
     attachment_id    SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     attachment_name  VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     attachment_title VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
-    subject_id       INT UNSIGNED,
+    subject_id       MEDIUMINT UNSIGNED,
     added_on         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     added_by         SMALLINT UNSIGNED,
     FOREIGN KEY (added_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT,
@@ -240,7 +242,7 @@ CREATE TABLE IF NOT EXISTS p39_subject_picture
     picture_id    SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     picture_name  VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     picture_title VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
-    subject_id    INT UNSIGNED,
+    subject_id    MEDIUMINT UNSIGNED,
     added_on      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     added_by      SMALLINT UNSIGNED,
     FOREIGN KEY (added_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT,
@@ -258,7 +260,7 @@ CREATE TABLE IF NOT EXISTS p39_decision
     decision_id      SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     decision_details TEXT character set utf8 collate utf8_unicode_520_ci,
     decision_type_id TINYINT UNSIGNED,
-    subject_id       INT UNSIGNED,
+    subject_id       MEDIUMINT UNSIGNED,
     needs_action     TINYINT UNSIGNED,
     action_to        VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     is_action_done   TINYINT UNSIGNED,
@@ -288,7 +290,7 @@ CREATE TABLE IF NOT EXISTS p39_vote_type
 CREATE TABLE IF NOT EXISTS p39_vote
 (
     user_id      SMALLINT UNSIGNED,
-    subject_id   INT UNSIGNED,
+    subject_id   MEDIUMINT UNSIGNED,
     PRIMARY KEY (user_id, subject_id),
     vote_type_id TINYINT UNSIGNED,
     added_on     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

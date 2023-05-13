@@ -47,7 +47,25 @@ if (isset($_POST["sign_in_btn"])):
                         $new_hash_stmt->execute();
                     }
                     // Check if user is an admin
-                    $_SESSION["admin"] = ($user_row["is_admin"] === 1 ?? true);
+                    $_SESSION["admin"] = ($user_row["is_admin"] == 1 ?? true);
+	                # Retrieve Formation IDs of the user currently signed in
+	                $user_formation_ids_stmt = $conn->prepare("SELECT
+                                                                        formation_id
+                                                                    FROM
+                                                                        p39_formation_user
+                                                                    WHERE
+                                                                        user_id = ?");
+	                $user_formation_ids_stmt->bind_param("i", $_SESSION["user_id"]);
+	                $user_formation_ids_stmt->execute();
+	                $user_formation_ids_result = $user_formation_ids_stmt->get_result();
+	                $user_formation_ids = array();
+	                while ($user_formation_ids_row = $user_formation_ids_result->fetch_assoc())
+	                {
+		                 $user_formation_ids[] = $user_formation_ids_row["formation_id"];
+	                }
+					$_SESSION["formation_ids"] = $user_formation_ids;
+	                $user_formation_ids_stmt->close();
+
                     // Unset errors regarding login -if any exists-, since user successfully signed in
                     if (!empty($_SESSION["error"]["login"]))
                     {
