@@ -28,7 +28,7 @@ require_once "functions.php";
 
             <div class="attatchement-box">
                 <div class="col">
-                    <img src="images/icons/iconpdf.svg" alt="" class="attachment-picture">
+                    <img src="images/icons/pdf.svg" alt="" class="attachment-picture">
                     <a href="#">مرفق مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1 1</a>
                     <button data-open-modal class="btn-basic">حذف</button>
                     <dialog data-modal>
@@ -40,7 +40,7 @@ require_once "functions.php";
                     </dialog>
                 </div>
                 <div class="col">
-                    <img src="images/icons/iconimage.svg" alt="" class="attachment-picture">
+                    <img src="images/icons/image.svg" alt="" class="attachment-picture">
                     <a href="#">مرفق مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1 1</a>
                     <button data-open-modal class="btn-basic">حذف</button>
                     <dialog data-modal>
@@ -52,7 +52,7 @@ require_once "functions.php";
                     </dialog>
                 </div>
                 <div class="col">
-                    <img src="images/icons/iconimage.svg" alt="" class="attachment-picture">
+                    <img src="images/icons/pdf.svg" alt="" class="attachment-picture">
                     <a href="#">مرفق مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1مرفق 1 1</a>
                     <button data-open-modal class="btn-basic">حذف</button>
                     <dialog data-modal>

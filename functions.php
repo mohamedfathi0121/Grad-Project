@@ -58,7 +58,7 @@ function Headers()
         </div>
 
         <div class="header-container">
-            <img class="logo" src="images/<?= $_SESSION["faculty_logo"] ?>" alt=""/>
+            <img class="logo univ-logo" src="images/<?= $_SESSION["faculty_logo"] ?>" alt=""/>
             <div class="header-title">
                 <h3 class="univ-name"><?= $_SESSION["uni_name"] ?> - <?= $_SESSION["faculty_name"] ?></h3>
 
@@ -67,7 +67,7 @@ function Headers()
 					<?= $_SESSION["app_name"] ?>
                 </h1>
             </div>
-            <img class="logo" src="images/<?= $_SESSION["program_logo"] ?>" alt=""/>
+            <img class="logo prog-logo" src="images/<?= $_SESSION["program_logo"] ?>" alt=""/>
         </div>
 
 
@@ -95,42 +95,63 @@ function Nav()
 					?>
                 </div>
             </ul>
-            <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get">
-				<?php switch (basename($_SERVER["PHP_SELF"])) {
-                    case "formation.php": ?>
-                        <div class="select-basic" style="width: 150px">
-                            <select name="f">
-                                <option value="">اختر</option>
-                                <option value="fn">رقم التشكيل</option>
-                                <option value="y">سنة التشكيل</option>
-                            </select>
-                        </div>
-                        <input type="text" placeholder="بحث.." name="search"/>
-                        <button type="submit" class="btn-basic">
-                            <i class="fa fa-search"></i>
-                        </button>
-						<?php break;
-                    case "meetings.php": ?>
-                        <div class="select-basic" style="width: 150px">
-                            <select name="f">
-                                <option value="">اختر</option>
-                                <option value="mn">رقم المجلس</option>
-                                <option value="fn">رقم التشكيل</option>
-                                <option value="my">سنة المجلس</option>
-                            </select>
-                        </div>
-                        <input type="text" placeholder="بحث.." name="search"/>
-                        <button type="submit" class="btn-basic">
-                            <i class="fa fa-search"></i>
-                        </button>
-
-                        <?php break; ?>
-                <?php } ?>
-            </form>
         </nav>
     </section>
 <?php
 
+}
+
+function SearchBar()
+{
+    ?>
+    <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get" style="justify-content: left">
+		<?php switch (basename($_SERVER["PHP_SELF"])) {
+			case "formation.php": ?>
+                <div class="select-basic" style="width: 150px">
+                    <select name="f">
+                        <option value="">اختر</option>
+                        <option value="fn">رقم التشكيل</option>
+                        <option value="y">سنة التشكيل</option>
+                    </select>
+                </div>
+                <input type="text" placeholder="بحث.." name="search"/>
+                <button type="submit" class="btn-basic">
+                    <i class="fa fa-search"></i>
+                </button>
+				<?php break;
+			case "meetings.php": ?>
+                <div class="select-basic" style="width: 150px">
+                    <select name="f">
+                        <option value="">اختر</option>
+                        <option value="mn">رقم المجلس</option>
+                        <option value="fn">رقم التشكيل</option>
+                        <option value="my">سنة المجلس</option>
+                    </select>
+                </div>
+                <input type="text" placeholder="بحث.." name="search"/>
+                <button type="submit" class="btn-basic">
+                    <i class="fa fa-search"></i>
+                </button>
+
+				<?php break;
+            case "meetings1.php": ?>
+                <div class="select-basic" style="width: 150px">
+                    <select name="f">
+                        <option value="">اختر</option>
+                        <option value="mn">رقم المجلس</option>
+                        <option value="fn">رقم التشكيل</option>
+                        <option value="my">سنة المجلس</option>
+                    </select>
+                </div>
+                <input type="text" placeholder="بحث.." name="search"/>
+                <button type="submit" class="btn-basic">
+                    <i class="fa fa-search"></i>
+                </button>
+
+	            <?php break;
+        } ?>
+    </form>
+    <?php
 }
 
 function Head($title)

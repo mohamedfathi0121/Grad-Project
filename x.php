@@ -1,4 +1,8 @@
 <?php
+if (session_status() === PHP_SESSION_NONE)
+{
+	session_start();
+}
 
 $job_title = array();
 foreach ($_POST as $key => $value)
@@ -55,5 +59,5 @@ print_r($if0);
 echo "</pre>";
 
 echo "<pre>";
-print_r($elseif);
+print_r($_SESSION);
 echo "</pre>";

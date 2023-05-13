@@ -462,5 +462,42 @@ input[type="file"] {
 	width: 110px;
 	height: 110px;
 }
+/* Printing Stuff */
+@page {
+	size: A4;
+	margin: 50px 0;
+}
+@media print {
+	* {
+		color: #000 !important;
+	}
+	body {
+		font-family: "Times New Roman", Times, serif;
+		line-height: 1.5;
+	}
 
+	header .user-logged,
+	header .header-title .project-title,
+	header .header-title .prog-name,
+	.nav-bar,
+	footer,
+	button,
+	.subjects-table-page .title h1,
+	.prog-logo {
+		display: none;
+	}
+	header .header-container {
+		justify-content: center;
+	}
+	header .univ-logo {
+		width: 70px;
+		height: 80px;
+	}
+	table td {
+		page-break-inside: avoid;
+	}
+	.table-container {
+		margin: 0;
+	}
+}
 /* !DONT TOUCH (VARIABLES / GLOBAL RULES / HEADER / FOOTER / Navigation) FROM ABOVE* */
