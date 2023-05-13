@@ -13,8 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <body dir="rtl">
 <?php Headers();
 if (is_logged_in()):
-	Nav();
-	?>
+	Nav(); ?>
     <main class="current-subject-content">
         <div class="container">
             <!-- عنوان الصفحة -->
@@ -165,10 +164,7 @@ if (is_logged_in()):
                                                         </form>
                                                     </div>
                                                     <div class="col">
-                                                        <form method="post" action="subject_attachment.php?sid=<?=$current_subjects_row['subject_id']?>">
-                                                            <input type="hidden" name="subject_id" value="<?= $current_subjects_row['subject_id'] ?>">
-                                                            <button class="btn-basic" name="subject_attachment_btn">عرض المرفقات</button>
-                                                        </form>
+                                                        <a class="btn-basic" href="subject_attachment.php?sid=<?=$current_subjects_row['subject_id']?>">عرض المرفقات</a>
                                                     </div>
 
                                                 </div>
