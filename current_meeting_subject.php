@@ -182,10 +182,29 @@ if (is_logged_in()):
                                 <div class="current-subject-details deactive">
                                     <div class="row">
                                         <div class="col">
-                                            <p>
-                                                تفاصيل الموضوع:
-                                                <?= $current_subjects_row["subject_details"] ?>
-                                            </p>
+                                        <div class="table-container">
+                <table class="subjects-table">
+                  <tbody>
+                    <tr class="subject-row">
+                      <td>الموضوع (1)</td>
+                      <td>
+                        <p><?= $current_subjects_row["subject_details"] ?></p>
+                      
+                        <img src="" alt="">
+                      </td>
+                    </tr>
+                    <tr class="decision-row">
+                      <td>القرار</td>
+                      <td>
+                        <p>الموافقة على تعديل مدة الامتحان التحرير لمقررات البرامج الجديدة لمرحلة البكالوريوس ببرنامجي
+                          BIS و FMI
+                          بكلية التجارة وادارة الاعمال لتكون ساعتين فقط بدلا من 3 ساعات</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
