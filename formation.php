@@ -91,23 +91,49 @@ if (session_status() === PHP_SESSION_NONE) {
                                             </span>
                                         </h4>
                                     </div>
-                                    <div class="col">
-                                                    
-                                                    <div class="card">
-                                                        <div class="card-box">
-                                                            30
-                                                        </div>
-                                                        <div class="card-text">عدد اعضاء التشكيل</div>
-                                                    
+                                    <?php if ($_SESSION["admin"]) {
+                                        $formation_members_stmt = $conn->prepare("SELECT 
+                                                                                            count(user_id) as fm 
+                                                                                        FROM 
+                                                                                            p39_formation_user 
+                                                                                        WHERE 
+                                                                                            formation_id = ?");
+                                        $formation_members_stmt->bind_param("i", $current_formation_row["formation_id"]);
+                                        $formation_members_stmt->execute();
+                                        $formation_members_result = $formation_members_stmt->get_result();
+                                        $formation_members_row = $formation_members_result->fetch_assoc();
+
+                                        $meeting_count_stmt = $conn->prepare("SELECT 
+                                                                                            count(meeting_id) as mc
+                                                                                        FROM 
+                                                                                            p39_meeting 
+                                                                                        WHERE 
+                                                                                            formation_id = ?");
+                                        $meeting_count_stmt->bind_param("i", $current_formation_row["formation_id"]);
+                                        $meeting_count_stmt->execute();
+                                        $meeting_count_result = $meeting_count_stmt->get_result();
+                                        $meeting_count_row = $meeting_count_result->fetch_assoc();
+                                        ?>
+                                        <div class="col">
+                                            <div class="card">
+                                                <div class="card-box">
+                                                    <?= $formation_members_row["fm"] == NULL
+                                                        ? 0
+                                                        : $formation_members_row["fm"] ?>
                                                 </div>
-                                                <div class="card">
-                                                        <div class="card-box">
-                                                            16
-                                                        </div>
-                                                        <div class="card-text">عدد مجالس التشكيل</div>
-                                                    
+                                                <div class="card-text">عدد اعضاء التشكيل</div>
+
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-box">
+                                                    <?= $meeting_count_row["mc"] == NULL
+                                                        ? 0
+                                                        : $meeting_count_row["mc"] ?>
                                                 </div>
-                                                </div>
+                                                <div class="card-text">عدد مجالس التشكيل</div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
                                     <div class="col">
                                         <?php if ($_SESSION["admin"]) { ?>
                                             <form method="post" action="meeting_status.php">
@@ -129,9 +155,10 @@ if (session_status() === PHP_SESSION_NONE) {
                                             <button class="btn-basic">تعديل بيانات التشكيل</button>
                                         </form>
                                     <?php } ?>
-                                    <a href="meetings.php?f=fn&search=<?= $current_formation_row['formation_number'] ?>" class="btn-basic">عرض
-                                        مجالس التشكيل</a>
-                                     <button class="btn-basic">عرض أعضاء التشكيل</button>
+                                    <a href="meetings.php?f=fn&search=<?= $current_formation_row['formation_number'] ?>"
+                                       class="btn-basic">عرض مجالس التشكيل</a>
+                                     <a href="formation_members.php?fid=<?= $current_formation_row['formation_id'] ?>"
+                                        class="btn-basic">عرض أعضاء التشكيل</a>
                                 </div>
                             </div>
                         <?php } ?>
@@ -187,30 +214,55 @@ if (session_status() === PHP_SESSION_NONE) {
                                             </span>
                                         </h4>
                                     </div>
+	                                <?php if ($_SESSION["admin"]) {
+		                                $formation_members_stmt = $conn->prepare("SELECT 
+                                                                                            count(user_id) as fm 
+                                                                                        FROM 
+                                                                                            p39_formation_user 
+                                                                                        WHERE 
+                                                                                            formation_id = ?");
+		                                $formation_members_stmt->bind_param("i", $past_formation_row["formation_id"]);
+		                                $formation_members_stmt->execute();
+		                                $formation_members_result = $formation_members_stmt->get_result();
+		                                $formation_members_row = $formation_members_result->fetch_assoc();
+
+		                                $meeting_count_stmt = $conn->prepare("SELECT 
+                                                                                        count(meeting_id) as mc
+                                                                                    FROM 
+                                                                                        p39_meeting 
+                                                                                    WHERE 
+                                                                                        formation_id = ?");
+		                                $meeting_count_stmt->bind_param("i", $past_formation_row["formation_id"]);
+		                                $meeting_count_stmt->execute();
+		                                $meeting_count_result = $meeting_count_stmt->get_result();
+		                                $meeting_count_row = $meeting_count_result->fetch_assoc();
+		                                ?>
+                                        <div class="col">
+                                            <div class="card">
+                                                <div class="card-box">
+					                                <?= $formation_members_row["fm"] == NULL
+						                                ? 0
+						                                : $formation_members_row["fm"] ?>
+                                                </div>
+                                                <div class="card-text">عدد اعضاء التشكيل</div>
+
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-box">
+					                                <?= $meeting_count_row["mc"] == NULL
+						                                ? 0
+						                                : $meeting_count_row["mc"] ?>
+                                                </div>
+                                                <div class="card-text">عدد مجالس التشكيل</div>
+                                            </div>
+                                        </div>
+	                                <?php } ?>
                                     <div class="col">
-                                                    
-                                                        <div class="card">
-                                                            <div class="card-box">
-                                                                30
-                                                            </div>
-                                                            <div class="card-text">عدد اعضاء التشكيل</div>
-                                                        
-                                                    </div>
-                                                    <div class="card">
-                                                            <div class="card-box">
-                                                                16
-                                                            </div>
-                                                            <div class="card-text">عدد مجالس التشكيل</div>
-                                                        
-                                                    </div>
-                                                    </div>
-                                                    
-                                                    
-                                                
-                                    <div class="col">
-                                        <a href="meetings.php?f=fn&search=<?= $past_formation_row['formation_number'] ?>" class="btn-basic">عرض
+                                        <a href="meetings.php?f=fn&search=<?= $past_formation_row['formation_number'] ?>"
+                                           class="btn-basic">عرض
                                             مجالس التشكيل</a>
-                                        <button class="btn-basic">عرض أعضاء التشكيل</button>
+                                        <a href="formation_members.php?fid=<?= $past_formation_row['formation_id'] ?>"
+                                           class="btn-basic">عرض أعضاء التشكيل</a>
                                     </div>
                                 </div>
                             </div>
@@ -234,81 +286,71 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php endif; ?>
                 <?php } ?>
             <?php elseif (!empty($_GET["search"])) :
-        //	            $search = "%" . $_GET["search"] . "%";
-        //	            //      $search_query = "SELECT * FROM p39_meeting WHERE formation_id LIKE %";
-        //	            //      $search_query .= $_POST["search"] . "%";
-        //	            $search_stmt = $conn->prepare("SELECT
-        //                                                            *
-        //                                                        FROM
-        //                                                            p39_formation
-        //                                                        WHERE
-        //                                                            formation_number LIKE ?");
-        //	            $search_stmt->bind_param("s", $search);
-        //	            $search_stmt->execute();
-                    $restricted_search_count = 0;
-                    $search_result = Search($conn, "p39_formation");
-                    @$search_result_count = $search_result->num_rows;
-                    if (@$search_result_count > 0)
+                $restricted_search_count = 0;
+                $search_result = Search($conn, "p39_formation");
+                @$search_result_count = $search_result->num_rows;
+                if (@$search_result_count > 0)
+                {
+                    while ($search_row = $search_result->fetch_assoc())
                     {
-                        while ($search_row = $search_result->fetch_assoc())
+                        if (!in_array($search_row["formation_id"], $user_formation_ids)
+                            AND !$_SESSION["admin"])
                         {
-                            if (!in_array($search_row["formation_id"], $user_formation_ids)
-                                AND !$_SESSION["admin"])
+                            $restricted_search_count += 1;
+                            if ($restricted_search_count == $search_result_count)
                             {
-                                $restricted_search_count += 1;
-                                if ($restricted_search_count == $search_result_count)
-                                {
-                                    ?>
-                                    <div class='current-formation'>
-                                        <main id='empty' class='empty-formation'>
-                                            <h4>عذرًا، لا يوجد تشكيلات تطابق رقم التشكيل</h4>
-                                        </main>
-                                    </div>
-                                    <?php
-                                }
-                                continue;
-                            } ?>
-                            <div class="box">
-                                <div class="row">
-                                    <div class="col">
-                                        <h4> رقم التشكيل السنوي:
-                                            <span>
-                                                <?= $search_row["formation_number"] ?>
-                                            </span>
-                                        </h4>
-                                        <h4>
-                                            تاريخ بدايته:
-                                            <span>
-                                                9 / <?= $search_row["start_year"] ?>
-                                            </span>
-                                        </h4>
-                                        <h4>
-                                            تاريخ نهايته:
-                                            <span>
-                                                8 / <?= $search_row["start_year"] + 1 ?>
-                                            </span>
-                                        </h4>
-                                    </div>
-                                    <div class="col">
-                                        <a href="meetings.php?f=fn&search=<?= $search_row['formation_number'] ?>"
-                                           class="btn-basic">عرض مجالس التشكيل</a>
-                                        <button class="btn-basic">عرض أعضاء التشكيل</button>
-                                    </div>
+                                ?>
+                                <div class='current-formation'>
+                                    <main id='empty' class='empty-formation'>
+                                        <h4>عذرًا، لا يوجد تشكيلات تطابق رقم التشكيل</h4>
+                                    </main>
+                                </div>
+                                <?php
+                            }
+                            continue;
+                        } ?>
+                        <div class="box">
+                            <div class="row">
+                                <div class="col">
+                                    <h4> رقم التشكيل السنوي:
+                                        <span>
+                                            <?= $search_row["formation_number"] ?>
+                                        </span>
+                                    </h4>
+                                    <h4>
+                                        تاريخ بدايته:
+                                        <span>
+                                            9 / <?= $search_row["start_year"] ?>
+                                        </span>
+                                    </h4>
+                                    <h4>
+                                        تاريخ نهايته:
+                                        <span>
+                                            8 / <?= $search_row["start_year"] + 1 ?>
+                                        </span>
+                                    </h4>
+                                </div>
+                                <div class="col">
+                                    <a href="meetings.php?f=fn&search=<?= $search_row['formation_number'] ?>"
+                                       class="btn-basic">عرض مجالس التشكيل</a>
+                                    <a href="formation_members.php?fid=<?= $search_row['formation_id'] ?>"
+                                       class="btn-basic">عرض أعضاء التشكيل</a>
                                 </div>
                             </div>
-                            <?php
-                        }
-                    }
-                    else
-                    {
-                        ?>
-                        <div class='current-formation'>
-                            <main id='empty' class='empty-formation'>
-                                <h4>عذرًا، لا يوجد تشكيلات تطابق رقم التشكيل</h4>
-                            </main>
                         </div>
                         <?php
                     }
+                }
+                else
+                {
+                    ?>
+                    <div class='current-formation'>
+                        <main id='empty' class='empty-formation'>
+                            <h4>عذرًا، لا يوجد تشكيلات تطابق رقم التشكيل</h4>
+                        </main>
+                    </div>
+                    <?php
+                }
 		    else :
 			?>
             <div class='current-meeting'>

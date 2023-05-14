@@ -32,7 +32,8 @@ VALUES ("عميد"),
        ("وكيل الكلية"),
        ("رئيس قسم"),
        ("عضو هيئة تدريس"),
-       ("إداري");
+       ("إداري"),
+       ("أخرى");
 
 CREATE TABLE IF NOT EXISTS p39_job_rank
 (
@@ -120,8 +121,7 @@ CREATE TABLE IF NOT EXISTS p39_user_transaction
     new_row          VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     made_on          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     made_by          SMALLINT UNSIGNED,
-    FOREIGN KEY (made_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT,
-    FOREIGN KEY (user_id) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT
+    FOREIGN KEY (made_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS p39_meeting
@@ -150,8 +150,7 @@ CREATE TABLE IF NOT EXISTS p39_meeting_transaction
     new_row          VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     made_on          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     made_by          SMALLINT UNSIGNED,
-    FOREIGN KEY (made_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT,
-    FOREIGN KEY (meeting_id) REFERENCES p39_meeting (meeting_id) ON UPDATE CASCADE ON DELETE RESTRICT
+    FOREIGN KEY (made_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS p39_meeting_attachment
@@ -160,6 +159,7 @@ CREATE TABLE IF NOT EXISTS p39_meeting_attachment
     attachment_name  VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     attachment_title VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     meeting_id       SMALLINT UNSIGNED,
+    is_final         TINYINT UNSIGNED,
     added_on         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     added_by         SMALLINT UNSIGNED,
     FOREIGN KEY (added_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT,
@@ -211,8 +211,7 @@ CREATE TABLE IF NOT EXISTS p39_subject_transaction
     new_row          VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     made_on          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     made_by          SMALLINT UNSIGNED,
-    FOREIGN KEY (made_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT,
-    FOREIGN KEY (subject_id) REFERENCES p39_subject (subject_id) ON UPDATE CASCADE ON DELETE RESTRICT
+    FOREIGN KEY (made_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 # CREATE TABLE IF NOT EXISTS p39_deleted_subject
@@ -298,6 +297,10 @@ CREATE TABLE IF NOT EXISTS p39_vote
     FOREIGN KEY (vote_type_id) REFERENCES p39_vote_type (vote_type_id) ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY (subject_id) REFERENCES p39_subject (subject_id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
+INSERT INTO p39_vote_type (vote_type_name)
+VALUES ("موافقة"),
+       ("رفض"),
+       ("امتناع");
 
 
 ###### Dummy Data #######

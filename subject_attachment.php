@@ -121,56 +121,57 @@ require_once "functions.php";
                                 } ?>
                                 <a href="<?= $subject_pic_row['picture_name'] ?>" target="_blank">
                                     <?= $subject_pic_row["picture_title"] ?></a>
-                                <!-- this is not delete button -->
-                                <button data-open-modal class="btn-basic">حذف</button>
-                                <dialog data-modal>
-                                    <h4>هل تريد مسح الملف <?= $subject_pic_row["picture_title"] ?> ؟</h4>
-                                    <form method="post" action="deletion_code.php">
-                                        <input type="hidden" name="subject_id" value="<?= $search ?>">
-                                        <input type="hidden" name="picture_id"
-                                               value="<?= $subject_pic_row['picture_id'] ?>">
-                                        <!-- this is the delete code -->
-                                        <button class="btn-basic" name="delete_subject_picture_btn">نعم</button>
-                                        <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
-                                    </form>
-                                </dialog>
+                                <?php if ($_SESSION["admin"]) { ?>
+                                    <button data-open-modal class="btn-basic">حذف</button>
+                                    <dialog data-modal>
+                                        <h4>هل تريد مسح الملف <?= $subject_pic_row["picture_title"] ?> ؟</h4>
+                                        <form method="post" action="deletion_code.php">
+                                            <input type="hidden" name="subject_id" value="<?= $search ?>">
+                                            <input type="hidden" name="picture_id"
+                                                   value="<?= $subject_pic_row['picture_id'] ?>">
+                                            <!-- this is the delete code -->
+                                            <button class="btn-basic" name="delete_subject_picture_btn">نعم</button>
+                                            <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
+                                        </form>
+                                    </dialog>
+                                <?php } ?>
                             </div>
 		                <?php } ?>
                     </div>
                 <?php } ?>
-
             </div>
-            <!-- اضافة ملف -->
-            <div class="upload add-attachment-subject">
-                <form method="post" action="addition_code.php" enctype="multipart/form-data">
-                    <input type="hidden" name="subject_id" value="<?= $search ?>">
-                    <div class="btn-basic">
-                        <label for="up1">
-                            رفع مرفق
-                            <i class="fa-solid fa-upload"></i>
-                            <input id="up1" type="file" name="subject_attachment[]" class="upload-button"
-                                   accept="application/pdf, image/png, image/gif, image/jpeg" multiple/>
-                        </label>
-                    </div>
-                    <button type="submit" name="add_subject_attachment_btn" class="btn-basic">رفععععع</button>
-                </form>
-                <div class="file-list"></div>
-            </div>
-            <div class="upload add-attachment-subject">
-                <form method="post" action="addition_code.php" enctype="multipart/form-data">
-                    <input type="hidden" name="subject_id" value="<?= $search ?>">
-                    <div class="btn-basic">
-                        <label for="up2">
-                            رفع صورة
-                            <i class="fa-solid fa-upload"></i>
-                            <input id="up2" type="file" class="upload-button" name="subject_picture[]"
-                                   accept="image/png, image/gif, image/jpeg" multiple/>
-                        </label>
-                    </div>
-                    <button type="submit" name="add_subject_picture_btn" class="btn-basic">رفععععع</button>
-                </form>
-                <div class="file-list"></div>
-            </div>
+            <?php if ($_SESSION["admin"]) { ?>
+                <div class="upload add-attachment-subject">
+                    <form method="post" action="addition_code.php" enctype="multipart/form-data">
+                        <input type="hidden" name="subject_id" value="<?= $search ?>">
+                        <div class="btn-basic">
+                            <label for="up1">
+                                رفع مرفق
+                                <i class="fa-solid fa-upload"></i>
+                                <input id="up1" type="file" name="subject_attachment[]" class="upload-button"
+                                       accept="application/pdf, image/png, image/gif, image/jpeg" multiple/>
+                            </label>
+                        </div>
+                        <button type="submit" name="add_subject_attachment_btn" class="btn-basic">رفععععع</button>
+                    </form>
+                    <div class="file-list"></div>
+                </div>
+                <div class="upload add-attachment-subject">
+                    <form method="post" action="addition_code.php" enctype="multipart/form-data">
+                        <input type="hidden" name="subject_id" value="<?= $search ?>">
+                        <div class="btn-basic">
+                            <label for="up2">
+                                رفع صورة
+                                <i class="fa-solid fa-upload"></i>
+                                <input id="up2" type="file" class="upload-button" name="subject_picture[]"
+                                       accept="image/png, image/gif, image/jpeg" multiple/>
+                            </label>
+                        </div>
+                        <button type="submit" name="add_subject_picture_btn" class="btn-basic">رفععععع</button>
+                    </form>
+                    <div class="file-list"></div>
+                </div>
+            <?php } ?>
         </main>
     <?php endif;
     footer();

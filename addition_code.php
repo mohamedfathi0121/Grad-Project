@@ -460,17 +460,71 @@ foreach ($_POST as $btn => $value)
 			{
 				foreach ($uploaded_attachments as $key => $value)
 				{
+					$is_final = 1;
 					$attachment_stmt = $conn->prepare("INSERT INTO `p39_meeting_attachment`
-	                                                        (`attachment_name`, `attachment_title`, `meeting_id`, `added_by`)
+	                                                        (`attachment_name`, `attachment_title`, `meeting_id`, `added_by`, `is_final`)
 	                                                    VALUES
-	                                                        (?, ?, ?, ?)");
-					$attachment_stmt->bind_param("ssii", $value, $key, $_POST["meeting_id"],
-						$_SESSION["user_id"]);
-					$attachment_stmt->execute();
+	                                                        (?, ?, ?, ?, ?)");
+					$attachment_stmt->bind_param("ssiii", $value, $key, $_POST["meeting_id"],
+						$_SESSION["user_id"], $is_final);
+					if ($attachment_stmt->execute())
+					{
+						$finished_meeting_stmt = $conn->prepare("UPDATE 
+    																		p39_meeting 
+																		SET 
+																		    status = 'finished' 
+																		WHERE 
+																		    meeting_id = ?");
+						$finished_meeting_stmt->bind_param("i", $_POST["meeting_id"]);
+						$finished_meeting_stmt->execute();
+					}
 				}
 			}
 			header("location: meeting_attachment.php?mid={$_POST['meeting_id']}",
 				true, 303);
+			break;
+
+		case "add_meeting_attachment_btn1":
+			$attachment_allowed_types = array("pdf", "png", "gif", "jpeg", "jpg");
+			$uploaded_attachments = Upload("meeting_attachment1", "images/", $attachment_allowed_types);
+			if (!empty($uploaded_attachments))
+			{
+				foreach ($uploaded_attachments as $key => $value)
+				{
+					$is_final = 0;
+					$attachment_stmt = $conn->prepare("INSERT INTO `p39_meeting_attachment`
+	                                                        (`attachment_name`, 
+	                                                         `attachment_title`, 
+	                                                         `meeting_id`, 
+	                                                         `added_by`, 
+	                                                         `is_final`)
+	                                                    VALUES
+	                                                        (?, ?, ?, ?, ?)");
+					$attachment_stmt->bind_param("ssiii", $value, $key, $_POST["meeting_id"],
+						$_SESSION["user_id"], $is_final);
+					$attachment_stmt->execute();
+				}
+			}
+
+			header("location: meeting_attachment.php?mid={$_POST['meeting_id']}", true, 303);
+			break;
+
+		case "add_vote_btn":
+			$vote = clean_data($_POST["vote"]);
+			$vote_stmt = $conn->prepare("INSERT INTO 
+    												p39_vote (user_id, 
+    												          subject_id, 
+    												          vote_type_id) 
+												VALUES 
+												    (?, ?, ?)");
+			$vote_stmt->bind_param("iii", $_SESSION["user_id"], $_POST["subject_id"], $vote);
+			$vote_stmt->execute();
+			$current_meeting_stmt = $conn->prepare("SELECT meeting_id FROM p39_meeting WHERE is_current = 1");
+			$current_meeting_stmt->execute();
+			$current_meeting_result = $current_meeting_stmt->get_result();
+			$current_meeting_row = $current_meeting_result->fetch_assoc();
+			$current_meeting = $current_meeting_row["meeting_id"];
+			header("location: current_meeting_subject.php?mid=$current_meeting", true, 303);
 			break;
 	}
 }

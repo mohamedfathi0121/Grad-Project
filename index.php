@@ -24,11 +24,11 @@ if (session_status() === PHP_SESSION_NONE)
                 </div>
                 <?php if ($_SESSION["admin"]) { ?>
                     <div class="box">
-                        <div class="row">
-                            <div class="col">
-                                <a href="formation.php" class="btn-basic">التشكيلات السنوية</a>
-                            </div>
-                        </div>
+<!--                        <div class="row">-->
+<!--                            <div class="col">-->
+<!--                                <a href="formation.php" class="btn-basic">التشكيلات السنوية</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="row">
                             <div class="col">
                                 <a href="meetings.php" class="btn-basic">المجالس</a>
@@ -38,8 +38,13 @@ if (session_status() === PHP_SESSION_NONE)
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col"><a href="#" class="btn-basic">الموضوعات</a></div>
-                            <div class="col"><a href="executive_decisions.php" class="btn-basic">القرارات التنفيذية</a></div>
+<!--                            <div class="col"><a href="#" class="btn-basic">الموضوعات</a></div>-->
+                            <div class="col">
+                                <a href="formation.php" class="btn-basic">التشكيلات السنوية</a>
+                            </div>
+                            <div class="col">
+                                <a href="executive_decisions.php" class="btn-basic">القرارات التنفيذية</a>
+                            </div>
                         </div>
                     </div>
                 <?php } else { ?>
@@ -48,16 +53,16 @@ if (session_status() === PHP_SESSION_NONE)
                             <div class="col">
                                 <a href="meetings.php" class="btn-basic">المجالس</a>
                             </div>
-                            <div class="col">
-                                <a href="#" class="btn-basic">الموضوعات</a>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <a href="subjects_table.php" class="btn-basic">جدول الأعمال</a>
                             </div>
-                            <div class="col">
+                            <!--<div class="col">
                                 <a href="" class="btn-basic">التقارير</a>
+                            </div>-->
+                            <div class="col">
+                                <a href="formation.php" class="btn-basic">التشكيلات</a>
                             </div>
                         </div>
                     </div>

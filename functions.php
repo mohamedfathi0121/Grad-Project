@@ -86,7 +86,7 @@ function Nav()
                     <li><a href="index.php">الصفحة الرئيسية</a></li>
                     <li><a href="formation.php">التشكيلات</a></li>
                     <li><a href="meetings.php">المجالس</a></li>
-                    <li><a href="#">الموضوعات</a></li>
+<!--                    <li><a href="#">الموضوعات</a></li>-->
 					<?php if (@$_SESSION["admin"]): ?>
                         <li><a href="members.php">الاعضاء</a></li>
                         <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
