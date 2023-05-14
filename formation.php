@@ -91,7 +91,23 @@ if (session_status() === PHP_SESSION_NONE) {
                                             </span>
                                         </h4>
                                     </div>
-
+                                    <div class="col">
+                                                    
+                                                    <div class="card">
+                                                        <div class="card-box">
+                                                            30
+                                                        </div>
+                                                        <div class="card-text">عدد اعضاء التشكيل</div>
+                                                    
+                                                </div>
+                                                <div class="card">
+                                                        <div class="card-box">
+                                                            16
+                                                        </div>
+                                                        <div class="card-text">عدد مجالس التشكيل</div>
+                                                    
+                                                </div>
+                                                </div>
                                     <div class="col">
                                         <?php if ($_SESSION["admin"]) { ?>
                                             <form method="post" action="meeting_status.php">
@@ -171,6 +187,26 @@ if (session_status() === PHP_SESSION_NONE) {
                                             </span>
                                         </h4>
                                     </div>
+                                    <div class="col">
+                                                    
+                                                        <div class="card">
+                                                            <div class="card-box">
+                                                                30
+                                                            </div>
+                                                            <div class="card-text">عدد اعضاء التشكيل</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                16
+                                                            </div>
+                                                            <div class="card-text">عدد مجالس التشكيل</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    
+                                                    
+                                                
                                     <div class="col">
                                         <a href="meetings.php?f=fn&search=<?= $past_formation_row['formation_number'] ?>" class="btn-basic">عرض
                                             مجالس التشكيل</a>
