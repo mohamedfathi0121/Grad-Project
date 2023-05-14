@@ -147,7 +147,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                             <div class="card-box">
                                                                 16
                                                             </div>
-                                                            <div class="card-text">الموضوعات الموافق عليها</div>
+                                                            <div class="card-text">الموضوعات المقبولة </div>
                                                         
                                                     </div>
                                                     <div class="card">
@@ -274,7 +274,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                 </form>
                                                                 <form method="get" action="current_meeting_subject.php" class="current-meeting-buttons">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
-                                                                    <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                                    <button class="btn-basic">موضوعات المجلس</button>
                                                                 </form>
                                                                 <a href="subjects_table.php" class="btn-basic">جدول الأعمال</a>
                                                                 <button title=" يجب ان يكون المجلس مؤكد اولا"
@@ -292,7 +292,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                             <div class="current-meeting-buttons">
                                                                 <button class="btn-basic disabled" disabled
                                                                         title="لا يوجد موضوعات">
-                                                                    الموضوعات الخاصة بالمجلس</button>
+                                                                    موضوعات المجلس</button>
                                                                 <button class="btn-basic disabled" disabled
                                                                         title="لا يوجد جدول أعمال">
                                                                     عرض ملف جدول الاعمال</button>
@@ -395,7 +395,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
                                                                     <button class="btn-basic">
-                                                                        الموضوعات الخاصة بالمجلس
+                                                                        موضوعات المجلس
                                                                     </button>
                                                                 </form>
                                                                 <form method="post" action="meeting_attendance.php"
@@ -415,7 +415,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                             <div class="current-meeting-buttons">
                                                                 <form method="get" action="current_meeting_subject.php">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
-                                                                    <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                                    <button class="btn-basic">موضوعات المجلس</button>
                                                                 </form>
                                                                 <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
                                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
@@ -496,7 +496,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
                                                                     <button class="btn-basic">
-                                                                        الموضوعات الخاصة بالمجلس
+                                                                        موضوعات المجلس
                                                                     </button>
                                                                 </form>
                                                                 <form method="post" action="meeting_attendance.php"
@@ -516,7 +516,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                             <div class="current-meeting-buttons">
                                                                 <form method="get" action="current_meeting_subject.php">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
-                                                                    <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                                    <button class="btn-basic">موضوعات المجلس</button>
                                                                 </form>
                                                                 <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
                                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
@@ -596,6 +596,56 @@ if (session_status() === PHP_SESSION_NONE)
                                                 </span>
                                             </h4>
                                         </div>
+                                        <div class="col">
+                                                    <div class="row">
+                                                        <div class="card">
+                                                            <div class="card-box">
+                                                                30
+                                                            </div>
+                                                            <div class="card-text">عدد الموضوعات</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                16
+                                                            </div>
+                                                            <div class="card-text">الاعضاء الحاضرين</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                16
+                                                            </div>
+                                                            <div class="card-text">الموضوعات المقبولة </div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                12
+                                                            </div>
+                                                            <div class="card-text">الموضوعات المرفوضة</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                18
+                                                            </div>
+                                                            <div class="card-text">قرارات منفذة</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                5
+                                                            </div>
+                                                            <div class="card-text">قرارات غير منفذة</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                </div>
 			                            <?php
 			                            if($_SESSION["admin"]):
 				                            ?>
@@ -763,6 +813,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                     } ?>
                                                 </span>
                                             </h4>
+                                            
                                         </div>
 					                    <?php
 					                    if($_SESSION["admin"]):
@@ -813,6 +864,10 @@ if (session_status() === PHP_SESSION_NONE)
 	<?php endif;
     Footer();
     ?>
+    
+    
+    
+
 
     <!-- Js Scripts and Plugins -->
     <script type="module" src="./js/main.js"></script>

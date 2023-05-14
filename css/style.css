@@ -126,30 +126,45 @@
 	.member-box .row > .col:nth-child(2) {
 		align-items: center;
 	}
+	.card {
+		display: none;
+	}
 }
-.meeting-box .row > .col:nth-child(2) {
+.meeting-box .row > .col:nth-child(2),
+.old-meeting-box .row > .col:nth-child(2) {
 	gap: 10px;
 }
-.meeting-box .card .card-box {
+.old-meeting-box .row .col {
+	gap: 20px;
+}
+.card .card-box {
 	background-color: var(--tangaroa);
 	color: #fff;
-	width: 4vmin;
+	width: 3vmin;
 	text-align: center;
 	border-radius: 50%;
 	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-.meeting-box .card {
-	padding: 2vmin;
-	border: 2px solid var(--tangaroa);
+.card {
+	/* padding: 2vmin; */
+
 	border-radius: 5px;
 	flex: 1;
 }
-.meeting-box .card .card-text {
+.card .card-text {
 	text-align: center;
 	font-size: 0.9em;
 	color: var(--headings-color);
+	min-height: 42px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.meeting-box .row .col > .row {
+.meeting-box .row .col > .row,
+.old-meeting-box .row .col > .row {
 	column-gap: 25px;
 	margin: 0;
 	align-items: stretch;

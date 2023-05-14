@@ -92,14 +92,14 @@ require_once "functions.php";
                 <?php }
                 if (!$subject_pic_exist) { ?>
                     <div>
-                        <h3>الصور</h3>
+                        <h3>صور تفاصيل الموضوع</h3>
                     </div>
                     <main id="empty" class="empty">
                         <h4>لا يوجد صور الآن</h4>
                     </main>
                 <?php } else { ?>
                     <div>
-                        <h3>الصور</h3>
+                        <h3>صور تفاصيل الموضوع</h3>
                     </div>
                     <div class="attatchement-box">
 		                <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
