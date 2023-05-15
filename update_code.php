@@ -308,5 +308,18 @@ foreach ($_POST as $btn => $value)
 			$current_meeting = $current_meeting_row["meeting_id"];
 			header("location: current_meeting_subject.php?mid=$current_meeting", true, 303);
 			break;
+
+		case "update_decision_action_btn":
+			$is_action_done = clean_data($_POST["is_action_done"]);
+			$decision_action_update_stmt = $conn->prepare("UPDATE 
+    																	p39_decision 
+																	SET 
+																	    is_action_done = ? 
+																	WHERE 
+																	    subject_id = ?");
+			$decision_action_update_stmt->bind_param("ii", $is_action_done, $_POST["subject_id"]);
+			$decision_action_update_stmt->execute();
+			header("location: executive_decisions.php", true, 303);
+			break;
 	}
 }

@@ -224,6 +224,7 @@ foreach ($_POST as $btn => $value)
 			$subject_details = clean_data($_POST["subject_details"]);
 			$subject_type = clean_data($_POST["subject_type"]);
 			$subject_comments = (empty($_POST["subject_comments"]) ? null : clean_data($_POST["subject_comments"]));
+			$meeting_id = $_POST["meeting_id"];
 			$meeting_stmt = $conn->prepare("SELECT
 													    m.meeting_id
 													FROM
@@ -239,7 +240,6 @@ foreach ($_POST as $btn => $value)
 			$subject_count = $meeting_result->num_rows;
 			$subject_count += 1;
 			$meeting_row = $meeting_result->fetch_assoc();
-			$meeting_id = $meeting_row["meeting_id"];
 			$meeting_stmt->close();
 			$insert_stmt = $conn->prepare("INSERT INTO 
     														`p39_subject`
