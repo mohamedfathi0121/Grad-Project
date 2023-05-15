@@ -133,13 +133,15 @@ openButton.forEach((openBtn) => {
 // });
 
 console.log("AYMAN");
+
 // Links Toggler
 
 const toggler = document.querySelector("nav ul .icon");
 const linksDiv = document.querySelector("nav ul .links");
+const linksDivOpen = document.querySelector("nav ul .links.open");
 
 toggler.addEventListener("click", () => {
-	linksDiv.classList.toggle("deactive");
+	linksDiv.classList.toggle("open");
 });
 
 // Does it have an executive response toggle in Add Decision & Update Decision Pages

@@ -231,9 +231,17 @@ nav ul .icon {
 	nav .deactive {
 		display: none;
 	}
-	nav ul .links {
+	nav .links {
+		max-height: 0;
+		overflow: hidden;
+		transition: 0.5s;
+	}
+
+	nav .links.open {
+		max-height: 350px;
 		margin-top: 40px;
 	}
+
 	nav ul li {
 		margin: 10px 0;
 	}

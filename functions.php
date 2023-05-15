@@ -82,7 +82,7 @@ function Nav()
         <nav>
             <ul>
                 <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
-                <div class="links deactive">
+                <div class="links">
                     <li><a href="index.php">الصفحة الرئيسية</a></li>
                     <li><a href="formation.php">التشكيلات</a></li>
                     <li><a href="meetings.php">المجالس</a></li>
