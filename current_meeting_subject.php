@@ -13,13 +13,33 @@ if (session_status() === PHP_SESSION_NONE) {
 <body dir="rtl">
 <?php Headers();
 if (is_logged_in()):
-	Nav(); ?>
+	Nav();
+	$search = clean_data($_GET["mid"]);
+	$is_current_stmt = $conn->prepare("SELECT 
+                                                    is_current, 
+                                                    status 
+                                                FROM 
+                                                    p39_meeting 
+                                                WHERE 
+                                                    meeting_id = ?");
+	$is_current_stmt->bind_param("i", $search);
+	$is_current_stmt->execute();
+	$is_current_result = $is_current_stmt->get_result();
+	$is_current_row = $is_current_result->fetch_assoc();
+	$is_current = $is_current_row["is_current"] == 1;
+	$status = $is_current_row["status"];?>
     <main class="current-subject-content">
         <div class="container">
             <!-- عنوان الصفحة -->
-            <div class="title">
-                <h1>موضوعات المجلس الحالي</h1>
-            </div>
+            <?php if ($is_current) { ?>
+                <div class="title">
+                    <h1>موضوعات المجلس الحالي</h1>
+                </div>
+            <?php } else { ?>
+                <div class="title">
+                    <h1>موضوعات المجلس رقم <?= $search ?></h1>
+                </div>
+            <?php } ?>
 			<?php
             $formation_id_stmt = $conn->prepare("SELECT formation_id FROM p39_meeting WHERE meeting_id = ?");
             $formation_id_stmt->bind_param("i", $_GET["mid"]);
@@ -38,7 +58,6 @@ if (is_logged_in()):
                 $subject_types_stmt->close();
 
                 if (!isset($_GET["search"])) {
-                    $search = clean_data($_GET["mid"]);
                     $current_subjects_stmt = $conn->prepare("SELECT * FROM p39_subject WHERE meeting_id = ? ORDER BY -order_id DESC");
                     $current_subjects_stmt->bind_param("i", $search);
                     $current_subjects_stmt->execute();
@@ -76,26 +95,30 @@ if (is_logged_in()):
                                         </div>
 
                                         <?php
-                                        $is_current_stmt = $conn->prepare("SELECT 
-                                                                                        is_current, 
-                                                                                        status 
-                                                                                    FROM 
-                                                                                        p39_meeting 
-                                                                                    WHERE 
-                                                                                        meeting_id = ?");
-                                        $is_current_stmt->bind_param("i", $search);
-                                        $is_current_stmt->execute();
-                                        $is_current_result = $is_current_stmt->get_result();
-                                        $is_current_row = $is_current_result->fetch_assoc();
-                                        $is_current = $is_current_row["is_current"] == 1;
-                                        $status = $is_current_row["status"];
                                         if ($is_current)
                                         {
                                             if (!$_SESSION["admin"]) { ?>
                                                 <div class="col col-subject-vote">
-                                                    <a href="voting.php" class="btn-basic">
-                                                        تصويت
-                                                    </a>
+	                                                <?php
+	                                                $subject_vote_stmt = $conn->prepare("SELECT subject_id FROM p39_vote WHERE user_id = ? AND subject_id = ?");
+	                                                $subject_vote_stmt->bind_param("ii", $_SESSION["user_id"], $current_subjects_row["subject_id"]);
+	                                                $subject_vote_stmt->execute();
+	                                                $subject_vote_result = $subject_vote_stmt->get_result();
+	                                                $subject_vote_exists = $subject_vote_result->num_rows > 0;
+	                                                ?>
+                                                    <form method="post" action="voting.php">
+                                                        <input type="hidden" name="subject_id"
+                                                               value="<?= $current_subjects_row['subject_id'] ?>">
+                                                        <?php if (!$subject_vote_exists) { ?>
+                                                            <button name="voting_btn" class="btn-basic">
+                                                                تصويت
+                                                            </button>
+                                                        <?php } else { ?>
+                                                            <button name="voting_btn" class="btn-basic">
+                                                                تعديل التصويت
+                                                            </button>
+                                                        <?php } ?>
+                                                    </form>
                                                     <button class="btn-basic subject-details-btn">
                                                         تفاصيل الموضوع
                                                     </button>
@@ -104,7 +127,7 @@ if (is_logged_in()):
                                                 </div>
                                             <?php } else {
                                                 $subject_decision_stmt = $conn->prepare("SELECT 
-                                                                                                    decision_id 
+                                                                                                    decision_details
                                                                                                 FROM 
                                                                                                     p39_decision 
                                                                                                 WHERE 
@@ -145,10 +168,12 @@ if (is_logged_in()):
                                                         <?php }
                                                     } else { ?>
                                                         <div class="col">
-                                                            <button class="btn-basic disabled" disabled>اضافة قرار</button>
+                                                            <button title="لا يمكن إضافة قرار إلا في مجلس مؤكد" disabled
+                                                                    class="btn-basic disabled">اضافة قرار</button>
                                                         </div>
                                                         <div class="col">
-                                                            <button class="btn-basic disabled" disabled>تعديل قرار</button>
+                                                            <button title="لا يمكن تعديل قرار إلا في مجلس مؤكد" disabled
+                                                                    class="btn-basic disabled">تعديل قرار</button>
                                                         </div>
                                                     <?php } ?>
                                                     <div class="col">
@@ -156,13 +181,20 @@ if (is_logged_in()):
                                                             تفاصيل الموضوع
                                                         </button>
                                                     </div>
-                                                    <div class="col">
-                                                        <form method="post" action="update_subject.php">
-                                                            <input type="hidden" name="subject_id"
-                                                                   value="<?= $current_subjects_row['subject_id'] ?>">
-                                                            <button class="btn-basic" name="update_subject_btn">تعديل الموضوع</button>
-                                                        </form>
-                                                    </div>
+                                                    <?php if ($status == "finished") { ?>
+                                                        <div class="col">
+                                                            <button type="button" title="لا يمكن تعديل موضوع في مجلس نهائي"
+                                                                    class="btn-basic disabled" disabled>تعديل الموضوع</button>
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <div class="col">
+                                                            <form method="post" action="update_subject.php">
+                                                                <input type="hidden" name="subject_id"
+                                                                       value="<?= $current_subjects_row['subject_id'] ?>">
+                                                                <button class="btn-basic" name="update_subject_btn">تعديل الموضوع</button>
+                                                            </form>
+                                                        </div>
+                                                    <?php } ?>
                                                     <div class="col">
                                                         <a class="btn-basic" href="subject_attachment.php?sid=<?=$current_subjects_row['subject_id']?>">عرض المرفقات</a>
                                                     </div>
@@ -182,29 +214,54 @@ if (is_logged_in()):
                                 <div class="current-subject-details deactive">
                                     <div class="row">
                                         <div class="col">
-                                        <div class="table-container">
-                <table class="subjects-table">
-                  <tbody>
-                    <tr class="subject-row">
-                      <td>الموضوع (1)</td>
-                      <td>
-                        <p><?= $current_subjects_row["subject_details"] ?></p>
-                      
-                        <img src="" alt="">
-                      </td>
-                    </tr>
-                    <tr class="decision-row">
-                      <td>القرار</td>
-                      <td>
-                        <p>الموافقة على تعديل مدة الامتحان التحرير لمقررات البرامج الجديدة لمرحلة البكالوريوس ببرنامجي
-                          BIS و FMI
-                          بكلية التجارة وادارة الاعمال لتكون ساعتين فقط بدلا من 3 ساعات</p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-                                            
+                                            <div class="table-container">
+                                                <table class="subjects-table">
+                                                    <tbody>
+                                                    <tr class="subject-row">
+                                                        <td>الموضوع (<?= $current_subjects_row["subject_number"] ?>)</td>
+                                                        <td>
+                                                            <strong><?= $current_subjects_row["subject_name"] ?></strong>
+                                                            <p><?= $current_subjects_row["subject_details"] ?></p>
+                                                            <?php
+                                                            $subject_pic_stmt = $conn->prepare("SELECT 
+                                                                                                            picture_name
+                                                                                                        FROM 
+                                                                                                            p39_subject_picture 
+                                                                                                        WHERE 
+                                                                                                            subject_id = ?");
+                                                            $subject_pic_stmt->bind_param("i", $current_subjects_row["subject_id"]);
+                                                            $subject_pic_stmt->execute();
+                                                            $subject_pic_result = $subject_pic_stmt->get_result();
+                                                            $subject_pic_exists = $subject_pic_result->num_rows > 0; ?>
+                                                            <?php if ($subject_pic_exists) { ?>
+                                                                <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
+                                                                    <img src="<?= $subject_pic_row['picture_name'] ?>" alt="صورة تفاصيل الموضوع">
+                                                                <?php }
+                                                            } ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="decision-row">
+                                                        <td>القرار</td>
+                                                        <td>
+                                                            <?php
+                                                            $subject_decision_stmt = $conn->prepare("SELECT 
+                                                                                                                decision_details
+                                                                                                            FROM 
+                                                                                                                p39_decision 
+                                                                                                            WHERE 
+                                                                                                                subject_id = ?");
+                                                            $subject_decision_stmt->bind_param("i", $current_subjects_row["subject_id"]);
+                                                            $subject_decision_stmt->execute();
+                                                            $subject_decision_result = $subject_decision_stmt->get_result();
+                                                            $subject_decision_row = $subject_decision_result->fetch_assoc(); ?>
+                                                            <p><?= @$subject_decision_row["decision_details"] == NULL
+                                                                    ? "لا يوجد"
+                                                                    : $subject_decision_row["decision_details"]  ?></p>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
