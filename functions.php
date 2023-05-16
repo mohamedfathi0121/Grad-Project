@@ -104,12 +104,12 @@ function Nav()
 function SearchBar()
 {
     ?>
-    <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get" style="justify-content: left">
+    <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get">
 		<?php switch (basename($_SERVER["PHP_SELF"])) {
 			case "formation.php": ?>
-                <div class="select-basic" style="width: 150px">
+                <div class="select-basic" style="width: 20vmin;min-width: 100px;">
                     <select name="f">
-                        <option value="">اختر</option>
+                        <option value="">عن طريق</option>
                         <option value="fn">رقم التشكيل</option>
                         <option value="y">سنة التشكيل</option>
                     </select>
@@ -122,7 +122,7 @@ function SearchBar()
 			case "meetings.php": ?>
                 <div class="select-basic" style="width: 150px">
                     <select name="f">
-                        <option value="">اختر</option>
+                        <option value="">عن طريق</option>
                         <option value="mn">رقم المجلس</option>
                         <option value="fn">رقم التشكيل</option>
                         <option value="my">سنة المجلس</option>
@@ -136,7 +136,7 @@ function SearchBar()
             case "members.php": ?>
                 <div class="select-basic" style="width: 150px">
                     <select name="f">
-                        <option value="">اختر</option>
+                        <option value="">عن طريق</option>
                         <option value="mn">اسم العضو</option>
                         <option value="jt">المسمى الوظيفي</option>
                     </select>

@@ -15,13 +15,18 @@ if (session_status() === PHP_SESSION_NONE)
 <body dir="rtl">
 	<?php Headers(); ?>
 	<?php if (is_logged_in()) : ?>
-		<?php Nav();
-		SearchBar();?>
+		<?php Nav();?>
         <main id="admin" class="meetings-content">
             <div class="container">
                 <div class='meetings-title'>
                     <h1>المجالس</h1>
                 </div>
+                <div class="search-container">
+                <div class="search-title">
+                    <h3>ابحث عن مجلس</h3>
+                </div>
+                <?php SearchBar(); ?>
+            </div>
                 <?php
                     ### If user hasn't pressed on search (Default Case)
                     if (!isset($_GET["search"])):

@@ -354,6 +354,14 @@ input[type="radio"]:checked {
 }
 
 /* 4. Search Bar */
+.search-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 50px;
+	gap: 20px;
+}
 .search {
 	display: flex;
 	justify-content: center;
@@ -370,7 +378,6 @@ input[type="radio"]:checked {
 .search input {
 	width: 23vmax;
 	max-width: 230px;
-	border-radius: 0 7px 7px 0;
 }
 .search button {
 	border-radius: 7px 0px 0 7px;
@@ -415,6 +422,7 @@ input[type="radio"]:checked {
 	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
 	cursor: pointer;
 	user-select: none;
+	border-radius: 0 7px 7px 0;
 }
 
 .select-items {
@@ -425,7 +433,9 @@ input[type="radio"]:checked {
 	right: 0;
 	z-index: 99;
 }
-
+.search .select-items {
+	position: absolute;
+}
 .select-hide {
 	display: none;
 }

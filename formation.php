@@ -14,11 +14,17 @@ if (session_status() === PHP_SESSION_NONE) {
 <?php Headers(); ?>
 <?php if (is_logged_in()) { ?>
 	<?php Nav(); ?>
-    <?php SearchBar(); ?>
+    
     <main id="admin" class="formation-content">
         <div class="container">
             <div class="title">
                 <h1>التشكيلات</h1>
+            </div>
+            <div class="search-container">
+                <div class="search-title">
+                    <h3>ابحث عن تشكيل</h3>
+                </div>
+                <?php SearchBar(); ?>
             </div>
 			<?php
 			### Get formation_ids the user exists in

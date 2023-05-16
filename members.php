@@ -17,8 +17,7 @@ if(session_status() === PHP_SESSION_NONE)
         <?php
         Headers();
         if(is_admin()):
-            Nav();
-            SearchBar(); ?>
+            Nav();?>
             <!-- *Main Members Page Content  -->
             <!-- !Admin Apperance -->
             <!-- *Add "deactive" to Class Here ↓↓ To Test-->
@@ -28,6 +27,12 @@ if(session_status() === PHP_SESSION_NONE)
                     <div class="members-title">
                         <h1>الأعضاء</h1>
                     </div>
+                    <div class="search-container">
+                <div class="search-title">
+                    <h3>ابحث عن عضو</h3>
+                </div>
+                <?php SearchBar(); ?>
+            </div>
                     <?php
                     // Get all departments info
                     $departments_stmt = $conn->prepare("SELECT * FROM p39_department");
