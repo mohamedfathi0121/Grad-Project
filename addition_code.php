@@ -526,5 +526,28 @@ foreach ($_POST as $btn => $value)
 			$current_meeting = $current_meeting_row["meeting_id"];
 			header("location: current_meeting_subject.php?mid=$current_meeting", true, 303);
 			break;
+			
+		case "add_decision_attachment_btn":
+			$attachment_allowed_types = array("pdf", "png", "gif", "jpeg", "jpg");
+			$uploaded_attachments = Upload("decision_attachment", "images/", $attachment_allowed_types);
+			if (!empty($uploaded_attachments))
+			{
+				foreach ($uploaded_attachments as $key => $value)
+				{
+					$attachment_stmt = $conn->prepare("INSERT INTO `p39_decision_attachment`
+	                                                        (`attachment_name`, 
+	                                                         `attachment_title`, 
+	                                                         `decision_id`, 
+	                                                         `added_by`)
+	                                                    VALUES
+	                                                        (?, ?, ?, ?)");
+					$attachment_stmt->bind_param("ssii", $value, $key, $_POST["decision_id"],
+						$_SESSION["user_id"]);
+					$attachment_stmt->execute();
+				}
+			}
+
+			header("location: executive_decisions.php?f=1", true, 303);
+			break;
 	}
 }

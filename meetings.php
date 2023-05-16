@@ -22,9 +22,8 @@ if (session_status() === PHP_SESSION_NONE)
                     <h1>المجالس</h1>
                 </div>
                 <div class="search-container">
-                
-                <?php SearchBar(); ?>
-            </div>
+                    <?php SearchBar(); ?>
+                </div>
                 <?php
                     ### If user hasn't pressed on search (Default Case)
                     if (!isset($_GET["search"])):

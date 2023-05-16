@@ -296,7 +296,8 @@ if (is_admin()) {
                                                         s.subject_name as sn,
                                                         d.needs_action as na,
                                                         d.is_action_done as iad,
-                                                        s.subject_id as sid
+                                                        s.subject_id as sid, 
+                                                        d.decision_id as did
                                                     FROM
                                                         p39_formation AS f
                                                     JOIN p39_meeting AS m
@@ -362,6 +363,12 @@ if (is_admin()) {
                                                 <div class="col">
                                                     <button class="btn-basic dec-status-btn">حالة تنفيذه</button>
                                                 </div>
+                                                <!-- Add button class
+                                                ########################
+                                                ######################## -->
+                                                <div class="col">
+                                                    <button class="btn-basic">المرفقات</button>
+                                                </div>
                                             </div>
                                             <div class="decision-desc deactive">
                                                 <div class="table-container">
@@ -411,6 +418,36 @@ if (is_admin()) {
                                                 </div>
                                                 <div class="row">
                                                     <button class="btn-basic" name="update_decision_action_btn">تأكيد</button>
+                                                </div>
+                                            </form>
+                                            <form action="addition_code.php" class="" method="post" enctype="multipart/form-data">
+                                                <input type="hidden" value="<?= $exec_decisions_row_1["did"] ?>" name="decision_id">
+                                                <div class="btn-basic">
+                                                    <label for="up1">
+                                                        رفع مرفق
+                                                        <i class="fa-solid fa-upload"></i>
+                                                        <input id="up1" type="file" name="decision_attachment[]" class="upload-button"
+                                                               accept="application/pdf, image/png, image/gif, image/jpeg" multiple/>
+                                                    </label>
+                                                </div>
+                                                <button type="submit" name="add_decision_attachment_btn" class="btn-basic">رفع</button>
+                                                <div class="file-list"></div>
+	                                            <?php
+	                                            $decision_attachment_stmt = $conn->prepare("SELECT * FROM p39_decision_attachment WHERE decision_id = ?");
+	                                            $decision_attachment_stmt->bind_param("i", $exec_decisions_row_1["did"]);
+	                                            $decision_attachment_stmt->execute();
+	                                            $decision_attachment_result = $decision_attachment_stmt->get_result(); ?>
+                                                <div class="row"> <?php
+		                                            while ($decision_attachment_row = $decision_attachment_result->fetch_assoc()) { ?>
+                                                    <form method="post" action="deletion_code.php">
+                                                        <div class="col">
+                                                            <input type="hidden" name="attachment_id" value="<?= $decision_attachment_row['attachment_id'] ?>">
+                                                            <a href="<?= $decision_attachment_row['attachment_name'] ?>" target="_blank">
+                                                                <?= $decision_attachment_row["attachment_title"] ?></a>
+                                                            <button name="delete_decision_attachment_btn" type="submit" class="btn-basic">حذف</button>
+                                                        </div>
+                                                    </form>
+		                                            <?php } ?>
                                                 </div>
                                             </form>
                                         </div>
@@ -555,6 +592,7 @@ if (is_admin()) {
                                                             </div>
                                                             <?php break;
                                                     } ?>
+
                                                 </div>
                                                 <div class="row">
                                                     <button class="btn-basic" name="update_decision_action_btn">تأكيد</button>

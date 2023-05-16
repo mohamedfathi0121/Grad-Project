@@ -28,9 +28,8 @@ if(session_status() === PHP_SESSION_NONE)
                         <h1>الأعضاء</h1>
                     </div>
                     <div class="search-container">
-                
-                <?php SearchBar(); ?>
-            </div>
+                        <?php SearchBar(); ?>
+                    </div>
                     <?php
                     // Get all departments info
                     $departments_stmt = $conn->prepare("SELECT * FROM p39_department");
