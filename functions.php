@@ -114,7 +114,7 @@ function SearchBar()
                         <option value="y">سنة التشكيل</option>
                     </select>
                 </div>
-                <input type="text" placeholder="بحث.." name="search"/>
+                <input type="text" placeholder="ابحث عن تشكيل" name="search"/>
                 <button type="submit" class="btn-basic">
                     <i class="fa fa-search"></i>
                 </button>
@@ -128,7 +128,7 @@ function SearchBar()
                         <option value="my">سنة المجلس</option>
                     </select>
                 </div>
-                <input type="text" placeholder="بحث.." name="search"/>
+                <input type="text" placeholder="ابحث عن مجلس" name="search"/>
                 <button type="submit" class="btn-basic">
                     <i class="fa fa-search"></i>
                 </button>
@@ -141,7 +141,7 @@ function SearchBar()
                         <option value="jt">المسمى الوظيفي</option>
                     </select>
                 </div>
-                <input type="text" placeholder="بحث.." name="search"/>
+                <input type="text" placeholder="ابحث عن عضو" name="search"/>
                 <button type="submit" class="btn-basic">
                     <i class="fa fa-search"></i>
                 </button>

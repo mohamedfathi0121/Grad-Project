@@ -22,9 +22,7 @@ if (session_status() === PHP_SESSION_NONE)
                     <h1>المجالس</h1>
                 </div>
                 <div class="search-container">
-                <div class="search-title">
-                    <h3>ابحث عن مجلس</h3>
-                </div>
+                
                 <?php SearchBar(); ?>
             </div>
                 <?php
