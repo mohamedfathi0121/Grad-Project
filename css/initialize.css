@@ -436,6 +436,10 @@ input[type="radio"]:checked {
 .search .select-items {
 	position: absolute;
 }
+.search .select-basic {
+	width: 20vmin;
+	min-width: 100px;
+}
 .select-hide {
 	display: none;
 }

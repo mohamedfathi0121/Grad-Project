@@ -107,7 +107,7 @@ function SearchBar()
     <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get">
 		<?php switch (basename($_SERVER["PHP_SELF"])) {
 			case "formation.php": ?>
-                <div class="select-basic" style="width: 20vmin;min-width: 100px;">
+                <div class="select-basic">
                     <select name="f">
                         <option value="">عن طريق</option>
                         <option value="fn">رقم التشكيل</option>
@@ -120,7 +120,7 @@ function SearchBar()
                 </button>
 				<?php break;
 			case "meetings.php": ?>
-                <div class="select-basic" style="width: 150px">
+                <div class="select-basic">
                     <select name="f">
                         <option value="">عن طريق</option>
                         <option value="mn">رقم المجلس</option>
@@ -134,7 +134,7 @@ function SearchBar()
                 </button>
 				<?php break;
             case "members.php": ?>
-                <div class="select-basic" style="width: 150px">
+                <div class="select-basic">
                     <select name="f">
                         <option value="">عن طريق</option>
                         <option value="mn">اسم العضو</option>
