@@ -17,6 +17,7 @@ if (is_logged_in()):
 	$search = clean_data($_GET["mid"]);
 	$is_current_stmt = $conn->prepare("SELECT 
                                                     is_current, 
+                                                    meeting_number, 
                                                     status 
                                                 FROM 
                                                     p39_meeting 
@@ -26,8 +27,8 @@ if (is_logged_in()):
 	$is_current_stmt->execute();
 	$is_current_result = $is_current_stmt->get_result();
 	$is_current_row = $is_current_result->fetch_assoc();
-	$is_current = $is_current_row["is_current"] == 1;
-	$status = $is_current_row["status"];?>
+	@$is_current = $is_current_row["is_current"] == 1;
+	@$status = $is_current_row["status"];?>
     <main class="current-subject-content">
         <div class="container">
             <!-- عنوان الصفحة -->
@@ -37,7 +38,7 @@ if (is_logged_in()):
                 </div>
             <?php } else { ?>
                 <div class="title">
-                    <h1>موضوعات المجلس رقم <?= $search ?></h1>
+                    <h1>موضوعات المجلس رقم <?= $is_current_row["meeting_number"] ?></h1>
                 </div>
             <?php } ?>
 			<?php
@@ -282,6 +283,7 @@ if (is_logged_in()):
                         </div>
                         <div class="add-current-subject">
                             <form method="post" action="add_subject.php">
+                                <input type="hidden" name="meeting_id" value="<?= $search ?>">
                                 <button name="add_subject_btn" class="btn-basic">اضافة موضوع</button>
                             </form>
                         </div>

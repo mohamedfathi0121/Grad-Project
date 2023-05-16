@@ -346,7 +346,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     ?>
                     <div class='current-formation'>
                         <main id='empty' class='empty-formation'>
-                            <h4>عذرًا، لا يوجد تشكيلات تطابق رقم التشكيل</h4>
+                            <h4>عذرًا، لا يوجد تشكيلات تطابق البحث</h4>
                         </main>
                     </div>
                     <?php
@@ -355,7 +355,7 @@ if (session_status() === PHP_SESSION_NONE) {
 			?>
             <div class='current-meeting'>
                 <main id='empty' class='empty-meeting'>
-                    <h4>عذرًا، لا يوجد تشكيلات بهذا الرقم</h4>
+                    <h4>عذرًا، لا يوجد تشكيلات تطابق البحث</h4>
                 </main>
             </div>
 		<?php endif; ?>

@@ -33,6 +33,11 @@ if (session_status() === PHP_SESSION_NONE)
                             <div class="col">
                                 <a href="meetings.php" class="btn-basic">المجالس</a>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <a href="subjects_table.php" class="btn-basic">جدول الأعمال</a>
+                            </div>
                             <div class="col">
                                 <a href="members.php" class="btn-basic">الأعضاء</a>
                             </div>
@@ -62,7 +67,7 @@ if (session_status() === PHP_SESSION_NONE)
                                 <a href="" class="btn-basic">التقارير</a>
                             </div>-->
                             <div class="col">
-                                <a href="formation.php" class="btn-basic">التشكيلات</a>
+                                <a href="formation.php" class="btn-basic">التشكيلات السنوية</a>
                             </div>
                         </div>
                     </div>

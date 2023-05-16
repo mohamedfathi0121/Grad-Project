@@ -1,6 +1,11 @@
 <?php
 require_once "db.php";
 require_once "functions.php";
+
+if (session_status() === PHP_SESSION_NONE)
+{
+	session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,6 +146,67 @@ require_once "functions.php";
                 <?php } ?>
             </div>
             <?php if ($_SESSION["admin"]) { ?>
+                <!-- Failed attempt at using dialog with multiple forms -->
+                <!--<form method="post" action="x.php" enctype="multipart/form-data">
+                    <input type="hidden" name="subject_id" value="<?php /*= $search */?>">
+                    <div class="upload add-attachment-subject">
+                        <button type="button" class="btn-basic" data-open-modal>
+                            رفع مرفق
+                            <i class="fa-solid fa-upload"></i>
+                        </button>
+                        <dialog data-modal>
+                            <form method="dialog">
+                                <div class="btn-basic">
+                                    <label for="up1">
+                                        رفع مرفق
+                                        <i class="fa-solid fa-upload"></i>
+                                        <input id="up1" type="file" name="subject_attachment[]" class="upload-button"
+                                               accept="application/pdf, image/png, image/gif, image/jpeg" multiple/>
+                                    </label>
+                                </div>
+                                <button formmethod="dialog" type="submit" class="btn-basic">إلغاء</button>
+                                <button type="submit" class="btn-basic" name="add_subject_attachment_btn">رفع</button>
+                                <div class="file-list"></div>
+
+                                <div class="btn-basic">
+                                    <label for="up2">
+                                        رفع صورة
+                                        <i class="fa-solid fa-upload"></i>
+                                        <input id="up2" type="file" name="subject_picture[]" class="upload-button"
+                                               accept="image/png, image/gif, image/jpeg" multiple/>
+                                    </label>
+                                </div>
+                                <button formmethod="dialog" type="submit" class="btn-basic">إلغاء</button>
+                                <button type="submit" class="btn-basic" name="add_subject_picture_btn">رفع</button>
+                                <div class="file-list"></div>
+                            </form>
+                        </dialog>
+                    </div>
+                     Not Working -->
+                    <!--<div class="upload add-attachment-subject">
+                        <button type="button" class="btn-basic" data-open-modal>
+                            رفع صورة
+                            <i class="fa-solid fa-upload"></i>
+                        </button>
+                        <dialog data-modal>
+                            <form method="dialog">
+                                <div class="btn-basic">
+                                    <label for="up2">
+                                        رفع صورة
+                                        <i class="fa-solid fa-upload"></i>
+                                        <input id="up2" type="file" name="subject_attachment[]" class="upload-button"
+                                               accept="application/pdf, image/png, image/gif, image/jpeg" multiple/>
+                                    </label>
+                                </div>
+                                <button formmethod="dialog" type="submit" class="btn-basic">إلغاء</button>
+                                <button type="submit" class="btn-basic" name="add_subject_picture_btn">رفع</button>
+                                <div class="file-list"></div>
+                            </form>
+                        </dialog>
+                    </div>
+                </form>
+                 Original Code DON'T DELETE!!! -->
+
                 <div class="upload add-attachment-subject">
                     <form method="post" action="addition_code.php" enctype="multipart/form-data">
                         <input type="hidden" name="subject_id" value="<?= $search ?>">

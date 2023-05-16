@@ -339,7 +339,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                         type="button">تسجيل الحضور</button>
                                                                 <button title=" يجب ان يكون المجلس مؤكد اولا"
                                                                         class="btn-basic disabled" disabled
-                                                                        type="button">عرض محضر الاجتماع</button>
+                                                                        type="button">محضر الاجتماع</button>
                                                                 <button title=" يجب ان يكون المجلس مؤكد اولا"
                                                                         class="btn-basic disabled" disabled
                                                                         type="button">رفع ملف المجلس النهائي</button>
@@ -355,7 +355,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                     عرض ملف جدول الاعمال</button>
                                                                 <button class="btn-basic disabled" disabled
                                                                         title="لا يوجد محضر اجتماع">
-                                                                    عرض محضر الاجتماع</button>
+                                                                    محضر الاجتماع</button>
                                                                 <button class="btn-basic disabled" disabled
                                                                         title="لا يوجد ملف مجلس نهائي">
                                                                     عرض ملف المجلس النهائي</button>
@@ -455,6 +455,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                         موضوعات المجلس
                                                                     </button>
                                                                 </form>
+                                                                <a href="subjects_table.php" class="btn-basic">جدول الأعمال</a>
                                                                 <form method="post" action="meeting_attendance.php"
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" name="meeting_id"
@@ -463,7 +464,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                         تسجيل الحضور
                                                                     </button>
                                                                 </form>
-                                                                <a href="subjects_decisions.php?mid=<?= $current_meeting_row['meeting_id'] ?>" class="btn-basic">عرض محضر الاجتماع</a>
+                                                                <a href="subjects_decisions.php?mid=<?= $current_meeting_row['meeting_id'] ?>" class="btn-basic">محضر الاجتماع</a>
                                                                 <a class="btn-basic" href="meeting_attachment.php?mid=<?= $current_meeting_row['meeting_id'] ?>">
                                                                     رفع ملف المجلس النهائي
                                                                 </a>
@@ -475,7 +476,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                     <button class="btn-basic">موضوعات المجلس</button>
                                                                 </form>
                                                                 <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
-                                                                <a href="subjects_decisions.php?mid=<?= $current_meeting_row['meeting_id'] ?>" class="btn-basic">عرض محضر الاجتماع</a>
+                                                                <a href="subjects_decisions.php?mid=<?= $current_meeting_row['meeting_id'] ?>" class="btn-basic">محضر الاجتماع</a>
                                                                 <button class="btn-basic disabled" title="لا يوجد ملف مجلس نهائي"
                                                                         disabled>عرض ملف المجلس النهائي</button>
                                                             </div>
@@ -564,7 +565,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                         تسجيل الحضور
                                                                     </button>
                                                                 </form>
-                                                                <a href="subjects_decisions.php?mid=<?= $current_meeting_row['meeting_id'] ?>" class="btn-basic">عرض محضر الاجتماع</a>
+                                                                <a href="subjects_decisions.php?mid=<?= $current_meeting_row['meeting_id'] ?>" class="btn-basic">محضر الاجتماع</a>
                                                                 <a class="btn-basic" href="meeting_attachment.php?mid=<?= $current_meeting_row['meeting_id'] ?>">
                                                                     رفع ملف المجلس النهائي
                                                                 </a>
@@ -576,7 +577,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                     <button class="btn-basic">موضوعات المجلس</button>
                                                                 </form>
                                                                 <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
-                                                                <a href="subjects_decisions.php?mid=<?= $current_meeting_row['meeting_id'] ?>" class="btn-basic">عرض محضر الاجتماع</a>
+                                                                <a href="subjects_decisions.php?mid=<?= $current_meeting_row['meeting_id'] ?>" class="btn-basic">محضر الاجتماع</a>
                                                                 <a class="btn-basic" href="meeting_attachment.php?mid=<?= $current_meeting_row['meeting_id'] ?>">عرض ملف المجلس النهائي</a>
                                                             </div>
                                                         <?php } ?>
@@ -784,7 +785,7 @@ if (session_status() === PHP_SESSION_NONE)
 			                            if($_SESSION["admin"]):
                                             ?>
                                             <div class="col">
-                                                <a href="subjects_decisions.php?mid=<?= $past_meetings_row['meeting_id'] ?>" class="btn-basic">عرض محضر الاجتماع</a>
+                                                <a href="subjects_decisions.php?mid=<?= $past_meetings_row['meeting_id'] ?>" class="btn-basic">محضر الاجتماع</a>
                                                 <a class="btn-basic" href="meeting_attachment.php?mid=<?= $past_meetings_row['meeting_id'] ?>">
                                                     رفع ملف المجلس النهائي
                                                 </a>
@@ -798,7 +799,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                     <button type="button" title="لا يوجد ملف مجلس نهائي" class=
                                                     "btn-basic disabled" disabled>عرض ملف المجلس النهائي</button>
                                                 <?php } ?>
-                                                <a href="subjects_decisions.php?mid=<?= $past_meetings_row['meeting_id'] ?>" class="btn-basic">عرض محضر الاجتماع</a>
+                                                <a href="subjects_decisions.php?mid=<?= $past_meetings_row['meeting_id'] ?>" class="btn-basic">محضر الاجتماع</a>
                                             </div>
 			                            <?php
 			                            endif;
@@ -967,7 +968,7 @@ if (session_status() === PHP_SESSION_NONE)
 					                    if($_SESSION["admin"]):
 						                    ?>
                                             <div class="col">
-                                                <a href="subjects_decisions.php?mid=<?= $search_row['meeting_id'] ?>" class="btn-basic">عرض محضر الاجتماع</a>
+                                                <a href="subjects_decisions.php?mid=<?= $search_row['meeting_id'] ?>" class="btn-basic">محضر الاجتماع</a>
                                                 <a class="btn-basic" href="meeting_attachment.php?mid=<?= $search_row['meeting_id'] ?>">
                                                     رفع ملف المجلس النهائي
                                                 </a>
@@ -977,7 +978,7 @@ if (session_status() === PHP_SESSION_NONE)
 						                    ?>
                                             <div class="col">
                                                 <a class="btn-basic" href="meeting_attachment.php?mid=<?= $search_row['meeting_id'] ?>">عرض ملف المجلس النهائي</a>
-                                                <a href="subjects_decisions.php?mid=<?= $search_row['meeting_id'] ?>" class="btn-basic">عرض محضر الاجتماع</a>
+                                                <a href="subjects_decisions.php?mid=<?= $search_row['meeting_id'] ?>" class="btn-basic">محضر الاجتماع</a>
                                             </div>
 					                    <?php
 					                    endif;
@@ -992,7 +993,7 @@ if (session_status() === PHP_SESSION_NONE)
 		                    ?>
                             <div class='current-meeting'>
                                 <main id='empty' class='empty-meeting'>
-                                    <h4>عذرًا، لا يوجد مجالس تطابق رقم التشكيل</h4>
+                                    <h4>عذرًا، لا يوجد مجالس تطابق البحث</h4>
                                 </main>
                             </div>
 		                    <?php
@@ -1001,7 +1002,7 @@ if (session_status() === PHP_SESSION_NONE)
                         ?>
                         <div class='current-meeting'>
                             <main id='empty' class='empty-meeting'>
-                                <h4>عذرًا، لا يوجد مجالس بهذا الرقم</h4>
+                                <h4>عذرًا، لا يوجد مجالس تطابق البحث</h4>
                             </main>
                         </div>
                     <?php endif; ?>
