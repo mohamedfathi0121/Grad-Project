@@ -222,11 +222,15 @@ function is_admin():bool
     else
     {
         ?>
-        <p style="color: red; font-weight: bold; text-align: center">
-          You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
-        </p><br>
+        <div class="error">
+        <img src="./images/icons/error.svg" alt="">
+        <p>
+        ليس لديك صلاحية لتحميل هذه الصفحة، سيتم تحويلك تلقائيًا خلال 5 ثواني إلى الصفحة الرئيسية 
+        </p>
+        </div>
+        <br>
         <?php
-        header("refresh:5; url=meetings.php");
+        header("refresh:5; url=index.php");
         footer();
         die();
     }
@@ -241,9 +245,13 @@ function is_logged_in():bool
     else
     {
         ?>
-        <p style="color: red; font-weight: bold; text-align: center">
+        <div class="error">
+        <img src="./images/icons/error.svg" alt="">
+        <p>
           You need to log in to view this page. You'll be redirected to the login page in 5 seconds
-        </p><br>
+        </p>
+        </div>
+        <br>
         <?php
         header("refresh:5; url=loginn.php");
         footer();

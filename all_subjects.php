@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <?php Headers();
 if (is_admin()):
 	Nav(); ?>
-	<main class="current-subject-content">
+	<main class="all-subject-content">
 		<div class="container">
 			<div class="decision-title">
                 <h1>جميع الموضوعات</h1>
@@ -362,6 +362,7 @@ if (is_admin()):
                                     </button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="current-subject-details deactive">

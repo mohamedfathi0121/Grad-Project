@@ -215,6 +215,11 @@
 	align-items: center;
 	margin: 75px;
 }
+.decision-filter .row {
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
 
 .decision-box .row {
 	margin-bottom: 20px;
@@ -666,4 +671,14 @@ dialog form {
 .meetings-members table tr td:first-child,
 .meetings-members table tr td:last-child {
 	width: 50%;
+}
+
+/* *Css for All Subjects Page  */
+/* ##################################### */
+
+.all-subject-content {
+	margin: 10px;
+}
+.all-subject-content h4 {
+	max-width: 500px;
 }
