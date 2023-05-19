@@ -47,7 +47,11 @@ if (is_logged_in()) {
                                 <tbody>
                                 <?php while ($formation_members_row = $formation_members_result->fetch_assoc()) { ?>
                                     <tr>
-                                        <td><?= $formation_members_row["n"] ?></td>
+                                        <?php if ($_SESSION["admin"]) { ?>
+                                        <td><a href="members.php?f=mn&search=<?= $formation_members_row["n"] ?>"><?= $formation_members_row["n"] ?></a></td>
+                                        <?php } else { ?>
+                                            <td><?= $formation_members_row["n"] ?></td>
+                                        <?php } ?>
                                         <td><?= $formation_members_row["jt"] ?></td>
                                     </tr>
                                 <?php } ?>
