@@ -14,7 +14,7 @@ foreach ($_POST as $btn => $value)
 		case "add_formation_btn":
 			$formation_number = $_POST["formation_number"];
 			$start_year = $_POST["start_year"];
-			$is_current = $_POST["is_current"];
+			$is_current = 1;
 			$add_formation_stmt = $conn->prepare("INSERT INTO `p39_formation`(
                             									`formation_number`, 
                             									`start_year`, 
