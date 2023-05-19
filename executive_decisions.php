@@ -325,7 +325,8 @@ if (is_admin()) {
                                 <main id="empty" class="empty-meeting">
                                     <h4>لا يوجد قرارات منفذة حاليًا</h4>
                                 </main>
-	                        <?php } else { ?>
+	                        <?php } else {
+                                $n = 1; ?>
 		                        <?php while ($exec_decisions_row_1 = $exec_decisions_result_1->fetch_assoc()) { ?>
                                     <div class="decision-box">
                                         <div class="row">
@@ -423,10 +424,10 @@ if (is_admin()) {
                                             <form action="addition_code.php" class="" method="post" enctype="multipart/form-data">
                                                 <input type="hidden" value="<?= $exec_decisions_row_1["did"] ?>" name="decision_id">
                                                 <div class="btn-basic">
-                                                    <label for="up1">
+                                                    <label for="up<?= $n ?>">
                                                         رفع مرفق
                                                         <i class="fa-solid fa-upload"></i>
-                                                        <input id="up1" type="file" name="decision_attachment[]" class="upload-button"
+                                                        <input id="up<?= $n ?>" type="file" name="decision_attachment[]" class="upload-button"
                                                                accept="application/pdf, image/png, image/gif, image/jpeg" multiple/>
                                                     </label>
                                                 </div>
@@ -452,7 +453,7 @@ if (is_admin()) {
                                             </form>
                                         </div>
                                     </div>
-		                        <?php }
+		                        <?php $n += 1; }
 	                        } ?>
                         </div>
                         <?php break;

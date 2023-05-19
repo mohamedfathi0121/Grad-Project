@@ -91,7 +91,9 @@ if(session_status() === PHP_SESSION_NONE)
                 </form>
             </div>
         </main>
-    <?php endif; ?>
+    <?php else :
+        header("location: meetings.php", true, 303);
+    endif; ?>
     <?php footer(); ?>
 
     <!-- Js Scripts and Plugins -->

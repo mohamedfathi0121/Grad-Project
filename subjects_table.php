@@ -21,7 +21,8 @@ if (session_status() === PHP_SESSION_NONE)
                                                     meeting_number,
                                                     meeting_date,
                                                     meeting_month,
-                                                    meeting_year
+                                                    meeting_year, 
+                                                    formation_id as fid
                                                 FROM
                                                     p39_meeting
                                                 WHERE
@@ -31,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE)
         $meeting_row = $meeting_result->fetch_assoc();
         $meeting_id = @$meeting_row["meeting_id"];
         $n = 1;
-        ?>
+        if (in_array($meeting_row["fid"], $_SESSION["formation_ids"]) || $_SESSION["admin"]) { ?>
         <main class="subjects-table-page">
             <div class="container">
                 <div class="title">
@@ -113,8 +114,11 @@ if (session_status() === PHP_SESSION_NONE)
                 <?php } ?>
             </div>
         </main>
-    <?php } ?>
-    <?php footer(); ?>
+        <?php } else {
+            header("location: index.php", true, 303);
+        }
+    }
+    footer(); ?>
 
     <!-- Js Scripts and Plugins -->
     <script type="module" src="./js/main.js"></script>
