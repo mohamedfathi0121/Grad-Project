@@ -284,10 +284,14 @@ if (is_logged_in()):
                             ?>
                             </div>
                             <div class="add-current-subject">
-                                <form method="post" action="add_subject.php">
-                                    <input type="hidden" name="meeting_id" value="<?= $search ?>">
-                                    <button name="add_subject_btn" class="btn-basic">اضافة موضوع</button>
-                                </form>
+                                <?php if (@$status != "finished") { ?>
+                                    <form method="post" action="add_subject.php">
+                                        <input type="hidden" name="meeting_id" value="<?= $search ?>">
+                                        <button name="add_subject_btn" class="btn-basic">إضافة موضوع</button>
+                                    </form>
+                                <?php } else { ?>
+                                    <button title="لا يمكن إضافة موضوع في مجلس نهائي" type="button" class="btn-basic disabled" disabled>إضافة موضوع</button>
+                                <?php } ?>
                             </div>
                             <?php
                         }
