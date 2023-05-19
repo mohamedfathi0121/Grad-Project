@@ -33,6 +33,9 @@ if (session_status() === PHP_SESSION_NONE)
                             <div class="col">
                                 <a href="meetings.php" class="btn-basic">المجالس</a>
                             </div>
+                            <div class="col">
+                                <a href="all_subjects.php?f=all" class="btn-basic">جميع الموضوعات</a>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col">
