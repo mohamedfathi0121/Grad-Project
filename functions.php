@@ -94,9 +94,12 @@ function Nav()
 					<?php
 					endif;
 					?>
+
                 </div>
             </ul>
+            <?php SearchBar() ?>
         </nav>
+        
     </section>
 <?php
 

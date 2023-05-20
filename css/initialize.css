@@ -362,6 +362,18 @@ input[type="radio"]:checked {
 	margin: 50px;
 	gap: 20px;
 }
+
+.container .search-container {
+	display: none;
+}
+@media (max-width: 1117px) {
+	.container .search-container {
+		display: flex;
+	}
+	nav .search {
+		display: none;
+	}
+}
 .search {
 	display: flex;
 	justify-content: center;
@@ -373,7 +385,18 @@ input[type="radio"]:checked {
 	border-radius: 0%;
 	margin: 0;
 	padding: 10px 15px;
+}
+.search button,
+.search input,
+.search .select-basic {
 	height: 40px;
+}
+@media (max-width: 768px) {
+	.search button,
+	.search input,
+	.search .select-basic {
+		height: 37px;
+	}
 }
 .search input {
 	width: 23vmax;
