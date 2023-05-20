@@ -91,15 +91,11 @@ function Nav()
                         <li><a href="all_subjects.php?f=all">الموضوعات</a></li>
                         <li><a href="members.php">الاعضاء</a></li>
                         <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
-					<?php
-					endif;
-					?>
-
+					<?php endif; ?>
                 </div>
             </ul>
             <?php SearchBar() ?>
         </nav>
-        
     </section>
 <?php
 
@@ -221,15 +217,12 @@ function is_admin():bool
     if(@$_SESSION["admin"])
     {
         return true;
-    }
-    else
-    {
-        ?>
+    } else { ?>
         <div class="error">
-        <img src="./images/icons/error.svg" alt="">
-        <p>
-        ليس لديك صلاحية لتحميل هذه الصفحة، سيتم تحويلك تلقائيًا خلال 5 ثواني إلى الصفحة الرئيسية 
-        </p>
+            <img src="./images/icons/error.svg" alt="">
+            <p>
+            ليس لديك صلاحية لتحميل هذه الصفحة، سيتم تحويلك تلقائيًا خلال 5 ثوان إلى الصفحة الرئيسية.
+            </p>
         </div>
         <br>
         <?php
@@ -249,14 +242,13 @@ function is_logged_in():bool
     {
         ?>
         <div class="error">
-        <img src="./images/icons/error.svg" alt="">
-        <p>
-          You need to log in to view this page. You'll be redirected to the login page in 5 seconds
-        </p>
+            <img src="./images/icons/error.svg" alt="">
+            <p>
+                يجب تسجيل الدخول لتحميل هذه الصفحة، سيتم تحويلك تلقائيًا خلال 5 ثوان إلى صفحة تسجيل الدخول.
+            </p>
         </div>
         <br>
-        <?php
-        header("refresh:5; url=loginn.php");
+        <?php header("refresh:5; url=loginn.php");
         footer();
         die();
     }
