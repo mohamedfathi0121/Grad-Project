@@ -18,7 +18,7 @@ if (session_status() === PHP_SESSION_NONE)
 		<?php Nav();?>
         <main id="admin" class="meetings-content">
             <div class="container">
-            <div class="search-container">
+                <div class="search-container">
                     <?php SearchBar(); ?>
                 </div>
                 <div class='meetings-title'>
