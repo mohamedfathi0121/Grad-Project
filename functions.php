@@ -109,9 +109,22 @@ function SearchBar()
 			case "formation.php": ?>
                 <div class="select-basic">
                     <select name="f">
-                        <option value="">عن طريق</option>
-                        <option value="fn">رقم التشكيل</option>
-                        <option value="y">سنة التشكيل</option>
+                        <?php switch ($_GET["f"]) {
+                            case "fn": ?>
+                                <option value="">عن طريق</option>
+                                <option value="fn" selected>رقم التشكيل</option>
+                                <option value="y">سنة التشكيل</option>
+                                <?php break;
+                            case "y": ?>
+                                <option value="">عن طريق</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="y" selected>سنة التشكيل</option>
+	                            <?php break;
+                            default: ?>
+                                <option value="">عن طريق</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="y">سنة التشكيل</option>
+                        <?php } ?>
                     </select>
                 </div>
                 <input type="text" placeholder="ابحث عن تشكيل" name="search"/>
@@ -122,10 +135,32 @@ function SearchBar()
 			case "meetings.php": ?>
                 <div class="select-basic">
                     <select name="f">
-                        <option value="">عن طريق</option>
-                        <option value="mn">رقم المجلس</option>
-                        <option value="fn">رقم التشكيل</option>
-                        <option value="my">سنة المجلس</option>
+                        <?php switch ($_GET["f"]) {
+                            case "mn": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn" selected>رقم المجلس</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="my">سنة المجلس</option>
+                                <?php break;
+                            case "fn": ?>
+	                            <option value="">عن طريق</option>
+                                <option value="mn">رقم المجلس</option>
+                                <option value="fn" selected>رقم التشكيل</option>
+                                <option value="my">سنة المجلس</option>
+                                <?php break;
+                            case "my": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">رقم المجلس</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="my" selected>سنة المجلس</option>
+                                <?php break;
+                            default: ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">رقم المجلس</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="my">سنة المجلس</option>
+                                <?php break;
+                        } ?>
                     </select>
                 </div>
                 <input type="text" placeholder="ابحث عن مجلس" name="search"/>
@@ -136,16 +171,29 @@ function SearchBar()
             case "members.php": ?>
                 <div class="select-basic">
                     <select name="f">
-                        <option value="">عن طريق</option>
-                        <option value="mn">اسم العضو</option>
-                        <option value="jt">المسمى الوظيفي</option>
+		                <?php switch ($_GET["f"]) {
+			                case "mn": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn" selected>اسم العضو</option>
+                                <option value="jt">المسمى الوظيفي</option>
+				                <?php break;
+			                case "jt": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">اسم العضو</option>
+                                <option value="jt" selected>المسمى الوظيفي</option>
+				                <?php break;
+			                default: ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">اسم العضو</option>
+                                <option value="jt">المسمى الوظيفي</option>
+				                <?php break;
+		                } ?>
                     </select>
                 </div>
                 <input type="text" placeholder="ابحث عن عضو" name="search"/>
                 <button type="submit" class="btn-basic">
                     <i class="fa fa-search"></i>
                 </button>
-
 	            <?php break;
         } ?>
     </form>
