@@ -81,6 +81,11 @@ input::placeholder {
 		width: 750px;
 	}
 }
+@media (max-width: 992px) {
+	.meetings-content .container {
+		width: auto;
+	}
+}
 
 /* Medium */
 @media (min-width: 992px) {
@@ -494,7 +499,7 @@ input[type="file"] {
 		height: 80px;
 	}
 	table td {
-		page-break-inside: avoid;
+		/* page-break-inside: avoid; */
 	}
 	.table-container {
 		margin: 0;

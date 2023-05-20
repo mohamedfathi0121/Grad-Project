@@ -125,6 +125,56 @@ if (session_status() === PHP_SESSION_NONE)
                                                         </span>
                                                     </h4>
                                                 </div>
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="card">
+                                                            <div class="card-box">
+                                                                30
+                                                            </div>
+                                                            <div class="card-text">عدد الموضوعات</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                16
+                                                            </div>
+                                                            <div class="card-text">الاعضاء الحاضرين</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                16
+                                                            </div>
+                                                            <div class="card-text">الموضوعات المقبولة </div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                12
+                                                            </div>
+                                                            <div class="card-text">الموضوعات المرفوضة</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                18
+                                                            </div>
+                                                            <div class="card-text">قرارات منفذة</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                5
+                                                            </div>
+                                                            <div class="card-text">قرارات غير منفذة</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                </div>
                                                 <?php
                                                 switch ($current_meeting_row["status"])
                                                 {
@@ -218,14 +268,15 @@ if (session_status() === PHP_SESSION_NONE)
                                                         <!-- Meeting buttons for admin -->
                                                         <?php if ($_SESSION["admin"]) { ?>
                                                             <div class="current-meeting-buttons">
-                                                                <form method="get" action="current_meeting_subject.php" class="current-meeting-buttons">
-                                                                    <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
-                                                                    <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
-                                                                </form>
                                                                 <form method="post" action="update_meeting.php" class="current-meeting-buttons">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="meeting_id">
-                                                                    <button name="update_meeting_btn" class="btn-basic">تعديل</button>
+                                                                    <button name="update_meeting_btn" class="btn-basic">تعديل المجلس</button>
                                                                 </form>
+                                                                <form method="get" action="current_meeting_subject.php" class="current-meeting-buttons">
+                                                                    <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
+                                                                    <button class="btn-basic">موضوعات المجلس</button>
+                                                                </form>
+                                                                <a href="subjects_table.php" class="btn-basic">جدول الأعمال</a>
                                                                 <button title=" يجب ان يكون المجلس مؤكد اولا"
                                                                         class="btn-basic disabled" disabled
                                                                         type="button">تسجيل الحضور</button>
@@ -241,7 +292,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                             <div class="current-meeting-buttons">
                                                                 <button class="btn-basic disabled" disabled
                                                                         title="لا يوجد موضوعات">
-                                                                    الموضوعات الخاصة بالمجلس</button>
+                                                                    موضوعات المجلس</button>
                                                                 <button class="btn-basic disabled" disabled
                                                                         title="لا يوجد جدول أعمال">
                                                                     عرض ملف جدول الاعمال</button>
@@ -337,20 +388,16 @@ if (session_status() === PHP_SESSION_NONE)
                                                         </div>
                                                         <?php if ($_SESSION["admin"]) { ?>
                                                             <div class="current-meeting-buttons">
+                                                                <button type="button" disabled class="btn-basic disabled" title="لا يمكن تعديل مجلس مؤكد">
+                                                                    تعديل المجلس
+                                                                </button>
                                                                 <form method="get" action="current_meeting_subject.php"
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
                                                                     <button class="btn-basic">
-                                                                        الموضوعات الخاصة بالمجلس
+                                                                        موضوعات المجلس
                                                                     </button>
                                                                 </form>
-                                                                <!-- <button class="btn-basic disabled" disabled>الموضوعات الخاصة بالمجلس</button>-->
-                                                                <button type="button" disabled class="btn-basic disabled" title="لا يمكن تعديل مجلس مؤكد">
-                                                                    تعديل
-                                                                </button>
-                                                                <!--<button class="btn-basic disabled" disabled title="لا يمكن تعديل مجلس مؤكد">
-                                                                    تعديل
-                                                                </button>-->
                                                                 <form method="post" action="meeting_attendance.php"
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" name="meeting_id"
@@ -360,7 +407,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                     </button>
                                                                 </form>
                                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
-                                                                <a class="btn-basic" href="meeting_attachment.php">
+                                                                <a class="btn-basic" href="meeting_attachment.php?mid=<?= $current_meeting_row['meeting_id'] ?>">
                                                                     رفع ملف المجلس الموثق
                                                                 </a>
                                                             </div>
@@ -368,7 +415,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                             <div class="current-meeting-buttons">
                                                                 <form method="get" action="current_meeting_subject.php">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
-                                                                    <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                                    <button class="btn-basic">موضوعات المجلس</button>
                                                                 </form>
                                                                 <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
                                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
@@ -442,20 +489,16 @@ if (session_status() === PHP_SESSION_NONE)
                                                         </div>
                                                         <?php if ($_SESSION["admin"]) { ?>
                                                             <div class="current-meeting-buttons">
+                                                                <button type="button" disabled class="btn-basic disabled" title="لا يمكن تعديل مجلس نهائي">
+                                                                    تعديل المجلس
+                                                                </button>
                                                                 <form method="get" action="current_meeting_subject.php"
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
                                                                     <button class="btn-basic">
-                                                                        الموضوعات الخاصة بالمجلس
+                                                                        موضوعات المجلس
                                                                     </button>
                                                                 </form>
-                                                                <!-- <button class="btn-basic disabled" disabled>الموضوعات الخاصة بالمجلس</button>-->
-                                                                <button type="button" disabled class="btn-basic disabled" title="لا يمكن تعديل مجلس نهائي">
-                                                                    تعديل
-                                                                </button>
-                                                                <!--<button class="btn-basic disabled" disabled title="لا يمكن تعديل مجلس مؤكد">
-                                                                    تعديل
-                                                                </button>-->
                                                                 <form method="post" action="meeting_attendance.php"
                                                                       class="current-meeting-buttons">
                                                                     <input type="hidden" name="meeting_id"
@@ -465,20 +508,19 @@ if (session_status() === PHP_SESSION_NONE)
                                                                     </button>
                                                                 </form>
                                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
-                                                                <a class="btn-basic" href="meeting_attachment.php">
-                                                                    عرض ملف المجلس الموثق
+                                                                <a class="btn-basic" href="meeting_attachment.php?mid=<?= $current_meeting_row['meeting_id'] ?>">
+                                                                    رفع ملف المجلس الموثق
                                                                 </a>
                                                             </div>
                                                         <?php } else { ?>
                                                             <div class="current-meeting-buttons">
                                                                 <form method="get" action="current_meeting_subject.php">
                                                                     <input type="hidden" value="<?=$current_meeting_row['meeting_id']?>" name="mid">
-                                                                    <button class="btn-basic">الموضوعات الخاصة بالمجلس</button>
+                                                                    <button class="btn-basic">موضوعات المجلس</button>
                                                                 </form>
                                                                 <a href="subjects_table.php" class="btn-basic">عرض ملف جدول الاعمال</a>
                                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
-                                                                <button class="btn-basic disabled" title="لا يوجد ملف مجلس نهائي"
-                                                                        disabled>عرض ملف المجلس النهائي</button>
+                                                                <a class="btn-basic" href="meeting_attachment.php?mid=<?= $current_meeting_row['meeting_id'] ?>">عرض ملف المجلس النهائي</a>
                                                             </div>
                                                         <?php } ?>
                                                     </div>
@@ -554,12 +596,62 @@ if (session_status() === PHP_SESSION_NONE)
                                                 </span>
                                             </h4>
                                         </div>
+                                        <div class="col">
+                                                    <div class="row">
+                                                        <div class="card">
+                                                            <div class="card-box">
+                                                                30
+                                                            </div>
+                                                            <div class="card-text">عدد الموضوعات</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                16
+                                                            </div>
+                                                            <div class="card-text">الاعضاء الحاضرين</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                16
+                                                            </div>
+                                                            <div class="card-text">الموضوعات المقبولة </div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                12
+                                                            </div>
+                                                            <div class="card-text">الموضوعات المرفوضة</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                18
+                                                            </div>
+                                                            <div class="card-text">قرارات منفذة</div>
+                                                        
+                                                    </div>
+                                                    <div class="card">
+                                                            <div class="card-box">
+                                                                5
+                                                            </div>
+                                                            <div class="card-text">قرارات غير منفذة</div>
+                                                        
+                                                    </div>
+                                                    </div>
+                                                </div>
 			                            <?php
 			                            if($_SESSION["admin"]):
 				                            ?>
                                             <div class="col">
                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرارات</a>
-                                                <a class="btn-basic" href="meeting_attachment.php">
+                                                <a class="btn-basic" href="meeting_attachment.php?mid=<?= $past_meetings_row['meeting_id'] ?>">
                                                     رفع ملف المجلس الموثق
                                                 </a>
                                             </div>
@@ -567,7 +659,7 @@ if (session_status() === PHP_SESSION_NONE)
 			                            else:
 				                            ?>
                                             <div class="col">
-                                                <a href="meeting_attachment.php" class="btn-basic">
+                                                <a href="meeting_attachment.php?mid=<?= $past_meetings_row['meeting_id'] ?>" class="btn-basic">
                                                     عرض ملف المجلس النهائي</a>
                                                 <a href="subjects_decisions.php" class="btn-basic">عرض الموضوعات بالقرار</a>
                                             </div>
@@ -603,34 +695,34 @@ if (session_status() === PHP_SESSION_NONE)
 	                    {
 		                    case "fn":
 			                    $search_stmt = "SELECT 
-                                                m.*,  
-                                                f.formation_number 
-                                            FROM 
-                                                p39_meeting as m
-                                                    JOIN 
-                                                    p39_formation as f
-                                                        ON m.formation_id = f.formation_id 
-                                                               AND f.formation_number LIKE ?";
+                                                    m.*,  
+                                                    f.formation_number 
+                                                FROM 
+                                                    p39_meeting as m
+                                                        JOIN 
+                                                        p39_formation as f
+                                                            ON m.formation_id = f.formation_id 
+                                                                   AND f.formation_number LIKE ?";
 			                    break;
 		                    case "mn":
 			                    $search_stmt = "SELECT 
-                                                m.*,  
-                                                f.formation_number 
-                                            FROM 
-                                                p39_meeting as m
-                                                    JOIN p39_formation as f
-                                                        ON m.formation_id = f.formation_id 
-                                                               AND m.meeting_number LIKE ?";
+                                                    m.*,  
+                                                    f.formation_number 
+                                                FROM 
+                                                    p39_meeting as m
+                                                        JOIN p39_formation as f
+                                                            ON m.formation_id = f.formation_id 
+                                                                   AND m.meeting_number LIKE ?";
 			                    break;
 		                    case "my":
 			                    $search_stmt = "SELECT 
-                                                m.*,  
-                                                f.formation_number 
-                                            FROM 
-                                                p39_meeting as m
-                                                    JOIN p39_formation as f
-                                                        ON m.formation_id = f.formation_id 
-                                                               AND m.meeting_year LIKE ?";
+                                                    m.*,  
+                                                    f.formation_number 
+                                                FROM 
+                                                    p39_meeting as m
+                                                        JOIN p39_formation as f
+                                                            ON m.formation_id = f.formation_id 
+                                                                   AND m.meeting_year LIKE ?";
 			                    break;
 	                    }
 	                    $restricted_search_count = 0;
@@ -721,6 +813,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                     } ?>
                                                 </span>
                                             </h4>
+                                            
                                         </div>
 					                    <?php
 					                    if($_SESSION["admin"]):
@@ -771,6 +864,10 @@ if (session_status() === PHP_SESSION_NONE)
 	<?php endif;
     Footer();
     ?>
+    
+    
+    
+
 
     <!-- Js Scripts and Plugins -->
     <script type="module" src="./js/main.js"></script>

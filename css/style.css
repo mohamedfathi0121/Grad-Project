@@ -126,6 +126,48 @@
   .member-box .row > .col:nth-child(2) {
     align-items: center;
   }
+  .card {
+    display: none;
+  }
+}
+.meeting-box .row > .col:nth-child(2),
+.old-meeting-box .row > .col:nth-child(2) {
+  gap: 10px;
+}
+.old-meeting-box .row .col {
+  gap: 20px;
+}
+.card .card-box {
+  background-color: var(--tangaroa);
+  color: #fff;
+  width: 25px;
+  text-align: center;
+  border-radius: 50%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  /* padding: 2vmin; */
+
+  border-radius: 5px;
+  flex: 1;
+}
+.card .card-text {
+  text-align: center;
+  font-size: 0.9em;
+  color: var(--headings-color);
+  min-height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.meeting-box .row .col > .row,
+.old-meeting-box .row .col > .row {
+  column-gap: 25px;
+  margin: 0;
+  align-items: stretch;
 }
 
 /* Old Meetings */
@@ -144,7 +186,7 @@
   text-align: center;
 }
 
-/* *Css for Meetings Page */
+/* *Css for Members Page */
 /* ############################ */
 .member-box .member-image {
   width: 40vmin;
@@ -177,14 +219,15 @@
 .decision-box .row {
   margin-bottom: 20px;
 }
-
-.decision-box .decision-buttons > .row:nth-child(1),
-.decision-box .decision-buttons form > .row:nth-child(2) {
-  flex-direction: column;
+.decision-box .row .col {
+  gap: 20px;
 }
-.decision-box .decision-buttons form > .row:nth-child(1) {
+
+.decision-box .decision-buttons > .row,
+.decision-box .decision-buttons form > .row {
   justify-content: space-evenly;
 }
+
 .decision-box .decision-buttons .row > .col {
   align-items: center;
 }

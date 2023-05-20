@@ -19,7 +19,9 @@ if (session_status() === PHP_SESSION_NONE)
         $meeting_stmt = $conn->prepare("SELECT
                                                     meeting_id,
                                                     meeting_number,
-                                                    meeting_date
+                                                    meeting_date,
+                                                    meeting_month,
+                                                    meeting_year
                                                 FROM
                                                     p39_meeting
                                                 WHERE
@@ -57,10 +59,15 @@ if (session_status() === PHP_SESSION_NONE)
                 $subject_table_stmt->execute();
                 $subject_table_result = $subject_table_stmt->get_result();
                 if ($subject_table_result->num_rows > 0) { ?>
-                    <h3>جدول أعمال لجنة إدارة البرامج الجديدة بالكلية مرحلتي البكالريوس والدراسات العليا</h3>
+                    <h3>جدول أعمال لجنة مجلس الكلية مرحلتي البكالريوس والدراسات العليا</h3>
                     <h3>جلسة رقم
                         <span><?= $meeting_row["meeting_number"] ?></span>
-                        بتاريخ <span><?= $meeting_row["meeting_date"] ?></span></h3>
+                        شهر
+                        <span><?= $meeting_row["meeting_month"] ?></span>
+                        لسنة
+                        <span><?= $meeting_row["meeting_year"]?></span>
+                    </h3>
+                    <h3> المنعقدة بتاريخ <span><?= $meeting_row["meeting_date"] ?></span></h3>
                     </div>
                     <div class="table-container">
                         <table class="subjects-table">
@@ -70,7 +77,6 @@ if (session_status() === PHP_SESSION_NONE)
                                 $subject_attachment_stmt->bind_param("i", $subject_table_row["subject_id"]);
                                 $subject_attachment_stmt->execute();
                                 $subject_attachment_result = $subject_attachment_stmt->get_result();
-                                $subject_attachment_row = $subject_attachment_result->fetch_assoc();
                                 ?>
                                 <tr class="subject-row">
                                     <td>الموضوع <?= $n ?></td>
@@ -78,7 +84,9 @@ if (session_status() === PHP_SESSION_NONE)
                                         <strong><?= $subject_table_row["subject_name"] ?></strong>
                                         <p><?= $subject_table_row["subject_details"] ?></p>
 <!--                                        --><?php //if (!emp)?>
-                                        <img src="<?= $subject_attachment_row['picture_name'] ?>" alt="">
+                                        <?php while ($subject_attachment_row = $subject_attachment_result->fetch_assoc()) { ?>
+                                            <img src="<?= $subject_attachment_row['picture_name'] ?>" alt="صورة">
+                                        <?php } ?>
                                     </td>
                                 </tr>
                                 <tr class="decision-row">
