@@ -549,5 +549,12 @@ foreach ($_POST as $btn => $value)
 
 			header("location: executive_decisions.php?f=1", true, 303);
 			break;
+
+		case "delete_decision_attachment_btn":
+			$delete_att_stmt = Delete($conn, "p39_decision_attachment",
+				"attachment_id = {$_POST['attachment_id']}");
+			$delete_att_stmt->execute();
+			header("location: executive_decisions.php?f=1", true, 303);
+			break;
 	}
 }
