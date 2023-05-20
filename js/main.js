@@ -75,6 +75,9 @@ let allDecisionDetailsButtons = document.querySelectorAll(
 let allDecisionStatusButtons = document.querySelectorAll(
 	".decision-buttons button.dec-status-btn"
 );
+let allDecisionFilesButtons = document.querySelectorAll(
+	".decision-buttons button.dec-files-btn"
+);
 allDecisionDetailsButtons.forEach((ele) => {
 	ele.addEventListener("click", () => {
 		ele.parentElement.parentElement.nextElementSibling.classList.toggle(
@@ -83,11 +86,15 @@ allDecisionDetailsButtons.forEach((ele) => {
 	});
 });
 allDecisionStatusButtons.forEach((ele) => {
-	console.log(
-		ele.parentElement.parentElement.nextElementSibling.nextElementSibling
-	);
 	ele.addEventListener("click", () => {
 		ele.parentElement.parentElement.nextElementSibling.nextElementSibling.classList.toggle(
+			"deactive"
+		);
+	});
+});
+allDecisionFilesButtons.forEach((ele) => {
+	ele.addEventListener("click", () => {
+		ele.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle(
 			"deactive"
 		);
 	});

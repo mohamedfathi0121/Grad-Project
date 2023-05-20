@@ -222,6 +222,7 @@ nav ul .icon {
 @media (max-width: 1140px) {
 	nav ul .icon {
 		display: block;
+		cursor: pointer;
 	}
 
 	nav ul,
@@ -278,6 +279,7 @@ footer p {
 	text-align: center;
 	font-size: 16px;
 	cursor: pointer;
+	min-width: 80px;
 }
 .btn-basic:active {
 	border: 1px solid #000;
