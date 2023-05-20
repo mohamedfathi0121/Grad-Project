@@ -219,10 +219,11 @@ nav ul .icon {
 }
 
 /* medium screen */
-@media (max-width: 942px) {
+@media (max-width: 1140px) {
 	nav ul .icon {
 		display: block;
 	}
+
 	nav ul,
 	nav ul .links {
 		flex-direction: column;
@@ -366,14 +367,7 @@ input[type="radio"]:checked {
 .container .search-container {
 	display: none;
 }
-@media (max-width: 1117px) {
-	.container .search-container {
-		display: flex;
-	}
-	nav .search {
-		display: none;
-	}
-}
+
 .search {
 	display: flex;
 	justify-content: center;
@@ -404,6 +398,14 @@ input[type="radio"]:checked {
 }
 .search button {
 	border-radius: 7px 0px 0 7px;
+}
+@media (max-width: 420px) {
+	.container .search-container {
+		display: flex;
+	}
+	nav .search {
+		display: none;
+	}
 }
 
 /* 5. Select Drop Down Lists */

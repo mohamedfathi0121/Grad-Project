@@ -23,13 +23,14 @@ if(session_status() === PHP_SESSION_NONE)
             <!-- *Add "deactive" to Class Here ↓↓ To Test-->
             <main class="members-content">
                 <div class="container">
+                <div class="search-container">
+                        <?php SearchBar(); ?>
+                    </div>
                     <!-- عنوان الصفحة -->
                     <div class="members-title">
                         <h1>الأعضاء</h1>
                     </div>
-                    <div class="search-container">
-                        <?php SearchBar(); ?>
-                    </div>
+                    
                     <?php
                     // Get all departments info
                     $departments_stmt = $conn->prepare("SELECT * FROM p39_department");

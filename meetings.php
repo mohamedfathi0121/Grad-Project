@@ -18,12 +18,13 @@ if (session_status() === PHP_SESSION_NONE)
 		<?php Nav();?>
         <main id="admin" class="meetings-content">
             <div class="container">
+            <div class="search-container">
+                    <?php SearchBar(); ?>
+                </div>
                 <div class='meetings-title'>
                     <h1>المجالس</h1>
                 </div>
-                <div class="search-container">
-                    <?php SearchBar(); ?>
-                </div>
+                
                 <?php
                     ### If user hasn't pressed on search (Default Case)
                     if (!isset($_GET["search"])):
