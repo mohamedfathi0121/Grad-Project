@@ -81,7 +81,7 @@ function Nav()
     <section class="nav-bar">
         <nav>
             <ul>
-                <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
+                <button class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></button>
                 <div class="links">
                     <li><a href="index.php">الصفحة الرئيسية</a></li>
                     <li><a href="formation.php">التشكيلات</a></li>

@@ -17,12 +17,13 @@ if (session_status() === PHP_SESSION_NONE) {
     
     <main id="admin" class="formation-content">
         <div class="container">
+        <div class="search-container">
+                <?php SearchBar(); ?>
+            </div>
             <div class="title">
                 <h1>التشكيلات</h1>
             </div>
-            <div class="search-container">
-                <?php SearchBar(); ?>
-            </div>
+            
 			<?php
 			if (!isset($_GET["search"])):
                 # Old Query for only formations that user are in
