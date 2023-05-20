@@ -41,25 +41,39 @@ if (is_admin()):
             <div class="decision-filter">
                 <div class="row">
                     <a class="btn-basic" href="all_subjects.php?f=all">
-                        جميع الموضوعات (<?= $subjects_count_row["s_all"] ?>)
+                        جميع الموضوعات (<?= $subjects_count_row["s_all"] == NULL
+                            ? 0
+                            : $subjects_count_row["s_all"] ?>)
                     </a>
                     <a class="btn-basic" href="all_subjects.php?f=s_no">
-                        الموضوعات بدون قرارات (<?= $subjects_count_row["s_no"] ?>)
+                        الموضوعات بدون قرارات (<?= $subjects_count_row["s_no"] == NULL
+		                    ? 0
+		                    : $subjects_count_row["s_no"] ?>)
                     </a>
                     <a class="btn-basic" href="all_subjects.php?f=a_s">
-                        الموضوعات المقبولة (<?= $subjects_count_row["a_s"] ?>)
+                        الموضوعات المقبولة (<?= $subjects_count_row["a_s"] == NULL
+		                    ? 0
+		                    : $subjects_count_row["a_s"] ?>)
                     </a>
                     <a class="btn-basic" href="all_subjects.php?f=r_s">
-                        الموضوعات المرفوضة (<?= $subjects_count_row["r_s"] ?>)
+                        الموضوعات المرفوضة (<?= $subjects_count_row["r_s"] == NULL
+		                    ? 0
+		                    : $subjects_count_row["r_s"] ?>)
                     </a>
                     <a class="btn-basic" href="all_subjects.php?f=p_s">
-                        الموضوعات المؤجلة (<?= $subjects_count_row["p_s"] ?>)
+                        الموضوعات المؤجلة (<?= $subjects_count_row["p_s"] == NULL
+		                    ? 0
+		                    : $subjects_count_row["p_s"] ?>)
                     </a>
                     <a class="btn-basic" href="all_subjects.php?f=e_s">
-                        الموضوعات بقرار تنفيذي (<?= $subjects_count_row["e_s"] ?>)
+                        الموضوعات بقرار تنفيذي (<?= $subjects_count_row["e_s"] == NULL
+		                    ? 0
+		                    : $subjects_count_row["e_s"] ?>)
                     </a>
                     <a class="btn-basic" href="all_subjects.php?f=e_s1">
-                        الموضوعات بقرار تنفيذي منفذ (<?= $subjects_count_row["e_s1"] ?>)
+                        الموضوعات بقرار تنفيذي منفذ (<?= $subjects_count_row["e_s1"] == NULL
+		                    ? 0
+		                    : $subjects_count_row["e_s1"] ?>)
                     </a>
                 </div>
             </div>
@@ -362,48 +376,47 @@ if (is_admin()):
                                     </button>
                                 </div>
                             </div>
-
-                        </div>
-                    </div>
-                    <div class="current-subject-details deactive">
-                        <div class="row">
-                            <div class="col">
-                                <div class="table-container">
-                                    <table class="subjects-table">
-                                        <tbody>
-                                        <tr class="subject-row">
-                                            <td>الموضوع (<?= $subjects_row["sno"] ?>)</td>
-                                            <td>
-                                                <strong><?= $subjects_row["sn"] ?></strong>
-                                                <p><?= $subjects_row["sd"] ?></p>
-								                <?php
-								                $subject_pic_stmt = $conn->prepare("SELECT 
+                            <div class="current-subject-details deactive">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="table-container">
+                                            <table class="subjects-table">
+                                                <tbody>
+                                                <tr class="subject-row">
+                                                    <td>الموضوع (<?= $subjects_row["sno"] ?>)</td>
+                                                    <td>
+                                                        <strong><?= $subjects_row["sn"] ?></strong>
+                                                        <p><?= $subjects_row["sd"] ?></p>
+								                        <?php
+								                        $subject_pic_stmt = $conn->prepare("SELECT 
                                                                                                 picture_name
                                                                                             FROM 
                                                                                                 p39_subject_picture 
                                                                                             WHERE 
                                                                                                 subject_id = ?");
-								                $subject_pic_stmt->bind_param("i", $subjects_row["sid"]);
-								                $subject_pic_stmt->execute();
-								                $subject_pic_result = $subject_pic_stmt->get_result();
-								                $subject_pic_exists = $subject_pic_result->num_rows > 0; ?>
-								                <?php if ($subject_pic_exists) { ?>
-									                <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
-                                                        <img src="<?= $subject_pic_row['picture_name'] ?>" alt="صورة تفاصيل الموضوع">
-									                <?php }
-								                } ?>
-                                            </td>
-                                        </tr>
-                                        <tr class="decision-row">
-                                            <td>القرار</td>
-                                            <td>
-                                                <p><?= @$subjects_row["did"] == NULL
-										                ? "لا يوجد"
-										                : $subjects_row["did"] ?></p>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+								                        $subject_pic_stmt->bind_param("i", $subjects_row["sid"]);
+								                        $subject_pic_stmt->execute();
+								                        $subject_pic_result = $subject_pic_stmt->get_result();
+								                        $subject_pic_exists = $subject_pic_result->num_rows > 0; ?>
+								                        <?php if ($subject_pic_exists) { ?>
+									                        <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
+                                                                <img src="<?= $subject_pic_row['picture_name'] ?>" alt="صورة تفاصيل الموضوع">
+									                        <?php }
+								                        } ?>
+                                                    </td>
+                                                </tr>
+                                                <tr class="decision-row">
+                                                    <td>القرار</td>
+                                                    <td>
+                                                        <p><?= @$subjects_row["did"] == NULL
+										                        ? "لا يوجد"
+										                        : $subjects_row["did"] ?></p>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

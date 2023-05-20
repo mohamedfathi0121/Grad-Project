@@ -253,6 +253,10 @@ CREATE TABLE IF NOT EXISTS p39_decision_type
     decision_type_id   TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     decision_type_name VARCHAR(255) character set utf8 collate utf8_unicode_520_ci
 );
+INSERT INTO p39_decision_type(decision_type_name)
+VALUES ("موافقة"),
+       ("رفض"),
+       ("تأجيل");
 
 CREATE TABLE IF NOT EXISTS p39_decision
 (

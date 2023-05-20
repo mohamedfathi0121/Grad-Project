@@ -68,13 +68,19 @@ if (is_admin()) {
             <div class="decision-filter">
                 <div class="row">
                     <a class="btn-basic" href="executive_decisions.php?f=all">
-                        عرض جميع القرارات (<?= $decision_count_row["dall"] ?>)
+                        عرض جميع القرارات (<?= $decision_count_row["dall"] == NULL
+                            ? 0
+		                    : $decision_count_row["dall"] ?>)
                     </a>
                     <a class="btn-basic" href="executive_decisions.php?f=1">
-                        عرض القرارات المنفذة فقط (<?= $decision_count_row["d1"] ?>)
+                        عرض القرارات المنفذة فقط (<?= $decision_count_row["d1"] == NULL
+		                    ? 0
+		                    : $decision_count_row["d1"] ?>)
                     </a>
                     <a class="btn-basic" href="executive_decisions.php?f=0">
-                        عرض القرارات غير المنفذة فقط (<?= $decision_count_row["d0"] ?>)
+                        عرض القرارات غير المنفذة فقط (<?= $decision_count_row["d0"] == NULL
+		                    ? 0
+		                    : $decision_count_row["d0"] ?>)
                     </a>
                 </div>
             </div>
