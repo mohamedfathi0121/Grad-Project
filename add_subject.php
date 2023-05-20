@@ -101,6 +101,7 @@ if (is_admin()):
                         </dialog>
                     </div>-->
                     <div class="row">
+                        <input type="hidden" name="meeting_id" value="<?= $_POST['meeting_id'] ?>"/>
                         <button name="add_subject_btn" class="btn-basic" type="submit">إضافة موضوع جديد</button>
                     </div>
                 </div>

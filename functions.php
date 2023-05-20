@@ -81,20 +81,20 @@ function Nav()
     <section class="nav-bar">
         <nav>
             <ul>
-                <a class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></a>
-                <div class="links deactive">
+                <button class="icon" href="#"><i class="fa-solid fa-bars fa-2xl"></i></button>
+                <div class="links">
                     <li><a href="index.php">الصفحة الرئيسية</a></li>
                     <li><a href="formation.php">التشكيلات</a></li>
                     <li><a href="meetings.php">المجالس</a></li>
-                    <li><a href="#">الموضوعات</a></li>
+<!--                    <li><a href="#">الموضوعات</a></li>-->
 					<?php if (@$_SESSION["admin"]): ?>
+                        <li><a href="all_subjects.php?f=all">الموضوعات</a></li>
                         <li><a href="members.php">الاعضاء</a></li>
                         <li><a href="executive_decisions.php">القرارات التنفيذية</a></li>
-					<?php
-					endif;
-					?>
+					<?php endif; ?>
                 </div>
             </ul>
+            <?php SearchBar() ?>
         </nav>
     </section>
 <?php
@@ -104,50 +104,96 @@ function Nav()
 function SearchBar()
 {
     ?>
-    <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get" style="justify-content: left">
+    <form class="search" action="<?= basename($_SERVER['PHP_SELF']) ?>" method="get">
 		<?php switch (basename($_SERVER["PHP_SELF"])) {
 			case "formation.php": ?>
-                <div class="select-basic" style="width: 150px">
+                <div class="select-basic">
                     <select name="f">
-                        <option value="">اختر</option>
-                        <option value="fn">رقم التشكيل</option>
-                        <option value="y">سنة التشكيل</option>
+                        <?php switch ($_GET["f"]) {
+                            case "fn": ?>
+                                <option value="">عن طريق</option>
+                                <option value="fn" selected>رقم التشكيل</option>
+                                <option value="y">سنة التشكيل</option>
+                                <?php break;
+                            case "y": ?>
+                                <option value="">عن طريق</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="y" selected>سنة التشكيل</option>
+	                            <?php break;
+                            default: ?>
+                                <option value="">عن طريق</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="y">سنة التشكيل</option>
+                        <?php } ?>
                     </select>
                 </div>
-                <input type="text" placeholder="بحث.." name="search"/>
+                <input type="text" placeholder="ابحث عن تشكيل" name="search"/>
                 <button type="submit" class="btn-basic">
                     <i class="fa fa-search"></i>
                 </button>
 				<?php break;
 			case "meetings.php": ?>
-                <div class="select-basic" style="width: 150px">
+                <div class="select-basic">
                     <select name="f">
-                        <option value="">اختر</option>
-                        <option value="mn">رقم المجلس</option>
-                        <option value="fn">رقم التشكيل</option>
-                        <option value="my">سنة المجلس</option>
+                        <?php switch ($_GET["f"]) {
+                            case "mn": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn" selected>رقم المجلس</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="my">سنة المجلس</option>
+                                <?php break;
+                            case "fn": ?>
+	                            <option value="">عن طريق</option>
+                                <option value="mn">رقم المجلس</option>
+                                <option value="fn" selected>رقم التشكيل</option>
+                                <option value="my">سنة المجلس</option>
+                                <?php break;
+                            case "my": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">رقم المجلس</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="my" selected>سنة المجلس</option>
+                                <?php break;
+                            default: ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">رقم المجلس</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="my">سنة المجلس</option>
+                                <?php break;
+                        } ?>
                     </select>
                 </div>
-                <input type="text" placeholder="بحث.." name="search"/>
+                <input type="text" placeholder="ابحث عن مجلس" name="search"/>
                 <button type="submit" class="btn-basic">
                     <i class="fa fa-search"></i>
                 </button>
-
 				<?php break;
-            case "meetings1.php": ?>
-                <div class="select-basic" style="width: 150px">
+            case "members.php": ?>
+                <div class="select-basic">
                     <select name="f">
-                        <option value="">اختر</option>
-                        <option value="mn">رقم المجلس</option>
-                        <option value="fn">رقم التشكيل</option>
-                        <option value="my">سنة المجلس</option>
+		                <?php switch ($_GET["f"]) {
+			                case "mn": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn" selected>اسم العضو</option>
+                                <option value="jt">المسمى الوظيفي</option>
+				                <?php break;
+			                case "jt": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">اسم العضو</option>
+                                <option value="jt" selected>المسمى الوظيفي</option>
+				                <?php break;
+			                default: ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">اسم العضو</option>
+                                <option value="jt">المسمى الوظيفي</option>
+				                <?php break;
+		                } ?>
                     </select>
                 </div>
-                <input type="text" placeholder="بحث.." name="search"/>
+                <input type="text" placeholder="ابحث عن عضو" name="search"/>
                 <button type="submit" class="btn-basic">
                     <i class="fa fa-search"></i>
                 </button>
-
 	            <?php break;
         } ?>
     </form>
@@ -219,15 +265,16 @@ function is_admin():bool
     if(@$_SESSION["admin"])
     {
         return true;
-    }
-    else
-    {
-        ?>
-        <p style="color: red; font-weight: bold; text-align: center">
-          You don't have authorization to view this page. You'll be redirected to the homepage in 5 seconds.
-        </p><br>
+    } else { ?>
+        <div class="error">
+            <img src="./images/icons/error.svg" alt="">
+            <p>
+            ليس لديك صلاحية لتحميل هذه الصفحة، سيتم تحويلك تلقائيًا خلال 5 ثوان إلى الصفحة الرئيسية.
+            </p>
+        </div>
+        <br>
         <?php
-        header("refresh:5; url=meetings.php");
+        header("refresh:5; url=index.php");
         footer();
         die();
     }
@@ -242,11 +289,14 @@ function is_logged_in():bool
     else
     {
         ?>
-        <p style="color: red; font-weight: bold; text-align: center">
-          You need to log in to view this page. You'll be redirected to the login page in 5 seconds
-        </p><br>
-        <?php
-        header("refresh:5; url=loginn.php");
+        <div class="error">
+            <img src="./images/icons/error.svg" alt="">
+            <p>
+                يجب تسجيل الدخول لتحميل هذه الصفحة، سيتم تحويلك تلقائيًا خلال 5 ثوان إلى صفحة تسجيل الدخول.
+            </p>
+        </div>
+        <br>
+        <?php header("refresh:5; url=loginn.php");
         footer();
         die();
     }

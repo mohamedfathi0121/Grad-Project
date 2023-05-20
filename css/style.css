@@ -215,6 +215,11 @@
   align-items: center;
   margin: 75px;
 }
+.decision-filter .row {
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
 .decision-box .row {
   margin-bottom: 20px;
@@ -231,9 +236,36 @@
 .decision-box .decision-buttons .row > .col {
   align-items: center;
 }
-
-.non-executed-dec {
-  margin-top: 150px;
+.decision-upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.decision-upload .btn-basic label {
+  cursor: pointer;
+}
+.decision-file {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  border: 2px solid #64748b;
+  border-radius: var(--box-radius);
+  padding: 10px;
+  margin: 3px 5px;
+}
+.decision-file-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 50px;
+}
+.decision-file button {
+  align-self: center;
+  font-size: 0.8em;
+  padding: 0.5em;
 }
 
 /* *Css for Add Member Page */
@@ -380,7 +412,7 @@
   bottom: 15px;
 }
 .box .current-subject-details {
-  margin-top: 70px;
+  /* margin-top: 70px; */
   padding: 10px;
 }
 
@@ -668,4 +700,14 @@ dialog form {
 .meetings-members table tr td:first-child,
 .meetings-members table tr td:last-child {
   width: 50%;
+}
+
+/* *Css for All Subjects Page  */
+/* ##################################### */
+
+.all-subject-content {
+  margin: 10px;
+}
+.all-subject-content h4 {
+  max-width: 500px;
 }

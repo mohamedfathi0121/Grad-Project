@@ -95,15 +95,12 @@ foreach ($_POST as $btn => $value)
 		case "update_member_btn":
 			$name = clean_data($_POST["name"]);
 			$gender = clean_data($_POST["gender"]);
-//    $email = is_valid_email($_POST["email"]);
 			$job_title = clean_data($_POST["job_title"]);
 			$job_type = clean_data($_POST["job_type"]);
 			$job_rank = clean_data($_POST["job_rank"]);
 			$department = clean_data($_POST["department"]);
 			$is_admin = clean_data($_POST["is_admin"]);
 			$is_enabled = clean_data($_POST["is_enabled"]);
-//    if ($email)
-//    {
 			$select_old_row_stmt = $conn->prepare("SELECT * FROM p39_users WHERE user_id = ?");
 			$select_old_row_stmt->bind_param("i", $_POST["user_id"]);
 			if ($select_old_row_stmt->execute())
@@ -117,9 +114,6 @@ foreach ($_POST as $btn => $value)
 					$old_row .= empty($old_row) ? $value : ", " . $value;
 				}
 				$old_row = "(" . $old_row . ")";
-
-//            $password = clean_data($_POST["password"]);
-//            $hash = password_hash($password, PASSWORD_DEFAULT);
 				$member_update_stmt = $conn->prepare("UPDATE
                                                             `p39_users`
                                                         SET
@@ -190,7 +184,6 @@ foreach ($_POST as $btn => $value)
 
 		case "update_subject_btn":
 			$order_id = (empty($_POST["subject_order"]) ? NULL : clean_data($_POST["subject_order"]));
-			$subject_number = clean_data($_POST["subject_number"]);
 			$subject_name = clean_data($_POST["subject_name"]);
 			$subject_details = (empty($_POST["subject_details"]) ? null : clean_data($_POST["subject_details"]));
 			$subject_type = clean_data($_POST["subject_type"]);
@@ -257,7 +250,9 @@ foreach ($_POST as $btn => $value)
 		case "update_decision_btn":
 			$decision_type = clean_data($_POST["decision_type"]);
 			$needs_action = clean_data($_POST["needs_action"]);
-			$action_to = clean_data($_POST["action_to"]);
+			$action_to = (empty($_POST["is_action_done"]))
+				? NULL
+				: clean_data($_POST["action_to"]);
 			$is_action_done = clean_data($_POST["is_action_done"]);
 			$decision_details = (empty($_POST["decision_details"])
 				? null
@@ -292,6 +287,39 @@ foreach ($_POST as $btn => $value)
 													$_POST["decision_id"]);
 			$decision_update_stmt->execute();
 			header("location: current_meeting_subject.php?mid={$_POST['meeting_id']}", true, 303);
+			break;
+
+		case "update_vote_btn":
+			$vote = clean_data($_POST["vote"]);
+			$update_vote_stmt = $conn->prepare("UPDATE 
+    														p39_vote 
+														SET 
+														    vote_type_id = ? 
+														WHERE 
+														    subject_id = ? 
+														  AND 
+														    user_id = ?");
+			$update_vote_stmt->bind_param("iii", $vote, $_POST["subject_id"], $_SESSION["user_id"]);
+			$update_vote_stmt->execute();
+			$current_meeting_stmt = $conn->prepare("SELECT meeting_id FROM p39_meeting WHERE is_current = 1");
+			$current_meeting_stmt->execute();
+			$current_meeting_result = $current_meeting_stmt->get_result();
+			$current_meeting_row = $current_meeting_result->fetch_assoc();
+			$current_meeting = $current_meeting_row["meeting_id"];
+			header("location: current_meeting_subject.php?mid=$current_meeting", true, 303);
+			break;
+
+		case "update_decision_action_btn":
+			$is_action_done = clean_data($_POST["is_action_done"]);
+			$decision_action_update_stmt = $conn->prepare("UPDATE 
+    																	p39_decision 
+																	SET 
+																	    is_action_done = ? 
+																	WHERE 
+																	    subject_id = ?");
+			$decision_action_update_stmt->bind_param("ii", $is_action_done, $_POST["subject_id"]);
+			$decision_action_update_stmt->execute();
+			header("location: executive_decisions.php", true, 303);
 			break;
 	}
 }

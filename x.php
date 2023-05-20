@@ -51,7 +51,7 @@ foreach ($_POST as $key => $value)
 	}
 }
 $attachment_allowed_types = array("pdf", "png", "gif", "jpeg", "jpg");
-$uploaded_attachments = Upload("subject_attachment", "images/", $attachment_allowed_types);
+$uploaded_attachments = Upload("decision_attachment", "images/", $attachment_allowed_types);
 
 echo "<pre>";
 print_r($if1);
