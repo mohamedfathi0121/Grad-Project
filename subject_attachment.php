@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE)
     <?php
     Headers();
     if (is_admin()) : ?>
-    <?php Nav();
+        <?php Nav();
 	    $search = clean_data($_GET["sid"]);
 	    $subject_num_stmt = $conn->prepare("SELECT subject_number FROM p39_subject WHERE subject_id = ?");
 	    $subject_num_stmt->bind_param("i", $search);
@@ -25,13 +25,13 @@ if (session_status() === PHP_SESSION_NONE)
 	    $subject_number = $subject_num_row["subject_number"];
 	    $subject_num_stmt->close();
         ?>
-    <main class="attachment-content">
-        <div class="container">
-            <!-- عنوان الصفحة -->
-            <div class="title">
-                <h1>المرفقات الخاصة بموضوع رقم <?= $subject_number ?></h1>
-            </div>
-            <?php
+        <main class="attachment-content">
+            <div class="container">
+                <!-- عنوان الصفحة -->
+                <div class="title">
+                    <h1>المرفقات الخاصة بموضوع رقم <?= $subject_number ?></h1>
+                </div>
+                <?php
                 $subject_att_stmt = $conn->prepare("SELECT * FROM p39_subject_attachment WHERE subject_id = ?");
                 $subject_att_stmt->bind_param("i", $search);
                 $subject_att_stmt->execute();
@@ -44,20 +44,20 @@ if (session_status() === PHP_SESSION_NONE)
                 $subject_pic_result = $subject_pic_stmt->get_result();
                 $subject_pic_exist = $subject_pic_result->num_rows > 0;
                 if (!$subject_att_exist) { ?>
-            <div>
-                <h3>المرفقات</h3>
-            </div>
-            <main id="empty" class="empty">
-                <h4>لا يوجد مرفقات الآن</h4>
-            </main>
-            <?php } else { ?>
-            <div>
-                <h3>المرفقات</h3>
-            </div>
-            <div class="attatchement-box">
-                <?php while ($subject_att_row = $subject_att_result->fetch_assoc()) { ?>
-                <div class="col">
-                    <?php switch (pathinfo($subject_att_row["attachment_title"], PATHINFO_EXTENSION)) {
+                    <div>
+                        <h3>المرفقات</h3>
+                    </div>
+                    <main id="empty" class="empty">
+                        <h4>لا يوجد مرفقات الآن</h4>
+                    </main>
+                <?php } else { ?>
+                    <div>
+                        <h3>المرفقات</h3>
+                    </div>
+                    <div class="attatchement-box">
+                        <?php while ($subject_att_row = $subject_att_result->fetch_assoc()) { ?>
+                            <div class="col">
+                                <?php switch (pathinfo($subject_att_row["attachment_title"], PATHINFO_EXTENSION)) {
 	                                case "pdf":
 		                                echo '<img src="images/icons/pdf.svg" alt="pdf" class="attachment-picture">';
 		                                break;
@@ -69,46 +69,47 @@ if (session_status() === PHP_SESSION_NONE)
 	                                case "pjp":
 	                                case "pjpeg":
 	                                case "jpeg": ?>
-                    <img src="<?= $subject_att_row['attachment_name'] ?>" alt="image" class="attachment-picture">
-                    <?php break;
+                                        <img src="<?= $subject_att_row['attachment_name'] ?>" alt="image" class="attachment-picture">
+		                                <?php break;
 
 	                                default:
 		                                echo '<img src="images/icons/image.svg" alt="" class="attachment-picture">';
 		                                break;
                                 }?>
-                    <a href="<?= $subject_att_row['attachment_name'] ?>" target="_blank">
-                        <?= $subject_att_row["attachment_title"] ?></a>
-                    <!-- this is not delete button -->
-                    <button data-open-modal class="btn-basic">حذف</button>
-                    <dialog data-modal>
-                        <h4>هل تريد مسح الملف <?= $subject_att_row["attachment_title"] ?> ؟</h4>
-                        <form method="post" action="deletion_code.php">
-                            <input type="hidden" name="subject_id" value="<?= $search ?>">
-                            <input type="hidden" name="attachment_id" value="<?= $subject_att_row['attachment_id'] ?>">
-                            <!-- this is the delete code -->
-                            <button class="btn-basic" name="delete_subject_attachment_btn">نعم</button>
-                            <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
-                        </form>
-                    </dialog>
-                </div>
-                <?php } ?>
-            </div>
-            <?php }
+                                <a href="<?= $subject_att_row['attachment_name'] ?>" target="_blank">
+                                    <?= $subject_att_row["attachment_title"] ?></a>
+                                <!-- this is not delete button -->
+                                <button data-open-modal class="btn-basic">حذف</button>
+                                <dialog data-modal>
+                                    <h4>هل تريد مسح الملف <?= $subject_att_row["attachment_title"] ?> ؟</h4>
+                                    <form method="post" action="deletion_code.php">
+                                        <input type="hidden" name="subject_id" value="<?= $search ?>">
+                                        <input type="hidden" name="attachment_id"
+                                               value="<?= $subject_att_row['attachment_id'] ?>">
+                                        <!-- this is the delete code -->
+                                        <button class="btn-basic" name="delete_subject_attachment_btn">نعم</button>
+                                        <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
+                                    </form>
+                                </dialog>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php }
                 if (!$subject_pic_exist) { ?>
-            <div>
-                <h3>صور تفاصيل الموضوع</h3>
-            </div>
-            <main id="empty" class="empty">
-                <h4>لا يوجد صور الآن</h4>
-            </main>
-            <?php } else { ?>
-            <div>
-                <h3>صور تفاصيل الموضوع</h3>
-            </div>
-            <div class="attatchement-box">
-                <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
-                <div class="col">
-                    <?php switch (pathinfo($subject_pic_row["picture_title"], PATHINFO_EXTENSION)) {
+                    <div>
+                        <h3>صور تفاصيل الموضوع</h3>
+                    </div>
+                    <main id="empty" class="empty">
+                        <h4>لا يوجد صور الآن</h4>
+                    </main>
+                <?php } else { ?>
+                    <div>
+                        <h3>صور تفاصيل الموضوع</h3>
+                    </div>
+                    <div class="attatchement-box">
+		                <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
+                            <div class="col">
+				                <?php switch (pathinfo($subject_pic_row["picture_title"], PATHINFO_EXTENSION)) {
 					                case "png":
                                     case "gif":
                                     case "jpg":
@@ -116,8 +117,8 @@ if (session_status() === PHP_SESSION_NONE)
                                     case "pjp":
                                     case "pjpeg":
                                     case "jpeg": ?>
-                    <img src="<?= $subject_pic_row['picture_name'] ?>" alt="image" class="attachment-picture">
-                    <?php break;
+						                <img src="<?= $subject_pic_row['picture_name'] ?>" alt="image" class="attachment-picture">
+						                <?php break;
 
 					                default:
 						                echo '<img src="images/icons/image.svg" alt="" class="attachment-picture">';
@@ -146,8 +147,8 @@ if (session_status() === PHP_SESSION_NONE)
         <div class="col dialog-col">
 
             <?php if ($_SESSION["admin"]) { ?>
-            <!-- Failed attempt at using dialog with multiple forms -->
-            <!--<form method="post" action="x.php" enctype="multipart/form-data">
+                <!-- Failed attempt at using dialog with multiple forms -->
+                <!--<form method="post" action="x.php" enctype="multipart/form-data">
                     <input type="hidden" name="subject_id" value="<?php /*= $search */?>">
                     <div class="upload add-attachment-subject">
                         <button type="button" class="btn-basic" data-open-modal>
@@ -183,7 +184,7 @@ if (session_status() === PHP_SESSION_NONE)
                         </dialog>
                     </div>
                      Not Working -->
-            <!--<div class="upload add-attachment-subject">
+                    <!--<div class="upload add-attachment-subject">
                         <button type="button" class="btn-basic" data-open-modal>
                             رفع صورة
                             <i class="fa-solid fa-upload"></i>
