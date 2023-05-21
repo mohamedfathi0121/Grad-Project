@@ -332,13 +332,17 @@ if (is_admin()):
                                     <h4>
                                         رقم إدخال الموضوع:
                                         <span>
-                                            <?= $subjects_row["sno"] ?>
+                                            <?= $subjects_row["sno"] == NULL
+	                                            ? "لا يوجد"
+	                                            : $subjects_row["sno"] ?>
                                         </span>
                                     </h4>
                                     <h4>
                                         تصنيف الموضوع:
                                         <span>
-                                            <?= $subjects_row["st"] ?>
+                                            <?= $subjects_row["st"] == NULL
+	                                            ? "لا يوجد"
+	                                            : $subjects_row["st"] ?>
                                         </span>
                                     </h4>
                                     <h4>

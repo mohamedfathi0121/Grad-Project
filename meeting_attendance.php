@@ -92,7 +92,7 @@ if(session_status() === PHP_SESSION_NONE)
             </div>
         </main>
     <?php else :
-        header("location: meetings.php", true, 303);
+        header("location: index.php", true, 303);
     endif; ?>
     <?php footer(); ?>
 

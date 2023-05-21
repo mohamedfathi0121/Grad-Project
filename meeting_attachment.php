@@ -147,7 +147,7 @@ if (session_status() === PHP_SESSION_NONE)
                                         default:
                                             echo '<img src="images/icons/pdf.svg" alt="" class="attachment-picture">';
                                             break;
-                                    }?>
+                                    } ?>
                                     <a href="<?= $meeting_att_row1['attachment_name'] ?>" target="_blank">
                                         <?= $meeting_att_row1["attachment_title"] ?></a>
                                     <?php if ($_SESSION["admin"]) { ?>
@@ -169,54 +169,48 @@ if (session_status() === PHP_SESSION_NONE)
                         </div>
                     <?php } ?>
                 </div>
+            <!--</div>
+        </div>-->
+                <div class="col dialog-col">
+                    <?php if ($_SESSION["admin"]) { ?>
+                    <button data-open-modal class="btn-basic add-attachment">رفع ملف المجلس الموثق</button>
+                    <dialog data-modal>
+                        <form method="post" action="addition_code.php" enctype="multipart/form-data">
+                            <input type="hidden" name="meeting_id" value="<?= $search ?>">
+                            <div class="btn-basic">
+                                <label for="up1">
+                                    رفع الملف الموثق
+                                    <i class="fa-solid fa-upload"></i>
+                                    <input id="up1" type="file" name="meeting_attachment[]" class="upload-button"
+                                        accept="application/pdf, image/png, image/gif, image/jpeg" multiple />
+                                </label>
+                            </div>
+                            <button type="submit" name="add_meeting_attachment_btn" class="btn-basic">رفع</button>
+                            <button type="submit" formmethod="dialog" class="btn-basic dialog-btn">الغاء</button>
+                        </form>
+                        <div class="file-list"></div>
+                    </dialog>
+                    <button data-open-modal class="btn-basic add-attachment">رفع ملفات أخرى</button>
+                    <dialog data-modal>
+                        <form method="post" action="addition_code.php" enctype="multipart/form-data">
+                            <input type="hidden" name="meeting_id" value="<?= $search ?>">
+                            <div class="btn-basic">
+                                <label for="up2">
+                                    رفع ملفات أخرى
+                                    <i class="fa-solid fa-upload"></i>
+                                    <input id="up2" type="file" name="meeting_attachment1[]" class="upload-button"
+                                        accept="application/pdf, image/png, image/gif, image/jpeg" multiple />
+                                </label>
+                            </div>
+                            <button type="submit" name="add_meeting_attachment_btn1" class="btn-basic">رفع</button>
+                            <button type="submit" formmethod="dialog" class="btn-basic dialog-btn">الغاء</button>
+                        </form>
+                        <div class="file-list"></div>
+                </div>
                 <?php } ?>
-            </div>
-            <?php } ?>
-        </div>
-        <div class="col dialog-col">
-            <?php if ($_SESSION["admin"]) { ?>
-            <button data-open-modal class="btn-basic add-attachment">رفع ملف المجلس الموثق</button>
-            <dialog data-modal>
-                <form method="post" action="addition_code.php" enctype="multipart/form-data">
-                    <input type="hidden" name="meeting_id" value="<?= $search ?>">
-                    <div class="btn-basic">
-                        <label for="up1">
-                            رفع الملف الموثق
-                            <i class="fa-solid fa-upload"></i>
-                            <input id="up1" type="file" name="meeting_attachment[]" class="upload-button"
-                                accept="application/pdf, image/png, image/gif, image/jpeg" multiple />
-                        </label>
-                    </div>
-                    <button type="submit" name="add_meeting_attachment_btn" class="btn-basic">رفع</button>
-                    <button type="submit" formmethod="dialog" class="btn-basic dialog-btn">الغاء</button>
-
-                </form>
-                <div class="file-list"></div>
-            </dialog>
-            <button data-open-modal class="btn-basic add-attachment">رفع ملف اخرى</button>
-            <dialog data-modal>
-                <form method="post" action="addition_code.php" enctype="multipart/form-data">
-                    <input type="hidden" name="meeting_id" value="<?= $search ?>">
-                    <div class="btn-basic">
-                        <label for="up2">
-                            رفع ملفات أخرى
-                            <i class="fa-solid fa-upload"></i>
-                            <input id="up2" type="file" name="meeting_attachment1[]" class="upload-button"
-                                accept="application/pdf, image/png, image/gif, image/jpeg" multiple />
-                        </label>
-                    </div>
-                    <button type="submit" name="add_meeting_attachment_btn1" class="btn-basic">رفع</button>
-                    <button type="submit" formmethod="dialog" class="btn-basic dialog-btn">الغاء</button>
-
-                </form>
-
-                <div class="file-list"></div>
-
-                <?php } ?>
-        </div>
-    </main>
-    <?php } else {
-            header("location: meetings.php", true, 303);
+            </main>
+        <?php } else {
+            header("location: index.php", true, 303);
         } ?>
     <?php endif;
     footer();
