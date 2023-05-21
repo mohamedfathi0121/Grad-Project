@@ -377,46 +377,42 @@ if (is_admin()):
                                 </div>
                             </div>
                             <div class="current-subject-details deactive">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="table-container">
-                                            <table class="subjects-table">
-                                                <tbody>
-                                                <tr class="subject-row">
-                                                    <td>الموضوع (<?= $subjects_row["sno"] ?>)</td>
-                                                    <td>
-                                                        <strong><?= $subjects_row["sn"] ?></strong>
-                                                        <p><?= $subjects_row["sd"] ?></p>
-								                        <?php
-								                        $subject_pic_stmt = $conn->prepare("SELECT 
-                                                                                                picture_name
-                                                                                            FROM 
-                                                                                                p39_subject_picture 
-                                                                                            WHERE 
-                                                                                                subject_id = ?");
-								                        $subject_pic_stmt->bind_param("i", $subjects_row["sid"]);
-								                        $subject_pic_stmt->execute();
-								                        $subject_pic_result = $subject_pic_stmt->get_result();
-								                        $subject_pic_exists = $subject_pic_result->num_rows > 0; ?>
-								                        <?php if ($subject_pic_exists) { ?>
-									                        <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
-                                                                <img src="<?= $subject_pic_row['picture_name'] ?>" alt="صورة تفاصيل الموضوع">
-									                        <?php }
-								                        } ?>
-                                                    </td>
-                                                </tr>
-                                                <tr class="decision-row">
-                                                    <td>القرار</td>
-                                                    <td>
-                                                        <p><?= @$subjects_row["did"] == NULL
-										                        ? "لا يوجد"
-										                        : $subjects_row["did"] ?></p>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                <div class="table-container">
+                                    <table class="subjects-table">
+                                        <tbody>
+                                        <tr class="subject-row">
+                                            <td>الموضوع (<?= $subjects_row["sno"] ?>)</td>
+                                            <td>
+                                                <strong><?= $subjects_row["sn"] ?></strong>
+                                                <p><?= $subjects_row["sd"] ?></p>
+                                                <?php
+                                                $subject_pic_stmt = $conn->prepare("SELECT 
+                                                                                        picture_name
+                                                                                    FROM 
+                                                                                        p39_subject_picture 
+                                                                                    WHERE 
+                                                                                        subject_id = ?");
+                                                $subject_pic_stmt->bind_param("i", $subjects_row["sid"]);
+                                                $subject_pic_stmt->execute();
+                                                $subject_pic_result = $subject_pic_stmt->get_result();
+                                                $subject_pic_exists = $subject_pic_result->num_rows > 0; ?>
+                                                <?php if ($subject_pic_exists) { ?>
+                                                    <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
+                                                        <img src="<?= $subject_pic_row['picture_name'] ?>" alt="صورة تفاصيل الموضوع">
+                                                    <?php }
+                                                } ?>
+                                            </td>
+                                        </tr>
+                                        <tr class="decision-row">
+                                            <td>القرار</td>
+                                            <td>
+                                                <p><?= @$subjects_row["did"] == NULL
+                                                        ? "لا يوجد"
+                                                        : $subjects_row["did"] ?></p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

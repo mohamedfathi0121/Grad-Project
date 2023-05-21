@@ -28,7 +28,7 @@ if (is_admin()) {
                                                         d.needs_action as na,
                                                         d.is_action_done as iad,
                                                         s.subject_id as sid,
-                                                        d.action_to as att
+                                                        d.action_to as at
                                                     FROM
                                                         p39_formation AS f
                                                     JOIN p39_meeting AS m
@@ -121,14 +121,13 @@ if (is_admin()) {
 	                                            : $exec_decisions_row["dd"] ?>
                                         </span>
                                     </h4>
-                                    <h4>القرار التنفيذي موجه الى:
-                                                    <span>
-                                                        <?= $exec_decisions_row["att"] == NULL
-                                                        ? "لا يوجد"
-                                                        : $exec_decisions_row["att"]
-                                                        ?>
-                                                    </span>
-                                                </h4>
+                                    <h4>القرار التنفيذي موجه إلى:
+                                        <span>
+                                            <?= $exec_decisions_row["at"] == NULL
+                                            ? "لا يوجد"
+                                            : $exec_decisions_row["at"] ?>
+                                        </span>
+                                    </h4>
                                     
                                 </div>
                             </div>
@@ -233,14 +232,13 @@ if (is_admin()) {
 	                                            : $exec_decisions_row["dd"] ?>
                                         </span>
                                             </h4>
-                                            <h4>القرار التنفيذي موجه الى:
-                                                    <span>
-                                                        <?= $exec_decisions_row["att"] == NULL
-                                                        ? "لا يوجد"
-                                                        : $exec_decisions_row["att"]
-                                                        ?>
-                                                    </span>
-                                                </h4>
+                                            <h4>القرار التنفيذي موجه إلى:
+                                                <span>
+                                                    <?= $exec_decisions_row["at"] == NULL
+                                                    ? "لا يوجد"
+                                                    : $exec_decisions_row["at"] ?>
+                                                </span>
+                                            </h4>
                                         </div>
                                     </div>
                                     <div class="decision-buttons">
@@ -322,7 +320,7 @@ if (is_admin()) {
                                                         d.is_action_done as iad,
                                                         s.subject_id as sid, 
                                                         d.decision_id as did,
-                                                        d.action_to as att
+                                                        d.action_to as at
                                                     FROM
                                                         p39_formation AS f
                                                     JOIN p39_meeting AS m
@@ -374,17 +372,17 @@ if (is_admin()) {
                                                 <h4>
                                                     صيغة القرار:
                                                     <span class="decision-format">
-                                            <?= $exec_decisions_row_1["dd"] == NULL
-	                                            ? "لا يوجد"
-	                                            : $exec_decisions_row_1["dd"] ?>
-                                        </span>
+                                                        <?= $exec_decisions_row_1["dd"] == NULL
+                                                            ? "لا يوجد"
+                                                            : $exec_decisions_row_1["dd"] ?>
+                                                    </span>
                                                 </h4>
-                                                <h4>القرار التنفيذي موجه الى:
+                                                <h4>
+                                                    القرار التنفيذي موجه إلى:
                                                     <span>
-                                                        <?= $exec_decisions_row_1["att"] == NULL
+                                                        <?= $exec_decisions_row_1["at"] == NULL
                                                         ? "لا يوجد"
-                                                        : $exec_decisions_row_1["att"]
-                                                        ?>
+                                                        : $exec_decisions_row_1["at"] ?>
                                                     </span>
                                                 </h4>
                                             </div>
@@ -473,14 +471,14 @@ if (is_admin()) {
 	                                            $decision_attachment_result = $decision_attachment_stmt->get_result(); ?>
                                                 <div class="row decision-file-container"> <?php
 		                                            while ($decision_attachment_row = $decision_attachment_result->fetch_assoc()) { ?>
-                                                    <form  method="post" action="deletion_code.php">
-                                                        <div class="decision-file" class="col">
-                                                            <input type="hidden" name="attachment_id" value="<?= $decision_attachment_row['attachment_id'] ?>">
-                                                            <a href="<?= $decision_attachment_row['attachment_name'] ?>" target="_blank">
-                                                                <?= $decision_attachment_row["attachment_title"] ?></a>
-                                                            <button name="delete_decision_attachment_btn" type="submit" class="btn-basic">حذف</button>
-                                                        </div>
-                                                    </form>
+                                                        <form  method="post" action="deletion_code.php">
+                                                            <div class="decision-file" class="col">
+                                                                <input type="hidden" name="attachment_id" value="<?= $decision_attachment_row['attachment_id'] ?>">
+                                                                <a href="<?= $decision_attachment_row['attachment_name'] ?>" target="_blank">
+                                                                    <?= $decision_attachment_row["attachment_title"] ?></a>
+                                                                <button name="delete_decision_attachment_btn" type="submit" class="btn-basic">حذف</button>
+                                                            </div>
+                                                        </form>
 		                                            <?php } ?>
                                                 </div>
                                             </form>
@@ -503,7 +501,7 @@ if (is_admin()) {
                                                         d.needs_action as na,
                                                         d.is_action_done as iad,
                                                         s.subject_id as sid,
-                                                        d.action_to as att
+                                                        d.action_to as at
                                                     FROM
                                                         p39_formation AS f
                                                     JOIN p39_meeting AS m
@@ -552,17 +550,16 @@ if (is_admin()) {
                                                 <h4>
                                                     صيغة القرار:
                                                     <span class="decision-format">
-                                            <?= $exec_decisions_row_all["dd"] == NULL
-	                                            ? "لا يوجد"
-	                                            : $exec_decisions_row_all["dd"] ?>
-                                        </span>
+                                                        <?= $exec_decisions_row_all["dd"] == NULL
+                                                            ? "لا يوجد"
+                                                            : $exec_decisions_row_all["dd"] ?>
+                                                    </span>
                                                 </h4>
-                                                <h4>القرار التنفيذي موجه الى:
+                                                <h4>القرار التنفيذي موجه إلى:
                                                     <span>
-                                                        <?= $exec_decisions_row_all["att"] == NULL
+                                                        <?= $exec_decisions_row_all["at"] == NULL
                                                         ? "لا يوجد"
-                                                        : $exec_decisions_row_all["att"]
-                                                        ?>
+                                                        : $exec_decisions_row_all["at"] ?>
                                                     </span>
                                                 </h4>
                                             </div>
