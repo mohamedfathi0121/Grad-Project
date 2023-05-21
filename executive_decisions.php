@@ -145,7 +145,9 @@ if (is_admin()) {
                                         <table class="subjects-table">
                                             <tbody>
                                             <tr class="subject-row">
-                                                <td>الموضوع (<?= $exec_decisions_row["sno"] ?>)</td>
+                                                <td>الموضوع (<?= $exec_decisions_row["sno"] == NULL
+		                                                ? "لا يوجد"
+		                                                : $exec_decisions_row["sno"] ?>)</td>
                                                 <td>
                                                     <strong>
                                                         <?= $exec_decisions_row["sn"] == NULL
@@ -255,7 +257,9 @@ if (is_admin()) {
                                                 <table class="subjects-table">
                                                     <tbody>
                                                     <tr class="subject-row">
-                                                        <td>الموضوع (<?= $exec_decisions_row["sno"] ?>)</td>
+                                                        <td>الموضوع (<?= $exec_decisions_row["sno"] == NULL
+		                                                        ? "لا يوجد"
+		                                                        : $exec_decisions_row["sno"] ?>)</td>
                                                         <td>
                                                             <strong>
 		                                                        <?= $exec_decisions_row["sn"] == NULL
@@ -407,7 +411,9 @@ if (is_admin()) {
                                                     <table class="subjects-table">
                                                         <tbody>
                                                         <tr class="subject-row">
-                                                            <td>الموضوع (<?= $exec_decisions_row_1["sno"] ?>)</td>
+                                                            <td>الموضوع (<?= $exec_decisions_row_1["sno"] == NULL
+		                                                            ? "لا يوجد"
+		                                                            : $exec_decisions_row_1["sno"] ?>)</td>
                                                             <td>
                                                                 <strong>
 		                                                            <?= $exec_decisions_row_1["sn"] == NULL
@@ -578,7 +584,9 @@ if (is_admin()) {
                                                     <table class="subjects-table">
                                                         <tbody>
                                                         <tr class="subject-row">
-                                                            <td>الموضوع (<?= $exec_decisions_row_all["sno"] ?>)</td>
+                                                            <td>الموضوع (<?= $exec_decisions_row_all["sno"] == NULL
+		                                                            ? "لا يوجد"
+		                                                            : $exec_decisions_row_all["sno"] ?>)</td>
                                                             <td>
                                                                 <strong>
 		                                                            <?= $exec_decisions_row_all["sn"] == NULL
