@@ -433,6 +433,7 @@ footer(); ?>
 
 <!-- Js Scripts and Plugins -->
 <script type="module" src="./js/main.js"></script>
+<script src="./js/subject_details.js"></script>
 
 <!-- font Awesome -->
 <script src="https://kit.fontawesome.com/eb7dada2f7.js" crossorigin="anonymous"></script>
