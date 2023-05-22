@@ -58,7 +58,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                 </div>
                             </div>
                             <div class="row resp-to deactive">
-                                <h4>الجواب التنفيذي موجه لـ</h4>
+                                <h4>الجواب التنفيذي موجه إلى</h4>
                                 <input type="text" name="action_to" placeholder="الجهة الموجه لها الجواب التنفيذي"/>
                             </div>
                             <div class="row">

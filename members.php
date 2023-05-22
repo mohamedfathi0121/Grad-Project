@@ -107,7 +107,7 @@ if(session_status() === PHP_SESSION_NONE)
                                                 <?=$n?>
                                             </span>
                                         </h4>
-                                        <h4>اسم العضو: د.
+                                        <h4>اسم العضو:
                                             <span class="member-name">
                                                 <?=$users_row["name"]?>
                                             </span>
@@ -172,7 +172,7 @@ if(session_status() === PHP_SESSION_NONE)
                                                 <?=$n?>
                                             </span>
                                             </h4>
-                                            <h4>اسم العضو: د.
+                                            <h4>اسم العضو:
                                                 <span class="member-name">
                                                 <?= $search_row["name"] ?>
                                             </span>
