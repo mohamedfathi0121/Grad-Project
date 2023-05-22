@@ -45,16 +45,11 @@ function Headers()
 	?>
     <header>
         <div class="user-logged">
-			<?php
-			if (!empty($_SESSION["loggedin"])) {
-				?>
+			<?php if (!empty($_SESSION["loggedin"])) { ?>
                 <img src="<?= @$_SESSION['image'] ?>" alt="">
-                <h5 class="user-name">د. <?= @$_SESSION['name'] ?></h5>
+                <h5 class="user-name"> <?= @$_SESSION['name'] ?></h5>
                 <button class="button btn-basic" onclick="location.href='logout.php'">خروج</button>
-
-				<?php
-			}
-			?>
+            <?php } ?>
         </div>
 
         <div class="header-container">
@@ -296,7 +291,7 @@ function is_logged_in():bool
             </p>
         </div>
         <br>
-        <?php header("refresh:5; url=loginn.php");
+        <?php header("refresh:5; url=login.php");
         footer();
         die();
     }

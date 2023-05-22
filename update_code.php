@@ -206,15 +206,13 @@ foreach ($_POST as $btn => $value)
     																`p39_subject` 
 																SET 
 																    `order_id`= ?,
-																    `subject_number`= ?,
 																    `subject_name`= ?,
 																    `subject_details`= ?,
 																    `subject_type_id`= ?,
 																    `comments`= ? 
 																WHERE subject_id = ?");
-				$subject_update_stmt->bind_param("iissisi",
+				$subject_update_stmt->bind_param("issisi",
 													$order_id,
-													$subject_number,
 													$subject_name,
 													$subject_details,
 													$subject_type,
@@ -260,11 +258,19 @@ foreach ($_POST as $btn => $value)
 			$decision_comments = (empty($_POST["decision_comments"])
 				? null
 				: clean_data($_POST["decision_comments"]));
-			if ($_POST["needs_action"] == "0")
+			switch ($_POST["needs_action"])
 			{
-				$needs_action = 0;
-				$action_to = NULL;
-				$is_action_done = NULL;
+				case "0":
+					$needs_action = 0;
+					$action_to = NULL;
+					$is_action_done = NULL;
+					break;
+
+				case "1":
+					$needs_action = 1;
+					$action_to = $_POST["action_to"];
+					$is_action_done = 0;
+					break;
 			}
 			$decision_update_stmt = $conn->prepare("UPDATE 
     															p39_decision 

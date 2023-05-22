@@ -88,7 +88,7 @@ Head("أعضاء التشكيل الحالي");
                                     <?php if (in_array($formation_users_row["user_id"], $formation_users)) { ?>
                                         <tr>
                                             <td>
-                                                د. <?= $formation_users_row["name"] ?>
+                                                 <?= $formation_users_row["name"] ?>
                                             </td>
                                             <td>
                                                 <input type="hidden" name="<?=$formation_users_row['user_id']?>" value="0">
@@ -103,7 +103,7 @@ Head("أعضاء التشكيل الحالي");
                                     else { ?>
                                         <tr>
                                             <td>
-                                                د. <?= $formation_users_row["name"] ?>
+                                                 <?= $formation_users_row["name"] ?>
                                             </td>
                                             <td>
                                                 <input type="hidden" name="<?=$formation_users_row['user_id']?>" value="0">

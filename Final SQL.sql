@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS p39_users
     job_rank_id   TINYINT UNSIGNED,
     department_id TINYINT UNSIGNED,
     gender        ENUM ("M", "F") character set utf8 collate utf8_unicode_520_ci,
-    image         VARCHAR(255) character set utf8 collate utf8_unicode_520_ci DEFAULT "	images/members/user.png",
+    image         VARCHAR(255) character set utf8 collate utf8_unicode_520_ci DEFAULT "images/members/user.svg",
     email         VARCHAR(255) character set utf8 collate utf8_unicode_520_ci UNIQUE,
     password      VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
     is_admin      TINYINT UNSIGNED,
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS p39_user_transaction
 CREATE TABLE IF NOT EXISTS p39_meeting
 (
     meeting_id     SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    meeting_number MEDIUMINT UNSIGNED UNIQUE,
+    meeting_number MEDIUMINT UNSIGNED,
     meeting_month  SMALLINT UNSIGNED,
     meeting_year   YEAR,
     meeting_date   DATE                                      DEFAULT NULL,
@@ -213,16 +213,6 @@ CREATE TABLE IF NOT EXISTS p39_subject_transaction
     made_by          SMALLINT UNSIGNED,
     FOREIGN KEY (made_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
-
-# CREATE TABLE IF NOT EXISTS p39_deleted_subject
-# (
-#     delete_id   SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-#     subject_row VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
-#     deleted_by  SMALLINT UNSIGNED,
-#     deleted_on  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-#     reason      VARCHAR(255) character set utf8 collate utf8_unicode_520_ci,
-#     FOREIGN KEY (deleted_by) REFERENCES p39_users (user_id) ON UPDATE CASCADE ON DELETE RESTRICT
-# );
 
 CREATE TABLE IF NOT EXISTS p39_subject_attachment
 (

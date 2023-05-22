@@ -610,8 +610,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                             ON m.formation_id = f.formation_id 
                                                                                    AND m.is_current = 0 
                                                                     ORDER BY 
-                                                                        -m.meeting_date 
-                                                                        DESC");
+                                                                        meeting_id DESC");
                         $past_meetings_stmt->execute();
                         $past_meetings_result = $past_meetings_stmt->get_result();
                         $past_meetings_count = 0;
