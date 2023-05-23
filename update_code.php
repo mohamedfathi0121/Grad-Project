@@ -94,6 +94,8 @@ foreach ($_POST as $btn => $value)
 
 		case "update_member_btn":
 			$name = clean_data($_POST["name"]);
+			$email = clean_data($_POST["email"]);
+			$password = clean_data($_POST["password"]);
 			$gender = clean_data($_POST["gender"]);
 			$job_title = clean_data($_POST["job_title"]);
 			$job_type = clean_data($_POST["job_type"]);
@@ -114,10 +116,12 @@ foreach ($_POST as $btn => $value)
 					$old_row .= empty($old_row) ? $value : ", " . $value;
 				}
 				$old_row = "(" . $old_row . ")";
-				$member_update_stmt = $conn->prepare("UPDATE
+				if (empty($password)) {
+					$member_update_stmt = $conn->prepare("UPDATE
                                                             `p39_users`
                                                         SET
                                                             `name` = ?,
+                                                            `email` = ?,
                                                             `job_title` = ?,
                                                             `job_type_id` = ?,
                                                             `job_rank_id` = ?,
@@ -127,17 +131,47 @@ foreach ($_POST as $btn => $value)
                                                             `is_enabled` = ?
                                                         WHERE
                                                             user_id = ?");
-				$member_update_stmt->bind_param("ssiiisiii",
-					$name,
-					$job_title,
-					$job_type,
-					$job_rank,
-					$department,
-					$gender,
-					$is_admin,
-					$is_enabled,
-					$_POST["user_id"]);
-
+					$member_update_stmt->bind_param("sssiiisiii",
+						$name,
+						$email,
+						$job_title,
+						$job_type,
+						$job_rank,
+						$department,
+						$gender,
+						$is_admin,
+						$is_enabled,
+						$_POST["user_id"]);
+				} else {
+					$hash = password_hash($password, PASSWORD_DEFAULT);
+					$member_update_stmt = $conn->prepare("UPDATE
+                                                            `p39_users`
+                                                        SET
+                                                            `name` = ?,
+                                                            `email` = ?,
+                                                            `password` = ?,
+                                                            `job_title` = ?,
+                                                            `job_type_id` = ?,
+                                                            `job_rank_id` = ?,
+                                                            `department_id` = ?,
+                                                            `gender` = ?,
+                                                            `is_admin` = ?,
+                                                            `is_enabled` = ?
+                                                        WHERE
+                                                            user_id = ?");
+					$member_update_stmt->bind_param("ssssiiisiii",
+						$name,
+						$email,
+						$hash,
+						$job_title,
+						$job_type,
+						$job_rank,
+						$department,
+						$gender,
+						$is_admin,
+						$is_enabled,
+						$_POST["user_id"]);
+				}
 				if ($member_update_stmt->execute())
 				{
 					// Adding picture attachment
@@ -146,11 +180,11 @@ foreach ($_POST as $btn => $value)
 					if (!empty($uploaded_pictures)) {
 						foreach ($uploaded_pictures as $key => $value) {
 							$picture_stmt = $conn->prepare("UPDATE 
-                                                                    p39_users 
-                                                                SET 
-                                                                    image = ? 
-                                                                WHERE 
-                                                                    user_id = ?");
+                                                                    	p39_users 
+	                                                                SET 
+	                                                                    image = ? 
+	                                                                WHERE 
+	                                                                    user_id = ?");
 							$picture_stmt->bind_param("ss", $value, $_POST["user_id"]);
 							$picture_stmt->execute();
 						}

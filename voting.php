@@ -22,7 +22,7 @@ if (is_logged_in() AND !$_SESSION["admin"] AND isset($_POST["voting_btn"])):
         <div class="container">
             <!-- عنوان الصفحة -->
             <div class="title">
-                <h1>التصويت علي موضوع رقم :<span class="subject-num"><?= $_POST["subject_id"] ?></span></h1>
+                <h1>التصويت علي موضوع رقم: <span class="subject-num"><?= $_POST["subject_id"] ?></span></h1>
             </div>
             <?php
             $subject_vote_stmt = $conn->prepare("SELECT vote_type_id FROM p39_vote WHERE subject_id = ? AND user_id = ?");

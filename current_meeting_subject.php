@@ -102,26 +102,46 @@ if (is_logged_in()):
                                             {
                                                 if (!$_SESSION["admin"]) { ?>
                                                     <div class="col col-subject-vote">
-                                                        <?php
-                                                        $subject_vote_stmt = $conn->prepare("SELECT subject_id FROM p39_vote WHERE user_id = ? AND subject_id = ?");
+                                                        <?php $subject_vote_stmt = $conn->prepare("SELECT 
+                                                                                                            subject_id 
+                                                                                                        FROM 
+                                                                                                            p39_vote 
+                                                                                                        WHERE 
+                                                                                                            user_id = ? 
+                                                                                                          AND 
+                                                                                                            subject_id = ?");
                                                         $subject_vote_stmt->bind_param("ii", $_SESSION["user_id"], $current_subjects_row["subject_id"]);
                                                         $subject_vote_stmt->execute();
                                                         $subject_vote_result = $subject_vote_stmt->get_result();
                                                         $subject_vote_exists = $subject_vote_result->num_rows > 0;
-                                                        ?>
-                                                        <form method="post" action="voting.php">
-                                                            <input type="hidden" name="subject_id"
-                                                                   value="<?= $current_subjects_row['subject_id'] ?>">
-                                                            <?php if (!$subject_vote_exists) { ?>
-                                                                <button name="voting_btn" class="btn-basic">
-                                                                    تصويت
-                                                                </button>
-                                                            <?php } else { ?>
-                                                                <button name="voting_btn" class="btn-basic">
-                                                                    تعديل التصويت
-                                                                </button>
-                                                            <?php } ?>
-                                                        </form>
+                                                        switch ($status) {
+	                                                        case "finished":
+		                                                        if (!$subject_vote_exists) { ?>
+                                                                    <button type="button" class="btn-basic disabled"
+                                                                            disabled title="لا يمكن التصويت على موضوع في مجلس نهائي">تصويت</button>
+		                                                        <?php } else { ?>
+                                                                    <button type="button" class="btn-basic disabled"
+                                                                            disabled title="لا يمكن تعديل التصويت على موضوع في مجلس نهائي">
+                                                                        تعديل التصويت
+                                                                    </button>
+		                                                        <?php }
+		                                                        break;
+                                                            default: ?>
+                                                                <form method="post" action="voting.php">
+                                                                    <input type="hidden" name="subject_id"
+                                                                           value="<?= $current_subjects_row['subject_id'] ?>">
+                                                                    <?php if (!$subject_vote_exists) { ?>
+                                                                        <button name="voting_btn" class="btn-basic">
+                                                                            تصويت
+                                                                        </button>
+                                                                    <?php } else { ?>
+                                                                        <button name="voting_btn" class="btn-basic">
+                                                                            تعديل التصويت
+                                                                        </button>
+                                                                    <?php } ?>
+                                                                </form>
+                                                                <?php break;
+                                                        } ?>
                                                         <button class="btn-basic subject-details-btn">
                                                             تفاصيل الموضوع
                                                         </button>
@@ -200,6 +220,9 @@ if (is_logged_in()):
                                                         <?php } ?>
                                                         <div class="col">
                                                             <a class="btn-basic" href="subject_attachment.php?sid=<?=$current_subjects_row['subject_id']?>">عرض المرفقات</a>
+                                                        </div>
+                                                        <div class="col">
+                                                            <a class="btn-basic" href="votes.php?sid=<?=$current_subjects_row['subject_id']?>">عرض الأصوات</a>
                                                         </div>
 
                                                     </div>

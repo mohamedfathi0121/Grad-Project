@@ -131,7 +131,7 @@ if (session_status() === PHP_SESSION_NONE)
                                 <div class="col">
                                     <?php switch (pathinfo($meeting_att_row1["attachment_title"], PATHINFO_EXTENSION)) {
                                         case "pdf":
-                                            echo '<img src="images/icons/pdfb.svg" alt="pdf" class="attachment-picture">';
+                                            echo '<img src="images/icons/pdf.svg" alt="pdf" class="attachment-picture">';
                                             break;
 
                                         case "png":
