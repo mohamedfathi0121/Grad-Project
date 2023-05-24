@@ -378,7 +378,9 @@ if (is_admin()):
                                     <button class="btn-basic subject-details-btn">
                                         تفاصيل الموضوع
                                     </button>
+                                    <a class="btn-basic" href="votes.php?sid=<?=$subjects_row['sid']?>">عرض الأصوات</a>
                                 </div>
+
                             </div>
                             <div class="current-subject-details deactive">
                                 <div class="table-container">

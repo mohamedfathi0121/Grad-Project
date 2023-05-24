@@ -11,16 +11,7 @@ Head("أعضاء التشكيل الحالي");
 <body dir="rtl">
     <?php Headers(); ?>
     <?php if (is_admin()) { ?>
-        <?php Nav(); ?>
-        <?php
-//        $formation_number_stmt = $conn->prepare("SELECT formation_number
-//                                                            FROM
-//                                                                p39_formation
-//                                                            WHERE
-//                                                                formation_id = (SELECT
-//                                                                                    MAX(formation_id)
-//                                                                                FROM p39_formation
-//                                                                                )");
+        <?php Nav();
         $formation_number_stmt = $conn->prepare("SELECT 
                                                             formation_number, 
                                                             formation_id
@@ -99,8 +90,7 @@ Head("أعضاء التشكيل الحالي");
                                                        value="<?=$formation_users_row['job_title']?>"
                                             </td>
                                         </tr>
-                                    <?php }
-                                    else { ?>
+                                    <?php } else { ?>
                                         <tr>
                                             <td>
                                                  <?= $formation_users_row["name"] ?>
@@ -114,9 +104,8 @@ Head("أعضاء التشكيل الحالي");
                                                        value="<?=$formation_users_row['job_title']?>"
                                             </td>
                                         </tr>
-                                        <?php } ?>
-
-                                <?php } ?>
+                                    <?php }
+                                } ?>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -139,9 +128,7 @@ Head("أعضاء التشكيل الحالي");
         </main>
     <?php } ?>
 
-    <?php
-    footer();
-    ?>
+    <?php footer(); ?>
 
     <!-- Js Scripts and Plugins -->
     <script type="module" src="./js/main.js"></script>
