@@ -62,10 +62,22 @@ console.log("AYMAN");
 
 const toggler = document.querySelector("nav ul .icon");
 const linksDiv = document.querySelector("nav ul .links");
-const linksDivOpen = document.querySelector("nav ul .links.open");
 
 toggler.addEventListener("click", () => {
 	linksDiv.classList.toggle("open");
+
+	// Make the search in the start of the nav when the links are open
+	if (linksDiv.classList.contains("open")) {
+		document.querySelector(".search").style.alignItems = "flex-start";
+		console.log("open!");
+	}
+	// Make the search bar in center when the links aren't open, and it delay the action by the transition duration of the links animation
+	else {
+		console.log("close!");
+		setTimeout(() => {
+			document.querySelector(".search").style.alignItems = "center";
+		}, Number(getComputedStyle(linksDiv).transitionDuration.slice(0, 3) * 1000));
+	}
 });
 
 // mohamed fathi

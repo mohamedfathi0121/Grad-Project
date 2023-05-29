@@ -200,7 +200,6 @@ nav ul li a {
 	border-radius: 7px;
 	box-shadow: inset 0 0 0 0 var(--main-color);
 	color: var(--main-color);
-	margin: 0 -0.25rem;
 	padding: 0 0.25rem;
 	transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
@@ -373,8 +372,7 @@ input[type="radio"]:checked {
 .search {
 	display: flex;
 	justify-content: center;
-
-	align-items: flex-start;
+	align-items: center;
 }
 .search button,
 .search input {
