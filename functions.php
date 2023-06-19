@@ -136,24 +136,48 @@ function SearchBar()
                                 <option value="mn" selected>رقم المجلس</option>
                                 <option value="fn">رقم التشكيل</option>
                                 <option value="my">سنة المجلس</option>
+                                <option value="sn">عنوان الموضوع</option>
+                                <option value="sd">تفاصيل الموضوع</option>
                                 <?php break;
                             case "fn": ?>
 	                            <option value="">عن طريق</option>
                                 <option value="mn">رقم المجلس</option>
                                 <option value="fn" selected>رقم التشكيل</option>
                                 <option value="my">سنة المجلس</option>
+                                <option value="sn">عنوان الموضوع</option>
+                                <option value="sd">تفاصيل الموضوع</option>
                                 <?php break;
                             case "my": ?>
                                 <option value="">عن طريق</option>
                                 <option value="mn">رقم المجلس</option>
                                 <option value="fn">رقم التشكيل</option>
                                 <option value="my" selected>سنة المجلس</option>
+                                <option value="sn">عنوان الموضوع</option>
+                                <option value="sd">تفاصيل الموضوع</option>
                                 <?php break;
+	                        case "sn": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">رقم المجلس</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="my">سنة المجلس</option>
+                                <option value="sn" selected>عنوان الموضوع</option>
+                                <option value="sd">تفاصيل الموضوع</option>
+		                        <?php break;
+	                        case "sd": ?>
+                                <option value="">عن طريق</option>
+                                <option value="mn">رقم المجلس</option>
+                                <option value="fn">رقم التشكيل</option>
+                                <option value="my">سنة المجلس</option>
+                                <option value="sn">عنوان الموضوع</option>
+                                <option value="sd" selected>تفاصيل الموضوع</option>
+		                        <?php break;
                             default: ?>
                                 <option value="">عن طريق</option>
                                 <option value="mn">رقم المجلس</option>
                                 <option value="fn">رقم التشكيل</option>
                                 <option value="my">سنة المجلس</option>
+                                <option value="sn">عنوان الموضوع</option>
+                                <option value="sd">تفاصيل الموضوع</option>
                                 <?php break;
                         } ?>
                     </select>
