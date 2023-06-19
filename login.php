@@ -17,9 +17,13 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
     <main class="login-page">
         <div class="container">
             <div class="box">
+                <?php if (!empty($_SESSION["error"]["login"])) { ?>
+                    <p style="color:red; font-weight: bold; text-align: center">
+                        البيانات غير صحيحة. يرجى إعادة المحاولة
+                    </p>
+	            <?php } ?>
                 <h1 class="title">تسجيل الدخول</h1>
                 <form action="authentication.php" method="post">
-
                     <div class="col">
                         <div class="row">
                             <h4>البريد الالكتروني</h4><input type="email" placeholder="البريد الالكتروني" name="email"
@@ -35,7 +39,6 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
                             <button type="submit" class="btn-basic" name="sign_in_btn">تسجيل الدخول</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
