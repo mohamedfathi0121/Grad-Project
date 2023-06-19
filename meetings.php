@@ -878,6 +878,36 @@ if (session_status() === PHP_SESSION_NONE)
                                                             ON m.formation_id = f.formation_id 
                                                                    AND m.meeting_year LIKE ?";
 			                    break;
+                            case "sn":
+                                $search_stmt = "SELECT
+                                                    m.*,
+                                                    f.formation_number
+                                                FROM
+                                                    p39_meeting AS m
+                                                JOIN p39_subject AS s
+                                                ON
+                                                    m.meeting_id = s.subject_id
+                                                JOIN p39_formation AS f
+                                                ON
+                                                    f.formation_id = m.formation_id
+                                                WHERE
+                                                    s.subject_name LIKE ?";
+                                break;
+                            case "sd":
+	                            $search_stmt = "SELECT
+                                                    m.*,
+                                                    f.formation_number
+                                                FROM
+                                                    p39_meeting AS m
+                                                JOIN p39_subject AS s
+                                                ON
+                                                    m.meeting_id = s.subject_id
+                                                JOIN p39_formation AS f
+                                                ON
+                                                    f.formation_id = m.formation_id
+                                                WHERE
+                                                    s.subject_details LIKE ?";
+	                            break;
 	                    }
 	                    $restricted_search_count = 0;
 	                    $search_result = Search($conn, NULL, @$search_stmt);
