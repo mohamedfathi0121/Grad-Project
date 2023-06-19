@@ -95,7 +95,7 @@ if (is_admin()):
 							<select name="year" required>
 								<option value="">اختر</option>
 								<?php foreach ($meeting_years as $year) { ?>
-									<option value="<?= $year ?>"><?= $year ?></option>
+									<option value="<?= $year ?>"><?= ($year + 1) . '-' . $year ?></option>
 								<?php } ?>
 							</select>
 						</div>
