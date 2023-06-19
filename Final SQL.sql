@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS p39_meeting
     meeting_date   DATE                                      DEFAULT NULL,
     is_current     TINYINT UNSIGNED                          DEFAULT 1,
     status         ENUM ("pending", "confirmed", "finished") DEFAULT "pending",
-    is_showed      TINYINT UNSIGNED                          DEFAULT 0,
+    is_shown       TINYINT UNSIGNED                          DEFAULT 0,
     formation_id   SMALLINT UNSIGNED,
     added_on       TIMESTAMP                                 DEFAULT CURRENT_TIMESTAMP,
     added_by       SMALLINT UNSIGNED,
