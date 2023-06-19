@@ -18,7 +18,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
         <div class="container">
             <div class="box">
                 <?php if (!empty($_SESSION["error"]["login"])) { ?>
-                    <p style="color:red; font-weight: bold; text-align: center">
+                    <p class="login-error">
                         البيانات غير صحيحة. يرجى إعادة المحاولة
                     </p>
 	            <?php } ?>

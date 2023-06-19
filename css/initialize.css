@@ -8,6 +8,7 @@
 	--main-font: "Tajawal", sans-serif;
 	--checkmark: url("../images/icons/checkmark.svg");
 	--box-radius: 15px;
+	--error-color: rgb(144, 41, 41);
 
 	/* CSS HEX */
 	--headings-color: #294862;
@@ -531,9 +532,14 @@ input[type="file"] {
 	height: 50px;
 }
 .error p {
-	color: rgb(144, 41, 41);
+	color: var(--error-color);
 	font-size: 1.3rem;
 	font-weight: 800;
+}
+.login-error {
+	color: var(--error-color);
+	font-weight: bold;
+	text-align: center;
 }
 
 /* Printing Stuff */
