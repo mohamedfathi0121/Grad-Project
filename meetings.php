@@ -61,7 +61,7 @@ if (session_status() === PHP_SESSION_NONE)
                                     <!-- Break While loop if no current meeting -->
                                     <?php break;
                                 }
-                                if ($current_meeting_row["is_showed"] == "0" AND !$_SESSION["admin"])
+                                if ($current_meeting_row["is_shown"] == "0" AND !$_SESSION["admin"])
                                 { ?>
                                     <div class="current-meeting">
                                         <main id="empty" class="empty-meeting">
@@ -71,7 +71,7 @@ if (session_status() === PHP_SESSION_NONE)
                                     <!-- Break While loop if no current meeting -->
 	                                <?php break;
                                 }
-                                switch ($current_meeting_row["is_showed"])
+                                switch ($current_meeting_row["is_shown"])
                                 {
                                     ### If meeting is not showed, then only admins may see it
                                     case "0":
@@ -282,7 +282,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                         </button>
                                                                     </form>
                                                                 </dialog>
-	                                                            <?php if ($current_meeting_row["is_showed"] == "0") { ?>
+	                                                            <?php if ($current_meeting_row["is_shown"] == "0") { ?>
                                                                     <button class="btn-basic" data-open-modal>
                                                                         إظهار المجلس
                                                                         <i class="fa-solid fa-check"></i>
@@ -403,7 +403,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                         <button type="submit" formmethod="dialog" class="btn-basic">لا</button>
                                                                     </form>
                                                                 </dialog>
-                                                                <?php if ($current_meeting_row["is_showed"] == "0") { ?>
+                                                                <?php if ($current_meeting_row["is_shown"] == "0") { ?>
                                                                     <button class="btn-basic" data-open-modal>
                                                                         إظهار المجلس
                                                                         <i class="fa-solid fa-check"></i>
@@ -506,7 +506,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                 </form>
                                                             </dialog>
 
-                                                            <?php if ($current_meeting_row["is_showed"] == "0") { ?>
+                                                            <?php if ($current_meeting_row["is_shown"] == "0") { ?>
                                                                 <button class="btn-basic" data-open-modal>
                                                                     إظهار المجلس
                                                                     <i class="fa-solid fa-check"></i>
@@ -878,6 +878,36 @@ if (session_status() === PHP_SESSION_NONE)
                                                             ON m.formation_id = f.formation_id 
                                                                    AND m.meeting_year LIKE ?";
 			                    break;
+                            case "sn":
+                                $search_stmt = "SELECT
+                                                    m.*,
+                                                    f.formation_number
+                                                FROM
+                                                    p39_meeting AS m
+                                                JOIN p39_subject AS s
+                                                ON
+                                                    m.meeting_id = s.subject_id
+                                                JOIN p39_formation AS f
+                                                ON
+                                                    f.formation_id = m.formation_id
+                                                WHERE
+                                                    s.subject_name LIKE ?";
+                                break;
+                            case "sd":
+	                            $search_stmt = "SELECT
+                                                    m.*,
+                                                    f.formation_number
+                                                FROM
+                                                    p39_meeting AS m
+                                                JOIN p39_subject AS s
+                                                ON
+                                                    m.meeting_id = s.subject_id
+                                                JOIN p39_formation AS f
+                                                ON
+                                                    f.formation_id = m.formation_id
+                                                WHERE
+                                                    s.subject_details LIKE ?";
+	                            break;
 	                    }
 	                    $restricted_search_count = 0;
 	                    $search_result = Search($conn, NULL, @$search_stmt);
@@ -905,7 +935,7 @@ if (session_status() === PHP_SESSION_NONE)
 				                    }
 				                    continue;
 			                    }
-			                    if ($search_row["is_showed"] == "0" AND !$_SESSION["admin"])
+			                    if ($search_row["is_shown"] == "0" AND !$_SESSION["admin"])
 			                    {
 				                    $restricted_search_count += 1;
 				                    if ($restricted_search_count == $search_result_count)
