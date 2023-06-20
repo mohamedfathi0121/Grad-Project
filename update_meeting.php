@@ -91,7 +91,6 @@ if (is_admin()):
                         <div class="col">
                             <form method="post" action="deletion_code.php">
                                 <input type="hidden" value="<?= $_POST['meeting_id'] ?>" name="meeting_id">
-
 								<?php if (!$meeting_subjects_exist) { ?>
                                     <button type="submit" class="btn-basic" name="delete_meeting_btn">
                                         حذف المجلس
@@ -102,11 +101,9 @@ if (is_admin()):
                                         حذف المجلس
                                     </button>
 								<?php } ?>
-
                             </form>
                         </div>
                     </div>
-
                 </div>
             </form>
         </div>
