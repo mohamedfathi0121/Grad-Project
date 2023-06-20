@@ -70,8 +70,7 @@ Head("اضافة تشكيل");
 			                            continue;
 		                            }
                                     else
-                                    {
-			                            ?>
+                                    { ?>
                                         <option value="<?= $i ?>"><?= ($i + 1) . "-" . $i ?></option>;
 			                            <?php
 		                            }
