@@ -33,7 +33,7 @@ if (is_logged_in()) {
     $meeting_number = $meeting_number_row["mn"];
     if (in_array($meeting_number_row["fid"], $_SESSION["formation_ids"]) || $_SESSION["admin"]) { ?>
         <main class="subjects-table-page">
-            <div class="container">
+            
                 <div class="title">
                     <h1> محضر الاجتماع </h1>
                     <h3>محضر اجتماع لجنة إدارة البرامج الجديدة بالكلية مرحلتي البكالريوس والدراسات العليا</h3>
@@ -41,8 +41,8 @@ if (is_logged_in()) {
                 </div>
                 <h4>انعقدت اللجنة في تمام الساعة الثالثة عصرا يوم الاربعاء <?= $meeting_number_row["md"] ?> وبرئاسة الأستاذ الدكتور صلاح الدين اسماعيل
                     عميد الكلية ورئيس اللجنة</h4>
-                <br/>
-                <h4>بعضوية كلا من:</h4>
+                
+                <h4 style="margin-top:10px;">بعضوية كلا من:</h4>
                 <div class="meeting-attendance-page meetings-members">
                     <?php
                     $meeting_attendance_stmt = $conn->prepare("SELECT
@@ -115,7 +115,7 @@ if (is_logged_in()) {
                                 <td>الموضوع (<?= $subject_row["sno"] ?>)</td>
                                 <td>
                                     <strong><?= $subject_row["sn"] ?></strong>
-                                    <p><?= $subject_row["sd"] ?></p>
+                                    <p><pre><?= $subject_row["sd"] ?></pre></p>
                                     <?php if ($subject_pic_exists) { ?>
                                         <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
                                             <img src="<?= $subject_pic_row['picture_name'] ?>" alt="صورة تفاصيل الموضوع">
@@ -146,7 +146,7 @@ if (is_logged_in()) {
                     <button class="btn-basic" onclick="window.print()">طباعة</button>
                 </div>
 
-            </div>
+            
         </main>
     <?php } else {
         header("location: index.php", true, 303);

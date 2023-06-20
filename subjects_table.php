@@ -34,7 +34,7 @@ if (session_status() === PHP_SESSION_NONE)
         $n = 1;
         if (in_array($meeting_row["fid"], $_SESSION["formation_ids"]) || $_SESSION["admin"]) { ?>
             <main class="subjects-table-page">
-                <div class="container">
+                
                     <div class="title">
                         <h1> جدول الأعمال </h1>
     <!--                </div>-->
@@ -83,7 +83,7 @@ if (session_status() === PHP_SESSION_NONE)
                                         <td>الموضوع <?= $n ?></td>
                                         <td>
                                             <strong><?= $subject_table_row["subject_name"] ?></strong>
-                                            <p><?= $subject_table_row["subject_details"] ?></p>
+                                            <p><pre><?= $subject_table_row["subject_details"] ?></pre></p>
     <!--                                        --><?php //if (!emp)?>
                                             <?php while ($subject_attachment_row = $subject_attachment_result->fetch_assoc()) { ?>
                                                 <img src="<?= $subject_attachment_row['picture_name'] ?>" alt="صورة">
@@ -112,7 +112,7 @@ if (session_status() === PHP_SESSION_NONE)
                             </main>
                         </div>
                     <?php } ?>
-                </div>
+                
             </main>
         <?php } else {
             header("location: index.php", true, 303);

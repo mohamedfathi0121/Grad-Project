@@ -569,6 +569,7 @@ input[type="file"] {
 		display: none;
 	}
 	header .header-container {
+		display: flex;
 		justify-content: center;
 	}
 	header .univ-logo {
@@ -579,6 +580,7 @@ input[type="file"] {
 		page-break-inside: avoid;
 	}
 	.table-container {
+		overflow-x: none;
 		margin: 0;
 	}
 }

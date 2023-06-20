@@ -103,6 +103,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                     </h4>
                                                     <h4>
                                                         حالة المجلس:
+                                                        <span>
                                                         <?php
                                                         switch ($current_meeting_row["status"])
                                                         {
@@ -120,6 +121,7 @@ if (session_status() === PHP_SESSION_NONE)
                                                                 break;
                                                         }
                                                         ?>
+                                                        </span>
                                                     </h4>
                                                     <h4>
                                                         تاريخ الانعقاد:
@@ -660,6 +662,7 @@ if (session_status() === PHP_SESSION_NONE)
                                             </h4>
                                             <h4>
                                                 حالة المجلس:
+                                                <span>
 	                                            <?php
 	                                            switch ($past_meetings_row["status"])
 	                                            {
@@ -677,6 +680,7 @@ if (session_status() === PHP_SESSION_NONE)
 			                                            break;
 	                                            }
 	                                            ?>
+                                                </span>
                                             </h4>
                                         </div>
 	                                    <?php if ($_SESSION["admin"]) {

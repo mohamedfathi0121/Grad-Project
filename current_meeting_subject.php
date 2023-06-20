@@ -245,7 +245,7 @@ if (is_logged_in()):
                                                     <td>الموضوع (<?= $current_subjects_row["subject_number"] ?>)</td>
                                                     <td>
                                                         <strong><?= $current_subjects_row["subject_name"] ?></strong>
-                                                        <p><?= $current_subjects_row["subject_details"] ?></p>
+                                                        <p><pre><?= $current_subjects_row["subject_details"] ?></pre></p>
                                                         <?php
                                                         $subject_pic_stmt = $conn->prepare("SELECT 
                                                                                                         picture_name
