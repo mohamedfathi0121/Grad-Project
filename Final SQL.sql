@@ -33,6 +33,7 @@ VALUES ("عميد"),
        ("رئيس قسم"),
        ("عضو هيئة تدريس"),
        ("إداري"),
+       ("عضو حارجي"),
        ("أخرى");
 
 CREATE TABLE IF NOT EXISTS p39_job_rank
@@ -307,7 +308,9 @@ CREATE TABLE IF NOT EXISTS p39_vote
 INSERT INTO p39_vote_type (vote_type_name)
 VALUES ("موافقة"),
        ("رفض"),
-       ("امتناع");
+       ("امتناع"),
+       ("تحفظ"),
+       ("انسحاب");
 
 
 ###### Dummy Data #######
