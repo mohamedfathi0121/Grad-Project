@@ -8,7 +8,7 @@
 	--main-font: "Tajawal", sans-serif;
 	--checkmark: url("../images/icons/checkmark.svg");
 	--box-radius: 15px;
-	--error-color: rgb(144, 41, 41);
+	--error-color: red;
 
 	/* CSS HEX */
 	--headings-color: #294862;
