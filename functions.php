@@ -183,7 +183,7 @@ function SearchBar()
                     </select>
                 </div>
                 <input type="text" placeholder="ابحث عن مجلس" name="search"/>
-                <button type="submit" class="btn-basic">
+                <button type="submit" class="btn-basic" name="search_btn">
                     <i class="fa fa-search"></i>
                 </button>
 				<?php break;
