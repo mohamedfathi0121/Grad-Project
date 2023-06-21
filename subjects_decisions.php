@@ -115,7 +115,7 @@ if (is_logged_in()) {
                                 <td>الموضوع (<?= $subject_row["sno"] ?>)</td>
                                 <td>
                                     <strong><?= $subject_row["sn"] ?></strong>
-                                    <p><pre><?= $subject_row["sd"] ?></pre></p>
+                                    <p><?= $subject_row["sd"] ?></p>
                                     <?php if ($subject_pic_exists) { ?>
                                         <?php while ($subject_pic_row = $subject_pic_result->fetch_assoc()) { ?>
                                             <img src="<?= $subject_pic_row['picture_name'] ?>" alt="صورة تفاصيل الموضوع">
