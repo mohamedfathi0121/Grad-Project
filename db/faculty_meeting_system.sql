@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 01:10 AM
+-- Generation Time: Jun 22, 2023 at 01:08 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -173,8 +173,8 @@ CREATE TABLE `p39_formation` (
 --
 
 CREATE TABLE `p39_formation_user` (
-  `formation_id` smallint(5) UNSIGNED DEFAULT NULL,
-  `user_id` smallint(5) UNSIGNED DEFAULT NULL,
+  `formation_id` smallint(5) UNSIGNED NOT NULL,
+  `user_id` smallint(5) UNSIGNED NOT NULL,
   `job_title` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -221,7 +221,8 @@ INSERT INTO `p39_job_type` (`job_type_id`, `job_type_name`) VALUES
 (3, 'رئيس قسم'),
 (4, 'عضو هيئة تدريس'),
 (5, 'إداري'),
-(6, 'أخرى');
+(6, 'عضو حارجي'),
+(7, 'أخرى');
 
 -- --------------------------------------------------------
 
@@ -237,7 +238,7 @@ CREATE TABLE `p39_meeting` (
   `meeting_date` date DEFAULT NULL,
   `is_current` tinyint(3) UNSIGNED DEFAULT 1,
   `status` enum('pending','confirmed','finished') DEFAULT 'pending',
-  `is_showed` tinyint(3) UNSIGNED DEFAULT 0,
+  `is_shown` tinyint(3) UNSIGNED DEFAULT 0,
   `formation_id` smallint(5) UNSIGNED DEFAULT NULL,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `added_by` smallint(5) UNSIGNED DEFAULT NULL
@@ -445,7 +446,9 @@ CREATE TABLE `p39_vote_type` (
 INSERT INTO `p39_vote_type` (`vote_type_id`, `vote_type_name`) VALUES
 (1, 'موافقة'),
 (2, 'رفض'),
-(3, 'امتناع');
+(3, 'امتناع'),
+(4, 'تحفظ'),
+(5, 'انسحاب');
 
 --
 -- Indexes for dumped tables
@@ -512,7 +515,7 @@ ALTER TABLE `p39_formation`
 -- Indexes for table `p39_formation_user`
 --
 ALTER TABLE `p39_formation_user`
-  ADD KEY `formation_id` (`formation_id`),
+  ADD PRIMARY KEY (`formation_id`,`user_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -676,7 +679,7 @@ ALTER TABLE `p39_job_rank`
 -- AUTO_INCREMENT for table `p39_job_type`
 --
 ALTER TABLE `p39_job_type`
-  MODIFY `job_type_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `job_type_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `p39_meeting`
@@ -742,7 +745,7 @@ ALTER TABLE `p39_user_transaction`
 -- AUTO_INCREMENT for table `p39_vote_type`
 --
 ALTER TABLE `p39_vote_type`
-  MODIFY `vote_type_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `vote_type_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
