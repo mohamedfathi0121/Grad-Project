@@ -24,6 +24,10 @@ if (is_admin()):
                 <h1>إضافة موضوع جديد</h1>
             </div>
             <form class="box" method="post" action="addition_code.php" enctype="multipart/form-data">
+	            <?php if (@$_SESSION["error"]["add"]) { ?>
+                    <p class="login-error">يرجى إدخال جميع الحقول</p>
+		            <?php unset($_SESSION["error"]["add"]);
+	            } ?>
                 <div class="col">
                     <div class="row">
                         <h4>عنوان الموضوع</h4>

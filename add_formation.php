@@ -38,15 +38,17 @@ Head("اضافة تشكيل");
                 <h1>إضافة تشكيل جديد</h1>
             </div>
             <form class="box" method="post" action="addition_code.php" enctype="multipart/form-data">
+	            <?php if (@$_SESSION["error"]["add"]) { ?>
+                    <p class="login-error">يرجى إدخال جميع الحقول</p>
+		            <?php unset($_SESSION["error"]["add"]);
+	            } ?>
                 <div class="col">
-
                     <div class="row">
                         <h4>رقم التشكيل*</h4><input type="number" name="formation_number" min="1" required/>
                         <?php if (!empty(@$last_formation_number)) { ?>
                             <h6>رقم التشكيل السابق: <?= $last_formation_number ?></h6>
                         <?php } ?>
                     </div>
-
                     <div class="row">
                         <h4>الفترة الزمنية*</h4>
                         <div class="select-basic">

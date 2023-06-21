@@ -403,3 +403,17 @@ function Delete($conn, $table, $where)
     $delete_stmt = $conn->prepare("DELETE FROM {$table} WHERE {$where}");
     return $delete_stmt;
 }
+
+function Validate(array $inputs)
+{
+    $error = false;
+    foreach ($inputs as $input)
+    {
+        if (empty($_POST[$input]))
+        {
+            $error = true;
+            return $error;
+        }
+    }
+    return $error;
+}
