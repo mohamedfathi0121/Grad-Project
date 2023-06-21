@@ -17,7 +17,7 @@ Head("اضافة موضوع");
 Headers();
 if (is_admin()):
 	Nav(); ?>
-    <main class="add-member-page">
+    <main class="add-member-page add-subject-page">
         <div class="container">
             <!-- عنوان الصفحة -->
             <div class="title">

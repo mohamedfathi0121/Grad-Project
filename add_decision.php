@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <?php if (is_admin()): ?>
         <?php if ($_SERVER["REQUEST_METHOD"] === "POST") { ?>
             <?php Nav(); ?>
-            <main class="add-member-page">
+            <main class="add-member-page add-decision-page">
                 <div class="container">
                     <!-- عنوان الصفحة -->
                     <div class="title">

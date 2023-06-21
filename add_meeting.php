@@ -41,7 +41,7 @@ if (is_admin()):
 			<form class="box" method="post" action="addition_code.php">
 				<div class="col">
 					<div class="row">
-						<h4>رقم المجلس</h4>
+						<h4>*رقم المجلس</h4>
 						<input type="number" name="number" required min="1"/>
 						<?php if (!empty(@$last_meeting_number)) { ?>
 							<h6>رقم المجلس السابق: <?= $last_meeting_number ?></h6>
@@ -69,7 +69,7 @@ if (is_admin()):
 						$meeting_months_stmt->execute();
 						$meeting_months_result = $meeting_months_stmt->get_result();
 						?>
-						<h4>الشهر</h4>
+						<h4>*الشهر</h4>
 						<div class="select-basic">
 							<select name="month" required>
 								<option>اختر</option>
@@ -90,7 +90,7 @@ if (is_admin()):
 						</div>
 					</div>
 					<div class="row">
-						<h4>السنة</h4>
+						<h4>*السنة</h4>
 						<div class="select-basic">
 							<select name="year" required>
 								<option value="">اختر</option>

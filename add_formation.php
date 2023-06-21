@@ -41,14 +41,14 @@ Head("اضافة تشكيل");
                 <div class="col">
 
                     <div class="row">
-                        <h4>رقم التشكيل</h4><input type="number" name="formation_number" min="1" required/>
+                        <h4>رقم التشكيل*</h4><input type="number" name="formation_number" min="1" required/>
                         <?php if (!empty(@$last_formation_number)) { ?>
                             <h6>رقم التشكيل السابق: <?= $last_formation_number ?></h6>
                         <?php } ?>
                     </div>
 
                     <div class="row">
-                        <h4>الفترة الزمنية</h4>
+                        <h4>الفترة الزمنية*</h4>
                         <div class="select-basic">
                             <select name="start_year" required>
                                 <option>اختر</option>
