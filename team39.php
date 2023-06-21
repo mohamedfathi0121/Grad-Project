@@ -41,7 +41,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
                                     </h3>
                                 </div>
                                 <div class="row">
-                                    <p> I’m a BIS department student, I made some projects and got a couple of
+                                    <p> I’m a BIS department student, I made some projects and got a multiple of
                                         certifications in HTML, CSS, and JavaScript, I'm interested in computers and
                                         hardware, as well as video games and novels.</p>
                                 </div>
