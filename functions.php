@@ -248,7 +248,7 @@ function Footer()
     $y = date("Y");
     ?>
     <footer>
-        <p>جميع الحقوق محفوظة &copy; لدى فريق رقم 39 Bis Seniors <?=$y?></p>
+        <p>جميع الحقوق محفوظة &copy; لدى  <a href="./credits.php" starget="_blank">فريق رقم 39</a> Bis Seniors <?=$y?></p>
     </footer>
     <?php
 }
