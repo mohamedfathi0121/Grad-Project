@@ -356,6 +356,10 @@
 	justify-content: space-evenly;
 }
 
+.vote-radio .col {
+	align-items: center;
+}
+
 .voting-content .box .row {
 	margin-bottom: 20px;
 }
@@ -365,6 +369,7 @@
 	gap: 15px;
 	align-items: center;
 }
+
 @media (max-width: 768px) {
 	.voting-content .vote-radio {
 		display: flex;

@@ -5,13 +5,13 @@ require_once "functions.php";
 <!DOCTYPE html>
 <html lang="en">
 <?php
-Head("team39");
+Head("Project Team 39");
 ?>
 
 <body dir="rtl">
     <?php
 Headers();
-if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
+
 	?>
 
     <main class="team-39" dir="ltr">
@@ -22,6 +22,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
             <div class="box">
                 <div class="members-title">
                     <h1>Project Team</h1>
+                    <h2>Seniors 2023</h2>
                 </div>
                 <div class="row">
                     <!-- mohamed ayman -->
@@ -41,7 +42,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
                                     </h3>
                                 </div>
                                 <div class="row">
-                                    <p> I'm 22 Y/O, Former BIS department student, I made some projects and got a multiple of
+                                    <p> I'm 22 Y/O, BIS department graduate, I made some projects and got a multiple of
                                         certifications in HTML, CSS, and JavaScript, I'm interested in computers and
                                         hardware, as well as video games and novels.</p>
                                 </div>
@@ -75,7 +76,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
                                     </h3>
                                 </div>
                                 <div class="row">
-                                    <p> I’m a 21-year-old Business Information Systems (BIS) student, I made some
+                                    <p> I’m a 21-year-old Business Information Systems (BIS) graduate, I made some
                                         projects and got multiple certificates in Data Analysis, and I'm interested in Backend Development.</p>
                                 </div>
                                 <div class="row row-font">
@@ -109,7 +110,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
                                     </h3>
                                 </div>
                                 <div class="row">
-                                    <p> I am a 22-year-old Business Information Systems student with a passion for
+                                    <p> I am a 22-year-old Business Information Systems graduate with a passion for
                                         computer science, full-stack development, Ui/Ux design and system analysis. I
                                         have completed some projects and obtained
                                         certificates in FrontEnd And Ui/Ux, and I am seeking challenging opportunities
@@ -147,7 +148,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
                                     </h3>
                                 </div>
                                 <div class="row">
-                                    <p> I’m a 22-year-old Business Information Systems (BIS) student, I made some
+                                    <p> I’m a 22-year-old Business Information Systems (BIS) graduate, I made some
                                         projects and got multiple certificates in cyber-security, and I'm also
                                         interested in soft-ware development specially in mobile
                                         applications development..</p>
@@ -185,7 +186,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
                                     </h3>
                                 </div>
                                 <div class="row">
-                                    <p> I am a 21-year-old Business Information Systems student with a passion for data
+                                    <p> I am a 21-year-old Business Information Systems graduate with a passion for data
                                         analysis and business intelligence. I have completed some projects and obtained
                                         certificates in data analysis, and I am seeking challenging opportunities to
                                         apply my skills and knowledge.</p>
@@ -221,7 +222,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
                                     </h3>
                                 </div>
                                 <div class="row">
-                                    <p> Driven 21-year-old BIS student with project experience and certificates in SOC
+                                    <p> Driven 21-year-old BIS graduate with project experience and certificates in SOC
                                         Analysis, passionate about excelling in Mobile Application Development.
                                         Dedicated to becoming a proficient professional in both fields, showcasing
                                         expertise and relentless commitment.</p>
@@ -246,7 +247,7 @@ if (!isset($_SESSION["loggedin"]) && @$_SESSION["loggedin"] !== true):
     </main>
 
     <?php
-endif;
+
 footer()
 ?>
 
