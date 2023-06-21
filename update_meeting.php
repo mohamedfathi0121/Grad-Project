@@ -50,15 +50,20 @@ if (is_admin()):
                         <div class="select-basic">
                             <select name="meeting_month" required>
                                 <option>اختر</option>
-								<?php
-								for ($i = 1; $i <= 12; $i++) {
+								<?php for ($i = 9; $i <= 12; $i++) {
 									if ($i == $meeting_row["meeting_month"]) {
 										echo "<option value='$i' selected>$i</option>";
 									} else {
 										echo "<option value='$i'>$i</option>";
 									}
 								}
-								?>
+                                for ($i = 1; $i <= 8; $i++) {
+                                    if ($i == $meeting_row["meeting_month"]) {
+                                        echo "<option value='$i' selected>$i</option>";
+                                    } else {
+                                        echo "<option value='$i'>$i</option>";
+                                    }
+                                } ?>
                             </select>
                         </div>
                     </div>
