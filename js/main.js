@@ -30,6 +30,8 @@ for (let i = 0; i < uploadLabel.length; i++) {
 	});
 }
 
+// Make The Photo Uploaded Appears As a Preview
+
 const buttons = document.querySelectorAll(".upload-button");
 const fileLists = document.querySelectorAll(".file-list");
 
@@ -90,7 +92,6 @@ openButton.forEach((openBtn) => {
 // closeButton.addEventListener("click", () => {
 //   modal.close();
 // });
-// Tajawal;
 
 console.log(
 	`Made By:
