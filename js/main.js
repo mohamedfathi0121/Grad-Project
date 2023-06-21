@@ -56,8 +56,6 @@ function displayFile(files, fileList) {
 	}
 }
 
-console.log("AYMAN");
-
 // Links Toggler
 
 const toggler = document.querySelector("nav ul .icon");
@@ -92,3 +90,16 @@ openButton.forEach((openBtn) => {
 // closeButton.addEventListener("click", () => {
 //   modal.close();
 // });
+// Tajawal;
+
+console.log(
+	`Made By:
+
+Mohamed Ayman Gamal
+Mohamed Fathi Salah
+Mahmoud Badr
+
+Omar Ayman
+Mohamed Rabea
+Mahmoud Ashraf`
+);
