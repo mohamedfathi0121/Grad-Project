@@ -33,13 +33,18 @@ if (is_logged_in()) {
     $meeting_number = $meeting_number_row["mn"];
     if (in_array($meeting_number_row["fid"], $_SESSION["formation_ids"]) || $_SESSION["admin"]) { ?>
         <main class="subjects-table-page">
-            
+            <?php
+            $dean_stmt = $conn->prepare("SELECT Faculty_Dean AS d FROM application_data");
+            $dean_stmt->execute();
+            $dean_result = $dean_stmt->get_result();
+            $dean_row = $dean_result->fetch_assoc();
+            ?>
                 <div class="title">
                     <h1> محضر الاجتماع </h1>
                     <h3>محضر اجتماع لجنة إدارة البرامج الجديدة بالكلية مرحلتي البكالريوس والدراسات العليا</h3>
                     <h3>جلسة رقم <span><?= $meeting_number ?></span> بتاريخ <span><?= $meeting_number_row["md"] ?></span></h3>
                 </div>
-                <h4>انعقدت اللجنة في تمام الساعة الثالثة عصرا يوم الاربعاء <?= $meeting_number_row["md"] ?> وبرئاسة الأستاذ الدكتور صلاح الدين اسماعيل
+                <h4>انعقدت اللجنة في تمام الساعة الثالثة عصرا يوم الاربعاء <?= $meeting_number_row["md"] ?> وبرئاسة الأستاذ <?= $dean_row["d"] ?>
                     عميد الكلية ورئيس اللجنة</h4>
                 
                 <h4 style="margin-top:10px;">بعضوية كلا من:</h4>
