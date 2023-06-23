@@ -16,13 +16,18 @@ Head("التصويت");
 <body dir="rtl">
 <?php Headers();
 if (is_logged_in() AND !$_SESSION["admin"] AND isset($_POST["voting_btn"])):
-    Nav(); ?>
-    <!-- ?main content of the page -->
+    Nav();
+    $subject_no_stmt = $conn->prepare("SELECT subject_number AS sno FROM p39_subject WHERE subject_id = ?");
+    $subject_no_stmt->bind_param("i", $_POST["subject_id"]);
+    $subject_no_stmt->execute();
+    $subject_no_result = $subject_no_stmt->get_result();
+    $subject_no_row = $subject_no_result->fetch_assoc(); ?>
+    <!-- main content of the page -->
     <main class="voting-content">
         <div class="container">
             <!-- عنوان الصفحة -->
             <div class="title">
-                <h1>التصويت علي موضوع رقم: <span class="subject-num"><?= $_POST["subject_id"] ?></span></h1>
+                <h1>التصويت علي موضوع رقم: <span class="subject-num"><?= $subject_no_row["sno"] ?></span></h1>
             </div>
             <?php
             $subject_vote_stmt = $conn->prepare("SELECT vote_type_id FROM p39_vote WHERE subject_id = ? AND user_id = ?");
